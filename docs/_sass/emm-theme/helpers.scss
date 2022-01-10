@@ -1,0 +1,43 @@
+.float-right {
+  float: right;
+  margin-right: 0 !important;
+}
+
+.float-left {
+  float: left;
+  margin-left: 0 !important;
+}
+
+.has-text-centered {
+  p {
+    text-align: center;
+    margin: .5em auto 2em auto;
+  }
+}
+
+.has-text-justified p {
+  text-align: justify !important;
+}
+
+.has-text-left p {
+  text-align: left !important;
+}
+
+.has-text-right p {
+  text-align: right !important;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.margin-unset {
+  margin: unset !important;
+}
+
+.sticky {
+  max-height: 95vh;
+  overflow-x: scroll;
+	position: sticky;
+  top: 1rem;
+}
