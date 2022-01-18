@@ -10,13 +10,13 @@ minor: 1
 patch: 0
 pre: final
 redirect_from:
-- /change/
-- /change/index.html
-- /change/1/index.html
-  editors:
-- name: E. Lynette Rayle
-  orcid: https://orcid.org/0000-0001-7707-3572
-  institution: Cornell University
+  - /change/
+  - /change/index.html
+  - /change/1/index.html
+editors:
+  - name: E. Lynette Rayle
+    orcid: https://orcid.org/0000-0001-7707-3572
+    institution: Cornell University
 ---
 
 ## Status of this Document
@@ -144,7 +144,7 @@ Each _Entity Metadata Collection_{:.term} _MUST_{:.strong-term} have at least on
 
 The Entry Point _MUST_{:.strong-term} be implemented as an _Ordered Collection_{:.term} following the [definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollection) in the [Activity Stream specification][org-w3c-activitystreams].  The key points are repeated here with examples specific to Entity Metadata Management.
 
-FULL EXAMPLE for Entry Point:
+#### FULL EXAMPLE for Entry Point:
 
 TODO: should the example include published for first?
 TODO: should the example include published for last?
@@ -187,7 +187,7 @@ The _Entry Point_{:.term} _MUST_{:.strong-term} have a _type_{:.term} property. 
 
 __id__
 
-The unique identifier of the _Entry Point_.
+The unique identifier of the _Entry Point_{:.term}.
 
 The _Entry Point_{:.term} _MUST_{:.strong-term} have an _id_{:.term} property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Ordered Collection_{:.term} _Entry Point_{:.term} _MUST_{:.strong-term} be available at the URI.
 
@@ -253,7 +253,7 @@ It is _RECOMMENDED_{:.strong-term} that change sets be published on a regular sc
 
 _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collection Page_{:.term} following the [definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollectionpage) in the [Activity Stream specification][org-w3c-activitystreams].  The key points are repeated here with examples specific to Entity Metadata Management.
 
-FULL EXAMPLE for Change Set:
+#### FULL EXAMPLE for Change Set:
 
 ```json-doc
 {
@@ -327,7 +327,7 @@ A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Cha
 
 _Entity Change Notifications_{:.term} _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [definition](https://www.w3.org/TR/activitystreams-vocabulary/#activity) in the [Activity Stream specification][org-w3c-activitystreams].  The key points are repeated here with examples specific to Entity Metadata Management.
 
-FULL EXAMPLE for Entity Change Notification:
+#### FULL EXAMPLE for Entity Change Notification:
 
 ```json-doc
 {
@@ -357,7 +357,7 @@ FULL EXAMPLE for Entity Change Notification:
 
 To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cache of Full Dataset](#local-cache-of-full-dataset), it is _RECOMMENDED_{:.strong-term} that each [Entity Change Notification](#entity-change-notification) include the _instrument_{:.term} property which provides a link an _Entity Patch_{:.term}.
 
-FULL EXAMPLE for Entity Patch
+#### FULL EXAMPLE for Entity Patch
 
 ```json-doc
 
@@ -383,7 +383,7 @@ FULL EXAMPLE for Entity Patch
 ## 5. Types of Change
 {: #types-of-change}
 
-All {Entity Change Notifications_{:.term} have a core set of properties that are described in the [Entity Change Notification](#entity-change-notification) section.  Some properties are specific to the _Types of Change_.  This section provides examples and descriptions of the _Entity Change Notification_{:.term} and _Entity Patch_{:.term} for each type of change.
+All {Entity Change Notifications_{:.term} have a core set of properties that are described in the [Entity Change Notification](#entity-change-notification) section.  Some properties are specific to the _Types of Change_.  This section provides examples and descriptions of the _Entity Change Notification_{:.term} and _Entity Patch_{:.term} for each type of change.  They also describe differences between similar Activity Types (e.g. _Create_{:.term} vs. _Add_{:.term}).
 
 ### 5.1 New Entity
 {: #new-entity}
@@ -392,7 +392,19 @@ A new entity _SHOULD_{:.strong-term} have an [Entity Change Notification](#entit
 
 A new entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [Create type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-create) or the [Add type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-add) in the [Activity Stream specification][org-w3c-activitystreams].  The key points are repeated here with examples specific to Entity Metadata Management.
 
-EXAMPLE Entity Change Notification for Create
+#### Create vs. Add
+
+An entity appearing in an _Entry Point_{:.term} stream for the first time _MUST_{:.strong-term} use _Activity_{:.term} type _Create_{:.term} or _Add_{:.term}.
+
+_Create_{:.term} _SHOULD_{:.strong-term} be used when the entity is new in the source dataset.
+
+_Add_{:.term} _SHOULD_{:.strong-term} be used when the entity exists in the source dataset, but was previously not available through the _Entry Point_{:.term} and now is being made available in the stream.  Situations where this might happen include, but are not limited to, change in permissions, end of an embargo, temporary removal and now being made available again.  
+
+A new _Entry Point_{:.term} _MAY_{:.strong-term} choose to populate the stream with all existing entities.  In this case, the initial population of the stream with all existing entities _SHOULD_{:.strong-term} use _Add_{:.term}.
+
+#### EXAMPLE Entity Change Notification for Create
+
+Complete Example
 
 ```json-doc
 {
@@ -417,7 +429,49 @@ EXAMPLE Entity Change Notification for Create
 }
 ```
 
-EXAMPLE Entity Patch for Create
+__summary__
+
+__type__
+
+The Activity Stream class of the _Entity Change Notification_{:.term}.
+
+The _Entity Change Notification_{:.term} _MUST_{:.strong-term} have a _type_{:.term} property.  The notifications of a newly available entity, the value _SHOULD_{:.strong-term} be one either `"Create"` or `"Add"`.
+
+```json-doc
+{ "type": "Create" }
+```
+or
+```json-doc
+{ "type": "Add" }
+```
+
+__id__
+
+The unique identifier of the _Entity Change Notification_{:.term}.
+
+The _Entity Change Notification_{:.term} _MUST_{:.strong-term} have an _id_{:.term} property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Entity Change Notification_{:.term} _MUST_{:.strong-term} be available at the URI.
+
+```json-doc
+{ "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11" }
+```
+
+__partOf__
+
+The _partOf_ property identifies the _Change Set_{:.term} for this notification.
+
+Each _Entity Change Notification_{:.term} _MUST_{:.strong-term} use the _partOf_ property if referring back to the _Change Set_{:.term} that includes this notification.
+
+```json-doc
+"partOf": {
+  "type": "OrderedCollectionPage",
+  "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
+}
+```
+
+
+#### EXAMPLE Entity Patch for Create
+
+Complete Example
 
 ```json-doc
 {
