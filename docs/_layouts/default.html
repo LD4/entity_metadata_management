@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang='en'>
+  {%- include head.html -%}
+  <body>
+    {%- if site.notification.enabled -%}
+    {%- include misc/notification.html notification=site.notification -%}
+    {%- endif -%}
+    {%- include blocks/hero.html hero=page.hero top_nav=true -%}
+    <section id="main">
+      {% if page.anchor_headings %}
+      {% include api/anchor_headings.html html=content anchorClass="anchorClass"  %}
+      {% else %}
+      {{ content }}
+      {% endif %}
+    </section>
+    {%- include footer.html -%}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://kit.fontawesome.com/2c3e99340f.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ 'assets/js/carouselInit.js' | absolute_url }}"></script>
+  </body>
+</html>

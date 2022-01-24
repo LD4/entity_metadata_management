@@ -1,0 +1,35 @@
+---
+layout: default
+breadcrumbs:
+  - label: Get Started
+    link: '{{ site.root_url }}/get-started'
+  - label: APIs & Documentation
+    link: '{{ site.api_url }}/'
+---
+{% for word in site.data.rfc_words %}
+  {% assign upper = word | prepend: '<em>' | append: '</em>' %}
+  {% assign lower = upper | downcase | replace: '<em>', '<em class="rfc">' %}
+  {% assign content = content | replace: upper, lower %}
+{% endfor %}
+
+
+{% if page.toc == false %}
+{{ theme.block-start }}
+  <div class="content api-content">
+    {% include api/anchor_headings.html html=content anchorClass="anchorClass" %}
+  </div>
+{{ theme.block-end }}
+{% else %}
+<div class="container-block no-padding is-max-desktop">
+  <div class="columns is-max-desktop">
+    <aside class="column is-one-quarter api-sidebar-container" markdown="1">
+      <div class="toc-sidebar sticky">
+        {% include api/toc.html html=content h_max=3 id='toc-menu' class='menu' submenu_class='menu-list toc-submenu-%level%' %}
+      </div>
+    </aside>
+    <div class="column is-three-quarters content api-content" markdown="1">
+      {% include api/anchor_headings.html html=content anchorClass="anchorClass" %}
+    </div>
+  </div>
+</div>
+{% endif %}

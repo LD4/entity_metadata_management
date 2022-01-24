@@ -1,0 +1,36 @@
+<nav id="navbar" class="navbar is-transparent is-spaced">
+  <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="{{ site.root_url | absolute_url }}/">
+        <img src="{{ theme.logo | absolute_url }}" alt="{{ theme.acronym }} logo" height="28">
+        <span class="brand-title">{{ theme.title }}</span>
+      </a>
+      <div class="navbar-burger" data-target="navbar" onclick="document.querySelector('.navbar-menu').classList.toggle('is-active');">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div class="navbar-menu">
+      <div class="navbar-end">
+        {%- for item in theme.navbar_menu -%}
+          {% if item.sub %}
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" {% if item.link %} href="{{ item.link | liquify | absolute_url }}"{% endif %}>
+                {{ item.label }}
+              </a>
+              <div class="navbar-dropdown is-boxed is-active">
+                {% for sub in item.sub %}
+                  <a class="navbar-item" href="{{ sub.link | liquify | absolute_url }}">{{ sub.label }}</a>
+                {% endfor %}
+              </div>
+            </div>
+          {% else %}
+            <a class="navbar-item" href="{{ item.link | liquify | absolute_url }}">{{ item.label }}</a>
+          {% endif %}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,92 @@
+# BUILD SETTINGS
+
+url:            ''
+baseurl:        ''
+permalink:      pretty
+theme:          emm-theme
+source:         source
+google_analytics:   # UA-XXXXXXX-XX
+
+markdown:       kramdown
+exclude:        [node_modules]
+sass:
+  style:        compressed
+  sass_dir:     _sass
+
+plugins:
+  - jekyll-data
+  - jekyll-gzip
+  - jekyll-redirect-from
+  - jekyll-liquify
+
+# URLS
+root_url:       https://entity-metadata-management.io
+api_url:        https://entity-metadata-management.io/api
+guides_url:     # https://entity-metadata-management.io/guides # perhaps use for links to example Activity Streams
+
+# THEME VARS
+emm-theme:
+  logo:       assets/images/logos/emm_logo.png
+  acronym:    EEM
+  title:      Entity Metadata Management
+  tagline:    "EMM is a set of open standards for describing methods for managing the lifecyle of entity metadata."
+  email:      emm-discuss@googlegroups.com
+  block-start: "<div class='container-block is-max-widescreen'><div class='container' markdown='1'>"
+  block-center-start: '<div class="container-block is-max-widescreen"><div class="container has-text-centered" markdown="1">'
+  block-end: '</div></div>'
+  navbar_menu:
+    - label: 'Home'
+      link: '{{ site.root_url }}/'
+    - label: 'Demos'
+      link: '{{ site.root_url }}/demos'
+    - label: 'News & Events'
+      link: '{{ site.root_url }}/news-and-events'
+    - label: 'Get Involved'
+      link: '{{ site.root_url }}/get-involved'
+      sub:
+        - label: 'Community'
+          link: '{{ site.root_url }}/community/'
+        - label: 'Consortium'
+          link: '{{ site.root_url }}/community/consortium'
+        - label: 'Join Newsletter'
+          link: '{{ site.root_url }}/newsletter'
+        - label: 'Code of Conduct'
+          link: '{{ site.root_url }}/event/conduct/'
+    - label: 'Get Started'
+      link: '{{ site.root_url }}/get-started'
+      sub:
+        - label: 'How EMM Works'
+          link: '{{ site.root_url }}/get-started/how-emm-works'
+        - label: 'Guides'
+          link: '{{ site.guides_url }}'
+        - label: 'APIs & Documentation'
+          link: '{{ site.api_url }}'
+        - label: 'Cookbooks'
+          link: '{{ site.root_url }}/get-started/cookbook'
+        - label: 'Training'
+          link: '{{ site.root_url }}/get-started/training'
+  footer_menu:
+    - heading: About
+      sub:
+        - label: 'How EMM Works'
+          link:  '{{ site.root_url }}/get-started/how-emm-works'
+        - label: 'APIs & Documentation'
+          link:  '{{ site.api_url }}'
+        - label: 'Demos'
+          link:  '{{ site.root_url }}/demos'
+        - label: 'Tutorials & Guides'
+          link:  '{{ site.guides_url }}'
+        - label: 'Privacy policy'
+          link:  '{{ site.root_url }}/privacy'
+    - heading: Stay Connected
+      sub:
+        - label: 'News & Events'
+          link:  '{{ site.root_url }}/news-and-events'
+        - label: 'Join Newsletter'
+          link:  '{{ site.root_url }}/newsletter'
+        - label: 'Community Groups'
+          link:  '{{ site.root_url }}/community/groups'
+        - label: 'Consortium'
+          link:  '{{ site.root_url }}/community/consortium'
+        - label: 'Contact Us'
+          link:  '{{ site.root_url }}/community/consortium/staff'

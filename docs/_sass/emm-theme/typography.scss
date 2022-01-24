@@ -1,0 +1,41 @@
+@mixin heading {
+  font-family: $family-serif;
+  color: $dark-blue;
+  font-weight: bolder;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  @include heading;
+}
+
+p {
+  max-width: $content-max-width;
+}
+
+h1 {
+  font-size: 2.375rem;
+}
+h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1.75rem;
+}
+h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.blue-text {
+  color: #006eb0 !important;
+}
+
+.sans-serif {
+  font-family: $family-sans-serif !important;
+}
+
+.serif {
+  font-family: $family-serif !important;
+}
