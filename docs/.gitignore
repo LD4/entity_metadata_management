@@ -1,0 +1,21 @@
+# ruby stuff
+/.bundle/
+/.yardoc
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+Gemfile.lock
+
+# jekyll stuff
+.jekyll-cache
+.jekyll-metadata
+_site
+
+# misc
+.DS_Store
+*.swp
+
+vendor

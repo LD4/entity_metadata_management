@@ -30,7 +30,7 @@ html, body {
   width: 195px;
   height: 30px;
   margin: 0 0 0 1rem;
-  font-family: "Playfair Display";
+  font-family: "PT Serif";
   font-size: 13px;
   font-weight: bold;
   line-height: 1.15;
@@ -41,11 +41,14 @@ html, body {
   }
 }
 
+.hero.is-primary .title {
+  color: $logo-dark-blue;
+}
 .hero {
   // margin-bottom: .75rem;
   .title {
     font-family: $family-serif;
-    color: $white !important;
+    color: $white;
     margin: 1rem auto 2rem auto;
     max-width: $content-max-width;
   }
@@ -134,7 +137,7 @@ html, body {
 }
 
 .button {
-  font-family: "Playfair Display", serif;
+  font-family: "PT Serif", serif;
   font-weight: bold;
 }
 
@@ -182,7 +185,7 @@ html, body {
   }
 
   footer {
-    font-family:'Playfair Display';
+    font-family:'PT Serif';
     p {
       margin: 0 auto;
       font-weight: bold;
@@ -311,4 +314,32 @@ hr {
 
 footer a.navbar-item {
   padding: 0.5rem 0rem;
+}
+
+.strong-term {
+  color: #a61c00;
+  font-weight: normal;
+  font-style: normal;
+  font-family: "Montserrat";
+}
+
+.term {
+  color: #1c4587;
+  font-weight: normal;
+  font-style: normal;
+  font-family: "Montserrat";
+}
+
+.info {
+  font-size: .8rem !important;
+  color: #3c4547;
+  background-color: #e3f1f3;
+  padding: 10px;
+  border: #717f81 1px solid;
+}
+
+pre.highlight code {
+  font-size: 0.8rem;
+  display: block;
+  line-height: 1.3;
 }

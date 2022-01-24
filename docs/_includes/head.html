@@ -1,0 +1,21 @@
+<head>
+  <meta charset="utf-8">
+  <title>
+     {% if page.title %}{{ page.title }} — {% endif %} {{ theme.acronym }} | {{ theme.title }}
+  </title>
+  <meta name="description" content="{{ site.tagline | default: site.organization.tagline }}">
+  <link rel="shortcut icon" href="{%- if site.logo -%}{{ site.logo | absolute_url }}{%- else -%}{{ site.organization.logo | absolute_url }}{%- endif -%}">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% link assets/css/style.scss %}">
+  <link rel="canonical" href="{{ page.url | absolute_url }}" />
+  <link rel="shortcut icon" type="image/jpg" href="{{ 'assets/favicon.ico' | absolute_url }}"/>
+  {%- if jekyll.environment == 'production' and site.google_analytics -%}
+    {%- include misc/google-analytics.html -%}
+  {%- endif -%}
+
+  {% if page.hero.image %}
+  <link rel="preload" as="image" href="{{ page.hero.image | absolute_url }}">
+  {% endif %}
+</head>

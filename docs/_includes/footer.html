@@ -1,0 +1,31 @@
+
+<footer id="footer" class="footer">
+  <div class="container">
+    <div class="columns">
+
+      <div class="navbar-brand column is-half">
+        <a class="navbar-item" href="{{ '/' | absolute_url }}">
+          <img src="{{ theme.logo | absolute_url }}" alt="{{ theme.acronym }} logo" height="28">
+          <span class="brand-title blue-text">{{ theme.title }}</span>
+        </a>
+        <p>{{ theme.tagline }}</p>
+      </div>
+      <div class="column"></div>
+      {% for column in theme.footer_menu %}
+      <div class="column menu-column">
+        <h4>{{ column.heading }}</h4>
+        <ul>
+        {% for item in column.sub %}
+          <li>
+            <a href="{{ item.link | liquify | absolute_url }}">{{ item.label }}</a>
+          </li>
+        {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</footer>
+
+<!-- REMOVE REDUNDANT FA-JS AFTER CAROUSEL PR IS MERGED -->
+<script src="https://kit.fontawesome.com/2c3e99340f.js" crossorigin="anonymous"></script>

@@ -1,0 +1,61 @@
+{% assign hero = include.hero %}
+{% assign top_nav = hero.top_nav | default: include.top_nav %}
+{% assign breadcrumbs = include.breadcrumbs | default: page.breadcrumbs | default: layout.breadcrumbs %}
+
+
+{%- capture style -%}
+  background-image: linear-gradient(to bottom, white 10%, #008094){% if hero.image %}, url('{{ hero.image | absolute_url }}'){% endif %};
+  background-size: cover;
+  background-position: bottom center;
+  background-attachment: fixed;
+  {% if hero.color %}background: {{ hero.color }};{% endif %}
+{%- endcapture -%}
+
+<section class="hero is-primary" style="{{ style }}">
+  {% if top_nav %}
+  <div class="hero-head">
+    {% include navbar.html %}
+  </div>
+  {% endif %}
+
+  <div class="hero-body container">
+
+    {% if top_nav and breadcrumbs %}
+    <nav class="breadcrumb is-centered" aria-label="breadcrumbs">
+      <ul>
+        {% for crumb in breadcrumbs %}
+          <li><a href="{{ crumb.link | liquify | absolute_url }}">{{ crumb.label | strip }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+    {% endif %}
+
+    <div class="container has-text-centered">
+      {% if top_nav %}
+      <h1 class="title is-size-2 is-size-3-mobile is-size-desktop is-size-1-widescreen">{{ hero.title | default: page.title }}</h1>
+      {% else %}
+      <h2 class="title">{{ hero.title | default: page.title }}</h2>
+      {% endif %}
+
+      {% if page.collection == 'news' %}
+      <p class="hero-meta">
+        {% if page.author %}<i class="far fa-user-circle"></i>&nbsp; {{ page.author }}{% endif %}
+        &nbsp;&nbsp; | &nbsp;&nbsp;
+        <i class="far fa-calendar-alt"></i>&nbsp; {{ page.date | date: "%B %d, %Y"  }}
+      </p>
+      {% elsif page.collection == 'events' %}
+      <p class="hero-meta">
+        <i class="fas fa-map-marked-alt"></i>&nbsp; {{ page.location.label }}
+        &nbsp;&nbsp; | &nbsp;&nbsp;
+        <i class="far fa-clock"></i>&nbsp; {{ page.datetime | date: "%B %e, %Y at %H:%M %Z" }}
+      </p>
+      {% else %}
+      <p class="subtitle is-size-5">{{ hero.subtitle | default: page.subtitle }}</p>
+      {% endif %}
+
+      {% if hero.button %}
+        {% include misc/button.html button_label=hero.button.label button_link=hero.button.link %}
+      {% endif %}
+    </div>
+  </div>
+</section>
