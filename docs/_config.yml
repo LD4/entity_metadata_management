@@ -3,7 +3,7 @@
 url:            ''
 # baseurl:        ''
 permalink:      pretty
-theme:          emm-theme
+#theme:          emm-theme
 source:         source
 google_analytics:   # UA-XXXXXXX-XX
 
