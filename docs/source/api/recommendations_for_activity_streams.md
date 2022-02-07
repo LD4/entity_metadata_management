@@ -1,6 +1,7 @@
 ---
 title: EMM Change Document API 0.1
 title_override: EMM Change Document API 0.1
+permalink: change/recommendations.html
 id: change-api
 layout: spec
 cssversion: 3
