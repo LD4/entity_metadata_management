@@ -1,19 +1,18 @@
 ---
 title: EMM Change Document API 0.1
 title_override: EMM Change Document API 0.1
-permalink: change/recommendations.html
+permalink: api/0.1/change_document_api.html
 id: change-api
 layout: spec
 cssversion: 3
-tags: [specifications, change-api]
+tags: [specification, change-api]
 major: 0
 minor: 1
 patch: 0
 pre: final
 redirect_from:
-  - /change/
-  - /change/index.html
-  - /change/1/index.html
+  - /api/
+  - /api/index.html
 editors:
   - name: E. Lynette Rayle
     orcid: https://orcid.org/0000-0001-7707-3572

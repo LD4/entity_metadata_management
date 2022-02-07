@@ -77,13 +77,13 @@ html, body {
     color: $white;
   }
   a.navbar-item {
-    color: $white;
+    color: $logo-dark-blue;
     text-decoration: underline;
     text-decoration-thickness: 2px;
     text-underline-offset: 5px;
     text-decoration-color: transparent;
     &:hover {
-      text-decoration-color: $white;
+      text-decoration-color: $logo-dark-blue;
     }
   }
   .navbar-brand {

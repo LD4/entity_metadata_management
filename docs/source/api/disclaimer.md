@@ -1,10 +1,12 @@
 ---
 title: "Specification Disclaimer"
+permalink: api/disclaimer.html
 layout: spec
 tags: [change-api, license, disclaimer]
 cssversion: 2
 redirect_from:
-- /api/disclaimer.html
+- /disclaimer/
+- /disclaimer/index.html
 ---
 
 ## License
