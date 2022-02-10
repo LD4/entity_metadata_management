@@ -129,11 +129,11 @@ The proposed structure for expressing change of entity metadata over time uses t
 ### 3.1. Entry Point
 {: #entry-point}
 
-_Reference:_  [Ordered Collection](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollection) in the [Activity Stream specification][org-w3c-activitystreams]
+_Reference:  [Ordered Collection][org-w3c-activitystreams-orderedcollection] in the [Activity Stream specification][org-w3c-activitystreams]_
 
 Each _Entity Metadata Collection_{:.term} _MUST_{:.strong-term} have at least one Entry Point.  It _MAY_{:.strong-term} have multiple Entry Points to satisfy different use cases.  For example, one Entry Point may provide detailed changes to support incremental updates of a full cache and a second may only provide notifications of primary label changes.
 
-The Entry Point _MUST_{:.strong-term} be implemented as an _Ordered Collection_{:.term} following the [definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollection) in the [Activity Stream specification][org-w3c-activitystreams].  The key points are repeated here with examples specific to Entity Metadata Management.
+The Entry Point _MUST_{:.strong-term} be implemented as an _Ordered Collection_{:.term} following the definition in the Activity Stream specification.  The key points are repeated here with examples specific to Entity Metadata Management.
 
 #### FULL EXAMPLE for Entry Point:
 
@@ -238,11 +238,13 @@ The _Entry Point_{:.term} _MAY_{:.strong-term} have a _totalItems_{:.term} prope
 ### 3.2. Change Set
 {: #change-set}
 
+_Reference:  [Ordered Collection Page][org-w3c-activitystreams-orderedcollectionpage] in the [Activity Stream specification][org-w3c-activitystreams]_
+
 Each time a set of changes is published, changes _MUST_{:.strong-term} be released in at least one _Change Set_{:.term}.  Changes _MAY_{:.strong-term} be published across multiple _Change Sets_{:.term}.  For example, a site may decide that each _Change Set_{:.term} will have at most 50 changes and if that maximum is exceeded during the release time period, then a second _Change Set_{:.term} will be created. All changes within a _Change Set_{:.term} and, if applicable, across  Change Sets _MUST_{:.strong-term} be sorted in date-time order in the _orderedItems_{:.term} property with the earliest change in the set appearing first and most recent change in the set appearing last.
 
 It is _RECOMMENDED_{:.strong-term} that change sets be published on a regular schedule.  It is recognized that there are many factors that can impact this recommendation, including but not limited to, the volume of changes, the consistency of timing of changes, the tolerance of consumers for delays in notifications, resources for producing _Change Sets_{:.term}.
 
-_Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collection Page_{:.term} following the [definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollectionpage) in the [Activity Stream specification][org-w3c-activitystreams].  The key points are repeated here with examples specific to Entity Metadata Management.
+_Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collection Page_{:.term} following the definition in the Activity Stream specification.  The key points are repeated here with examples specific to Entity Metadata Management.
 
 #### FULL EXAMPLE for Change Set:
 

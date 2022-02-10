@@ -44,6 +44,8 @@
 [org-rs-terms]: http://rightsstatements.org/page/1.0/ "rightsstatements.org"
 [org-semver]: http://semver.org/spec/v2.0.0.html "Semantic Versioning 2.0.0"
 [org-w3c-activitystreams]: https://www.w3.org/TR/activitystreams-core/
+[org-w3c-activitystreams-orderedcollection]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollection
+[org-w3c-activitystreams-orderedcollectionpage]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollectionpage
 [org-w3c-cors]: https://www.w3.org/TR/cors/ "Cross-Origin Resource Sharing"
 [org-w3c-css]: http://www.w3.org/TR/CSS/ "Cascading Style Sheets"
 [org-w3c-dcat]: https://www.w3.org/TR/vocab-dcat/ "Data Catalog Vocabulary"
