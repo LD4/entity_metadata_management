@@ -60,36 +60,32 @@ Work that is out of scope of this API includes the recommendation or creation of
 ### 1.2. Use Cases
 {: #use-cases}
 
-Three primary use cases were identified that drive the recommendations in this document.  This recommendations can be used to address one or more of the use cases.
+Three primary use cases were identified that drive the recommendations in this document.  The use cases are listed from a simple change document with minimal information to a fully defined change document including details about what changed. 
 
 #### 1.2.1. Notifications
 {: #notifications}
 
-Entity metadata consumers want to be notified of any modifications or deletions for entities on their list of entities of interest, as well as new entities.  They typically compare the list of modified and deleted entities against their list of entities of interest.  For any that overlap, the consumer will take additional actions if needed.
+Entity metadata consumers want to be notified of any modifications or deletions for entities on their interest list, as well as new entities.  This allows for a comparison between the consumer's list and the producer's notification list of modified and deleted entities.  For any that overlap, the consumer will take additional actions if needed.
 
 To address this use case, the provider creates and makes available a list of the URIs for any new, modified, or deleted entities.  The consumer will need to take additional actions to identify specific changes to entities of interest.
 
 #### 1.2.2. Local Cache of Labels
 {: #local-cache-of-labels}
 
-Applications commonly save external references to entity metadata.  The data that is saved as part of the local record is the URI of the entity.  When the external reference is displayed to end users, the primary label associated with the URI is typically displayed as it is easier for end users to understand than a URI.  For performance reasons, the primary label is generally cached in the local application to avoid having to fetch the label every time the entity reference is displayed to the end user.
+Entity metadata consumers persist references to entity metadata by saving the URI as part of their local datastore.  URIs may not be understandable to application users.  In order to be able to display a human readable label, a label may be retrieved from the producer's datastore by dereferencing the URI.  For performance reasons, the label is generally cached in the local datastore to avoid having to fetch the label every time the entity reference is displayed to an end user.  If the label changes in the producer's datastore, the consumer would like to update the local cache of the label.
 
 To address this use case, the provider creates and makes available a list of URIs and their new labels.  The consumer can compare the list of URIs with those stored in the local application and update the cached labels.
 
-NOTE: In some cases, additional metadata is also cached as part of the external reference, but this is less common.  Verification of the additional metadata may require the consumer to take additional actions.
+__Additional Cached Metadata__<br>In some cases, additional metadata is also cached as part of the external reference, but this is less common.  Verification of the additional metadata may require the consumer to take additional actions.
+{: .warning}
+
 
 #### 1.2.3. Local Cache of Full Dataset
 {: #local-cache-of-full-dataset}
 
 A consumer may decide to make a full cache of a dataset of entity metadata.  This is commonly done for several reasons including, but not limited to, increased control over uptime, throughput, and indexing for search.  The cache needs to stay in sync with the source dataset as near to real time as is possible using incremental updates.
 
-To address this use case, the provider creates and makes available a dated list of all new, modified, and deleted entities along with specifics about how the entities have changed.  The consumer can process each list, from oldest to newest, that was published since their last incremental update, and use the specific details about changes to update their cache.
-
-
-
-
-
-
+To address this use case, the provider creates and makes available a dated list of all new, modified, and deleted entities along with specifics about how the entities have changed.  The consumer can process a stream of change documents, from oldest to newest, that was published since their last incremental update.  Specific details about each change can be used to update the local cache.
 
 ### 1.3. Terminology
 {: #terminology}
