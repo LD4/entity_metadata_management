@@ -112,11 +112,8 @@ To address this use case, the provider creates and makes available a dated list 
 The recommendations use the following terms:
 
 * __HTTP(S)__: The HTTP or HTTPS URI scheme and internet protocol.
-
-The terms _array_, _JSON object_, _number_, and _string_ in this document are to be interpreted as defined by the [Javascript Object Notation (JSON)][org-rfc-8259] specification.
-
-The key words _MUST_{:.strong-term}, _MUST NOT_{:.strong-term}, _REQUIRED_{:.strong-term}, _SHALL_{:.strong-term}, _SHALL NOT_{:.strong-term}, _SHOULD_{:.strong-term}, _SHOULD NOT_{:.strong-term}, _RECOMMENDED_{:.strong-term}, _MAY_{:.strong-term}, and _OPTIONAL_{:.strong-term} in this document are to be interpreted as described in [RFC 2119][org-rfc-2199].
-
+* [Javascript Object Notation (JSON)][org-rfc-8259]: The terms _array_, _JSON object_, _number_, and _string_ in this document are to be interpreted as defined by the Javascript Object Notation (JSON) specification.
+* [RFC 2119][org-rfc-2199]: The key words _MUST_{:.strong-term}, _MUST NOT_{:.strong-term}, _REQUIRED_{:.strong-term}, _SHALL_{:.strong-term}, _SHALL NOT_{:.strong-term}, _SHOULD_{:.strong-term}, _SHOULD NOT_{:.strong-term}, _RECOMMENDED_{:.strong-term}, _MAY_{:.strong-term}, and _OPTIONAL_{:.strong-term} in this document are to be interpreted as described in RFC 2119.
 
 
 ## 2. Architecture
@@ -131,6 +128,8 @@ The proposed structure for expressing change of entity metadata over time uses t
 
 ### 3.1. Entry Point
 {: #entry-point}
+
+_Reference:_  [Ordered Collection](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollection) in the [Activity Stream specification][org-w3c-activitystreams]
 
 Each _Entity Metadata Collection_{:.term} _MUST_{:.strong-term} have at least one Entry Point.  It _MAY_{:.strong-term} have multiple Entry Points to satisfy different use cases.  For example, one Entry Point may provide detailed changes to support incremental updates of a full cache and a second may only provide notifications of primary label changes.
 
@@ -792,3 +791,4 @@ EXAMPLE Entity Change Notification for Merge
 {: #consuming-entity-change-sets}
 
 
+{% include api/links.md %}
