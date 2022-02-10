@@ -41,27 +41,52 @@ __Previous Version:__
 
 TODO: Review the intro to tighten it up so that the purpose of the document is easily discernible. May need to move some of the other information to a Background section.
 
+The primary purpose of this document is to establish a pattern that supports sharing changes to entities and their metadata curated by Entity Metadata Providers with the community of Entity Metadata Consumers (e.g. libraries, museums, galleries, archives).  Providers are often consumers of their own metadata.  Use of a consistent pattern allows for the creation of software tools for producing and consuming changes in entity metadata.
+
+
+
+
+The recommendations in this document leverage existing techniques, specifications, and tools in order to promote widespread adoption of an easy-to-implement service. The service describes changes to entity metadata and the location of those resources to harvest. Content providers can implement this API to enable notifications of change and incremental cache updates.
+
+
 
 
 Entity metadata providers curate aggregations of entities and their metadata within an area of interest.  These organizations have expertise in the areas they manage.  The Entity Metadata Consumers may have expertise as well and may participate in the creation of new entities or changes to metadata for existing entities.  The providers generally have a review process for accepting changes.
 
 The community of consumers of entity metadata depend on the providers to publish accurate and up to date metadata.  The consumer may fully or partially cache entity metadata which requires periodic updates to remain in sync with the source data.  This document describes an approach that Entity Metadata Providers can use to communicate changes to the community of Entity Metadata Consumers.  The examples in this document come primarily from the library and museum communities, but the described principles can be applied to manage entity metadata in other communities as well.
 
-These recommendations leverages existing techniques, specifications, and tools in order to promote widespread adoption of an easy-to-implement service. The service describes changes to entity metadata and the location of those resources to harvest. Content providers can implement this API to enable notifications of change and incremental cache updates.
 
-### 1.1 Use Cases
+
+
+
+
+### 1.1. Objectives and Scope
+{: #objectives-and-scope}
+
+The objective of these recommendations is to provide a machine to machine API that provides the information needed to describe changes to entity metadata across the lifecycle of an entity.  The intended audiences are Entity Metadata Provides who curate aggregations of entity metadata within an area of interest, Entity Metadata Consumers who use the entity metadata, and Entity Metadata Developers who create applications and tools that help consumers connect to entity metadata from providers. While this work may benefit others wanting to express changes in data, the objective of the API is to specify an interoperable solution that best and most easily fulfills the need to express and process changes in entity metadata within the community of participating organizations.
+
+The discovery of changes to entity metadata requires a consistent and well understood pattern for entity metadata providers to publish lists of links to entities that have metadata changes and details on changes that have occurred.  Changes include newly available entities with metadata, removed entities, as well as, changes to entities and their metadata.  This allows a baseline implementation of change management systems that process the list of changes. 
+
+This process can be optimized by allowing the content providers to publish changes in chronological order including descriptions of how their content has changed, enabling consuming systems to retrieve only the resources that have been modified since they were last retrieved. Finally, for rapid synchronization, a system of notifications pushed from the publisher to a set of subscribers can reduce the amount of effort required to constantly poll multiple sources to see if anything has changed.
+
+__Change Notifications__<br>These recommendations do not include a subscription mechanism for enabling change notifications to be pushed to remote systems. Only periodic polling for the set of changes that must be processed is supported. A subscription/notification pattern may be added in a future version after implementation experience with the polling pattern has demonstrated that it would be valuable.
+{: .warning}
+
+Work that is out of scope of this API includes the recommendation or creation of any descriptive metadata formats, and the recommendation or creation of metadata search APIs or protocols. The diverse domains represented across the entity metadata already have successful standards fulfilling these use cases. Also out of scope is optimization of the transmission mechanisms providing access points for consumers to query.
+
+### 1.2. Use Cases
 {: #use-cases}
 
 Three primary use cases were identified that drive the recommendations in this document.  This recommendations can be used to address one or more of the use cases.
 
-#### 1.1.1 Notifications
+#### 1.2.1. Notifications
 {: #notifications}
 
 Entity metadata consumers want to be notified of any modifications or deletions for entities on their list of entities of interest, as well as new entities.  They typically compare the list of modified and deleted entities against their list of entities of interest.  For any that overlap, the consumer will take additional actions if needed.
 
 To address this use case, the provider creates and makes available a list of the URIs for any new, modified, or deleted entities.  The consumer will need to take additional actions to identify specific changes to entities of interest.
 
-#### 1.1.2 Local Cache of Labels
+#### 1.2.2. Local Cache of Labels
 {: #local-cache-of-labels}
 
 Applications commonly save external references to entity metadata.  The data that is saved as part of the local record is the URI of the entity.  When the external reference is displayed to end users, the primary label associated with the URI is typically displayed as it is easier for end users to understand than a URI.  For performance reasons, the primary label is generally cached in the local application to avoid having to fetch the label every time the entity reference is displayed to the end user.
@@ -70,7 +95,7 @@ To address this use case, the provider creates and makes available a list of URI
 
 NOTE: In some cases, additional metadata is also cached as part of the external reference, but this is less common.  Verification of the additional metadata may require the consumer to take additional actions.
 
-#### 1.1.3 Local Cache of Full Dataset
+#### 1.2.3. Local Cache of Full Dataset
 {: #local-cache-of-full-dataset}
 
 A consumer may decide to make a full cache of a dataset of entity metadata.  This is commonly done for several reasons including, but not limited to, increased control over uptime, throughput, and indexing for search.  The cache needs to stay in sync with the source dataset as near to real time as is possible using incremental updates.
@@ -83,39 +108,26 @@ To address this use case, the provider creates and makes available a dated list 
 
 
 
-### 1.2. Objectives and Scope
-{: #objectives-and-scope}
-
-TODO: Add more about objectives and scope
-
-__Change Notifications__<br>This specification does not include a subscription mechanism for enabling change notifications to be pushed to remote systems. Only periodic polling for the set of changes that must be processed is supported. A subscription/notification pattern may be added in a future version after implementation experience with the polling pattern has demonstrated that it would be valuable.
-{: .warning}
-
-
-
-
-
-
 ### 1.3. Terminology
 {: #terminology}
 
-#### 1.3.1 Roles
+#### 1.3.1. Roles
 {: #roles}
 
 * Entity Metadata Provider - An organization that collects, curates, and provides access to metadata about entities within an area of interest.  The Library of Congress maintains several [collections](https://id.loc.gov/), including but not limited to, Library Subject Headings, Name Authority, Genres/Form Terms.  The Getty maintains several [vocabularies](https://www.getty.edu/research/tools/vocabularies/index.html).  There are many other providers.  TODO:  Maybe put a list of providers in an appendix instead of here.
 * Entity Metadata Consumer - Any institution that references or caches entity metadata from a provider.  The use cases driving the recommendations were created from libraries, museums, galleries, and archives.
 * Entity Metadata Developer - Software developers that create applications and tools that help consumers connect to entity metadata from providers.  The developer may be associated with the provider, consumer, or a third party.
 
-#### 1.3.2 Terms about Entities
+#### 1.3.2. Terms about Entities
 {: #terms-about-entities}
 
 * Entity Metadata Collection - Entities can be grouped based on varying criteria (e.g. subject headings, names, thesaurus, controlled vocabulary).  The term Entity Metadata Collection will be used as a generic representation of these grouping regardless of type.
 
-#### 1.3 3 Terms from Activity Streams
+#### 1.3 3. Terms from Activity Streams
 {: #terms-from-activity-streams}
 
 
-#### 1.3.4 Terms from Specifications
+#### 1.3.4. Terms from Specifications
 {: #terms-from-specifications}
 
 The recommendations use the following terms:
@@ -138,7 +150,7 @@ The proposed structure for expressing change of entity metadata over time uses t
 ## 3. Organizational Structures
 {: #organizational-structures}
 
-### 3.1 Entry Point
+### 3.1. Entry Point
 {: #entry-point}
 
 Each _Entity Metadata Collection_{:.term} _MUST_{:.strong-term} have at least one Entry Point.  It _MAY_{:.strong-term} have multiple Entry Points to satisfy different use cases.  For example, one Entry Point may provide detailed changes to support incremental updates of a full cache and a second may only provide notifications of primary label changes.
@@ -245,7 +257,7 @@ The _Entry Point_{:.term} _MAY_{:.strong-term} have a _totalItems_{:.term} prope
 ```
 
 
-### 3.2 Change Set
+### 3.2. Change Set
 {: #change-set}
 
 Each time a set of changes is published, changes _MUST_{:.strong-term} be released in at least one _Change Set_{:.term}.  Changes _MAY_{:.strong-term} be published across multiple _Change Sets_{:.term}.  For example, a site may decide that each _Change Set_{:.term} will have at most 50 changes and if that maximum is exceeded during the release time period, then a second _Change Set_{:.term} will be created. All changes within a _Change Set_{:.term} and, if applicable, across  Change Sets _MUST_{:.strong-term} be sorted in date-time order in the _orderedItems_{:.term} property with the earliest change in the set appearing first and most recent change in the set appearing last.
@@ -321,7 +333,7 @@ NOTE: See [Entity Change Notification](#entity-change-notification) under [Entit
 
 The structures described in this section are used in the _ordered_items_{:.term} property of of the [Change Set](#change-set).  The level of detail in the _ordered_items_{:.term} depends on the use case being addressed.  The [Notifications](#notifications) use case can be addressed by the [Entity Change Notification](#entity-change-notification).  The [Local Cache of Labels](#local-cache-of-labels) and [Local Cache of Full Dataset](#local-cache-of-full-dataset) use cases can be addressed by also including an [Entity Patch](#entity-patch).
 
-### 4.1 Entity Change Notification
+### 4.1. Entity Change Notification
 {: #entity-change-notification}
 
 A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Notification_{:.term}.  The notification _MUST_{:.strong-term} provide information about the type of change and _SHOULD_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset.  This level is sufficient to address the Notifications use case.
@@ -353,7 +365,7 @@ _Entity Change Notifications_{:.term} _MUST_{:.strong-term} be implemented as an
 }
 ```
 
-### 4.2 Entity Patch
+### 4.2. Entity Patch
 {: #entity-patch}
 
 To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cache of Full Dataset](#local-cache-of-full-dataset), it is _RECOMMENDED_{:.strong-term} that each [Entity Change Notification](#entity-change-notification) include the _instrument_{:.term} property which provides a link an _Entity Patch_{:.term}.
@@ -386,7 +398,7 @@ To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cac
 
 All {Entity Change Notifications_{:.term} have a core set of properties that are described in the [Entity Change Notification](#entity-change-notification) section.  Some properties are specific to the _Types of Change_.  This section provides examples and descriptions of the _Entity Change Notification_{:.term} and _Entity Patch_{:.term} for each type of change.  They also describe differences between similar Activity Types (e.g. _Create_{:.term} vs. _Add_{:.term}).
 
-### 5.1 New Entity
+### 5.1. New Entity
 {: #new-entity}
 
 A new entity _SHOULD_{:.strong-term} have an [Entity Change Notification](#entity-change-notification) with a _type_{:.term} of either _"Create"_{:.term} or _"Add"_{:.term}.
@@ -495,7 +507,7 @@ Complete Example
 }  
 ```
 
-### 5.2 Update Entity
+### 5.2. Update Entity
 {: #update-entity}
 
 An updated entity _SHOULD_{:.strong-term} have an [Entity Change Notification](#entity-change-notification) with a _type_{:.term} of _"Update"_{:.term}.
@@ -543,7 +555,7 @@ EXAMPLE Entity Patch for Update
      D <http://my_repo/entity/milk> <http://my.authority/vocab/hasLabel> 'milk'@en."
 ```
 
-### 5.3 Delete Entity
+### 5.3. Delete Entity
 {: #delete-entity}
 
 It is _RECOMMENDED_{:.strong-term} that entities be marked as _Deprecated_{:.term} in the source dataset instead of deleting the entity from the source dataset. If the entity is deprecated, follow the _Entity Change Notification_{:.term} described in [Deprecate Entity](#deprecate-entity).
@@ -600,7 +612,7 @@ EXAMPLE Entity Patch for Delete
 }  
 ```
 
-### 5.4 Deprecate Entity
+### 5.4. Deprecate Entity
 {: #deprecate-entity}
 
 An entity that has been deprecated _SHOULD_{:.strong-term} have an [Entity Change Notification](#entity-change-notification) with a _type_{:.term} of _"Deprecate"_{:.term}.
@@ -655,7 +667,7 @@ EXAMPLE Entity Change Notification for Deprecate
 ```
 
 
-### 5.5 Split Entity
+### 5.5. Split Entity
 {: #split-entity}
 
 An entity that has been split into two or more new entities _SHOULD_{:.strong-term} have an [Entity Change Notification](#entity-change-notification) with a _type_{:.term} of _"Split"_{:.term}.
@@ -723,7 +735,7 @@ EXAMPLE Entity Change Notification for Split
 }
 ```
 
-### 5.6 Merge Entities
+### 5.6. Merge Entities
 {: #merge-entity}
 
 
@@ -793,7 +805,11 @@ EXAMPLE Entity Change Notification for Merge
 ```
 
 
-## 6. Consuming Entity Change Sets
+## 6. Producing Entity Change Sets
+{: #producing-entity-change-sets}
+
+
+## 7. Consuming Entity Change Sets
 {: #consuming-entity-change-sets}
 
 
