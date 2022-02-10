@@ -39,26 +39,9 @@ __Previous Version:__
 ## 1. Introduction
 {: #introduction}
 
-TODO: Review the intro to tighten it up so that the purpose of the document is easily discernible. May need to move some of the other information to a Background section.
-
-The primary purpose of this document is to establish a pattern that supports sharing changes to entities and their metadata curated by Entity Metadata Providers with the community of Entity Metadata Consumers (e.g. libraries, museums, galleries, archives).  Providers are often consumers of their own metadata.  Use of a consistent pattern allows for the creation of software tools for producing and consuming changes in entity metadata.
-
-
-
+The primary purpose of this document is to establish a pattern that supports sharing changes to entities and their metadata curated by Entity Metadata Providers with the community of Entity Metadata Consumers (e.g. libraries, museums, galleries, archives).  Use of a consistent pattern allows for the creation of software tools for producing and consuming changes in entity metadata.
 
 The recommendations in this document leverage existing techniques, specifications, and tools in order to promote widespread adoption of an easy-to-implement service. The service describes changes to entity metadata and the location of those resources to harvest. Content providers can implement this API to enable notifications of change and incremental cache updates.
-
-
-
-
-Entity metadata providers curate aggregations of entities and their metadata within an area of interest.  These organizations have expertise in the areas they manage.  The Entity Metadata Consumers may have expertise as well and may participate in the creation of new entities or changes to metadata for existing entities.  The providers generally have a review process for accepting changes.
-
-The community of consumers of entity metadata depend on the providers to publish accurate and up to date metadata.  The consumer may fully or partially cache entity metadata which requires periodic updates to remain in sync with the source data.  This document describes an approach that Entity Metadata Providers can use to communicate changes to the community of Entity Metadata Consumers.  The examples in this document come primarily from the library and museum communities, but the described principles can be applied to manage entity metadata in other communities as well.
-
-
-
-
-
 
 ### 1.1. Objectives and Scope
 {: #objectives-and-scope}
