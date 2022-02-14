@@ -15,9 +15,27 @@ redirect_from:
   - /change/index.html
   - /change/1/index.html
 editors:
+  - name: Nancy J. Fallgren
+    orcid: https://orcid.org/0000-0002-2232-6293
+    institution: National Library of Medicine
+  - name: Steven Folsom
+    orcid: https://orcid.org/0000-0003-3427-5769
+    institution: Cornell University Library
+  - name: Kevin M. Ford
+    orcid: https://orcid.org/0000-0002-9066-2408
+    institution: Library of Congress
+  - name: Anna Lionetti
+    orcid: https://orcid.org/0000-0001-6157-8808
+    institution: Casalini Libri
   - name: E. Lynette Rayle
     orcid: https://orcid.org/0000-0001-7707-3572
-    institution: Cornell University
+    institution: Cornell University Library
+  - name: Gregory F. Reeve
+    orcid: https://orcid.org/0000-0002-7908-3755
+    institution: Brigham Young University
+  - name: Vitus Tang
+    orcid: https://profiles.stanford.edu/vitus-tang
+    institution: Stanford University Libraries
 ---
 
 ## Status of this Document
