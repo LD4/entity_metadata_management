@@ -54,6 +54,18 @@ __Previous Version:__
 
 ----
 
+<div class="todo">
+TODO
+<ul>
+  <li>update context to emm context</li>
+  <li>fill in more terminology</li>
+  <li>decide on date handling (e.g. startTime vs. endTime vs. published)</li>
+  <li>update diagram to more closely follow ER diagram conventions</li>
+  <li>is there a good way to point to documentation, downloads, etc. for an authority?</li>
+  <li>should this point to our original documentation as a reference or is this document sufficient?</li>
+</ul>
+</div>
+
 ## 1. Introduction
 {: #introduction}
 
@@ -111,17 +123,21 @@ To address this use case, the provider creates and makes available a dated list 
 #### 1.3.1. Roles
 {: #roles}
 
-* Entity Metadata Provider - An organization that collects, curates, and provides access to metadata about entities within an area of interest.  The Library of Congress maintains several [collections](https://id.loc.gov/), including but not limited to, Library Subject Headings, Name Authority, Genres/Form Terms.  The Getty maintains several [vocabularies](https://www.getty.edu/research/tools/vocabularies/index.html).  There are many other providers.  TODO:  Maybe put a list of providers in an appendix instead of here.
-* Entity Metadata Consumer - Any institution that references or caches entity metadata from a provider.  The use cases driving the recommendations were created from libraries, museums, galleries, and archives.
-* Entity Metadata Developer - Software developers that create applications and tools that help consumers connect to entity metadata from providers.  The developer may be associated with the provider, consumer, or a third party.
+* Entity Metadata Provider: An organization that collects, curates, and provides access to metadata about entities within an area of interest.  The Library of Congress maintains several [collections](https://id.loc.gov/), including but not limited to, Library Subject Headings, Name Authority, Genres/Form Terms.  The Getty maintains several [vocabularies](https://www.getty.edu/research/tools/vocabularies/index.html).  There are many other providers.  TODO:  Maybe put a list of providers in an appendix instead of here.
+* Entity Metadata Consumer: Any institution that references or caches entity metadata from a provider.  The use cases driving the recommendations were created from libraries, museums, galleries, and archives.
+* Entity Metadata Developer: Software developers that create applications and tools that help consumers connect to entity metadata from providers.  The developer may be associated with the provider, consumer, or a third party.
 
 #### 1.3.2. Terms about Entities
 {: #terms-about-entities}
 
-* Entity Metadata Collection - Entities can be grouped based on varying criteria (e.g. subject headings, names, thesaurus, controlled vocabulary).  The term Entity Metadata Collection will be used as a generic representation of these grouping regardless of type.
+* Entity Metadata Collection: Entities can be grouped based on varying criteria (e.g. subject headings, names, thesaurus, controlled vocabulary).  The term Entity Metadata Collection will be used as a generic representation of these grouping regardless of type.
+* Authority: 
+* Controlled Vocabulary: 
+* Collection: 
 
 #### 1.3 3. Terms from Activity Streams
 {: #terms-from-activity-streams}
+
 
 
 #### 1.3.4. Terms from Specifications
@@ -129,6 +145,7 @@ To address this use case, the provider creates and makes available a dated list 
 
 The recommendations use the following terms:
 
+* __URI__: 
 * __HTTP(S)__: The HTTP or HTTPS URI scheme and internet protocol.
 * [Javascript Object Notation (JSON)][org-rfc-8259]: The terms _array_, _JSON object_, _number_, and _string_ in this document are to be interpreted as defined by the Javascript Object Notation (JSON) specification.
 * [RFC 2119][org-rfc-2199]: The key words _MUST_{:.strong-term}, _MUST NOT_{:.strong-term}, _REQUIRED_{:.strong-term}, _SHALL_{:.strong-term}, _SHALL NOT_{:.strong-term}, _SHOULD_{:.strong-term}, _SHOULD NOT_{:.strong-term}, _RECOMMENDED_{:.strong-term}, _MAY_{:.strong-term}, and _OPTIONAL_{:.strong-term} in this document are to be interpreted as described in RFC 2119.
@@ -156,8 +173,11 @@ The Entry Point _MUST_{:.strong-term} be implemented as an _Ordered Collection_{
 #### FULL EXAMPLE for Entry Point:
 
 TODO: should the example include published for first?
+{:.todo}
 TODO: should the example include published for last?
-TODO: should the example include url?
+{:.todo}
+TODO: should the example include url?</span>
+{:.todo}
 
 ```json-doc
 {
@@ -181,6 +201,7 @@ TODO: should the example include url?
 ```
 
 TODO: where should @context be documented?
+{:.todo}
 
 __summary__
 
@@ -219,6 +240,7 @@ A link to the first _Change Set_{:.term} in this _Entry Point_{:.term} for the _
 The _Entry Point_{:.term} _MUST_{:.strong-term} have a _first_{:.term} property. The value _MUST_{:.strong-term} be a JSON object, with the _id_{:.term} and _type_{:.term} properties. The value of the _id_{:.term} property _MUST_{:.strong-term} be a string, and it _MUST_{:.strong-term} be the HTTP(S) URI of the first page of items in the _Entry Point_{:.term}. The value of the _type_{:.term} property _MUST_{:.strong-term} be the string `"OrderedCollectionPage"`.
 
 TODO: should the example include published?
+{:.todo}
 
 ```json-doc
 {
@@ -239,6 +261,7 @@ A link to the last _Change Set_{:.term} in this _Entry Point_{:.term} for the _E
 The _Entry Point_{:.term} _MUST_{:.strong-term} have a _last_{:.term} property. The value _MUST_{:.strong-term} be a JSON object, with the _id_{:.term} and _type_{:.term} properties. The value of the _id_{:.term} property _MUST_{:.strong-term} be a string, and it _MUST_{:.strong-term} be the HTTP(S) URI of the last page of items in the _Entry Point_{:.term}. The value of the _type_{:.term} property _MUST_{:.strong-term} be the string `"OrderedCollectionPage"`.
 
 TODO: should the example include published?
+{:.todo}
 
 ```json-doc
 {
@@ -459,11 +482,21 @@ Complete Example
 
 __summary__
 
+_Reference:  [summary][org-w3c-activitystreams-property-summary] property definition_
+
+A summary is a brief description of a change to entity metadata.  It is _RECOMMENDED_{:.stong-term} that a summary be included and that it reference the type of change and the entity being changed.
+
+```json-doc
+{ "summary": "Add entity for subject Science" }
+```
+
 __type__
 
-The Activity Stream class of the _Entity Change Notification_{:.term}.
+_Reference:  [type][org-w3c-activitystreams-property-type] property definition_
 
-The _Entity Change Notification_{:.term} _MUST_{:.strong-term} have a _type_{:.term} property.  The notifications of a newly available entity, the value _SHOULD_{:.strong-term} be one either `"Create"` or `"Add"`.
+The type is the one of a set of predefined _Entity Change Notification_{:.term} activity types.
+
+Each _Entity Change Notification_{:.term} _MUST_{:.strong-term} have a _type_{:.term} property.  For a notification of a newly available entity, the value _SHOULD_{:.strong-term} be one of either `"Create"` or `"Add"`.
 
 ```json-doc
 { "type": "Create" }
@@ -475,6 +508,8 @@ or
 
 __id__
 
+_Reference:  [id][org-w3c-activitystreams-property-id] property definition_
+
 The unique identifier of the _Entity Change Notification_{:.term}.
 
 The _Entity Change Notification_{:.term} _MUST_{:.strong-term} have an _id_{:.term} property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Entity Change Notification_{:.term} _MUST_{:.strong-term} be available at the URI.
@@ -485,7 +520,9 @@ The _Entity Change Notification_{:.term} _MUST_{:.strong-term} have an _id_{:.te
 
 __partOf__
 
-The _partOf_ property identifies the _Change Set_{:.term} for this notification.
+_Reference:  [partOf][org-w3c-activitystreams-property-partof] property definition_
+
+The _partOf_ property identifies the _Change Set_{:.term} in which this notification was published.
 
 Each _Entity Change Notification_{:.term} _MUST_{:.strong-term} use the _partOf_ property if referring back to the _Change Set_{:.term} that includes this notification.
 
@@ -495,7 +532,6 @@ Each _Entity Change Notification_{:.term} _MUST_{:.strong-term} use the _partOf_
   "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
 }
 ```
-
 
 #### EXAMPLE Entity Patch for Create
 
