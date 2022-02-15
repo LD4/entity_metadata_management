@@ -343,3 +343,19 @@ pre.highlight code {
   display: block;
   line-height: 1.3;
 }
+
+.todo {
+  font-size: .8rem !important;
+  font-weight: bold;
+  color: #ea7033;
+  background-color: #f5e3ca;
+  padding: 10px;
+  border: #fcc79c 1px solid;
+}
+
+.todo ul li {
+  font-size: .8rem !important;
+  font-weight: bold;
+  color: #ea7033;
+  background-color: #f5e3ca;
+}
