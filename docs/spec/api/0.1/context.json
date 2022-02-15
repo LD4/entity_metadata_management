@@ -1,3 +1,7 @@
+---
+layout: none
+permalink: api/0.1/context.json
+---
 {
   "@context": [
     "https://www.w3.org/ns/activitystreams",
