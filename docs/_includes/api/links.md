@@ -44,8 +44,28 @@
 [org-rs-terms]: http://rightsstatements.org/page/1.0/ "rightsstatements.org"
 [org-semver]: http://semver.org/spec/v2.0.0.html "Semantic Versioning 2.0.0"
 [org-w3c-activitystreams]: https://www.w3.org/TR/activitystreams-core/
-[org-w3c-activitystreams-orderedcollection]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollection
-[org-w3c-activitystreams-orderedcollectionpage]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollectionpage
+[org-w3c-activitystreams-activity-add]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-add
+[org-w3c-activitystreams-activity-create]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-create
+[org-w3c-activitystreams-activity-delete]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-delete
+[org-w3c-activitystreams-activity-remove]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-remove
+[org-w3c-activitystreams-activity-update]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-update
+[org-w3c-activitystreams-coretype-activity]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-activity
+[org-w3c-activitystreams-coretype-orderedcollection]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollection
+[org-w3c-activitystreams-coretype-orderedcollectionpage]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollectionpage
+[org-w3c-activitystreams-property-endTime]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-endtime
+[org-w3c-activitystreams-property-first]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-first
+[org-w3c-activitystreams-property-instrument]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-instrument
+[org-w3c-activitystreams-property-last]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-last
+[org-w3c-activitystreams-property-next]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-next
+[org-w3c-activitystreams-property-ordereditems]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-items
+[org-w3c-activitystreams-property-partof]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-partof
+[org-w3c-activitystreams-property-prev]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-prev
+[org-w3c-activitystreams-property-published]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-published
+[org-w3c-activitystreams-property-starttime]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-starttime
+[org-w3c-activitystreams-property-summary]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-summary
+[org-w3c-activitystreams-property-totalitems]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-totalitems
+[org-w3c-activitystreams-property-type]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-type
+[org-w3c-activitystreams-property-updated]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-updated
 [org-w3c-cors]: https://www.w3.org/TR/cors/ "Cross-Origin Resource Sharing"
 [org-w3c-css]: http://www.w3.org/TR/CSS/ "Cascading Style Sheets"
 [org-w3c-dcat]: https://www.w3.org/TR/vocab-dcat/ "Data Catalog Vocabulary"
