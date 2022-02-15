@@ -34,7 +34,7 @@ editors:
     orcid: https://orcid.org/0000-0002-7908-3755
     institution: Brigham Young University
   - name: Vitus Tang
-    orcid: https://profiles.stanford.edu/vitus-tang
+    orcid: https://orcid.org/0000-0003-1946-3518
     institution: Stanford University Libraries
 ---
 
@@ -147,7 +147,7 @@ The proposed structure for expressing change of entity metadata over time uses t
 ### 3.1. Entry Point
 {: #entry-point}
 
-_Reference:  [Ordered Collection][org-w3c-activitystreams-orderedcollection] in the [Activity Stream specification][org-w3c-activitystreams]_
+_Reference:  [Ordered Collection][org-w3c-activitystreams-coretype-orderedcollection] in the [Activity Stream specification][org-w3c-activitystreams]_
 
 Each _Entity Metadata Collection_{:.term} _MUST_{:.strong-term} have at least one Entry Point.  It _MAY_{:.strong-term} have multiple Entry Points to satisfy different use cases.  For example, one Entry Point may provide detailed changes to support incremental updates of a full cache and a second may only provide notifications of primary label changes.
 
@@ -184,7 +184,11 @@ TODO: where should @context be documented?
 
 __summary__
 
+_Reference:  [summary][org-w3c-activitystreams-property-summary] property definition_
+
 __type__
+
+_Reference:  [type][org-w3c-activitystreams-property-type] property definition_
 
 The Activity Stream class of the _Entry Point_{:.term}.
 
@@ -196,6 +200,8 @@ The _Entry Point_{:.term} _MUST_{:.strong-term} have a _type_{:.term} property. 
 
 __id__
 
+_Reference:  [id][org-w3c-activitystreams-property-id] property definition_
+
 The unique identifier of the _Entry Point_{:.term}.
 
 The _Entry Point_{:.term} _MUST_{:.strong-term} have an _id_{:.term} property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Ordered Collection_{:.term} _Entry Point_{:.term} _MUST_{:.strong-term} be available at the URI.
@@ -205,6 +211,8 @@ The _Entry Point_{:.term} _MUST_{:.strong-term} have an _id_{:.term} property. T
 ```
 
 __first__
+
+_Reference:  [first][org-w3c-activitystreams-property-first] property definition_
 
 A link to the first _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}.
 
@@ -224,6 +232,8 @@ TODO: should the example include published?
 
 __last__
 
+_Reference:  [last][org-w3c-activitystreams-property-last] property definition_
+
 A link to the last _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}.
 
 The _Entry Point_{:.term} _MUST_{:.strong-term} have a _last_{:.term} property. The value _MUST_{:.strong-term} be a JSON object, with the _id_{:.term} and _type_{:.term} properties. The value of the _id_{:.term} property _MUST_{:.strong-term} be a string, and it _MUST_{:.strong-term} be the HTTP(S) URI of the last page of items in the _Entry Point_{:.term}. The value of the _type_{:.term} property _MUST_{:.strong-term} be the string `"OrderedCollectionPage"`.
@@ -242,6 +252,8 @@ TODO: should the example include published?
 
 __totalItems__
 
+_Reference:  [totalItems][org-w3c-activitystreams-property-totalitems] property definition_
+
 The count of all _Entity Change Notifications_{:.term} across all _Change Sets_{:.term} in the _Entry Point_{:term} for the _Entity Collection_{:.term}.
 
 The _Entry Point_{:.term} _MAY_{:.strong-term} have a _totalItems_{:.term} property.  If included, the value _MUST_{:.strong-term} be an integer, and it _SHOULD_{:.strong-term} be the cumulative count of _Entity Change Notifications_{:.term} across all _Change_sets_{:.term}.
@@ -256,7 +268,7 @@ The _Entry Point_{:.term} _MAY_{:.strong-term} have a _totalItems_{:.term} prope
 ### 3.2. Change Set
 {: #change-set}
 
-_Reference:  [Ordered Collection Page][org-w3c-activitystreams-orderedcollectionpage] in the [Activity Stream specification][org-w3c-activitystreams]_
+_Reference:  [Ordered Collection Page][org-w3c-activitystreams-coretype-orderedcollectionpage] in the [Activity Stream specification][org-w3c-activitystreams]_
 
 Each time a set of changes is published, changes _MUST_{:.strong-term} be released in at least one _Change Set_{:.term}.  Changes _MAY_{:.strong-term} be published across multiple _Change Sets_{:.term}.  For example, a site may decide that each _Change Set_{:.term} will have at most 50 changes and if that maximum is exceeded during the release time period, then a second _Change Set_{:.term} will be created. All changes within a _Change Set_{:.term} and, if applicable, across  Change Sets _MUST_{:.strong-term} be sorted in date-time order in the _orderedItems_{:.term} property with the earliest change in the set appearing first and most recent change in the set appearing last.
 
@@ -334,6 +346,8 @@ The structures described in this section are used in the _ordered_items_{:.term}
 ### 4.1. Entity Change Notification
 {: #entity-change-notification}
 
+_Reference:  [Activity][org-w3c-activitystreams-coretype-activity] in the [Activity Stream specification][org-w3c-activitystreams]_
+
 A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Notification_{:.term}.  The notification _MUST_{:.strong-term} provide information about the type of change and _SHOULD_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset.  This level is sufficient to address the Notifications use case.
 
 _Entity Change Notifications_{:.term} _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [definition](https://www.w3.org/TR/activitystreams-vocabulary/#activity) in the [Activity Stream specification][org-w3c-activitystreams].  The key points are repeated here with examples specific to Entity Metadata Management.
@@ -398,6 +412,9 @@ All {Entity Change Notifications_{:.term} have a core set of properties that are
 
 ### 5.1. New Entity
 {: #new-entity}
+
+_Reference: [add][org-w3c-activitystreams-activity-add] activity definition_<br>
+_Reference: [create][org-w3c-activitystreams-activity-create] activity definition_
 
 A new entity _SHOULD_{:.strong-term} have an [Entity Change Notification](#entity-change-notification) with a _type_{:.term} of either _"Create"_{:.term} or _"Add"_{:.term}.
 
