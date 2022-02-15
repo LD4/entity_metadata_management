@@ -49,6 +49,7 @@
 [org-w3c-activitystreams-activity-delete]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-delete
 [org-w3c-activitystreams-activity-remove]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-remove
 [org-w3c-activitystreams-activity-update]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-update
+[org-w3c-activitystreams-context-definition]: https://www.w3.org/ns/activitystreams
 [org-w3c-activitystreams-coretype-activity]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-activity
 [org-w3c-activitystreams-coretype-orderedcollection]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollection
 [org-w3c-activitystreams-coretype-orderedcollectionpage]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollectionpage

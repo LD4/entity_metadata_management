@@ -7,8 +7,8 @@ layout: spec
 cssversion: 3
 tags: [specifications, change-api]
 major: 0
-minor: 1
-patch: 0
+minor: 0
+patch: 1
 pre: final
 redirect_from:
   - /change/
@@ -39,6 +39,10 @@ editors:
 ---
 
 ## Status of this Document
+
+_This is a very preliminary draft.  Expect considerable changes to this document._
+{:.todo}
+
 {:.no_toc}
 __This Version:__ {{ page.major }}.{{ page.minor }}.{{ page.patch }}{% if page.pre != 'final' %}-{{ page.pre }}{% endif %}
 
@@ -55,12 +59,16 @@ __Previous Version:__
 ----
 
 <div class="todo">
-TODO
+TODOS
 <ul>
   <li>update context to emm context</li>
   <li>fill in more terminology</li>
-  <li>decide on date handling (e.g. startTime vs. endTime vs. published)</li>
   <li>update diagram to more closely follow ER diagram conventions</li>
+</ul>
+
+QUESTIONS
+<ul>
+  <li>decide on recommendations for date handling (options: startTime, endTime, updated, published)</li>
   <li>is there a good way to point to documentation, downloads, etc. for an authority?</li>
   <li>should this point to our original documentation as a reference or is this document sufficient?</li>
 </ul>
@@ -148,10 +156,11 @@ TODO:  Maybe put a list of providers in an appendix instead of here.
 
 The recommendations use the following terms:
 
-* __URI__: 
 * __HTTP(S)__: The HTTP or HTTPS URI scheme and internet protocol.
 * [Javascript Object Notation (JSON)][org-rfc-8259]: The terms _array_, _JSON object_, _number_, and _string_ in this document are to be interpreted as defined by the Javascript Object Notation (JSON) specification.
+* [JSON-LD][org-w3c-json-ld]: Entitiy Metadata Management context is defined following JSON-LD specification.
 * [RFC 2119][org-rfc-2199]: The key words _MUST_{:.strong-term}, _MUST NOT_{:.strong-term}, _REQUIRED_{:.strong-term}, _SHALL_{:.strong-term}, _SHALL NOT_{:.strong-term}, _SHOULD_{:.strong-term}, _SHOULD NOT_{:.strong-term}, _RECOMMENDED_{:.strong-term}, _MAY_{:.strong-term}, and _OPTIONAL_{:.strong-term} in this document are to be interpreted as described in RFC 2119.
+* [URI][org-iana-uri-schemes]: URIs are defined following the IANA URI-Schemes specification.
 
 
 ## 2. Architecture
@@ -176,11 +185,11 @@ The Entry Point _MUST_{:.strong-term} be implemented as an _Ordered Collection_{
 
 #### FULL EXAMPLE for Entry Point:
 
-TODO: should the example include published for first?
+QUESTION: should the example include published for first?
 {:.todo}
-TODO: should the example include published for last?
+QUESTION: should the example include published for last?
 {:.todo}
-TODO: should the example include url?</span>
+QUESTION: should the example include url?</span>
 {:.todo}
 
 ```json-doc
@@ -204,7 +213,9 @@ TODO: should the example include url?</span>
 }
 ```
 
-TODO: where should @context be documented?
+QUESTION: where should @context be documented?
+{:.todo}
+QUESTION: should there be a section that documents common aspects of each property and possibly highlight usage that is specific to a particular activity type under each activity type's section?
 {:.todo}
 
 __summary__
@@ -247,7 +258,7 @@ A link to the first _Change Set_{:.term} in this _Entry Point_{:.term} for the _
 
 The _Entry Point_{:.term} _MUST_{:.strong-term} have a _first_{:.term} property. The value _MUST_{:.strong-term} be a JSON object, with the _id_{:.term} and _type_{:.term} properties. The value of the _id_{:.term} property _MUST_{:.strong-term} be a string, and it _MUST_{:.strong-term} be the HTTP(S) URI of the first page of items in the _Entry Point_{:.term}. The value of the _type_{:.term} property _MUST_{:.strong-term} be the string `"OrderedCollectionPage"`.
 
-TODO: should the example include published?
+QUESTION: should the example include published?
 {:.todo}
 
 ```json-doc
@@ -269,7 +280,7 @@ A link to the last _Change Set_{:.term} in this _Entry Point_{:.term} for the _E
 
 The _Entry Point_{:.term} _MUST_{:.strong-term} have a _last_{:.term} property. The value _MUST_{:.strong-term} be a JSON object, with the _id_{:.term} and _type_{:.term} properties. The value of the _id_{:.term} property _MUST_{:.strong-term} be a string, and it _MUST_{:.strong-term} be the HTTP(S) URI of the last page of items in the _Entry Point_{:.term}. The value of the _type_{:.term} property _MUST_{:.strong-term} be the string `"OrderedCollectionPage"`.
 
-TODO: should the example include published?
+QUESTION: should the example include published?
 {:.todo}
 
 ```json-doc
@@ -392,17 +403,17 @@ _Entity Change Notifications_{:.term} _MUST_{:.strong-term} be implemented as an
 ```json-doc
 {
   "@context": "https://www.w3.org/ns/activitystreams",
-  "summary": "New entity for term milk",
+  "summary": "Add entity for subject Science",
   "updated": "2021-08-02T16:59:54Z",
-  "type": "Create",
+  "type": "Add",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11",
   "partOf": {
     "type": "OrderedCollectionPage",
     "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
   },
   "object": {
-    "type": "Term",
-    "id": "http://my_repo/entity/cow_milk"
+    "type": "Subject",
+    "id": "http://my_repo/entity/science"
   },
   "instrument":
   {
@@ -411,6 +422,78 @@ _Entity Change Notifications_{:.term} _MUST_{:.strong-term} be implemented as an
   }
 }
 ```
+
+Properties shared across all _Entity Change Notification_{:.term} types are described here.  If a specific notification type handles a property different, it will be described with that notification type in section [Types of Change](#types-of-change).
+
+__@context__
+
+Reference: [JSON-LD scoped context][org-w3c-json-ld-scoped-contexts]
+{:.reference}
+
+The context URL _SHOULD_{:.strong-term} point to a JSON-LD context which, in its simplest form, maps terms to IRIs and can define a context for values of properties. _Entity Metadata Management_{:.term} activity streams _SHOULD_{:.strong-term} include a context definition at each level.  The context definition _SHOULD_ be the one defined by the _Entity Metadata Management_{:.term} group, or an extension of this definition.  The _Entity Metadata Management_{:.term} context definition is an extension of the _Activity Streams_{:term} [context definition][org-w3c-activitystreams-context-definition].   
+
+TODO: Link to EMM context once it is created.
+{:.todo}
+TODO: Probably should move this to Entry Point section since that is the first time @context is used.
+{:.todo}
+
+__summary__
+
+Reference:  [summary][org-w3c-activitystreams-property-summary] property definition
+{:.reference}
+
+A summary is a brief description of the change to entity metadata being described in a notification.  It is _RECOMMENDED_{:.stong-term} that a summary be included and that it reference the type of change and the entity being changed.
+
+```json-doc
+{ "summary": "Add entity for subject Science" }
+```
+
+__type__
+
+Reference:  [type][org-w3c-activitystreams-property-type] property definition
+{:.reference}
+
+The type is the one of a set of predefined _Entity Change Notification_{:.term} activity types.
+
+Each _Entity Change Notification_{:.term} _MUST_{:.strong-term} have a _type_{:.term} property.  For a notification of a newly available entity, the value _SHOULD_{:.strong-term} be one of either `"Create"` or `"Add"`.
+
+```json-doc
+{ "type": "Create" }
+```
+or
+```json-doc
+{ "type": "Add" }
+```
+
+__id__
+
+Reference:  [id][org-w3c-activitystreams-property-id] property definition
+{:.reference}
+
+The unique identifier of the _Entity Change Notification_{:.term}.
+
+The _Entity Change Notification_{:.term} _MUST_{:.strong-term} have an _id_{:.term} property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Entity Change Notification_{:.term} _MUST_{:.strong-term} be available at the URI.
+
+```json-doc
+{ "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11" }
+```
+
+__partOf__
+
+Reference:  [partOf][org-w3c-activitystreams-property-partof] property definition
+{:.reference}
+
+The _partOf_ property identifies the _Change Set_{:.term} in which this notification was published.
+
+Each _Entity Change Notification_{:.term} _MUST_{:.strong-term} use the _partOf_ property if referring back to the _Change Set_{:.term} that includes this notification.
+
+```json-doc
+"partOf": {
+  "type": "OrderedCollectionPage",
+  "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
+}
+```
+
 
 ### 4.2. Entity Patch
 {: #entity-patch}
