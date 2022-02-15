@@ -64,6 +64,7 @@ TODOS
   <li>update context to emm context</li>
   <li>fill in more terminology</li>
   <li>update diagram to more closely follow ER diagram conventions</li>
+  <li>set up page that lists existing implementations</li>
 </ul>
 
 QUESTIONS
@@ -194,7 +195,10 @@ QUESTION: should the example include url?</span>
 
 ```json-doc
 {
-  "@context": "https://www.w3.org/ns/activitystreams",
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  },
   "summary": "My Authority - Change Documents",
   "type": "OrderedCollection",
   "id": "https://data.my.authority/change_documents/2021/activity-stream",
@@ -219,7 +223,13 @@ __@context__
 Reference: [JSON-LD scoped context][org-w3c-json-ld-scoped-contexts]
 {:.reference}
 
-The context URL _SHOULD_{:.strong-term} point to a JSON-LD context which, in its simplest form, maps terms to IRIs and can define a context for values of properties. _Entity Metadata Management_{:.term} activity streams _SHOULD_{:.strong-term} include a context definition at each level.  The context definition _SHOULD_ be the one defined by the _Entity Metadata Management_{:.term} group, or an extension of this definition.  The _Entity Metadata Management_{:.term} context definition is an extension of the _Activity Streams_{:.term} [context definition][org-w3c-activitystreams-context-definition].
+The @context URL _MUST_{:.strong-term} point to a JSON-LD context which, in its simplest form, maps terms to IRIs and can define a context for values of properties. 
+
+_Entity Metadata Management_{:.term} activity streams _MUST_{:.strong-term} include @context at each level in order to conform to [JSON-LD][org-w3c-json-ld] syntax.  The _Entity Metadata Management_{:.term} context definition includes information for all levels, and as such, the same context definition is used for all levels. 
+
+Implementations may augment the provided @context with additional @context definitions but must not override or change the normative context of the _Activity Stream_{:.term} context or the _Entity Metadata Management_{:.term} context. Implementations may also use additional properties and values not defined in the JSON-LD @context with the understanding that any such properties will likely be unsupported and ignored by consuming implementations that use the standard JSON-LD algorithms.
+
+The @context _SHOULD_ be `"https://ld4.github.io/entity_metadata_management/api/0.1/activitystreams-extensions"`, or an extension of this definition.  The _Entity Metadata Management_{:.term} context is an extension of the _Activity Streams_{:.term} [context][org-w3c-activitystreams-context-definition].
 
 TODO: Link to EMM context once it is created.
 {:.todo}
@@ -230,13 +240,25 @@ __summary__
 Reference:  [summary][org-w3c-activitystreams-property-summary] property definition
 {:.reference}
 
+The summary is a natural language summarization of the purpose of the _Entry Point_{:.term}
+
+The _Entry Point_{:.term} _SHOULD_{:.strong-term} have a _summary_{:.term} property.  For an _Entry Point_{:.term}, the summary _CAN_{:.strong-term} be a brief description of the _Entity Metadata Collection_{:.term} in which the described changes occurred.  If there are multiple entry points to the same collection, it is _RECOMMENDED_{:.strong-term} that the summary include information that distinguishes each entry point from the others.
+
+```json-doc
+{ "summary": "My Authoritity - Notifications of Change" }
+```
+
+```json-doc
+{ "summary": "My Authoritity - Incremental Updates from 2022-01-01 Full Download" }
+```
+
 <a id="entry-point-type" class="anchor-definition">
 __type__
 
 Reference:  [type][org-w3c-activitystreams-property-type] property definition
 {:.reference}
 
-The Activity Stream class of the _Entry Point_{:.term}.
+The type property identifies the Activity Stream type for the _Entry Point_{:.term}.
 
 The _Entry Point_{:.term} _MUST_{:.strong-term} have a _type_{:.term} property.  The value _MUST_{:.strong-term} be `"OrderedCollection"`.
 
@@ -250,12 +272,26 @@ __id__
 Reference:  [id][org-w3c-activitystreams-property-id] property definition
 {:.reference}
 
-The unique identifier of the _Entry Point_{:.term}.
+The id is a unique identifier of the _Entry Point_{:.term}.
 
 The _Entry Point_{:.term} _MUST_{:.strong-term} have an _id_{:.term} property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Ordered Collection_{:.term} _Entry Point_{:.term} _MUST_{:.strong-term} be available at the URI.
 
 ```json-doc
 { "id": "https://data.my.authority/change_documents/2021/activity-stream" }
+```
+
+<a id="entry-point-url" class="anchor-definition">
+__url__
+
+Reference:  [first][org-w3c-activitystreams-property-url] property definition
+{:.reference}
+
+The url property identifies one or more links to representations of the _Entity Metadata Collection_{:.term}
+
+The _Entry Point_{:.term} _MAY_{:.strong_term} have one or more URLs listed.  If there are multiple URLs, the value of the url property will be an array.  A common value for the url property is a link to the full download for the collection.
+
+```json-doc
+{ "url": "https://my.authority/2021-01-01/full_download" }
 ```
 
 <a id="entry-point-first" class="anchor-definition">
@@ -337,7 +373,10 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
 
 ```json-doc
 {
-  "@context": "https://www.w3.org/ns/activitystreams",
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  },
   "type": "OrderedCollectionPage",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2",
   "partOf": {
@@ -414,7 +453,10 @@ _Entity Change Notifications_{:.term} _MUST_{:.strong-term} be implemented as an
 
 ```json-doc
 {
-  "@context": "https://www.w3.org/ns/activitystreams",
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  },
   "summary": "Add entity for subject Science",
   "updated": "2021-08-02T16:59:54Z",
   "type": "Add",
@@ -448,7 +490,7 @@ __summary__
 Reference:  [summary][org-w3c-activitystreams-property-summary] property definition
 {:.reference}
 
-For _Entity Change Notification_{:.term}, the summary is a brief description of the change to entity metadata that the notification represents.  It is _RECOMMENDED_{:.stong-term} that a summary be included and that it reference the type of change (e.g. "Add entity") and the entity being changed (e.g. "subject Science").  
+For _Entity Change Notification_{:.term}, the summary is a brief description of the change to entity metadata that the notification represents.  It is _RECOMMENDED_{:.strong-term} that a summary be included and that it reference the type of change (e.g. "Add entity") and the entity being changed (e.g. "subject Science").  
 
 There are a limited set of types of change.  See [Types of Change](#type-of-change) section for a list of types and example summaries for each.  Identification of the entity will vary depending on the data represented in the _Entity Metadata Collection_{:.term}.
 
@@ -512,7 +554,10 @@ To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cac
 ```json-doc
 
 {
-  "@context": "https://www.w3.org/ns/activitystreams",
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  },
   "summary": "rdf_patch to create entity for term milk",
   "type": "rdf_patch",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11/instrument/1",
@@ -564,7 +609,10 @@ Complete Example
 
 ```json-doc
 {
-  "@context": "https://www.w3.org/ns/activitystreams",
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  },
   "summary": "New entity for term milk",
   "updated": "2021-08-02T16:59:54Z",
   "type": "Create",
@@ -590,7 +638,7 @@ __summary__
 Reference:  [summary][org-w3c-activitystreams-property-summary] property definition
 {:.reference}
 
-A summary is a brief description of a change to entity metadata.  It is _RECOMMENDED_{:.stong-term} that a summary be included and that it reference the type of change and the entity being changed.
+A summary is a brief description of a change to entity metadata.  It is _RECOMMENDED_{:.strong-term} that a summary be included and that it reference the type of change and the entity being changed.
 
 ```json-doc
 { "summary": "Add entity for subject Science" }
@@ -648,7 +696,10 @@ Complete Example
 
 ```json-doc
 {
-  "@context": "https://www.w3.org/ns/activitystreams",
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  },
   "summary": "rdf_patch to create entity for term milk",
   "type": "rdf_patch",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11/instrument/1",
@@ -678,7 +729,10 @@ EXAMPLE Entity Change Notification for Update
 
 ```json-doc
 {
-  "@context": "https://www.w3.org/ns/activitystreams",
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  },
   "summary": "Update entity term milk",
   "updated": "2021-08-02T16:59:54Z",
   "type": "Update",
@@ -702,7 +756,10 @@ EXAMPLE Entity Patch for Update
 
 ```json-doc
 {
-  "@context": "https://www.w3.org/ns/activitystreams",
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  },
   "summary": "rdf_patch to update entity term milk",
   "type": "rdf_patch",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/cd31/instrument/1",
@@ -729,7 +786,10 @@ EXAMPLE Entity Change Notification for Delete
 
 ```json-doc
 {
-  "@context": "https://www.w3.org/ns/activitystreams",
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  },
   "summary": "Delete term cow_milk",
   "updated": "2021-08-02T16:59:54Z",
   "type": "Delete",
@@ -753,7 +813,10 @@ EXAMPLE Entity Patch for Delete
 
 ```json-doc
 {
-  "@context": "https://www.w3.org/ns/activitystreams",
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  },
   "summary": "rdf_patch to delete entity term cow_milk",
   "type": "rdf_patch",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/cd21/instrument/1",
@@ -783,7 +846,10 @@ EXAMPLE Entity Change Notification for Deprecate
 
 ```json-doc
 {
-  "@context": "https://www.w3.org/ns/activitystreams",
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  },
   "summary": "Create term bovine milk and Deprecate term cow milk",
   "updated": "2021-08-02T16:59:54Z",
   "type": "Deprecate",
@@ -838,7 +904,10 @@ EXAMPLE Entity Change Notification for Split
 
 ```json-doc
 {
-  "@context": "https://www.w3.org/ns/activitystreams",
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  },
   "summary": "Split cow milk into bovine milk and oxen milk",
   "updated": "2021-08-02T16:59:54Z",
   "type": "Split",
@@ -907,7 +976,10 @@ EXAMPLE Entity Change Notification for Merge
 
 ```json-doc
 {
-  "@context": "https://www.w3.org/ns/activitystreams",
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  },
   "summary": "Merge bovine milk and oxen milk into cow milk",
   "updated": "2021-08-02T16:59:54Z",
   "type": "Merge",

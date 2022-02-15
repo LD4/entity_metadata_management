@@ -68,6 +68,7 @@
 [org-w3c-activitystreams-property-totalitems]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-totalitems
 [org-w3c-activitystreams-property-type]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-type
 [org-w3c-activitystreams-property-updated]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-updated
+[org-w3c-activitystreams-property-url]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-url
 [org-w3c-cors]: https://www.w3.org/TR/cors/ "Cross-Origin Resource Sharing"
 [org-w3c-css]: http://www.w3.org/TR/CSS/ "Cascading Style Sheets"
 [org-w3c-dcat]: https://www.w3.org/TR/vocab-dcat/ "Data Catalog Vocabulary"
