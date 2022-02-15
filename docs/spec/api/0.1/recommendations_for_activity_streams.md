@@ -213,16 +213,24 @@ QUESTION: should the example include url?</span>
 }
 ```
 
-QUESTION: where should @context be documented?
-{:.todo}
-QUESTION: should there be a section that documents common aspects of each property and possibly highlight usage that is specific to a particular activity type under each activity type's section?
+<a id="entry-point-context" class="anchor-definition">
+__@context__
+
+Reference: [JSON-LD scoped context][org-w3c-json-ld-scoped-contexts]
+{:.reference}
+
+The context URL _SHOULD_{:.strong-term} point to a JSON-LD context which, in its simplest form, maps terms to IRIs and can define a context for values of properties. _Entity Metadata Management_{:.term} activity streams _SHOULD_{:.strong-term} include a context definition at each level.  The context definition _SHOULD_ be the one defined by the _Entity Metadata Management_{:.term} group, or an extension of this definition.  The _Entity Metadata Management_{:.term} context definition is an extension of the _Activity Streams_{:.term} [context definition][org-w3c-activitystreams-context-definition].
+
+TODO: Link to EMM context once it is created.
 {:.todo}
 
+<a id="entry-point-summary" class="anchor-definition">
 __summary__
 
 Reference:  [summary][org-w3c-activitystreams-property-summary] property definition
 {:.reference}
 
+<a id="entry-point-type" class="anchor-definition">
 __type__
 
 Reference:  [type][org-w3c-activitystreams-property-type] property definition
@@ -236,6 +244,7 @@ The _Entry Point_{:.term} _MUST_{:.strong-term} have a _type_{:.term} property. 
 { "type": "OrderedCollection" }
 ```
 
+<a id="entry-point-id" class="anchor-definition">
 __id__
 
 Reference:  [id][org-w3c-activitystreams-property-id] property definition
@@ -249,6 +258,7 @@ The _Entry Point_{:.term} _MUST_{:.strong-term} have an _id_{:.term} property. T
 { "id": "https://data.my.authority/change_documents/2021/activity-stream" }
 ```
 
+<a id="entry-point-first" class="anchor-definition">
 __first__
 
 Reference:  [first][org-w3c-activitystreams-property-first] property definition
@@ -271,6 +281,7 @@ QUESTION: should the example include published?
 }
 ```
 
+<a id="entry-point-last" class="anchor-definition">
 __last__
 
 Reference:  [last][org-w3c-activitystreams-property-last] property definition
@@ -293,6 +304,7 @@ QUESTION: should the example include published?
 }
 ```
 
+<a id="entry-point-totalitems" class="anchor-definition">
 __totalItems__
 
 Reference:  [totalItems][org-w3c-activitystreams-property-totalitems] property definition
@@ -425,46 +437,40 @@ _Entity Change Notifications_{:.term} _MUST_{:.strong-term} be implemented as an
 
 Properties shared across all _Entity Change Notification_{:.term} types are described here.  If a specific notification type handles a property different, it will be described with that notification type in section [Types of Change](#types-of-change).
 
+<a id="entity-change-notification-context" class="anchor-definition">
 __@context__
 
-Reference: [JSON-LD scoped context][org-w3c-json-ld-scoped-contexts]
-{:.reference}
+Follow the recommendations for [@context](#entry-point-context) as described in the [Entry Point](#entry-point) section.
 
-The context URL _SHOULD_{:.strong-term} point to a JSON-LD context which, in its simplest form, maps terms to IRIs and can define a context for values of properties. _Entity Metadata Management_{:.term} activity streams _SHOULD_{:.strong-term} include a context definition at each level.  The context definition _SHOULD_ be the one defined by the _Entity Metadata Management_{:.term} group, or an extension of this definition.  The _Entity Metadata Management_{:.term} context definition is an extension of the _Activity Streams_{:term} [context definition][org-w3c-activitystreams-context-definition].   
-
-TODO: Link to EMM context once it is created.
-{:.todo}
-TODO: Probably should move this to Entry Point section since that is the first time @context is used.
-{:.todo}
-
+<a id="entity-change-notification-summary" class="anchor-definition">
 __summary__
 
 Reference:  [summary][org-w3c-activitystreams-property-summary] property definition
 {:.reference}
 
-A summary is a brief description of the change to entity metadata being described in a notification.  It is _RECOMMENDED_{:.stong-term} that a summary be included and that it reference the type of change and the entity being changed.
+For _Entity Change Notification_{:.term}, the summary is a brief description of the change to entity metadata that the notification represents.  It is _RECOMMENDED_{:.stong-term} that a summary be included and that it reference the type of change (e.g. "Add entity") and the entity being changed (e.g. "subject Science").  
+
+There are a limited set of types of change.  See [Types of Change](#type-of-change) section for a list of types and example summaries for each.  Identification of the entity will vary depending on the data represented in the _Entity Metadata Collection_{:.term}.
 
 ```json-doc
 { "summary": "Add entity for subject Science" }
 ```
 
+<a id="entity-change-notification-type" class="anchor-definition">
 __type__
 
 Reference:  [type][org-w3c-activitystreams-property-type] property definition
 {:.reference}
 
-The type is the one of a set of predefined _Entity Change Notification_{:.term} activity types.
+Each _Entity Change Notification_{:.term} _MUST_{:.strong-term} have a _type_{:.term} property.
 
-Each _Entity Change Notification_{:.term} _MUST_{:.strong-term} have a _type_{:.term} property.  For a notification of a newly available entity, the value _SHOULD_{:.strong-term} be one of either `"Create"` or `"Add"`.
+The type is the one of a set of predefined _Entity Change Notification_{:.term} activity types.  See [Types of Change](#type-of-change) section for a list of types and recommendations for the value of type for each activity type.
 
 ```json-doc
 { "type": "Create" }
 ```
-or
-```json-doc
-{ "type": "Add" }
-```
 
+<a id="entity-change-notification-id" class="anchor-definition">
 __id__
 
 Reference:  [id][org-w3c-activitystreams-property-id] property definition
@@ -478,6 +484,7 @@ The _Entity Change Notification_{:.term} _MUST_{:.strong-term} have an _id_{:.te
 { "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11" }
 ```
 
+<a id="entity-change-notification-partof" class="anchor-definition">
 __partOf__
 
 Reference:  [partOf][org-w3c-activitystreams-property-partof] property definition
@@ -485,7 +492,7 @@ Reference:  [partOf][org-w3c-activitystreams-property-partof] property definitio
 
 The _partOf_ property identifies the _Change Set_{:.term} in which this notification was published.
 
-Each _Entity Change Notification_{:.term} _MUST_{:.strong-term} use the _partOf_ property if referring back to the _Change Set_{:.term} that includes this notification.
+Each _Entity Change Notification_{:.term} _MUST_{:.strong-term} use the _partOf_ property if referring back to the _Change Set_{:.term} that includes this notification.  The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Change Set_{:.term} publishing this notification _MUST_{:.strong-term} be available at the URI.
 
 ```json-doc
 "partOf": {
