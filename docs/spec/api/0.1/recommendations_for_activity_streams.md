@@ -123,7 +123,10 @@ To address this use case, the provider creates and makes available a dated list 
 #### 1.3.1. Roles
 {: #roles}
 
-* Entity Metadata Provider: An organization that collects, curates, and provides access to metadata about entities within an area of interest.  The Library of Congress maintains several [collections](https://id.loc.gov/), including but not limited to, Library Subject Headings, Name Authority, Genres/Form Terms.  The Getty maintains several [vocabularies](https://www.getty.edu/research/tools/vocabularies/index.html).  There are many other providers.  TODO:  Maybe put a list of providers in an appendix instead of here.
+TODO:  Maybe put a list of providers in an appendix instead of here.
+{:.todo}
+
+* Entity Metadata Provider: An organization that collects, curates, and provides access to metadata about entities within an area of interest.  The Library of Congress maintains several [collections](https://id.loc.gov/), including but not limited to, Library Subject Headings, Name Authority, Genres/Form Terms.  The Getty maintains several [vocabularies](https://www.getty.edu/research/tools/vocabularies/index.html).  There are many other providers.
 * Entity Metadata Consumer: Any institution that references or caches entity metadata from a provider.  The use cases driving the recommendations were created from libraries, museums, galleries, and archives.
 * Entity Metadata Developer: Software developers that create applications and tools that help consumers connect to entity metadata from providers.  The developer may be associated with the provider, consumer, or a third party.
 
@@ -164,7 +167,8 @@ The proposed structure for expressing change of entity metadata over time uses t
 ### 3.1. Entry Point
 {: #entry-point}
 
-_Reference:  [Ordered Collection][org-w3c-activitystreams-coretype-orderedcollection] in the [Activity Stream specification][org-w3c-activitystreams]_
+Reference:  [Ordered Collection][org-w3c-activitystreams-coretype-orderedcollection] in the [Activity Stream specification][org-w3c-activitystreams]
+{:.reference}
 
 Each _Entity Metadata Collection_{:.term} _MUST_{:.strong-term} have at least one Entry Point.  It _MAY_{:.strong-term} have multiple Entry Points to satisfy different use cases.  For example, one Entry Point may provide detailed changes to support incremental updates of a full cache and a second may only provide notifications of primary label changes.
 
@@ -205,11 +209,13 @@ TODO: where should @context be documented?
 
 __summary__
 
-_Reference:  [summary][org-w3c-activitystreams-property-summary] property definition_
+Reference:  [summary][org-w3c-activitystreams-property-summary] property definition
+{:.reference}
 
 __type__
 
-_Reference:  [type][org-w3c-activitystreams-property-type] property definition_
+Reference:  [type][org-w3c-activitystreams-property-type] property definition
+{:.reference}
 
 The Activity Stream class of the _Entry Point_{:.term}.
 
@@ -221,7 +227,8 @@ The _Entry Point_{:.term} _MUST_{:.strong-term} have a _type_{:.term} property. 
 
 __id__
 
-_Reference:  [id][org-w3c-activitystreams-property-id] property definition_
+Reference:  [id][org-w3c-activitystreams-property-id] property definition
+{:.reference}
 
 The unique identifier of the _Entry Point_{:.term}.
 
@@ -233,7 +240,8 @@ The _Entry Point_{:.term} _MUST_{:.strong-term} have an _id_{:.term} property. T
 
 __first__
 
-_Reference:  [first][org-w3c-activitystreams-property-first] property definition_
+Reference:  [first][org-w3c-activitystreams-property-first] property definition
+{:.reference}
 
 A link to the first _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}.
 
@@ -254,7 +262,8 @@ TODO: should the example include published?
 
 __last__
 
-_Reference:  [last][org-w3c-activitystreams-property-last] property definition_
+Reference:  [last][org-w3c-activitystreams-property-last] property definition
+{:.reference}
 
 A link to the last _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}.
 
@@ -275,7 +284,8 @@ TODO: should the example include published?
 
 __totalItems__
 
-_Reference:  [totalItems][org-w3c-activitystreams-property-totalitems] property definition_
+Reference:  [totalItems][org-w3c-activitystreams-property-totalitems] property definition
+{:.reference}
 
 The count of all _Entity Change Notifications_{:.term} across all _Change Sets_{:.term} in the _Entry Point_{:term} for the _Entity Collection_{:.term}.
 
@@ -291,7 +301,8 @@ The _Entry Point_{:.term} _MAY_{:.strong-term} have a _totalItems_{:.term} prope
 ### 3.2. Change Set
 {: #change-set}
 
-_Reference:  [Ordered Collection Page][org-w3c-activitystreams-coretype-orderedcollectionpage] in the [Activity Stream specification][org-w3c-activitystreams]_
+Reference:  [Ordered Collection Page][org-w3c-activitystreams-coretype-orderedcollectionpage] in the [Activity Stream specification][org-w3c-activitystreams]
+{:.reference}
 
 Each time a set of changes is published, changes _MUST_{:.strong-term} be released in at least one _Change Set_{:.term}.  Changes _MAY_{:.strong-term} be published across multiple _Change Sets_{:.term}.  For example, a site may decide that each _Change Set_{:.term} will have at most 50 changes and if that maximum is exceeded during the release time period, then a second _Change Set_{:.term} will be created. All changes within a _Change Set_{:.term} and, if applicable, across  Change Sets _MUST_{:.strong-term} be sorted in date-time order in the _orderedItems_{:.term} property with the earliest change in the set appearing first and most recent change in the set appearing last.
 
@@ -369,7 +380,8 @@ The structures described in this section are used in the _ordered_items_{:.term}
 ### 4.1. Entity Change Notification
 {: #entity-change-notification}
 
-_Reference:  [Activity][org-w3c-activitystreams-coretype-activity] in the [Activity Stream specification][org-w3c-activitystreams]_
+Reference:  [Activity][org-w3c-activitystreams-coretype-activity] in the [Activity Stream specification][org-w3c-activitystreams]
+{:.reference}
 
 A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Notification_{:.term}.  The notification _MUST_{:.strong-term} provide information about the type of change and _SHOULD_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset.  This level is sufficient to address the Notifications use case.
 
@@ -436,8 +448,11 @@ All {Entity Change Notifications_{:.term} have a core set of properties that are
 ### 5.1. New Entity
 {: #new-entity}
 
-_Reference: [add][org-w3c-activitystreams-activity-add] activity definition_<br>
-_Reference: [create][org-w3c-activitystreams-activity-create] activity definition_
+Reference: [add][org-w3c-activitystreams-activity-add] activity definition
+{:.reference}
+Reference: [create][org-w3c-activitystreams-activity-create] activity definition
+{:.reference}
+
 
 A new entity _SHOULD_{:.strong-term} have an [Entity Change Notification](#entity-change-notification) with a _type_{:.term} of either _"Create"_{:.term} or _"Add"_{:.term}.
 
@@ -482,7 +497,8 @@ Complete Example
 
 __summary__
 
-_Reference:  [summary][org-w3c-activitystreams-property-summary] property definition_
+Reference:  [summary][org-w3c-activitystreams-property-summary] property definition
+{:.reference}
 
 A summary is a brief description of a change to entity metadata.  It is _RECOMMENDED_{:.stong-term} that a summary be included and that it reference the type of change and the entity being changed.
 
@@ -492,7 +508,8 @@ A summary is a brief description of a change to entity metadata.  It is _RECOMME
 
 __type__
 
-_Reference:  [type][org-w3c-activitystreams-property-type] property definition_
+Reference:  [type][org-w3c-activitystreams-property-type] property definition
+{:.reference}
 
 The type is the one of a set of predefined _Entity Change Notification_{:.term} activity types.
 
@@ -508,7 +525,8 @@ or
 
 __id__
 
-_Reference:  [id][org-w3c-activitystreams-property-id] property definition_
+Reference:  [id][org-w3c-activitystreams-property-id] property definition
+{:.reference}
 
 The unique identifier of the _Entity Change Notification_{:.term}.
 
@@ -520,7 +538,8 @@ The _Entity Change Notification_{:.term} _MUST_{:.strong-term} have an _id_{:.te
 
 __partOf__
 
-_Reference:  [partOf][org-w3c-activitystreams-property-partof] property definition_
+Reference:  [partOf][org-w3c-activitystreams-property-partof] property definition
+{:.reference}
 
 The _partOf_ property identifies the _Change Set_{:.term} in which this notification was published.
 
