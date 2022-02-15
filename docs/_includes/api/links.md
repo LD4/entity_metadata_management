@@ -3,6 +3,7 @@
 <!-- Keep two spaces at the top of this file -->
 [emm-change-api]: {{ site.url }}{{ site.baseurl }}/api/0.1/recommendations.html "EMM Change Document API"
 [emm-change-api-01]: {{ site.url }}{{ site.baseurl }}/api/0.1/recommendations.html "EMM Change Document API"
+[emm-context-api-01]: {{ site.url }}{{ site.baseurl }}/api/0.1/context.json "EMM API context.json"
 [emm-producing-streams]: {{ site.url }}{{ site.baseurl }}/api/0.1/recommendations.html#producing-entity-change-sets "Producing Entity Change Sets"
 [emm-consuming-streams]: {{ site.url }}{{ site.baseurl }}/api/0.1/recommendations.html#consuming-entity-change-sets "Consuming Entity Change Sets"
 [emm-activity-types]: {{ site.url }}{{ site.baseurl }}/api/0.1/recommendations.html#types-of-change "Types of Change"

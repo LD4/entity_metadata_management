@@ -225,7 +225,7 @@ Reference: [JSON-LD scoped context][org-w3c-json-ld-scoped-contexts]
 
 The @context URL _MUST_{:.strong-term} point to a JSON-LD context which, in its simplest form, maps terms to IRIs and can define a context for values of properties. 
 
-_Entity Metadata Management_{:.term} activity streams _MUST_{:.strong-term} include @context at each level in order to conform to [JSON-LD][org-w3c-json-ld] syntax.  The _Entity Metadata Management_{:.term} context definition includes information for all levels, and as such, the same context definition is used for all levels. 
+_Entity Metadata Management_{:.term} activity streams _MUST_{:.strong-term} include @context at each level in order to conform to [JSON-LD][org-w3c-json-ld] syntax.  The _Entity Metadata Management_{:.term} [context definition][emm-context-api-01] includes information for all levels, and as such, the same context definition is used for all levels. 
 
 Implementations may augment the provided @context with additional @context definitions but must not override or change the normative context of the _Activity Stream_{:.term} context or the _Entity Metadata Management_{:.term} context. Implementations may also use additional properties and values not defined in the JSON-LD @context with the understanding that any such properties will likely be unsupported and ignored by consuming implementations that use the standard JSON-LD algorithms.
 
