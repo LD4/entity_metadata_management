@@ -3,10 +3,15 @@
 <!-- Keep two spaces at the top of this file -->
 [emm-change-api]: {{ site.url }}{{ site.baseurl }}/api/0.1/recommendations.html "EMM Change Document API"
 [emm-change-api-01]: {{ site.url }}{{ site.baseurl }}/api/0.1/recommendations.html "EMM Change Document API"
+[emm-change-api-examples]: {{ site.url }}{{ site.baseurl }}/api/examples.html "EMM API Implementation Examples"
+[emm-change-api-example-notifications]: {{ site.url }}{{ site.baseurl }}/api/examples/my_collections/notifications/entry-point.json "EMM API Notifications Example"
+[emm-change-api-example-partialcache]: {{ site.url }}{{ site.baseurl }}/api/examples/my_collections/partial-cache/entry-point.json "EMM API Label Change Patches Example"
+[emm-change-api-example-fullcache]: {{ site.url }}{{ site.baseurl }}/api/examples/my_collections/full-cache/entry-point.json "EMM API Full Patch Incremental Updates Example"
 [emm-context-api-01]: {{ site.url }}{{ site.baseurl }}/api/0.1/context.json "EMM API context.json"
-[emm-producing-streams]: {{ site.url }}{{ site.baseurl }}/api/0.1/recommendations.html#producing-entity-change-sets "Producing Entity Change Sets"
-[emm-consuming-streams]: {{ site.url }}{{ site.baseurl }}/api/0.1/recommendations.html#consuming-entity-change-sets "Consuming Entity Change Sets"
 [emm-activity-types]: {{ site.url }}{{ site.baseurl }}/api/0.1/recommendations.html#types-of-change "Types of Change"
+[emm-consuming-streams]: {{ site.url }}{{ site.baseurl }}/api/0.1/recommendations.html#consuming-entity-change-sets "Consuming Entity Change Sets"
+[emm-producing-streams]: {{ site.url }}{{ site.baseurl }}/api/0.1/recommendations.html#producing-entity-change-sets "Producing Entity Change Sets"
+[emm-use-cases]: {{ site.url }}{{ site.baseurl }}/api/0.1/recommendations.html#use-cases "Use Cases for Entity Metadata Change Management"
 [emm-registry]: https://TBA/ "Entity Metadata Management Registry"
 [github-emm-issues]: https://github.com/IIIF/discovery/issues
 [icon-na]: {{ site.url }}{{ site.baseurl }}/img/metadata-api/not_allowed.png "Not allowed"
