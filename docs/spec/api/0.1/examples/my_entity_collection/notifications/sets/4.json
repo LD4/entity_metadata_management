@@ -20,8 +20,9 @@ permalink: examples/my-collection/notifications/set/4.json
   },
   "orderedItems": [
     {
+      "summary": "Split subject Chemistry in to subjects Organic Chemistry and Molecular Chemistry",
       "type": "Split",
-      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd7.json",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd8.json",
       "published": "2022-02-03T15:04:18Z",
       "origin": {
         "id": "https://my.authority/subject/1101",
@@ -39,8 +40,9 @@ permalink: examples/my-collection/notifications/set/4.json
       ]
     },
     {
+      "summary": "Merge subjects Juggernaut and Barrage in to subject Campaign",
       "type": "Merge",
-      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd8.json",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd9.json",
       "published": "2021-02-04T15:04:19Z",
       "origin": [
         {

@@ -13,7 +13,7 @@ permalink: examples/my-collection/notifications/set/2.json
     "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/entry-point.json",
     "type": "OrderedCollection"
   },
-  "totalItems": 2,
+  "totalItems": 3,
   "prev": {
     "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/set/1.json",
     "type": "OrderedCollectionPage"
@@ -24,8 +24,9 @@ permalink: examples/my-collection/notifications/set/2.json
   },
   "orderedItems": [
     {
+      "summary": "Update entity for subject Language",
       "type": "Update",
-      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd3.json",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd3-update.json",
       "published": "2022-02-02T15:04:21Z",
       "object": {
         "id": "https://my.authority/subject/1024",
@@ -33,15 +34,26 @@ permalink: examples/my-collection/notifications/set/2.json
       }
     },
     {
+      "summary": "Deprecate subject Cookery and use subject Cooking instead",
       "type": "Deprecate",
-      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd4.json",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd4-deprecate.json",
       "published": "2021-02-01T15:06:14Z",
-      "origin": {
+      "object": {
         "id": "https://my.authority/subject/1014",
         "type": "Subject"
       },
-      "target": {
+      "useInstead": {
         "id": "https://my.authority/subject/1985",
+        "type": "Subject"
+      }
+    },
+    {
+      "summary": "Deprecate subject Ambuscade (no recommendation for useInstead)",
+      "type": "Deprecate",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd5-deprecate.json",
+      "published": "2021-02-01T15:06:14Z",
+      "object": {
+        "id": "https://my.authority/subject/1015",
         "type": "Subject"
       }
     }

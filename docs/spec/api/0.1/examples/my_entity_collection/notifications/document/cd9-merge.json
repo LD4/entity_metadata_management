@@ -7,6 +7,7 @@ permalink: examples/my-collection/notifications/document/cd8.json
     "@vocab": "https://www.w3.org/ns/activitystreams",
     "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
   },
+  "summary": "Merge subjects Juggernaut and Barrage in to subject Campaign",
   "type": "Merge",
   "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd8.json",
   "published": "2021-02-04T15:04:19Z",

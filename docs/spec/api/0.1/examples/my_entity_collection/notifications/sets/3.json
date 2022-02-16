@@ -24,8 +24,9 @@ permalink: examples/my-collection/notifications/set/3.json
   },
   "orderedItems": [
     {
+      "summary": "Remove subject Grimalkin (not deleted, but no longer available)",
       "type": "Remove",
-      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd5.json",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd6.json",
       "published": "2022-02-03T15:03:18Z",
       "object": {
         "id": "https://my.authority/subject/1101",
@@ -33,8 +34,9 @@ permalink: examples/my-collection/notifications/set/3.json
       }
     },
     {
+      "summary": "Delete subject Peeler (deleted from datasource)",
       "type": "Delete",
-      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd6.json",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd7.json",
       "published": "2021-02-03T15:04:19Z",
       "object": {
         "id": "https://my.authority/subject/1096",

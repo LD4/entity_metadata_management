@@ -7,6 +7,7 @@ permalink: examples/my-collection/notifications/document/cd4.json
     "@vocab": "https://www.w3.org/ns/activitystreams",
     "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
   },
+  "summary": "Deprecate subject Cookery and use subject Cooking instead",
   "type": "Deprecate",
   "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd4.json",
   "published": "2021-02-01T15:06:14Z",
@@ -14,11 +15,11 @@ permalink: examples/my-collection/notifications/document/cd4.json
     "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/set/2.json",
     "type": "OrderedCollectionPage"
   },
-  "origin": {
+  "object": {
     "id": "https://my.authority/subject/1014",
     "type": "Subject"
   },
-  "target": {
+  "useInstead": {
     "id": "https://my.authority/subject/1985",
     "type": "Subject"
   }

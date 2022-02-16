@@ -7,6 +7,7 @@ permalink: examples/my-collection/notifications/document/cd2.json
     "@vocab": "https://www.w3.org/ns/activitystreams",
     "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
   },
+  "summary": "Create entity for subject Archery (newly created in the datasource)",
   "type": "Create",
   "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd2.json",
   "published": "2021-02-01T15:06:13Z",

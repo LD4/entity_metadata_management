@@ -26,10 +26,18 @@ The directories for the three examples are the same across all use cases, althou
 
 For the examples, the naming and directory structures are as follows:
 
-* /entry-point.json - The entry point for the Entity Metadata Change Management system.
-* /set/*.json - The `set` directory holds all Change Set pages.
-* /document/*.json - In the `document` directory, each change has a corresponding Change Document that gives a high level summary.  This is the same information provided for each change in the Change Set.
-* /patch/*.json - In the `patch` directory, each change has a corresponding Patch Document describing the exact changes that occurred to all entity metadata related to the Change Document.
+* `/entry-point.json` - The entry point for the Entity Metadata Change Management system.
+* `/set/*.json` - The `set` directory holds all Change Set pages.
+* `/document/*.json` - In the `document` directory, each change has a corresponding Change Document that gives a high level summary.  This is the same information provided for each change in the Change Set.
+* `/patch/*.json` - In the `patch` directory, each change has a corresponding Patch Document describing the exact changes that occurred to all entity metadata related to the Change Document.
+
+### Filenames
+
+Filenames for change documents include the activity type in the name (e.g. `cd1-add.json`).  The use of this convention in the examples is to make it easier for readers exploring the code to locate an example for a specific type.  It is not a recommendation for production implementations.
+
+### Summary Descriptions
+
+Example summary descriptions often include additional information in parentheses.  The summary prior to the parenthetical is an example of what might be used as a summary in a production system.  The note in parentheses is additional information about the example itself to help with understanding of the example.
 
 
 {% include api/links.md %}
