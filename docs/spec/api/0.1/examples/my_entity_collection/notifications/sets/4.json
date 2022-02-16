@@ -23,17 +23,37 @@ permalink: examples/my-collection/notifications/set/4.json
       "type": "Split",
       "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd7.json",
       "published": "2022-02-03T15:04:18Z",
-      "object": {
+      "origin": {
         "id": "https://my.authority/subject/1101",
         "type": "Subject"
       }
+      "target": [
+        {
+          "id": "https://my.authority/subject/2191",
+          "type": "Subject"
+        },
+        {
+          "id": "https://my.authority/subject/2192",
+          "type": "Subject"
+        }
+      ]
     },
     {
       "type": "Merge",
       "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd8.json",
       "published": "2021-02-04T15:04:19Z",
-      "object": {
-        "id": "https://my.authority/subject/1096",
+      "origin": [
+        {
+          "id": "https://my.authority/subject/1096",
+          "type": "Subject"
+        },
+        {
+          "id": "https://my.authority/subject/1338",
+          "type": "Subject"
+        }
+      ],
+      "target": {
+        "id": "https://my.authority/subject/2221",
         "type": "Subject"
       }
     }

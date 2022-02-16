@@ -14,8 +14,12 @@ permalink: examples/my-collection/notifications/document/cd4.json
     "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/set/2.json",
     "type": "OrderedCollectionPage"
   },
-  "object": {
+  "origin": {
     "id": "https://my.authority/subject/1014",
+    "type": "Subject"
+  },
+  "target": {
+    "id": "https://my.authority/subject/1985",
     "type": "Subject"
   }
 }
