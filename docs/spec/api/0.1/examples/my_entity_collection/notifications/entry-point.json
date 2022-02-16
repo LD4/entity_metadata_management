@@ -1,0 +1,22 @@
+---
+layout: none
+permalink: examples/my_collection/notifications/entry-point.json
+---
+{
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  },
+  "summary": "My Entity Collection - Notification System",
+  "type": "OrderedCollection",
+  "id": "https://ld4.github.io/entity_metadata_management/examples/my_collection/notifications/entry-point.json",
+  "totalItems": 7,
+  "first": {
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my_entity_collection/notifications/sets/1.json",
+    "type": "OrderedCollectionPage"
+  },
+  "last": {
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my_entity_collection/notifications/sets/4.json",
+    "type": "OrderedCollectionPage"
+  }
+}

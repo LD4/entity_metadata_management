@@ -1,0 +1,45 @@
+---
+layout: none
+permalink: examples/my_entity_collection/notifications/sets/2.json
+---
+{
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  },
+  "type": "OrderedCollectionPage",
+  "id": "https://ld4.github.io/entity_metadata_management/examples/my_entity_collection/notifications/sets/2.json",
+  "partOf": {
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my_entity_collection/notifications/entry-point.json",
+    "type": "OrderedCollection"
+  },
+  "totalItems": 2,
+  "next": {
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my_entity_collection/notifications/sets/1.json",
+    "type": "OrderedCollectionPage"
+  },
+  "next": {
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my_entity_collection/notifications/sets/3.json",
+    "type": "OrderedCollectionPage"
+  },
+  "orderedItems": [
+    {
+      "type": "Update",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my_entity_collection/notifications/change-documents/cd3.json",
+      "published": "2022-02-02T15:04:21Z",
+      "object": {
+        "id": "https://my.authority/subject/1024",
+        "type": "Subject"
+        }
+    },
+    {
+      "type": "Deprecate",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my_entity_collection/notifications/change-documents/cd4.json",
+      "published": "2021-02-01T15:06:14Z",
+      "object": {
+        "id": "https://my.authority/subject/1014",
+        "type": "Subject"
+      }
+    }
+  ]
+}
