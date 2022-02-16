@@ -1,0 +1,21 @@
+---
+layout: none
+permalink: examples/my-collection/notifications/document/cd2.json
+---
+{
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  },
+  "type": "Create",
+  "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd2.json",
+  "published": "2021-02-01T15:06:13Z",
+  "partOf": {
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/set/1.json",
+    "type": "OrderedCollectionPage"
+  },
+  "object": {
+    "id": "https://my.authority/subject/1002",
+    "type": "Subject"
+  }
+}

@@ -1,6 +1,6 @@
 ---
 layout: none
-permalink: examples/my_entity_collection/notifications/sets/3.json
+permalink: examples/my-collection/notifications/set/3.json
 ---
 {
   "@context": {
@@ -8,33 +8,33 @@ permalink: examples/my_entity_collection/notifications/sets/3.json
     "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
   },
   "type": "OrderedCollectionPage",
-  "id": "https://ld4.github.io/entity_metadata_management/examples/my_entity_collection/notifications/sets/3.json",
+  "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/set/3.json",
   "partOf": {
-    "id": "https://ld4.github.io/entity_metadata_management/examples/my_entity_collection/notifications/entry-point.json",
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/entry-point.json",
     "type": "OrderedCollection"
   },
   "totalItems": 2,
-  "next": {
-    "id": "https://ld4.github.io/entity_metadata_management/examples/my_entity_collection/notifications/sets/2.json",
+  "prev": {
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/set/2.json",
     "type": "OrderedCollectionPage"
   },
   "next": {
-    "id": "https://ld4.github.io/entity_metadata_management/examples/my_entity_collection/notifications/sets/4.json",
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/set/4.json",
     "type": "OrderedCollectionPage"
   },
   "orderedItems": [
     {
       "type": "Remove",
-      "id": "https://ld4.github.io/entity_metadata_management/examples/my_entity_collection/notifications/change-documents/cd5.json",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd5.json",
       "published": "2022-02-03T15:03:18Z",
       "object": {
         "id": "https://my.authority/subject/1101",
         "type": "Subject"
-        }
+      }
     },
     {
       "type": "Delete",
-      "id": "https://ld4.github.io/entity_metadata_management/examples/my_entity_collection/notifications/change-documents/cd6.json",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd6.json",
       "published": "2021-02-03T15:04:19Z",
       "object": {
         "id": "https://my.authority/subject/1096",

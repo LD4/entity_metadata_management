@@ -12,11 +12,11 @@ permalink: examples/my_collection/notifications/entry-point.json
   "id": "https://ld4.github.io/entity_metadata_management/examples/my_collection/notifications/entry-point.json",
   "totalItems": 7,
   "first": {
-    "id": "https://ld4.github.io/entity_metadata_management/examples/my_entity_collection/notifications/sets/1.json",
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/set/1.json",
     "type": "OrderedCollectionPage"
   },
   "last": {
-    "id": "https://ld4.github.io/entity_metadata_management/examples/my_entity_collection/notifications/sets/4.json",
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/set/4.json",
     "type": "OrderedCollectionPage"
   }
 }
