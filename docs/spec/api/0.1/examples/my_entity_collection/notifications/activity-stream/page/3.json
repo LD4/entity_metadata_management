@@ -1,0 +1,45 @@
+---
+layout: none
+permalink: api/0.1/examples/my_entity_collection/notifications/activity-stream/page/3
+---
+{
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  },
+  "type": "OrderedCollectionPage",
+  "id": "https://ld4.github.io/entity_metadata_management/api/0.1/examples/my_entity_collection/notifications/activity-stream/page/3",
+  "partOf": {
+    "id": "https://ld4.github.io/entity_metadata_management/api/0.1/examples/my_entity_collection/notifications/activity-stream",
+    "type": "OrderedCollection"
+  },
+  "totalItems": 2,
+  "next": {
+    "id": "https://ld4.github.io/entity_metadata_management/api/0.1/examples/my_entity_collection/notifications/activity-stream/page/2",
+    "type": "OrderedCollectionPage"
+  },
+  "next": {
+    "id": "https://ld4.github.io/entity_metadata_management/api/0.1/examples/my_entity_collection/notifications/activity-stream/page/4",
+    "type": "OrderedCollectionPage"
+  },
+  "orderedItems": [
+    {
+      "type": "Remove",
+      "id": "https://ld4.github.io/entity_metadata_management/api/0.1/examples/my_entity_collection/notifications/activity-stream/documents/cd5",
+      "published": "2022-02-03T15:03:18Z",
+      "object": {
+        "id": "https://my.authority/subject/1101",
+        "type": "Subject"
+        }
+    },
+    {
+      "type": "Delete",
+      "id": "https://ld4.github.io/entity_metadata_management/api/0.1/examples/my_entity_collection/notifications/activity-stream/documents/cd6",
+      "published": "2021-02-03T15:04:19Z",
+      "object": {
+        "id": "https://my.authority/subject/1096",
+        "type": "Subject"
+      }
+    }
+  ]
+}

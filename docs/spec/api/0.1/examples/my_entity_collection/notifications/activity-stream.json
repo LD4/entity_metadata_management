@@ -1,0 +1,22 @@
+---
+layout: none
+permalink: api/0.1/examples/my_entity_collection/notifications/activity-stream
+---
+{
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  },
+  "summary": "My Entity Collection - Notification System",
+  "type": "OrderedCollection",
+  "id": "https://ld4.github.io/entity_metadata_management/api/0.1/examples/my_entity_collection/notifications/activity-stream",
+  "totalItems": 7,
+  "first": {
+    "id": "https://ld4.github.io/entity_metadata_management/api/0.1/examples/my_entity_collection/notifications/activity-stream/page/1",
+    "type": "OrderedCollectionPage"
+  },
+  "last": {
+    "id": "https://ld4.github.io/entity_metadata_management/api/0.1/examples/my_entity_collection/notifications/activity-stream/page/4",
+    "type": "OrderedCollectionPage"
+  }
+}
