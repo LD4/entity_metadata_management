@@ -1,15 +1,14 @@
 ---
-title: "Examples"
+title: "EMM Change Document Examples"
 permalink: api/examples.html
-layout: spec
+layout: page
 tags: [examples]
-cssversion: 2
 redirect_from:
 - /examples
 - /examples.html
 ---
 
-## Examples
+## Examples for Use Cases
 
 There are example implementations for each of the 3 [primary use cases][emm-use-cases].
 
@@ -31,3 +30,6 @@ For the examples, the naming and directory structures are as follows:
 * /set/*.json - The `set` directory holds all Change Set pages.
 * /document/*.json - In the `document` directory, each change has a corresponding Change Document that gives a high level summary.  This is the same information provided for each change in the Change Set.
 * /patch/*.json - In the `patch` directory, each change has a corresponding Patch Document describing the exact changes that occurred to all entity metadata related to the Change Document.
+
+
+{% include api/links.md %}
