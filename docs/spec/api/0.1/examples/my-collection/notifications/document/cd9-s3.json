@@ -1,0 +1,32 @@
+---
+layout: none
+permalink: examples/my-collection/notifications/document/cd9-s3.json
+---
+{
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  },
+  "summary": "Deprecate name Alekseev, B. A.",
+  "type": "Deprecate",
+  "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd9-s3.json",
+  "published": "2022-02-04T15:04:18Z",
+  "partOf": {
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd9-split.json",
+    "type": "Split"
+  },
+  "object": {
+    "id": "https://my.authority/subject/1101",
+    "type": "Name"
+  },
+  "useInstead": [
+    {
+      "id": "https://my.authority/subject/2191",
+      "type": "Subject"
+    },
+    {
+      "id": "https://my.authority/subject/2192",
+      "type": "Subject"
+    }
+  ]
+}
