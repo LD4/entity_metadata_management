@@ -1,0 +1,43 @@
+---
+layout: none
+permalink: examples/my-collection/notifications/document/cd6-deprecate.json
+---
+{
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  },
+  "summary": "Deprecate subject Wain and use subject Wagon instead (when replacement doesn't exist)",
+  "type": "Deprecate",
+  "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd6-deprecate.json",
+  "partOf": {
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/set/3.json",
+    "type": "OrderedCollection"
+  },
+  "orderedItems": [
+    {
+      "summary": "Create subject Wagon",
+      "type": "Create",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd6-d1.json",
+      "published": "2022-02-03T15:04:18Z",
+      "object": {
+        "id": "https://my.authority/subject/2034",
+        "type": "Name"
+      }
+    },
+    {
+      "summary": "Deprecate subject Wain",
+      "type": "Create",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd6-d2.json",
+      "published": "2022-02-03T15:04:18Z",
+      "object": {
+        "id": "https://my.authority/subject/1019",
+        "type": "Name"
+      },
+      "useInstead": {
+        "id": "https://my.authority/subject/2034",
+        "type": "Subject"
+      }
+    }
+  ]
+}

@@ -24,36 +24,32 @@ permalink: examples/my-collection/notifications/set/2.json
   },
   "orderedItems": [
     {
+      "summary": "Remove subject Grimalkin (not deleted, but no longer available)",
+      "type": "Remove",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd3-remove.json",
+      "published": "2022-02-02T15:03:18Z",
+      "object": {
+        "id": "https://my.authority/subject/1101",
+        "type": "Subject"
+      }
+    },
+    {
+      "summary": "Delete subject Peeler (deleted from datasource)",
+      "type": "Delete",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd4-delete.json",
+      "published": "2022-02-02T15:04:19Z",
+      "object": {
+        "id": "https://my.authority/subject/1096",
+        "type": "Subject"
+      }
+    },
+    {
       "summary": "Update entity for subject Language",
       "type": "Update",
-      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd3-update.json",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd5-update.json",
       "published": "2022-02-02T15:04:21Z",
       "object": {
         "id": "https://my.authority/subject/1024",
-        "type": "Subject"
-      }
-    },
-    {
-      "summary": "Deprecate subject Cookery and use subject Cooking instead",
-      "type": "Deprecate",
-      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd4-deprecate.json",
-      "published": "2021-02-01T15:06:14Z",
-      "object": {
-        "id": "https://my.authority/subject/1014",
-        "type": "Subject"
-      },
-      "useInstead": {
-        "id": "https://my.authority/subject/1985",
-        "type": "Subject"
-      }
-    },
-    {
-      "summary": "Deprecate subject Ambuscade (no recommendation for useInstead)",
-      "type": "Deprecate",
-      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd5-deprecate.json",
-      "published": "2021-02-01T15:06:14Z",
-      "object": {
-        "id": "https://my.authority/subject/1015",
         "type": "Subject"
       }
     }

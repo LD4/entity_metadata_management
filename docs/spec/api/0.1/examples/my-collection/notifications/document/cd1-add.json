@@ -1,6 +1,6 @@
 ---
 layout: none
-permalink: examples/my-collection/notifications/document/cd1.json
+permalink: examples/my-collection/notifications/document/cd1-add.json
 ---
 {
   "@context": {
@@ -9,15 +9,14 @@ permalink: examples/my-collection/notifications/document/cd1.json
   },
   "summary": "Add entity for subject Science (already exists in datasource, but not previously available)",
   "type": "Add",
-  "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd1.json",
+  "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd1-add.json",
   "published": "2022-02-01T15:04:22Z",
   "partOf": {
     "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/set/1.json",
-    "type": "OrderedCollectionPage"
+    "type": "OrderedCollection"
   },
   "object": {
     "id": "https://my.authority/subject/1001",
     "type": "Subject"
-    }
   }
 }

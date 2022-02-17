@@ -1,6 +1,6 @@
 ---
 layout: none
-permalink: examples/my-collection/notifications/document/cd5.json
+permalink: examples/my-collection/notifications/document/cd3-remove.json
 ---
 {
   "@context": {
@@ -9,11 +9,11 @@ permalink: examples/my-collection/notifications/document/cd5.json
   },
   "summary": "Remove subject Grimalkin (not deleted, but no longer available)",
   "type": "Remove",
-  "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/change-document/cd5.json",
-  "published": "2022-02-03T15:03:18Z",
+  "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd3-remove.json",
+  "published": "2022-02-02T15:03:18Z",
   "partOf": {
-    "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/set/3.json",
-    "type": "OrderedCollectionPage"
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/set/2.json",
+    "type": "OrderedCollection"
   },
   "object": {
     "id": "https://my.authority/subject/1101",
