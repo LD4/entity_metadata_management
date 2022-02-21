@@ -32,7 +32,7 @@ editors:
     institution: Casalini Libri
   - name: Tiziana Possemato
     orcid: https://orcid.org/0000-0002-7184-4070
-    institution: @Cult & Casalini Libri
+    institution: Casalini Libri
   - name: E. Lynette Rayle
     orcid: https://orcid.org/0000-0001-7707-3572
     institution: Cornell University Library
