@@ -13,8 +13,19 @@ authoritative data, controlled vocabularies, bibliographic data, etc.
 
 ## Contributing
 
-*Have a suggestion for improvements.*  Submit an issue with your request.
+*Have a suggestion for improvements?*  
+
+* Submit an Issue with your request.
+
+*Want to submit a specific change?*
+
+* Clone the repository.
+* Create a new branch from the `main` branch.
+* Make changes in your branch.
+* Push the branch to GitHub
+* Create a Pull Request
 
 ## License
+
 The code in this repository is available as open source under the terms of the [Apache License](https://www.apache.org/licenses/LICENSE-2.0).
 
