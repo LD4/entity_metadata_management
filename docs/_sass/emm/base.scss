@@ -338,8 +338,36 @@ footer a.navbar-item {
   border: #717f81 1px solid;
 }
 
+.todo {
+  font-size: .8rem !important;
+  font-weight: bold;
+  color: #ea7033;
+  background-color: #f5e3ca;
+  padding: 10px;
+  border: #fcc79c 1px solid;
+}
+
+.todo ul li {
+  font-size: .8rem !important;
+  font-weight: bold;
+  color: #ea7033;
+  background-color: #f5e3ca;
+}
+
+.reference {
+  font-size: .85rem !important;
+  padding-left: 20px;
+  margin-top: -10px;
+}
+
 pre.highlight code {
   font-size: 0.8rem;
   display: block;
   line-height: 1.3;
+}
+
+a.anchor-definition {
+  color: $black;
+  text-decoration: none;
+  cursor: text;
 }

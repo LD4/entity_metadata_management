@@ -5,13 +5,13 @@
 
       <div class="navbar-brand column is-half">
         <a class="navbar-item" href="{{ '/' | absolute_url }}">
-          <img src="{{ theme.logo | absolute_url }}" alt="{{ theme.acronym }} logo" height="28">
+          <img src="{{ site.logo | absolute_url }}" alt="{{ theme.acronym }} logo" height="28">
           <span class="brand-title blue-text">{{ theme.title }}</span>
         </a>
         <p>{{ theme.tagline }}</p>
       </div>
       <div class="column"></div>
-      {% for column in theme.footer_menu %}
+      {% for column in site.footer_menu %}
       <div class="column menu-column">
         <h4>{{ column.heading }}</h4>
         <ul>

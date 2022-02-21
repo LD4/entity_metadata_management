@@ -1,0 +1,22 @@
+---
+layout: none
+permalink: examples/my-collection/notifications/document/cd10-m1.json
+---
+{
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  },
+  "summary": "Create subject Campaign",
+  "type": "Create",
+  "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd10-m1.json",
+  "published": "2022-02-04T15:04:19Z",
+  "partOf": {
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd10-merge.json",
+    "type": "Merge"
+  },
+  "object": {
+    "id": "https://my.authority/subject/2221",
+    "type": "Subject"
+  }
+}

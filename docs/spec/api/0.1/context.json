@@ -1,9 +1,13 @@
+---
+layout: none
+permalink: api/0.1/context.json
+---
 {
   "@context": [
     "https://www.w3.org/ns/activitystreams",
     {
       "as": "https://www.w3.org/ns/activitystreams#",
-      "emm": "https://entity_metadata_management.io/api/0.1/#",
+      "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/#",
       "schema": "https://schema.org/",
       "dc": "http://purl.org/dc/elements/1.1/",
       "dcterms": "http://purl.org/dc/terms/",

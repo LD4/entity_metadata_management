@@ -1,0 +1,82 @@
+---
+layout: none
+permalink: examples/my-collection/notifications/set/3.json
+---
+{
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  },
+  "type": "OrderedCollectionPage",
+  "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/set/3.json",
+  "partOf": {
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/entry-point.json",
+    "type": "OrderedCollection"
+  },
+  "totalItems": 3,
+  "prev": {
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/set/2.json",
+    "type": "OrderedCollectionPage"
+  },
+  "next": {
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/set/4.json",
+    "type": "OrderedCollectionPage"
+  },
+  "orderedItems": [
+    {
+      "summary": "Deprecate subject Wain and use subject Wagon instead (when replacement doesn't exist)",
+      "type": "Deprecate",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd6-deprecate.json",
+      "orderedItems": [
+        {
+          "summary": "Create subject Wagon",
+          "type": "Create",
+          "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd6-d1.json",
+          "published": "2022-02-03T15:04:18Z",
+          "object": {
+            "id": "https://my.authority/subject/2034",
+            "type": "Name"
+          }
+        },
+        {
+          "summary": "Deprecate subject Wain",
+          "type": "Create",
+          "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd6-d2.json",
+          "published": "2022-02-03T15:04:18Z",
+          "object": {
+            "id": "https://my.authority/subject/1019",
+            "type": "Name"
+          },
+          "useInstead": {
+            "id": "https://my.authority/subject/2034",
+            "type": "Subject"
+          }
+        }
+      ]
+    },
+    {
+      "summary": "Deprecate subject Cookery and use subject Cooking instead (when replacement does exist)",
+      "type": "Deprecate",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd7-deprecate.json",
+      "published": "2022-02-03T15:06:14Z",
+      "object": {
+        "id": "https://my.authority/subject/1014",
+        "type": "Subject"
+      },
+      "useInstead": {
+        "id": "https://my.authority/subject/1985",
+        "type": "Subject"
+      }
+    },
+    {
+      "summary": "Deprecate subject Ambuscade (no replacement)",
+      "type": "Deprecate",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd8-deprecate.json",
+      "published": "2022-02-03T15:06:14Z",
+      "object": {
+        "id": "https://my.authority/subject/1015",
+        "type": "Subject"
+      }
+    }
+  ]
+}
