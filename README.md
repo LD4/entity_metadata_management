@@ -19,11 +19,25 @@ authoritative data, controlled vocabularies, bibliographic data, etc.
 
 *Want to submit a specific change?*
 
+Option 1:
+
 * Clone the repository.
 * Create a new branch from the `main` branch.
 * Make changes in your branch.
 * Push the branch to GitHub
 * Create a Pull Request
+
+Option 2:
+
+* Navigate to the page in GitHub.
+  * [Recommendations](https://github.com/LD4/entity_metadata_management/blob/main/docs/spec/api/0.1/recommendations_for_activity_streams.md)
+  * [Examples](https://github.com/LD4/entity_metadata_management/tree/main/docs/spec/api/0.1/examples/my-collection) - multiple files under this directory
+* Edit the page.
+* Commit changes
+  * Set a title describing your change.
+  * In the description box, include any information that needs to be considered when others review the changes.
+  * Select: Create a new branch for this commit and start a pull request.
+  * Click: Commit changes
 
 ## License
 
