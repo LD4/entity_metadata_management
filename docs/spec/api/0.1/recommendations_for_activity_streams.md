@@ -1,19 +1,21 @@
 ---
 title: EMM Change Document API 0.1
 title_override: EMM Change Document API 0.1
-permalink: change/recommendations.html
+permalink: api/0.1/recommendations.html
 id: change-api
 layout: spec
 cssversion: 3
-tags: [specifications, change-api]
+tags: [specifications, recommendations, change-api]
 major: 0
 minor: 0
 patch: 1
 pre: final
 redirect_from:
-  - /change/
-  - /change/index.html
-  - /change/1/index.html
+  - /index.html
+  - /recommendations.html
+  - /api/
+  - /api/index.html
+  - /api/recommendations.html
 editors:
   - name: Nancy J. Fallgren
     orcid: https://orcid.org/0000-0002-2232-6293
