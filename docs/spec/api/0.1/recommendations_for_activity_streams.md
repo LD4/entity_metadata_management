@@ -24,9 +24,15 @@ editors:
   - name: Kevin M. Ford
     orcid: https://orcid.org/0000-0002-9066-2408
     institution: Library of Congress
+  - name: Kirk Hess
+    orcid: https://orcid.org/0000-0002-9559-6649
+    institution: OCLC R&D
   - name: Anna Lionetti
     orcid: https://orcid.org/0000-0001-6157-8808
     institution: Casalini Libri
+  - name: Tiziana Possemato
+    orcid: https://orcid.org/0000-0002-7184-4070
+    institution: @Cult & Casalini Libri
   - name: E. Lynette Rayle
     orcid: https://orcid.org/0000-0001-7707-3572
     institution: Cornell University Library
