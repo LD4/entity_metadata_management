@@ -17,6 +17,9 @@ redirect_from:
   - /api/index.html
   - /api/recommendations.html
 editors:
+  - name: David Eichmann
+    orcid: https://orcid.org/0000-0003-3150-8758
+    institution: School of Library & Information Science, University of Iowa
   - name: Nancy J. Fallgren
     orcid: https://orcid.org/0000-0002-2232-6293
     institution: National Library of Medicine
@@ -26,6 +29,9 @@ editors:
   - name: Kevin M. Ford
     orcid: https://orcid.org/0000-0002-9066-2408
     institution: Library of Congress
+  - name: Jim Hahn   
+    orcid: https://orcid.org/0000-0001-7924-5294
+    institution: University of Pennsylvania Libraries
   - name: Kirk Hess
     orcid: https://orcid.org/0000-0002-9559-6649
     institution: OCLC R&D
@@ -35,6 +41,9 @@ editors:
   - name: Tiziana Possemato
     orcid: https://orcid.org/0000-0002-7184-4070
     institution: Casalini Libri
+  - name: Erik Radio
+    orcid: https://orcid.org/0000-0003-0734-1978
+    institution: University of Colorado Boulder
   - name: E. Lynette Rayle
     orcid: https://orcid.org/0000-0001-7707-3572
     institution: Cornell University Library
