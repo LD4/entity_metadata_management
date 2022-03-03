@@ -56,10 +56,11 @@
 [org-w3c-activitystreams-activity-remove]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-remove
 [org-w3c-activitystreams-activity-update]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-update
 [org-w3c-activitystreams-context-definition]: https://www.w3.org/ns/activitystreams
+[org-w3c-activitystreams-core-datetime]: https://www.w3.org/TR/activitystreams-core/#dates
 [org-w3c-activitystreams-coretype-activity]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-activity
 [org-w3c-activitystreams-coretype-orderedcollection]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollection
 [org-w3c-activitystreams-coretype-orderedcollectionpage]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollectionpage
-[org-w3c-activitystreams-property-endTime]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-endtime
+[org-w3c-activitystreams-property-endtime]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-endtime
 [org-w3c-activitystreams-property-first]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-first
 [org-w3c-activitystreams-property-id]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-id
 [org-w3c-activitystreams-property-instrument]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-instrument
