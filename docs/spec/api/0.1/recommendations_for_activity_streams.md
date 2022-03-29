@@ -1233,7 +1233,7 @@ _What does the date of an activity represent?_
 Assumptions:
 * the activity MUST includes a URL that dereferences to a first order graph that 
   * MUST include all triples where the entity is the subject (<entity_uri> <predicate> <object>)
-  * MUST all blanknodes and their related triples where the blanknode is the object and the entity is the subject (<entity_uri> <predicate> <_:b1>)
+  * MUST include all blanknodes, and related sub-graph, where the blanknode is the object and the entity is the subject (<entity_uri> <predicate> <_:b1>)
   * MAY include triples for entities that are external to the base datasource if the entity is not available in another activity stream
 * the activity MAY include another URL that derefences to a graph that
   * MAY include additional triple for other entities that are external to the base datasource that serve as object of the entity's triple (<entity_uri> <predicate> <another_entity_uri)
@@ -1258,6 +1258,34 @@ Processing for a full cache:
   * if activity type == UPDATE, dereference the entity URI and add the following triples to the cache
     * perform the steps for a REMOVE
     * perform the steps for an ADD
+  * next activity if there is one OR first activity on the next page OR stop if no next page  
+  * stop if date of the activity is later than saved last processed date
+
+Pseudocode:
+```
+go to activity stream
+page = activity_stream.first
+activity = page.activities.first
+LOOP
+  switch(activity.type)
+  case REMOVE, UPDATE
+    remove all triples, and sub-graph, where <subject_uri> == activity.object.id && <object_uri>.is_a? blank_node
+    remove all triples where <subject_uri> == activity.object.id
+  case ADD, UPDATE
+    graph = dereference(activity.object.url.skos.nt)
+    add all triples, and sub-graph, where graph.triple.subject == activity.object.id && <object_uri>.is_a? blank_node
+    add all triples where graph.triple.subject == activity.object.id  
+  end
+  
+  if activity == page.last_activity
+    page = page.next
+    activity == page.first_activity
+  else
+    activity == activity.next_activity
+  end
+  STOP if activity.date < last_process_date
+end
+```
 
 
 {% include api/links.md %}
