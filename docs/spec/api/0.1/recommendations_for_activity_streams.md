@@ -20,6 +20,9 @@ editors:
   - name: David Eichmann
     orcid: https://orcid.org/0000-0003-3150-8758
     institution: School of Library & Information Science, University of Iowa
+  - name: Christine Fernsebner Eslao
+    orcid: https://orcid.org/0000-0002-7621-916X
+    institution: Harvard Library
   - name: Nancy J. Fallgren
     orcid: https://orcid.org/0000-0002-2232-6293
     institution: National Library of Medicine
@@ -463,6 +466,9 @@ Reference:  [Activity][org-w3c-activitystreams-coretype-activity] in the [Activi
 {:.reference}
 
 QUESTION: To tie the language we are using closer to the Activity Stream, should we rename Entity Change Notification to Entity Change Activity?
+{:.todo}
+
+QUESTION: Based on review of LOC activity stream and how it can be processed in its current state to allow processing to update a full cache, it brings into question whether we should recommend the RDF Patch approach.  Removing RDF Patch will reduce complexity for the Producer and may increase accuracy of consumed data.  See Consumer Processing for a description of the process.
 {:.todo}
 
 A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Notification_{:.term}.  The notification _MUST_{:.strong-term} provide information about the type of change and _SHOULD_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset.  This level is sufficient to address the Notifications use case.
@@ -1207,7 +1213,51 @@ Create an RDF patch for each change activity:
 ## 7. Consuming Entity Change Sets
 {: #consuming-entity-change-sets}
 
+### 7.1 Example consuming Library of Congress Activity Stream
 
+_CAUTION: This section is under construction.  This section may or may not be removed from the final draft, in lieu of, a section that is a general example based off the final recommendations._
+{:.todo}
+
+Library of Congress provides an activity stream for several authorities (e.g. names, genre/forms, subjects, etc.).
+
+Characteristics:
+* an entity will appear in the activity stream at most one time
+* the date of the activity for an entity will be the date of the most recent change
+* the first page of the stream has the most recent activities
+* activities on a page are listed from newest to oldest
+* the date of an activity is the time the ???
+
+_What does the date of an activity represent?_
+{:.todo}
+
+Assumptions:
+* the activity MUST includes a URL that dereferences to a first order graph that 
+  * MUST include all triples where the entity is the subject (<entity_uri> <predicate> <object>)
+  * MUST all blanknodes and their related triples where the blanknode is the object and the entity is the subject (<entity_uri> <predicate> <_:b1>)
+  * MAY include triples for entities that are external to the base datasource if the entity is not available in another activity stream
+* the activity MAY include another URL that derefences to a graph that
+  * MAY include additional triple for other entities that are external to the base datasource that serve as object of the entity's triple (<entity_uri> <predicate> <another_entity_uri)
+
+_NOTE: A site may choose to use the second graph if they do not process other activity streams nor maintain their cache of each datasource in a separate triple store._
+{:.note}
+
+Recommendations:
+* if maintaining a full cache, ingest latest full download before processing the related activity stream
+* each time the activity stream is processed, save the date of the more recently processed entity
+
+Processing for a full cache:
+* navigate to the entry point for the activity stream
+* navigate to the first page of the activity stream
+* starting with the first activity on the first page and continue processing until the date of the activity is older than the date recorded the last time the stream was processed
+  * if activity type == REMOVE, remove the following triples from the cache
+    * blank nodes, and related sub-graph, where the blank nodes is the object for a triple with the entity as subject (<entity_uri> <predicate> <_:b1>)
+    * triples where the entity is the subject (<entity_uri> <predicate> <object>)
+  * if activity type == ADD, dereference the entity URI and add the following triples to the cache
+    * all triples where the entity is subject (<entity_uri> <predicate> <object>)
+    * all triples, and related sub-graph, where the entity is subject and a blank node is object (<entity_uri> <predicate> <_:b1>)
+  * if activity type == UPDATE, dereference the entity URI and add the following triples to the cache
+    * perform the steps for a REMOVE
+    * perform the steps for an ADD
 
 
 {% include api/links.md %}
