@@ -560,7 +560,7 @@ Reference:  [partOf][org-w3c-activitystreams-property-partof] property definitio
 
 The _partOf_ property identifies the _Change Set_{:.term} in which this notification was published.
 
-Each _Entity Change Notification_{:.term} _MUST_{:.strong-term} use the _partOf_ property if referring back to the _Change Set_{:.term} that includes this notification.  The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Change Set_{:.term} publishing this notification _MUST_{:.strong-term} be available at the URI.
+An _Entity Change Notification_{:.term} _MAY_{:.strong-term} use the _partOf_ property to refer back to the _Change Set_{:.term} that includes the notification. The _partOf_ property _MUST NOT_{:.strong-term} be used for any other purpose. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Change Set_{:.term} publishing this notification _MUST_{:.strong-term} be available at the URI.
 
 ```json-doc
 "partOf": {
@@ -707,7 +707,7 @@ Reference:  [partOf][org-w3c-activitystreams-property-partof] property definitio
 
 The _partOf_ property identifies the _Change Set_{:.term} in which this notification was published.
 
-Each _Entity Change Notification_{:.term} _MUST_{:.strong-term} use the _partOf_ property if referring back to the _Change Set_{:.term} that includes this notification.
+An _Entity Change Notification_{:.term} _MAY_{:.strong-term} use the _partOf_ property to refer back to the _Change Set_{:.term} that includes the notification. The _partOf_ property _MUST NOT_{:.strong-term} be used for any other purpose.
 
 ```json-doc
 "partOf": {
