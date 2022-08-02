@@ -105,7 +105,7 @@ The recommendations in this document leverage existing techniques, specification
 ### 1.1. Objectives and Scope
 {: #objectives-and-scope}
 
-The objective of these recommendations is to provide a machine to machine API that provides the information needed to describe changes to entity metadata across the lifecycle of an entity.  The intended audiences are Entity Metadata Provides who curate aggregations of entity metadata within an area of interest, Entity Metadata Consumers who use the entity metadata, and Entity Metadata Developers who create applications and tools that help consumers connect to entity metadata from providers. While this work may benefit others wanting to express changes in data, the objective of the API is to specify an interoperable solution that best and most easily fulfills the need to express and process changes in entity metadata within the community of participating organizations.
+The objective of these recommendations is to provide a machine to machine API that provides the information needed to describe changes to entity metadata across the lifecycle of an entity.  The intended audiences are Entity Metadata Provides who curate aggregations of entity metadata within an area of interest, Entity Metadata Consumers who use the entity metadata, and developers who create applications and tools that help consumers connect to entity metadata from providers. While this work may benefit others wanting to express changes in data, the objective of the API is to specify an interoperable solution that best and most easily fulfills the need to express and process changes in entity metadata within the community of participating organizations.
 
 The discovery of changes to entity metadata requires a consistent and well understood pattern for entity metadata providers to publish lists of links to entities that have metadata changes and details on changes that have occurred.  Changes include newly available entities with metadata, removed entities, as well as, changes to entities and their metadata.  This allows a baseline implementation of change management systems that process the list of changes. 
 
@@ -157,7 +157,6 @@ TODO:  Maybe put a list of providers in an appendix instead of here.
 
 * Entity Metadata Provider: An organization that collects, curates, and provides access to metadata about entities within an area of interest.  The Library of Congress maintains several [collections](https://id.loc.gov/), including but not limited to, Library Subject Headings, Name Authority, Genres/Form Terms.  The Getty maintains several [vocabularies](https://www.getty.edu/research/tools/vocabularies/index.html).  There are many other providers.
 * Entity Metadata Consumer: Any institution that references or caches entity metadata from a provider.  The use cases driving the recommendations were created from libraries, museums, galleries, and archives.
-* Entity Metadata Developer: Software developers that create applications and tools that help consumers connect to entity metadata from providers.  The developer may be associated with the provider, consumer, or a third party.
 
 #### 1.3.2. Terms about Entities
 {: #terms-about-entities}
