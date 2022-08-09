@@ -264,7 +264,9 @@ Reference:  [summary][org-w3c-activitystreams-property-summary] property definit
 
 The summary is a natural language summarization of the purpose of the _Entry Point_{:.term}
 
-The _Entry Point_{:.term} _SHOULD_{:.strong-term} have a _summary_{:.term} property. For an _Entry Point_{:.term}, the summary _CAN_{:.strong-term} be a brief description of the _Entity Metadata Collection_{:.term} in which the described changes occurred. If there are multiple entry points to the same collection, it is _RECOMMENDED_{:.strong-term} that the summary include information that distinguishes each entry point from the others.
+
+The _Entry Point_{:.term} _SHOULD_{:.strong-term} have a _summary_{:.term} property. For an _Entry Point_{:.term}, the summary _MAY_{:.strong-term} be a brief description of the _Entity Metadata Collection_{:.term} in which the described changes occurred. If there are multiple entry points to the same collection, it is _RECOMMENDED_{:.strong-term} that the summary include information that distinguishes each entry point from the others.
+
 
 ```json-doc
 { "summary": "My Authoritity - Notifications of Change" }
