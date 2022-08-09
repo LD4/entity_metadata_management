@@ -109,7 +109,7 @@ The recommendations in this document leverage existing techniques, specification
 The objective of these recommendations is to provide a machine to machine API that provides the information needed to describe changes to entity metadata across the lifecycle of an entity. The intended audiences are Entity Metadata Providers who curate aggregations of entity metadata within an area of interest, Entity Metadata Consumers who use the entity metadata, and Entity Metadata Developers who create applications and tools that help consumers connect to entity metadata from providers. While this work may benefit others wanting to express changes in data, the objective of the API is to specify an interoperable solution that best and most easily fulfills the need to express and process changes in entity metadata within the community of participating organizations.
 
 
-The discovery of changes to entity metadata requires a consistent and well understood pattern for entity metadata providers to publish lists of links to entities that have metadata changes and details on changes that have occurred. Changes include newly available entities with metadata, removed entities, as well as, changes to entities and their metadata. This allows a baseline implementation of change management systems that process the list of changes. 
+The discovery of changes to entity metadata requires a consistent and well understood pattern for entity metadata providers to publish lists of links to entities that have metadata changes and details on changes that have occurred. Changes include newly available entities with metadata, removed entities, as well as, changes to entities and their metadata. This allows a baseline implementation of change management systems that process the list of changes.
 
 This process can be optimized by allowing the content providers to publish changes in chronological order including descriptions of how their content has changed, enabling consuming systems to retrieve only the resources that have been modified since they were last retrieved. Finally, for rapid synchronization, a system of notifications pushed from the publisher to a set of subscribers can reduce the amount of effort required to constantly poll multiple sources to see if anything has changed.
 
@@ -121,7 +121,7 @@ Work that is out of scope of this API includes the recommendation or creation of
 ### 1.2. Use Cases
 {: #use-cases}
 
-Three primary use cases were identified that drive the recommendations in this document. The use cases are listed from a simple change document with minimal information to a fully defined change document including details about what changed. 
+Three primary use cases were identified that drive the recommendations in this document. The use cases are listed from a simple change document with minimal information to a fully defined change document including details about what changed.
 
 #### 1.2.1. Notifications
 {: #notifications}
@@ -165,9 +165,9 @@ TODO:  Maybe put a list of providers in an appendix instead of here.
 {: #terms-about-entities}
 
 * Entity Metadata Collection: Entities can be grouped based on varying criteria (e.g. subject headings, names, thesaurus, controlled vocabulary). The term Entity Metadata Collection will be used as a generic representation of these grouping regardless of type.
-* Authority: 
-* Controlled Vocabulary: 
-* Collection: 
+* Authority:
+* Controlled Vocabulary:
+* Collection:
 
 #### 1.3 3. Terms from Activity Streams
 {: #terms-from-activity-streams}
@@ -245,9 +245,9 @@ __@context__
 Reference: [JSON-LD scoped context][org-w3c-json-ld-scoped-contexts]
 {:.reference}
 
-The @context URL _MUST_{:.strong-term} point to a JSON-LD context which, in its simplest form, maps terms to IRIs and can define a context for values of properties. 
+The @context URL _MUST_{:.strong-term} point to a JSON-LD context which, in its simplest form, maps terms to IRIs and can define a context for values of properties.
 
-_Entity Metadata Management_{:.term} activity streams _MUST_{:.strong-term} include @context at each level in order to conform to [JSON-LD][org-w3c-json-ld] syntax. The _Entity Metadata Management_{:.term} [context definition][emm-context-api-01] includes information for all levels, and as such, the same context definition is used for all levels. 
+_Entity Metadata Management_{:.term} activity streams _MUST_{:.strong-term} include @context at each level in order to conform to [JSON-LD][org-w3c-json-ld] syntax. The _Entity Metadata Management_{:.term} [context definition][emm-context-api-01] includes information for all levels, and as such, the same context definition is used for all levels.
 
 Implementations may augment the provided @context with additional @context definitions but must not override or change the normative context of the _Activity Stream_{:.term} context or the _Entity Metadata Management_{:.term} context. Implementations may also use additional properties and values not defined in the JSON-LD @context with the understanding that any such properties will likely be unsupported and ignored by consuming implementations that use the standard JSON-LD algorithms.
 
@@ -597,13 +597,13 @@ To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cac
     "type": "Create",
     "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11"
   },
-  "content": 
-    "A <https://my_repo/entity/cow_milk> 
+  "content":
+    "A <https://my_repo/entity/cow_milk>
          <https://my.authority/vocab/hasLabel> 'cow milk'@en.
-     A <https://my_repo/entity/cow_milk> 
+     A <https://my_repo/entity/cow_milk>
          <https://my.authority/vocab/broaderTerm> <https://my_repo/entity/milk>.
-     A <https://my_repo/entity/cow_milk> 
-         <https://my.authority/vocab/narrow_term> 
+     A <https://my_repo/entity/cow_milk>
+         <https://my.authority/vocab/narrow_term>
          <https://my_repo/entity/bovine_milk>."
 ```
 
@@ -740,13 +740,13 @@ Complete Example
     "type": "Create",
     "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11"
   },
-  "content": 
-    "A <https://my_repo/entity/cow_milk> 
+  "content":
+    "A <https://my_repo/entity/cow_milk>
          <https://my.authority/vocab/hasLabel> 'cow milk'@en.
-     A <https://my_repo/entity/cow_milk> 
+     A <https://my_repo/entity/cow_milk>
          <https://my.authority/vocab/broaderTerm> <https://my_repo/entity/milk>.
-     A <https://my_repo/entity/cow_milk> 
-         <https://my.authority/vocab/narrow_term> 
+     A <https://my_repo/entity/cow_milk>
+         <https://my.authority/vocab/narrow_term>
          <https://my_repo/entity/bovine_milk>."
 }  
 ```
@@ -800,7 +800,7 @@ EXAMPLE Entity Patch for Update
     "type": "Update",
     "id": "https://data.my.authority/change_documents/2021/activity-stream/cd31",
   },
-  "content": 
+  "content":
     "A <http://my_repo/entity/milk> <http://my.authority/vocab/hasLabel> 'Milk'@en.
      D <http://my_repo/entity/milk> <http://my.authority/vocab/hasLabel> 'milk'@en."
 ```
@@ -857,13 +857,13 @@ EXAMPLE Entity Patch for Delete
     "type": "Delete",
     "id": "https://data.my.authority/change_documents/2021/activity-stream/cd21"
   },
-  "content": 
-    "D <http://my_repo/entity/cow_milk> 
+  "content":
+    "D <http://my_repo/entity/cow_milk>
          <http://my.authority/vocab/hasLabel> 'cow milk'@en.
-     D <http://my_repo/entity/cow_milk> 
+     D <http://my_repo/entity/cow_milk>
          <http://my.authority/vocab/broaderTerm> <http://my_repo/entity/milk>.
-     D <http://my_repo/entity/cow_milk> 
-         <http://my.authority/vocab/narrow_term> 
+     D <http://my_repo/entity/cow_milk>
+         <http://my.authority/vocab/narrow_term>
          <http://my_repo/entity/bovine_milk>."
 }  
 ```
@@ -1126,7 +1126,7 @@ QUESTION: Should each place that talks about a part of the feed include a link i
 TODO: What entity types do we want to list?  These aren't formally defined.
 {:.todo}
 
-Record information about the entity and the changes 
+Record information about the entity and the changes
 * dereferencable URI for the entity in your system
 * summary description of change (e.g. Add term Science)
 * type of entity (e.g. Term, ...)
@@ -1157,7 +1157,7 @@ Create the change set:
   * set `"id"` property to the `change_activity_uri` for this change
   * set a date
     * the `"published"` property to the datetime the change set is being published
-    * the `"endDate"` property to the datetime the change was completed in the system of record 
+    * the `"endDate"` property to the datetime the change was completed in the system of record
   * set `"object"` to use `entity_uri` for `"id"`
 
 Update previous change set:
@@ -1238,7 +1238,7 @@ _What does the date of an activity represent?_
 {:.todo}
 
 Assumptions:
-* the activity MUST includes a URL that dereferences to a first order graph that 
+* the activity MUST includes a URL that dereferences to a first order graph that
   * MUST include all triples where the entity is the subject (<entity_uri> <predicate> <object>)
   * MUST include all blanknodes, and related sub-graph, where the blanknode is the object and the entity is the subject (<entity_uri> <predicate> <_:b1>)
   * MAY include triples for entities that are external to the base datasource if the entity is not available in another activity stream
@@ -1283,7 +1283,7 @@ LOOP
     add all triples, and sub-graph, where graph.triple.subject == activity.object.id && <object_uri>.is_a? blank_node
     add all triples where graph.triple.subject == activity.object.id  
   end
-  
+
   if activity == page.last_activity
     page = page.next
     activity == page.first_activity
