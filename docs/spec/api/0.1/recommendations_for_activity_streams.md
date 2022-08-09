@@ -475,7 +475,9 @@ QUESTION: To tie the language we are using closer to the Activity Stream, should
 QUESTION: Based on review of LOC activity stream and how it can be processed in its current state to allow processing to update a full cache, it brings into question whether we should recommend the RDF Patch approach. Removing RDF Patch will reduce complexity for the Producer and may increase accuracy of consumed data. See Consumer Processing for a description of the process.
 {:.todo}
 
-A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Notification_{:.term}. The notification _MUST_{:.strong-term} provide information about the type of change and _SHOULD_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset. This level is sufficient to address the Notifications use case.
+
+A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Notification_{:.term}. The notification _MUST_{:.strong-term} provide information about the type of change and _SHOULD_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset. This level is sufficient to address the [Notifications]{#notifications} use case.
+
 
 _Entity Change Notifications_{:.term} _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [definition](https://www.w3.org/TR/activitystreams-vocabulary/#activity) in the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples specific to Entity Metadata Management.
 
@@ -507,7 +509,7 @@ _Entity Change Notifications_{:.term} _MUST_{:.strong-term} be implemented as an
 }
 ```
 
-Properties shared across all _Entity Change Notification_{:.term} types are described here. If a specific notification type handles a property different, it will be described with that notification type in section [Types of Change](#types-of-change).
+Properties shared across all _Entity Change Notification_{:.term} types are described here. If a specific notification type handles a property differently, it will be described with that notification type in section [Types of Change](#types-of-change).
 
 <a id="entity-change-notification-context" class="anchor-definition">
 __@context__
@@ -577,7 +579,7 @@ Each _Entity Change Notification_{:.term} _MUST_{:.strong-term} use the _partOf_
 ### 4.2. Entity Patch
 {: #entity-patch}
 
-To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cache of Full Dataset](#local-cache-of-full-dataset), it is _RECOMMENDED_{:.strong-term} that each [Entity Change Notification](#entity-change-notification) include the _instrument_{:.term} property which provides a link an _Entity Patch_{:.term}.
+To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cache of Full Dataset](#local-cache-of-full-dataset) use cases, it is _RECOMMENDED_{:.strong-term} that each [Entity Change Notification](#entity-change-notification) include the _instrument_{:.term} property which provides a link an _Entity Patch_{:.term}.
 
 #### FULL EXAMPLE for Entity Patch
 
@@ -608,7 +610,8 @@ To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cac
 ## 5. Types of Change
 {: #types-of-change}
 
-All {Entity Change Notifications_{:.term} have a core set of properties that are described in the [Entity Change Notification](#entity-change-notification) section. Some properties are specific to the _Types of Change_. This section provides examples and descriptions of the _Entity Change Notification_{:.term} and _Entity Patch_{:.term} for each type of change. They also describe differences between similar Activity Types (e.g. _Create_{:.term} vs. _Add_{:.term}).
+All _Entity Change Notifications_{:.term} have a core set of properties that are described in the [Entity Change Notification](#entity-change-notification) section. Some properties are specific to the _Types of Change_. This section provides examples and descriptions of the _Entity Change Notification_{:.term} and _Entity Patch_{:.term} for each type of change. They also describe differences between similar Activity Types (e.g. _Create_{:.term} vs. _Add_{:.term}).
+
 
 ### 5.1. New Entity
 {: #new-entity}
@@ -998,7 +1001,7 @@ EXAMPLE Entity Change Notification for Split
 {: #merge-entity}
 
 
-Entities that has been merged into one new entity _SHOULD_{:.strong-term} have an [Entity Change Notification](#entity-change-notification) with a _type_{:.term} of _"Merge"_{:.term}.
+Entities that have been merged into one new entity _SHOULD_{:.strong-term} have an [Entity Change Notification](#entity-change-notification) with a _type_{:.term} of _"Merge"_{:.term}.
 
 A change that merges entities _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [Merge extended type definition](https://docs.google.com/document/d/1eiFANJvR6cYE3Tx3cTsLhDO_BxZFr7NKPrQnBPh48rk/edit#heading=h.e7zppj5vycms)  in the [Entity Metadata Management extension](https://docs.google.com/document/d/1eiFANJvR6cYE3Tx3cTsLhDO_BxZFr7NKPrQnBPh48rk/edit) to the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples.
 
