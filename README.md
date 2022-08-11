@@ -6,10 +6,10 @@ authoritative data, controlled vocabularies, bibliographic data, etc.
 
 ## Reference
 
+* [Entity Metadata Management Change Document API](https://ld4.github.io/entity_metadata_management/api/0.1/recommendations.html)
+* [Entity Metadata Management context document](https://github.com/LD4/entity_metadata_management/api/context.json)
 * [Activity Streams 2.0](https://www.w3.org/TR/activitystreams-core/)
 * [Activity Vocabulary](https://www.w3.org/TR/activitystreams-vocabulary/)
-* [Entity Metadata Management context document](https://github.com/LD4/entity_metadata_management/api/context.json)
-* [Entity Metadata Management change documents recommendations](https://LD4/entity_metadata_management/) is a gem that processes linked data in a number of RDF formats.
 
 ## Contributing
 
