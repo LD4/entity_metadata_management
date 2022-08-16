@@ -164,7 +164,7 @@ TODO:  Maybe put a list of providers in an appendix instead of here.
 #### 1.3.2. Terms about Entities
 {: #terms-about-entities}
 
-* Entity: An entity is any resource identified with a URI that we may want to reference or make use of in data set. Entities include, but are not limited to, what the are sometimes referred to _authorities_, _controlled vocabulary terms_, or _real world objects (RWOs)_ in library, archives, and museum domains.
+* Entity: An entity is any resource (a thing or a concept) identified with a URI that we may want to reference or make use of in data set. Entities include, but are not limited to, what are referred to _authorities_, _controlled vocabulary terms_, or _real world objects (RWOs)_ in library, archives, and museum domains.
 * Entity Metadata Collection: Entities can be grouped based on varying criteria (e.g. subject headings, names, thesaurus, controlled vocabulary). The term Entity Metadata Collection will be used as a generic representation of these grouping regardless of type.
 
 
