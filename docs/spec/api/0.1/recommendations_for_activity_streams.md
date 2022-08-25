@@ -188,9 +188,14 @@ The recommendations use the following terms:
 ## 2. Architecture
 {: #architecture}
 
-The proposed structure for expressing change of entity metadata over time uses the [Activity Stream specification][org-w3c-activitystreams] to notify consumers of changes to each entity.
+This recommendation is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams]. Changes in entity metadata over time are communicated from providers to consumers via _Entity Change Notifications_{:.term} that describe a change to an entity. These are collected together in _Change Set_{:.term} documents that are organized as shown in the diagram below.
 
 <img src="{{site.baseurl}}/assets/images/figures/emm_architecture.png">
+
+### 2.1. JSON-LD Representation
+
+The use of JSON-LD with a specific `@context` that extends the [Activity Streams 2.0 specification][org-w3c-activitystreams] allows Entity Metadata Consumers to parse the resulting documents using standard JSON tools, and also allows the data to be interpreted according to the RDF Data Model (see [Relationship to RDF](https://www.w3.org/TR/json-ld/#relationship-to-rdf)).
+
 
 ## 3. Organizational Structures
 {: #organizational-structures}
@@ -216,10 +221,10 @@ QUESTION: should the example include url?</span>
 
 ```json-doc
 {
-  "@context": {
-    "@vocab": "https://www.w3.org/ns/activitystreams",
-    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
-  },
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  ],
   "summary": "My Authority - Change Documents",
   "type": "OrderedCollection",
   "id": "https://data.my.authority/change_documents/2021/activity-stream",
@@ -244,16 +249,23 @@ __@context__
 Reference: [JSON-LD scoped context][org-w3c-json-ld-scoped-contexts]
 {:.reference}
 
-The @context URL _MUST_{:.strong-term} point to a JSON-LD context which, in its simplest form, maps terms to IRIs and can define a context for values of properties.
+The `@context` is used to refer a JSON-LD context which, in its simplest form, maps terms to IRIs.
 
-_Entity Metadata Management_{:.term} activity streams _MUST_{:.strong-term} include @context at each level in order to conform to [JSON-LD][org-w3c-json-ld] syntax. The _Entity Metadata Management_{:.term} [context definition][emm-context-api-01] includes information for all levels, and as such, the same context definition is used for all levels.
+_Entity Metadata Management_{:.term} activity streams _MUST_{:.strong-term} include `@context` in each API response. The _Entity Metadata Management_{:.term} [context][emm-context-api-01] includes information for all parts of this recommendation and thus the same context definition is used in all API responses.
 
-Implementations may augment the provided @context with additional @context definitions but must not override or change the normative context of the _Activity Stream_{:.term} context or the _Entity Metadata Management_{:.term} context. Implementations may also use additional properties and values not defined in the JSON-LD @context with the understanding that any such properties will likely be unsupported and ignored by consuming implementations that use the standard JSON-LD algorithms.
+_Entity Metadata Management_{:.term} activity streams _MUST_{:.strong-term} use the following `@context` definition that refers to the _Activity Stream_{:.term} context and the _Entity Metadata Management_{:.term} extension context:
 
-The @context _SHOULD_ be `"https://ld4.github.io/entity_metadata_management/api/0.1/activitystreams-extensions"`, or an extension of this definition. The _Entity Metadata Management_{:.term} context is an extension of the _Activity Streams_{:.term} [context][org-w3c-activitystreams-context-definition].
+```json-doc
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  ],
+  // rest of API response
+}
+```
 
-TODO: Link to EMM context once it is created.
-{:.todo}
+Implementations _MAY_{:.strong-term} include additional extension contexts but _MUST NOT_{:.strong-term} override terms defined in the _Activity Stream_{:.term} [context][org-w3c-activitystreams-context-definition] or the _Entity Metadata Management_{:.term} context. Implementations _MAY_ also use additional properties and values not defined in a JSON-LD `@context` with the understanding that any such properties will likely be unsupported and ignored by consuming implementations that use the standard JSON-LD algorithms.
 
 <a id="entry-point-summary" class="anchor-definition">
 __summary__
@@ -396,10 +408,10 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
 
 ```json-doc
 {
-  "@context": {
-    "@vocab": "https://www.w3.org/ns/activitystreams",
-    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
-  },
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  ],
   "type": "OrderedCollectionPage",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2",
   "partOf": {
@@ -484,10 +496,10 @@ _Entity Change Notifications_{:.term} _MUST_{:.strong-term} be implemented as an
 
 ```json-doc
 {
-  "@context": {
-    "@vocab": "https://www.w3.org/ns/activitystreams",
-    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
-  },
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  ],
   "summary": "Add entity for subject Science",
   "updated": "2021-08-02T16:59:54Z",
   "type": "Add",
@@ -585,10 +597,10 @@ To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cac
 ```json-doc
 
 {
-  "@context": {
-    "@vocab": "https://www.w3.org/ns/activitystreams",
-    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
-  },
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  ],
   "summary": "rdf_patch to create entity for term milk",
   "type": "rdf_patch",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11/instrument/1",
@@ -641,10 +653,10 @@ Complete Example
 
 ```json-doc
 {
-  "@context": {
-    "@vocab": "https://www.w3.org/ns/activitystreams",
-    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
-  },
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  ],
   "summary": "New entity for term milk",
   "updated": "2021-08-02T16:59:54Z",
   "type": "Create",
@@ -728,10 +740,10 @@ Complete Example
 
 ```json-doc
 {
-  "@context": {
-    "@vocab": "https://www.w3.org/ns/activitystreams",
-    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
-  },
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  ],
   "summary": "rdf_patch to create entity for term milk",
   "type": "rdf_patch",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11/instrument/1",
@@ -761,10 +773,10 @@ EXAMPLE Entity Change Notification for Update
 
 ```json-doc
 {
-  "@context": {
-    "@vocab": "https://www.w3.org/ns/activitystreams",
-    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
-  },
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  ],
   "summary": "Update entity term milk",
   "updated": "2021-08-02T16:59:54Z",
   "type": "Update",
@@ -788,10 +800,10 @@ EXAMPLE Entity Patch for Update
 
 ```json-doc
 {
-  "@context": {
-    "@vocab": "https://www.w3.org/ns/activitystreams",
-    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
-  },
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  ],
   "summary": "rdf_patch to update entity term milk",
   "type": "rdf_patch",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/cd31/instrument/1",
@@ -818,10 +830,10 @@ EXAMPLE Entity Change Notification for Delete
 
 ```json-doc
 {
-  "@context": {
-    "@vocab": "https://www.w3.org/ns/activitystreams",
-    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
-  },
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  ],
   "summary": "Delete term cow_milk",
   "updated": "2021-08-02T16:59:54Z",
   "type": "Delete",
@@ -845,10 +857,10 @@ EXAMPLE Entity Patch for Delete
 
 ```json-doc
 {
-  "@context": {
-    "@vocab": "https://www.w3.org/ns/activitystreams",
-    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
-  },
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  ],
   "summary": "rdf_patch to delete entity term cow_milk",
   "type": "rdf_patch",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/cd21/instrument/1",
@@ -878,10 +890,10 @@ EXAMPLE Entity Change Notification for Deprecate
 
 ```json-doc
 {
-  "@context": {
-    "@vocab": "https://www.w3.org/ns/activitystreams",
-    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
-  },
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  ],
   "summary": "Create term bovine milk and Deprecate term cow milk",
   "updated": "2021-08-02T16:59:54Z",
   "type": "Deprecate",
@@ -936,10 +948,10 @@ EXAMPLE Entity Change Notification for Split
 
 ```json-doc
 {
-  "@context": {
-    "@vocab": "https://www.w3.org/ns/activitystreams",
-    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
-  },
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  ],
   "summary": "Split cow milk into bovine milk and oxen milk",
   "updated": "2021-08-02T16:59:54Z",
   "type": "Split",
@@ -1008,10 +1020,10 @@ EXAMPLE Entity Change Notification for Merge
 
 ```json-doc
 {
-  "@context": {
-    "@vocab": "https://www.w3.org/ns/activitystreams",
-    "emm": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
-  },
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://ld4.github.io/entity_metadata_management/api/0.1/context.json"
+  ],
   "summary": "Merge bovine milk and oxen milk into cow milk",
   "updated": "2021-08-02T16:59:54Z",
   "type": "Merge",
