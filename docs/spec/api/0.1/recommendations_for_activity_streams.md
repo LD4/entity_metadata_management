@@ -460,7 +460,7 @@ NOTE: See [Entity Change Notification](#entity-change-notification) under [Entit
 ## 4. Entity Level Structures
 {: #entity-level-structures}
 
-The structures described in this section are used in the _ordered_items_{:.term} property of of the [Change Set](#change-set). The level of detail in the _ordered_items_{:.term} depends on the use case being addressed. The [Notifications](#notifications) use case can be addressed by the [Entity Change Notification](#entity-change-notification). The [Local Cache of Labels](#local-cache-of-labels) and [Local Cache of Full Dataset](#local-cache-of-full-dataset) use cases can be addressed by also including an [Entity Patch](#entity-patch).
+The structures described in this section are used in the _ordered_items_{:.term} property of of the [Change Set](#change-set).  The level of detail in the _ordered_items_{:.term} depends on the use case being addressed. The [Notifications](#notifications) use case can be addressed by the [Entity Change Notification](#entity-change-notification). The [Local Cache of Labels](#local-cache-of-labels) and [Local Cache of Full Dataset](#local-cache-of-full-dataset) use cases can be addressed by also including an [Entity Patch](#entity-patch). Without an [Entity Patch](#entity-patch), the consumer must dereference the entity URI to obtain the updated entity description.
 
 ### 4.1. Entity Change Notification
 {: #entity-change-notification}
@@ -475,7 +475,7 @@ QUESTION: Based on review of LOC activity stream and how it can be processed in 
 {:.todo}
 
 
-A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Notification_{:.term}. The notification _MUST_{:.strong-term} provide information about the type of change and _SHOULD_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset. This level is sufficient to address the [Notifications]{#notifications} use case.
+A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Notification_{:.term}.  The notification _MUST_{:.strong-term} provide information about the type of change and _MAY_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset. This level is sufficient to address the [Notifications] {#notifications} use case.
 
 
 _Entity Change Notifications_{:.term} _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [definition](https://www.w3.org/TR/activitystreams-vocabulary/#activity) in the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples specific to Entity Metadata Management.
@@ -578,7 +578,8 @@ Each _Entity Change Notification_{:.term} _MUST_{:.strong-term} use the _partOf_
 ### 4.2. Entity Patch
 {: #entity-patch}
 
-To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cache of Full Dataset](#local-cache-of-full-dataset) use cases, it is _RECOMMENDED_{:.strong-term} that each [Entity Change Notification](#entity-change-notification) include the _instrument_{:.term} property which provides a link an _Entity Patch_{:.term}.
+To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cache of Full Dataset](#local-cache-of-full-dataset), it is _OPTIONAL_{:.strong-term} that each [Entity Change Notification](#entity-change-notification) include the _instrument_{:.term} property which provides a link an _Entity Patch_{:.term}. Without an [Entity Patch](#entity-patch), the consumer must dereference the entity URI to obtain the updated entity description.
+
 
 #### FULL EXAMPLE for Entity Patch
 
@@ -1179,7 +1180,7 @@ Create each change activity:
 
 [Live Example of Label Changes Entry Point][emm-change-api-example-partialcache]
 
-The process for creating Label Changes is the same as for Notifications with a few additional steps noted in this section.
+The process for creating Label Changes is the same as for Notifications with a few additional steps noted in this section if RDF patches are implemented.
 
 #### As changes are made to the dataset
 
@@ -1199,7 +1200,7 @@ Create an RDF patch for each change activity:
 
 [Live Example of Incremental Updates Entry Point][emm-change-api-example-fullcache]
 
-The process for creating Incremental Updates is the same as for Notifications with a few additional steps noted in this section.
+The process for creating Incremental Updates is the same as for Notifications with a few additional steps noted in this section if RDF patches are implemented.
 
 #### As changes are made to the dataset
 
