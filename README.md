@@ -1,13 +1,14 @@
 # Entity Metadata Management
 
-This repository contains documentation and documents related to managing change 
-in a repository of linked data entities.  This includes, but is not limited to,
-authoritative data, controlled vocabularies, bibliographic data, etc.
+This repository contains documentation and documents related to managing change
+in a repository of linked data entities. Linked data entities include, but are
+not limited to, authoritative data, controlled vocabularies, bibliographic
+data, etc.
 
 ## Reference
 
-* [Entity Metadata Management Change Document API](https://ld4.github.io/entity_metadata_management/api/0.1/recommendations.html)
-* [Entity Metadata Management context document](https://github.com/LD4/entity_metadata_management/api/context.json)
+* [Entity Metadata Management API](https://ld4.github.io/entity_metadata_management/api/0.1/recommendations.html)
+* [Entity Metadata Management API JSON-LD context](https://github.com/LD4/entity_metadata_management/api/context.json)
 * [Activity Streams 2.0](https://www.w3.org/TR/activitystreams-core/)
 * [Activity Vocabulary](https://www.w3.org/TR/activitystreams-vocabulary/)
 
@@ -42,4 +43,3 @@ Option 2:
 ## License
 
 The code in this repository is available as open source under the terms of the [Apache License](https://www.apache.org/licenses/LICENSE-2.0).
-

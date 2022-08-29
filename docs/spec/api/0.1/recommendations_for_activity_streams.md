@@ -1,11 +1,9 @@
 ---
-title: EMM Change Document API 0.1
-title_override: EMM Change Document API 0.1
+title: Entity Metadata Management API 0.1
 permalink: api/0.1/recommendations.html
-id: change-api
 layout: spec
 cssversion: 3
-tags: [specifications, recommendations, change-api]
+tags: [specifications, recommendations, api]
 major: 0
 minor: 0
 patch: 1
@@ -98,14 +96,16 @@ QUESTIONS
 ## 1. Introduction
 {: #introduction}
 
-The primary purpose of this document is to establish a pattern that supports sharing changes to entities and their metadata curated by Entity Metadata Providers with the community of Entity Metadata Consumers (e.g. libraries, museums, galleries, archives). Use of a consistent pattern allows for the creation of software tools for producing and consuming changes in entity metadata.
+The Entity Metadata Management API is intended to establish a pattern that supports sharing changes to entities and their metadata curated by Entity Metadata Providers with the community of Entity Metadata Consumers (e.g. libraries, museums, galleries, archives). Use of a consistent pattern allows for the creation of software tools for producing and consuming changes in entity metadata.
 
 The recommendations in this document leverage existing techniques, specifications, and tools in order to promote widespread adoption of an easy-to-implement service. The service describes changes to entity metadata and the location of those resources to harvest. Content providers can implement this API to enable notifications of change and incremental cache updates.
 
 ### 1.1. Objectives and Scope
 {: #objectives-and-scope}
 
-The objective of these recommendations is to provide a machine to machine API that provides the information needed to describe changes to entity metadata across the lifecycle of an entity.  The intended audiences are Entity Metadata Provides who curate aggregations of entity metadata within an area of interest, Entity Metadata Consumers who use the entity metadata, and developers who create applications and tools that help consumers connect to entity metadata from providers. While this work may benefit others wanting to express changes in data, the objective of the API is to specify an interoperable solution that best and most easily fulfills the need to express and process changes in entity metadata within the community of participating organizations.
+
+The objective of these recommendations is to provide a machine to machine API that provides the information needed to describe changes to entity metadata across the lifecycle of an entity. The intended audiences are Entity Metadata Providers who curate aggregations of entity metadata within an area of interest, Entity Metadata Consumers who use the entity metadata, and Entity Metadata Developers who create applications and tools that help consumers connect to entity metadata from providers. While this work may benefit others wanting to express changes in data, the objective of the API is to specify an interoperable solution that best and most easily fulfills the need to express and process changes in entity metadata within the community of participating organizations.
+
 
 The discovery of changes to entity metadata requires a consistent and well understood pattern for entity metadata providers to publish lists of links to entities that have metadata changes and details on changes that have occurred. Changes include newly available entities with metadata, removed entities, as well as, changes to entities and their metadata. This allows a baseline implementation of change management systems that process the list of changes.
 
