@@ -142,7 +142,7 @@ __Additional Cached Metadata__<br>In some cases, additional metadata is also cac
 #### 1.2.3. Local Cache of Full Dataset
 {: #local-cache-of-full-dataset}
 
-A consumer may decide to make a full cache of a dataset of entity metadata. This is commonly done for several reasons including, but not limited to, increased control over uptime, throughput, and indexing for search. The cache needs to stay in sync with the source dataset as near to real time as is possible using incremental updates.
+A consumer may decide to make a full cache of a dataset of entity metadata. This is commonly done for one or more reasons including, but not limited to, increased control over uptime, throughput, and indexing for search. The cache needs to stay in sync with the source dataset as near to real time as is possible using incremental updates.
 
 To address this use case, the provider creates and makes available a dated list of all new, modified, and deleted entities along with specifics about how the entities have changed. The consumer can process a stream of change documents, from oldest to newest, that was published since their last incremental update. Specific details about each change can be used to update the local cache.
 
