@@ -292,7 +292,7 @@ Reference:  [type][org-w3c-activitystreams-property-type] property definition
 
 The type property identifies the Activity Stream type for the _Entry Point_{:.term}.
 
-The _Entry Point_{:.term} _MUST_{:.strong-term} have a _type_{:.term} property. The value _MUST_{:.strong-term} be `"OrderedCollection"`.
+The _Entry Point_{:.term} _MUST_{:.strong-term} have a _type_{:.term} property. The value _MUST_{:.strong-term} be `OrderedCollection`.
 
 ```json-doc
 { "type": "OrderedCollection" }
@@ -334,7 +334,7 @@ Reference:  [first][org-w3c-activitystreams-property-first] property definition
 
 A link to the first _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}.
 
-The _Entry Point_{:.term} _MUST_{:.strong-term} have a _first_{:.term} property. The value _MUST_{:.strong-term} be a JSON object, with the _id_{:.term} and _type_{:.term} properties. The value of the _id_{:.term} property _MUST_{:.strong-term} be a string, and it _MUST_{:.strong-term} be the HTTP(S) URI of the first page of items in the _Entry Point_{:.term}. The value of the _type_{:.term} property _MUST_{:.strong-term} be the string `"OrderedCollectionPage"`.
+The _Entry Point_{:.term} _MUST_{:.strong-term} have a _first_{:.term} property. The value _MUST_{:.strong-term} be a JSON object, with the _id_{:.term} and _type_{:.term} properties. The value of the _id_{:.term} property _MUST_{:.strong-term} be a string, and it _MUST_{:.strong-term} be the HTTP(S) URI of the first page of items in the _Entry Point_{:.term}. The value of the _type_{:.term} property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
 
 QUESTION: should the example include published?
 {:.todo}
@@ -357,7 +357,7 @@ Reference:  [last][org-w3c-activitystreams-property-last] property definition
 
 A link to the last _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}.
 
-The _Entry Point_{:.term} _MUST_{:.strong-term} have a _last_{:.term} property. The value _MUST_{:.strong-term} be a JSON object, with the _id_{:.term} and _type_{:.term} properties. The value of the _id_{:.term} property _MUST_{:.strong-term} be a string, and it _MUST_{:.strong-term} be the HTTP(S) URI of the last page of items in the _Entry Point_{:.term}. The value of the _type_{:.term} property _MUST_{:.strong-term} be the string `"OrderedCollectionPage"`.
+The _Entry Point_{:.term} _MUST_{:.strong-term} have a _last_{:.term} property. The value _MUST_{:.strong-term} be a JSON object, with the _id_{:.term} and _type_{:.term} properties. The value of the _id_{:.term} property _MUST_{:.strong-term} be a string, and it _MUST_{:.strong-term} be the HTTP(S) URI of the last page of items in the _Entry Point_{:.term}. The value of the _type_{:.term} property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
 
 QUESTION: should the example include published?
 {:.todo}
@@ -693,7 +693,7 @@ Reference:  [type][org-w3c-activitystreams-property-type] property definition
 
 The type is the one of a set of predefined _Entity Change Notification_{:.term} activity types.
 
-Each _Entity Change Notification_{:.term} _MUST_{:.strong-term} have a _type_{:.term} property. For a notification of a newly available entity, the value _SHOULD_{:.strong-term} be one of either `"Create"` or `"Add"`.
+Each _Entity Change Notification_{:.term} _MUST_{:.strong-term} have a _type_{:.term} property. For a notification of a newly available entity, the value _SHOULD_{:.strong-term} be one of either `Create` or `Add`.
 
 ```json-doc
 { "type": "Create" }
@@ -1009,7 +1009,6 @@ EXAMPLE Entity Change Notification for Split
 ### 5.6. Merge Entities
 {: #merge-entity}
 
-
 Entities that have been merged into one new entity _SHOULD_{:.strong-term} have an [Entity Change Notification](#entity-change-notification) with a _type_{:.term} of _"Merge"_{:.term}.
 
 A change that merges entities _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [Merge extended type definition](https://docs.google.com/document/d/1eiFANJvR6cYE3Tx3cTsLhDO_BxZFr7NKPrQnBPh48rk/edit#heading=h.e7zppj5vycms)  in the [Entity Metadata Management extension](https://docs.google.com/document/d/1eiFANJvR6cYE3Tx3cTsLhDO_BxZFr7NKPrQnBPh48rk/edit) to the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples.
@@ -1139,7 +1138,7 @@ Record information about the entity and the changes
 * dereferencable URI for the entity in your system
 * summary description of change (e.g. Add term Science)
 * type of entity (e.g. Term, ...)
-* type of change (e.g. Add, Remove, Update, Deprecate, Split, Merge)
+* type of change (e.g. `Add`, `Remove`, `Update`, `Deprecate`, `Split`, `Merge`)
 * RDF patch steps describing what was changed (optional, see note)
 
 NOTE: Storing RDF patch steps is optional for Notifications. All changes are required for Incremental Updates and changes to labels are required for Label Changes.
@@ -1149,38 +1148,38 @@ NOTE: Storing RDF patch steps is optional for Notifications. All changes are req
 
 Determine URIs for new and existing objects that will be referenced in various properties:
 * `entry_point_uri` = get the URI of the newly created or existing entry point
-* `prev_change_set_uri` = get the previous change set URI from the entry point's `"last"` property
+* `prev_change_set_uri` = get the previous change set URI from the entry point's `last` property
 * `change_set_uri` = determine URI that will resolve to the change set
 * `entity_uri` = the dereferencable URI for the entity that return the entity graph
 * `change_activity_uri` = determine URI that will resolve to each entity change activity
 * `change_rdf_patch_uri` = determine URI that will resolve to the instrument holding the RDF patch for each activity
 
 Create the change set:
-* set `"id"` property to `change_set_uri`
-* set `"published"` property to the datetime this change set will become public
-* set `"partOf"` property to use `entry_point_uri` for `"id"`
-* set `"prev"` property to use `prev_change_set_uri` for `"id"`
-* set `"totalItems"` property to the number of change activities that will be in this change set
-* for each change activity from oldest to newest, add it to the `"orderedItems"` property array
-  * set `"type"` property to the change type (e.g. Add, Remove, etc.)
-  * set `"id"` property to the `change_activity_uri` for this change
+* set `id` property to `change_set_uri`
+* set `published` property to the datetime this change set will become public
+* set `partOf` property to use `entry_point_uri` for `id`
+* set `prev` property to use `prev_change_set_uri` for `id`
+* set `totalItems` property to the number of change activities that will be in this change set
+* for each change activity from oldest to newest, add it to the `orderedItems` property array
+  * set `type` property to the change type (e.g. `Add`, `Remove`, etc.)
+  * set `id` property to the `change_activity_uri` for this change
   * set a date
-    * the `"published"` property to the datetime the change set is being published
-    * the `"endDate"` property to the datetime the change was completed in the system of record
-  * set `"object"` to use `entity_uri` for `"id"`
+    * the `published` property to the datetime the change set is being published
+    * the `endDate` property to the datetime the change was completed in the system of record
+  * set `object` to use `entity_uri` for `id`
 
 Update previous change set:
-* add a "next" property that points to the new change set
+* add a `next` property that points to the new change set
 
 Update entry point:
-* if this is the first change set published for an entry point, add the "first" property in the entry point
-    * "type": "OrderCollectionPage"
-    * "id": _URI resolving to the new change set_
-    * "published": _datetime the change set is published_
-* add or update the "last" property in the entry point
-    * "type": "OrderCollectionPage"
-    * "id": _URI resolving to the new change set_
-    * "published": _datetime the change set is published_
+* if this is the first change set published for an entry point, add the `first` property in the entry point with
+    * set `type` property to `OrderCollectionPage`
+    * set `id` property to the _URI resolving to the new change set_
+    * set `published` property to the  _datetime the change set is published_
+* add or update the `last` property in the entry point
+    * set `type` property to `OrderCollectionPage`
+    * set `id` property to the _URI resolving to the new change set_
+    * set `published` property to the _datetime the change set is published_
 
 Create each change activity:
 * create a change activity using the information saved as changes were created
@@ -1200,7 +1199,7 @@ Record all the information listed under Notification and also:
 
 Create the change set as described for Notifications and also:
 * for each change activity:
-    * set `"instrument"` property to use `change_rdf_patch_uri` for `"id"`
+    * set `instrument` property to use `change_rdf_patch_uri` for `id`
 
 Create an RDF patch for each change activity:
 * record the RDF patch statements in the order that they need to be applied to recreate the label changes to an entity
@@ -1220,7 +1219,7 @@ Record all the information listed under Notification and also:
 
 Create the change set as described for Notifications and also:
 * for each change activity:
-    * set `"instrument"` property to use `change_rdf_patch_uri` for `"id"`
+    * set `instrument` property to use `change_rdf_patch_uri` for `id`
 
 Create an RDF patch for each change activity:
 * record the RDF patch statements in the order that they need to be applied to recreate the changes to an entity
