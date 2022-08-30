@@ -168,7 +168,13 @@ TODO:  Maybe put a list of providers in an appendix instead of here.
 #### 1.3 3. Terms from Activity Streams
 {: #terms-from-activity-streams}
 
+This recommendation is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams] and uses the following key terms from Activity Streams:
 
+* [Activity](https://www.w3.org/TR/activitystreams-core/#activity): `Activity` objects are used to describe an atomic change in an Entity Metadata Provider. These often affects just one Entity but in the case of changes such as Entity merges and splits, more than one Entity may be involved.
+* [Collection](https://www.w3.org/TR/activitystreams-core/#collections): The entry point for all the information about changes from an Entity Metadata Provider is modeled as a Collection, using the [`OrderedCollection`](https://www.w3.org/TR/activitystreams-core/#dfn-orderedcollection) type to indicate that the activities in the collection are in time order.
+* [`OrderedCollectionPage`](https://www.w3.org/TR/activitystreams-core/#dfn-orderedcollectionpage): The completed `OrderedCollection` of changes is expressed as a set of `OrderedCollectionPage` to ensure that there are manageable chunks of change activities described even for large and long-running sets of updates.
+
+Many properties from Activity Streams are used, and are described throughout this document.
 
 #### 1.3.4. Terms from Specifications
 {: #terms-from-specifications}
