@@ -213,8 +213,6 @@ QUESTION: should the example include published for first?
 {:.todo}
 QUESTION: should the example include published for last?
 {:.todo}
-QUESTION: should the example include url?</span>
-{:.todo}
 
 ```json-doc
 {
@@ -309,12 +307,12 @@ The _Entry Point_{:.term} _MUST_{:.strong-term} have an _id_{:.term} property. T
 <a id="entry-point-url" class="anchor-definition">
 __url__
 
-Reference:  [first][org-w3c-activitystreams-property-url] property definition
+Reference: [url][org-w3c-activitystreams-property-url] property definition
 {:.reference}
 
-The url property identifies one or more links to representations of the _Entity Metadata Collection_{:.term}
+The _Entry Point_{:.term} _MAY_{:.strong_term} have a `url` property providing one or more links to representations of the _Entity Metadata Collection_{:.term}. If there are multiple links then the value of the `url` property will be an array.
 
-The _Entry Point_{:.term} _MAY_{:.strong_term} have one or more URLs listed. If there are multiple URLs, the value of the url property will be an array. A common value for the url property is a link to the full download for the collection.
+A common use of the `url` property is a link to the full download for the collection.
 
 ```json-doc
 { "url": "https://my.authority/2021-01-01/full_download" }
