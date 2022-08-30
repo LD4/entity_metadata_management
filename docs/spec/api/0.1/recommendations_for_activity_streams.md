@@ -475,10 +475,7 @@ QUESTION: Based on review of LOC activity stream and how it can be processed in 
 {:.todo}
 
 
-A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Notification_{:.term}.  The notification _MUST_{:.strong-term} provide information about the type of change and _MAY_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset. This level is sufficient to address the [Notifications] {#notifications} use case.
-
-
-_Entity Change Notifications_{:.term} _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [definition](https://www.w3.org/TR/activitystreams-vocabulary/#activity) in the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples specific to Entity Metadata Management.
+A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Notification_{:.term}. An _Entity Change Notification_{:.term} _MUST_{:.strong-term} be implemented as an [Activity Streams][org-w3c-activitystreams] [`Activity`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-activity). The notification _MUST_{:.strong-term} provide information about the type of change and the entity or entities changed. It _MAY_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset. This level is sufficient to address the [Notifications](#notifications) use case.
 
 #### FULL EXAMPLE for Entity Change Notification:
 
@@ -497,8 +494,7 @@ _Entity Change Notifications_{:.term} _MUST_{:.strong-term} be implemented as an
     "type": "Subject",
     "id": "http://my_repo/entity/science"
   },
-  "instrument":
-  {
+  "instrument": {
     "type": "rdf_patch",
     "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11/instrument/1"
   }
