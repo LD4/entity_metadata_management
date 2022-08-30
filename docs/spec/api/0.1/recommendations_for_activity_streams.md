@@ -847,11 +847,37 @@ EXAMPLE Entity Patch for Delete
 ### 5.4. Deprecate Entity
 {: #deprecate-entity}
 
-An entity that has been deprecated _SHOULD_{:.strong-term} have an [Entity Change Notification](#entity-change-notification) with a _type_{:.term} of _"Deprecate"_{:.term}.
+Deprecation indicates that an existing entity in the authority has been updated to identify it as deprecated such that is should no longer be used. Whenever possible, the description should indicate which entity should be used instead.
 
-A deprecated entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [Deprecate extended type definition](https://docs.google.com/document/d/1eiFANJvR6cYE3Tx3cTsLhDO_BxZFr7NKPrQnBPh48rk/edit#heading=h.u6iw3ncw6945)  in the [Entity Metadata Management extension](https://docs.google.com/document/d/1eiFANJvR6cYE3Tx3cTsLhDO_BxZFr7NKPrQnBPh48rk/edit) to the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples.
+There are two common scenarios. In the first, the replacement entity already exists and the deprecation updates the deprecated entity only. In the second scenario, the replacement entity does not exist prior to the deprecation. In this case, the replacement entity is created and the deprecation updates the deprecated entity.
 
-EXAMPLE Entity Change Notification for Deprecate
+An entity that has been deprecated _SHOULD_{:.strong-term} have an [Entity Change Notification](#entity-change-notification) with the _type_{:.term} `Deprecate`. The `Deprecate` activity _MUST_{:.strong-term} be implemented as either a single activity (similar to the [Update Entity](#update-entity) case but with more specific semantics), or using the `orderedItems` property with a sequence of activities that implement the deprecation. In the second scenario this would typically involve a `Create` activity for the replacement entity, and an `Update` activity for the deprecated entity.
+
+EXAMPLE Entity Change Notification for Deprecate in the Scenario where a Replacement Entity Already Exists
+
+```json-doc
+{
+  "@context": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json",
+  "summary": "Deprecate term cow milk",
+  "updated": "2021-08-02T16:59:57Z",
+  "type": "Deprecate",
+  "id": "https://data.my.authority/change_documents/2021/activity-stream/cd47",
+  "partOf": {
+    "type": "OrderedCollectionPage",
+    "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
+  },
+  "object": {
+     "type": "Term",
+     "id": "http://my_repo/entity/cow_milk"
+  },
+  "instrument": {
+    "type": "rdf_patch",
+    "id": "https://data.my.authority/change_documents/2021/activity-stream/cd42/instrument/2"
+  }
+}
+```
+
+EXAMPLE Entity Change Notification for Deprecate in the Scenario where a Replacement Entity is Created
 
 ```json-doc
 {
@@ -873,11 +899,9 @@ EXAMPLE Entity Change Notification for Deprecate
         "type": "Term",
         "id": "http://my_repo/entity/bovine_milk"
       },
-      "instrument":
-      {
+      "instrument": {
         "type": "rdf_patch",
-        "id":
-          "https://data.my.authority/change_documents/2021/activity-stream/cd42/instrument/1"
+        "id": "https://data.my.authority/change_documents/2021/activity-stream/cd42/instrument/1"
       }
     },
     {
@@ -887,11 +911,9 @@ EXAMPLE Entity Change Notification for Deprecate
         "type": "Term",
         "id": "http://my_repo/entity/cow_milk"
       },
-      "instrument":
-      {
+      "instrument": {
         "type": "rdf_patch",
-        "id":
-          "https://data.my.authority/change_documents/2021/activity-stream/cd42/instrument/2"
+        "id": "https://data.my.authority/change_documents/2021/activity-stream/cd42/instrument/2"
       }
     }
   ]
@@ -902,9 +924,7 @@ EXAMPLE Entity Change Notification for Deprecate
 ### 5.5. Split Entity
 {: #split-entity}
 
-An entity that has been split into two or more new entities _SHOULD_{:.strong-term} have an [Entity Change Notification](#entity-change-notification) with a _type_{:.term} of _"Split"_{:.term}.
-
-A split entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [Split extended type definition](https://docs.google.com/document/d/1eiFANJvR6cYE3Tx3cTsLhDO_BxZFr7NKPrQnBPh48rk/edit#heading=h.jlx8rz32qnvm)  in the [Entity Metadata Management extension](https://docs.google.com/document/d/1eiFANJvR6cYE3Tx3cTsLhDO_BxZFr7NKPrQnBPh48rk/edit) to the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples.
+An entity that has been split into two or more new entities _SHOULD_{:.strong-term} have an [Entity Change Notification](#entity-change-notification) with the _type_{:.term} `Split`. The `Split` activity _MUST_{:.strong-term} be implemented using the `orderedItems` property with a sequence of activities that implement the split. This typically involves multiple `Create` activities for new entities created by the split, and deprecation of the original entity that was split through a `Deprecate` activity.
 
 EXAMPLE Entity Change Notification for Split
 
@@ -971,9 +991,7 @@ EXAMPLE Entity Change Notification for Split
 {: #merge-entity}
 
 
-Entities that have been merged into one new entity _SHOULD_{:.strong-term} have an [Entity Change Notification](#entity-change-notification) with a _type_{:.term} of _"Merge"_{:.term}.
-
-A change that merges entities _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [Merge extended type definition](https://docs.google.com/document/d/1eiFANJvR6cYE3Tx3cTsLhDO_BxZFr7NKPrQnBPh48rk/edit#heading=h.e7zppj5vycms)  in the [Entity Metadata Management extension](https://docs.google.com/document/d/1eiFANJvR6cYE3Tx3cTsLhDO_BxZFr7NKPrQnBPh48rk/edit) to the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples.
+Two or more entities that have been merged into one new entity _SHOULD_{:.strong-term} have an [Entity Change Notification](#entity-change-notification) with the _type_{:.term} `Merge`. The `Merge` activity _MUST_{:.strong-term} be implemented using the `orderedItems` property with a sequence of activities that implement the merge. This typically involves a `Create` activity for a new entity created by the merge, and deprecation of the original entities that were merged through `Deprecate` activities.
 
 EXAMPLE Entity Change Notification for Merge
 
