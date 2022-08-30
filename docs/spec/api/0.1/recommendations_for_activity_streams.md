@@ -275,7 +275,7 @@ The _Entry Point_{:.term} _SHOULD_{:.strong-term} have a _summary_{:.term} prope
 ```
 
 ```json-doc
-{ "summary": "My Authoritity - Incremental Updates from 2022-01-01 Full Download" }
+{ "summary": "My Authority - Incremental Updates from 2022-01-01 Full Download" }
 ```
 
 <a id="entry-point-type" class="anchor-definition">
