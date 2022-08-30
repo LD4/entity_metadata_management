@@ -575,7 +575,7 @@ An _Entity Change Notification_{:.term} _MAY_{:.strong-term} use the _partOf_ pr
 ### 4.2. Entity Patch
 {: #entity-patch}
 
-To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cache of Full Dataset](#local-cache-of-full-dataset), it is _OPTIONAL_{:.strong-term} that each [Entity Change Notification](#entity-change-notification) include the _instrument_{:.term} property which provides a link an _Entity Patch_{:.term}. Without an [Entity Patch](#entity-patch), the consumer must dereference the entity URI to obtain the updated entity description.
+To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cache of Full Dataset](#local-cache-of-full-dataset) use cases efficiently, it is _OPTIONAL_{:.strong-term} that each [Entity Change Notification](#entity-change-notification) include the _instrument_{:.term} property which provides a link an _Entity Patch_{:.term}. Without an [Entity Patch](#entity-patch), the consumer must dereference the entity URI to obtain the updated entity description.
 
 
 #### FULL EXAMPLE for Entity Patch
