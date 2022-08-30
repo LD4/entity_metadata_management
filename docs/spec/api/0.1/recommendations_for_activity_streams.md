@@ -76,23 +76,6 @@ __Previous Version:__
 
 ----
 
-<div class="todo">
-TODOS
-<ul>
-  <li>update context to emm context</li>
-  <li>fill in more terminology</li>
-  <li>update diagram to more closely follow ER diagram conventions</li>
-  <li>set up page that lists existing implementations</li>
-</ul>
-
-QUESTIONS
-<ul>
-  <li>decide on recommendations for date handling (options: startTime, endTime, updated, published)</li>
-  <li>is there a good way to point to documentation, downloads, etc. for an authority?</li>
-  <li>should this point to our original documentation as a reference or is this document sufficient?</li>
-</ul>
-</div>
-
 ## 1. Introduction
 {: #introduction}
 
@@ -103,9 +86,7 @@ The recommendations in this document leverage existing techniques, specification
 ### 1.1. Objectives and Scope
 {: #objectives-and-scope}
 
-
-The objective of these recommendations is to provide a machine to machine API that provides the information needed to describe changes to entity metadata across the lifecycle of an entity. The intended audiences are Entity Metadata Providers who curate aggregations of entity metadata within an area of interest, Entity Metadata Consumers who use the entity metadata, and Entity Metadata Developers who create applications and tools that help consumers connect to entity metadata from providers. While this work may benefit others wanting to express changes in data, the objective of the API is to specify an interoperable solution that best and most easily fulfills the need to express and process changes in entity metadata within the community of participating organizations.
-
+The objective of these recommendations is to provide a machine to machine API that provides the information needed to describe changes to entity metadata across the lifecycle of an entity. The intended audiences are Entity Metadata Providers who curate aggregations of entity metadata within an area of interest, Entity Metadata Consumers who use the entity metadata, and developers who create applications and tools that help consumers connect to entity metadata from providers. While this work may benefit others wanting to express changes in data, the objective of the API is to specify an interoperable solution that best and most easily fulfills the need to express and process changes in entity metadata within the community of participating organizations.
 
 The discovery of changes to entity metadata requires a consistent and well understood pattern for entity metadata providers to publish lists of links to entities that have metadata changes and details on changes that have occurred. Changes include newly available entities with metadata, removed entities, as well as, changes to entities and their metadata. This allows a baseline implementation of change management systems that process the list of changes.
 
@@ -138,7 +119,6 @@ To address this use case, the provider creates and makes available a list of URI
 __Additional Cached Metadata__<br>In some cases, additional metadata is also cached as part of the external reference, but this is less common. Verification of the additional metadata may require the consumer to take additional actions.
 {: .warning}
 
-
 #### 1.2.3. Local Cache of Full Dataset
 {: #local-cache-of-full-dataset}
 
@@ -163,7 +143,6 @@ TODO:  Maybe put a list of providers in an appendix instead of here.
 
 * Entity: An entity is any resource (a thing or a concept) identified with a URI that we may want to reference or make use of in data set. Entities include, but are not limited to, what are referred to _authorities_, _controlled vocabulary terms_, or _real world objects (RWOs)_ in library, archives, and museum domains.
 * Entity Metadata Collection: Entities can be grouped based on varying criteria (e.g. subject headings, names, thesaurus, controlled vocabulary). The term Entity Metadata Collection will be used as a generic representation of these grouping regardless of type.
-
 
 #### 1.3 3. Terms from Activity Streams
 {: #terms-from-activity-streams}
@@ -266,9 +245,7 @@ Reference:  [summary][org-w3c-activitystreams-property-summary] property definit
 
 The summary is a natural language summarization of the purpose of the _Entry Point_{:.term}
 
-
 The _Entry Point_{:.term} _SHOULD_{:.strong-term} have a _summary_{:.term} property. For an _Entry Point_{:.term}, the summary _MAY_{:.strong-term} be a brief description of the _Entity Metadata Collection_{:.term} in which the described changes occurred. If there are multiple entry points to the same collection, it is _RECOMMENDED_{:.strong-term} that the summary include information that distinguishes each entry point from the others.
-
 
 ```json-doc
 { "summary": "My Authoritity - Notifications of Change" }
@@ -382,7 +359,6 @@ The _Entry Point_{:.term} _MAY_{:.strong-term} have a _totalItems_{:.term} prope
 }
 ```
 
-
 ### 3.2. Change Set
 {: #change-set}
 
@@ -457,6 +433,7 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
 NOTE: See [Entity Change Notification](#entity-change-notification) under [Entity Level Structures](#entity-level-structures) for more information on the data to be included under "orderedItems".
 {: .info}
 
+
 ## 4. Entity Level Structures
 {: #entity-level-structures}
 
@@ -468,15 +445,7 @@ The structures described in this section are used in the _ordered_items_{:.term}
 Reference:  [Activity][org-w3c-activitystreams-coretype-activity] in the [Activity Stream specification][org-w3c-activitystreams]
 {:.reference}
 
-QUESTION: To tie the language we are using closer to the Activity Stream, should we rename Entity Change Notification to Entity Change Activity?
-{:.todo}
-
-QUESTION: Based on review of LOC activity stream and how it can be processed in its current state to allow processing to update a full cache, it brings into question whether we should recommend the RDF Patch approach. Removing RDF Patch will reduce complexity for the Producer and may increase accuracy of consumed data. See Consumer Processing for a description of the process.
-{:.todo}
-
-
 A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Notification_{:.term}.  The notification _MUST_{:.strong-term} provide information about the type of change and _MAY_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset. This level is sufficient to address the [Notifications] {#notifications} use case.
-
 
 _Entity Change Notifications_{:.term} _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [definition](https://www.w3.org/TR/activitystreams-vocabulary/#activity) in the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples specific to Entity Metadata Management.
 
@@ -571,12 +540,10 @@ An _Entity Change Notification_{:.term} _MAY_{:.strong-term} use the _partOf_ pr
 }
 ```
 
-
 ### 4.2. Entity Patch
 {: #entity-patch}
 
 To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cache of Full Dataset](#local-cache-of-full-dataset), it is _OPTIONAL_{:.strong-term} that each [Entity Change Notification](#entity-change-notification) include the _instrument_{:.term} property which provides a link an _Entity Patch_{:.term}. Without an [Entity Patch](#entity-patch), the consumer must dereference the entity URI to obtain the updated entity description.
-
 
 #### FULL EXAMPLE for Entity Patch
 
@@ -601,11 +568,11 @@ To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cac
          <https://my_repo/entity/bovine_milk>."
 ```
 
+
 ## 5. Types of Change
 {: #types-of-change}
 
 All _Entity Change Notifications_{:.term} have a core set of properties that are described in the [Entity Change Notification](#entity-change-notification) section. Some properties are specific to the _Types of Change_. This section provides examples and descriptions of the _Entity Change Notification_{:.term} and _Entity Patch_{:.term} for each type of change. They also describe differences between similar Activity Types (e.g. _Create_{:.term} vs. _Add_{:.term}).
-
 
 ### 5.1. New Entity
 {: #new-entity}
@@ -614,7 +581,6 @@ Reference: [add][org-w3c-activitystreams-activity-add] activity definition
 {:.reference}
 Reference: [create][org-w3c-activitystreams-activity-create] activity definition
 {:.reference}
-
 
 A new entity _SHOULD_{:.strong-term} have an [Entity Change Notification](#entity-change-notification) with a _type_{:.term} of either _"Create"_{:.term} or _"Add"_{:.term}.
 
@@ -898,7 +864,6 @@ EXAMPLE Entity Change Notification for Deprecate
 }
 ```
 
-
 ### 5.5. Split Entity
 {: #split-entity}
 
@@ -969,7 +934,6 @@ EXAMPLE Entity Change Notification for Split
 
 ### 5.6. Merge Entities
 {: #merge-entity}
-
 
 Entities that have been merged into one new entity _SHOULD_{:.strong-term} have an [Entity Change Notification](#entity-change-notification) with a _type_{:.term} of _"Merge"_{:.term}.
 
@@ -1260,6 +1224,5 @@ LOOP
   STOP if activity.date < last_process_date
 end
 ```
-
 
 {% include api/links.md %}
