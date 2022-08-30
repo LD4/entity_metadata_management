@@ -847,7 +847,7 @@ EXAMPLE Entity Patch for Delete
 ### 5.4. Deprecate Entity
 {: #deprecate-entity}
 
-Deprecation indicates that an existing entity in the authority has been updated to identify it as deprecated such that is should no longer be used. Whenever possible, the description should indicate which entity should be used instead.
+Deprecation indicates that an existing entity in the authority has been updated to indicate that it should no longer be used. Whenever possible, the description should indicate which entity should be used instead.
 
 There are two common scenarios. In the first, the replacement entity already exists and the deprecation updates the deprecated entity only. In the second scenario, the replacement entity does not exist prior to the deprecation. In this case, the replacement entity is created and the deprecation updates the deprecated entity.
 
