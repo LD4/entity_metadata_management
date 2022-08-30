@@ -948,11 +948,9 @@ EXAMPLE Entity Change Notification for Split
         "type": "Term",
         "id": "http://my_repo/entity/bovine_milk"
       },
-      "instrument":
-      {
+      "instrument": {
         "type": "rdf_patch",
-        "id":
-          "https://data.my.authority/change_documents/2021/activity-stream/cd51/instrument/1"
+        "id": "https://data.my.authority/change_documents/2021/activity-stream/cd51/instrument/1"
       }
     },
     {
@@ -962,11 +960,9 @@ EXAMPLE Entity Change Notification for Split
         "type": "Term",
         "id": "http://my_repo/entity/oxen_milk"
       },
-      "instrument":
-      {
+      "instrument": {
         "type": "rdf_patch",
-        "id":
-          "https://data.my.authority/change_documents/2021/activity-stream/cd51/instrument/2"
+        "id": "https://data.my.authority/change_documents/2021/activity-stream/cd51/instrument/2"
       }
     },
     {
@@ -976,11 +972,9 @@ EXAMPLE Entity Change Notification for Split
         "type": "Term",
         "id": "http://my_repo/entity/cow_milk"
       },
-      "instrument":
-      {
+      "instrument": {
         "type": "rdf_patch",
-        "id":
-          "https://data.my.authority/change_documents/2021/activity-stream/cd51/instrument/3"
+        "id": "https://data.my.authority/change_documents/2021/activity-stream/cd51/instrument/3"
       }
     }
   ]
@@ -1015,11 +1009,9 @@ EXAMPLE Entity Change Notification for Merge
         "type": "Term",
         "id": "http://my_repo/entity/cow_milk"
       },
-      "instrument":
-      {
+      "instrument": {
         "type": "rdf_patch",
-        "id":
-          "https://data.my.authority/change_documents/2021/activity-stream/cd61/instrument/1"
+        "id": "https://data.my.authority/change_documents/2021/activity-stream/cd61/instrument/1"
       }
     },
     {
@@ -1029,11 +1021,9 @@ EXAMPLE Entity Change Notification for Merge
         "type": "Term",
         "id": "http://my_repo/entity/bovine_milk"
       },
-      "instrument":
-      {
+      "instrument": {
         "type": "rdf_patch",
-        "id":
-          "https://data.my.authority/change_documents/2021/activity-stream/cd61/instrument/2"
+        "id": "https://data.my.authority/change_documents/2021/activity-stream/cd61/instrument/2"
       }
     },
     {
@@ -1043,11 +1033,9 @@ EXAMPLE Entity Change Notification for Merge
         "type": "Term",
         "id": "http://my_repo/entity/oxen_milk"
       },
-      "instrument":
-      {
+      "instrument": {
         "type": "rdf_patch",
-        "id":
-          "https://data.my.authority/change_documents/2021/activity-stream/cd61/instrument/3"
+        "id": "https://data.my.authority/change_documents/2021/activity-stream/cd61/instrument/3"
       }
     }
   ]
