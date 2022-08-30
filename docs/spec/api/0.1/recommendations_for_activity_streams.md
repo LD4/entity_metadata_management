@@ -271,7 +271,7 @@ The _Entry Point_{:.term} _SHOULD_{:.strong-term} have a _summary_{:.term} prope
 
 
 ```json-doc
-{ "summary": "My Authoritity - Notifications of Change" }
+{ "summary": "My Authority - Notifications of Change" }
 ```
 
 ```json-doc
