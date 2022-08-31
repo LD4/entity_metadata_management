@@ -344,12 +344,12 @@ QUESTION: should the example include published?
 <a id="entry-point-totalitems" class="anchor-definition">
 __totalItems__
 
-Reference:  [totalItems][org-w3c-activitystreams-property-totalitems] property definition
+Reference: [totalItems][org-w3c-activitystreams-property-totalitems] property definition
 {:.reference}
 
 The count of all _Entity Change Notifications_{:.term} across all _Change Sets_{:.term} in the _Entry Point_{:term} for the _Entity Collection_{:.term}.
 
-The _Entry Point_{:.term} _MAY_{:.strong-term} have a _totalItems_{:.term} property. If included, the value _MUST_{:.strong-term} be an integer, and it _SHOULD_{:.strong-term} be the cumulative count of _Entity Change Notifications_{:.term} across all _Change_sets_{:.term}.
+The _Entry Point_{:.term} _MAY_{:.strong-term} have a _totalItems_{:.term} property. If included, the value _MUST_{:.strong-term} be an integer, and it _SHOULD_{:.strong-term} be the cumulative count of _Entity Change Notifications_{:.term} across all _Change Sets_{:.term}.
 
 ```json-doc
 {
