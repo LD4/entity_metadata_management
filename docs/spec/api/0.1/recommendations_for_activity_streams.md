@@ -248,11 +248,11 @@ The summary is a natural language summarization of the purpose of the _Entry Poi
 The _Entry Point_{:.term} _SHOULD_{:.strong-term} have a _summary_{:.term} property. For an _Entry Point_{:.term}, the summary _MAY_{:.strong-term} be a brief description of the _Entity Metadata Collection_{:.term} in which the described changes occurred. If there are multiple entry points to the same collection, it is _RECOMMENDED_{:.strong-term} that the summary include information that distinguishes each entry point from the others.
 
 ```json-doc
-{ "summary": "My Authoritity - Notifications of Change" }
+{ "summary": "My Authority - Notifications of Change" }
 ```
 
 ```json-doc
-{ "summary": "My Authoritity - Incremental Updates from 2022-01-01 Full Download" }
+{ "summary": "My Authority - Incremental Updates from 2022-01-01 Full Download" }
 ```
 
 <a id="entry-point-type" class="anchor-definition">
