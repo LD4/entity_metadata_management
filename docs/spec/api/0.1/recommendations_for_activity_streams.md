@@ -81,7 +81,7 @@ __Previous Version:__
 
 The Entity Metadata Management API is intended to establish a pattern that supports sharing changes to entities and their metadata curated by Entity Metadata Providers with the community of Entity Metadata Consumers (e.g. libraries, museums, galleries, archives). Use of a consistent pattern allows for the creation of software tools for producing and consuming changes in entity metadata.
 
-The recommendations in this document leverage existing techniques, specifications, and tools in order to promote widespread adoption of an easy-to-implement service. The service describes changes to entity metadata and the location of those resources to harvest. Content providers can implement this API to enable notifications of change and incremental cache updates.
+The recommendations in this document leverage existing techniques, specifications, and tools in order to promote widespread adoption of an easy-to-implement service. The service describes changes to entity metadata and the location of those resources to harvest. Content providers can implement this API to record and publish a list of changes and incremental cache updates.
 
 ### 1.1. Objectives and Scope
 {: #objectives-and-scope}
@@ -90,7 +90,7 @@ The objective of these recommendations is to provide a machine to machine API th
 
 The discovery of changes to entity metadata requires a consistent and well understood pattern for entity metadata providers to publish lists of links to entities that have metadata changes and details on changes that have occurred. Changes include newly available entities with metadata, removed entities, as well as, changes to entities and their metadata. This allows a baseline implementation of change management systems that process the list of changes.
 
-This process can be optimized by allowing the content providers to publish changes in chronological order including descriptions of how their content has changed, enabling consuming systems to retrieve only the resources that have been modified since they were last retrieved. Finally, for rapid synchronization, a system of notifications pushed from the publisher to a set of subscribers can reduce the amount of effort required to constantly poll multiple sources to see if anything has changed.
+This process can be optimized by allowing the content providers to publish changes in chronological order including descriptions of how their content has changed, enabling consuming systems to retrieve only the resources that have been modified since they were last retrieved.
 
 __Change Notifications__<br>These recommendations do not include a subscription mechanism for enabling change notifications to be pushed to remote systems. Only periodic polling for the set of changes that must be processed is supported. A subscription/notification pattern may be added in a future version after implementation experience with the polling pattern has demonstrated that it would be valuable.
 {: .warning}
@@ -102,10 +102,10 @@ Work that is out of scope of this API includes the recommendation or creation of
 
 Three primary use cases were identified that drive the recommendations in this document. The use cases are listed from a simple change document with minimal information to a fully defined change document including details about what changed.
 
-#### 1.2.1. Notifications
-{: #notifications}
+#### 1.2.1. Entity Change Activities List
+{: #entity-change-activities-list}
 
-Entity metadata consumers want to be notified of any modifications or deletions for entities on their interest list, as well as new entities. This allows for a comparison between the consumer's list and the producer's notification list of modified and deleted entities. For any that overlap, the consumer will take additional actions if needed.
+Entity metadata consumers want to learn of any modifications or deletions for entities on their interest list, as well as new entities. This allows for a comparison between the consumer's list and the producer's entity change activity list of modified and deleted entities. For any that overlap, the consumer will take additional actions if needed.
 
 To address this use case, the provider creates and makes available a list of the URIs for any new, modified, or deleted entities. The consumer will need to take additional actions to identify specific changes to entities of interest.
 
@@ -170,7 +170,7 @@ The recommendations use the following terms:
 ## 2. Architecture
 {: #architecture}
 
-This recommendation is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams]. Changes in entity metadata over time are communicated from providers to consumers via _Entity Change Notifications_{:.term} that describe a change to an entity. These are collected together in _Change Set_{:.term} documents that are organized as shown in the diagram below.
+This recommendation is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams]. Changes in entity metadata over time are communicated from providers to consumers via _Entity Change Activities_{:.term} that describe a change to an entity. These are collected together in _Change Set_{:.term} documents that are organized as shown in the diagram below.
 
 <img src="{{site.baseurl}}/assets/images/figures/emm_architecture.png">
 
@@ -188,7 +188,7 @@ The use of JSON-LD with a specific `@context` that extends the [Activity Streams
 Reference:  [Ordered Collection][org-w3c-activitystreams-coretype-orderedcollection] in the [Activity Stream specification][org-w3c-activitystreams]
 {:.reference}
 
-Each _Entity Metadata Collection_{:.term} _MUST_{:.strong-term} have at least one Entry Point. It _MAY_{:.strong-term} have multiple Entry Points to satisfy different use cases. For example, one Entry Point may provide detailed changes to support incremental updates of a full cache and a second may only provide notifications of primary label changes.
+Each _Entity Metadata Collection_{:.term} _MUST_{:.strong-term} have at least one Entry Point. It _MAY_{:.strong-term} have multiple Entry Points to satisfy different use cases. For example, one Entry Point may provide detailed changes to support incremental updates of a full cache and a second may only provide a list of primary label changes.
 
 The Entry Point _MUST_{:.strong-term} be implemented as an _Ordered Collection_{:.term} following the definition in the Activity Stream specification. The key points are repeated here with examples specific to Entity Metadata Management.
 
@@ -252,7 +252,7 @@ The summary is a natural language summarization of the purpose of the _Entry Poi
 The _Entry Point_{:.term} _SHOULD_{:.strong-term} have a _summary_{:.term} property. For an _Entry Point_{:.term}, the summary _MAY_{:.strong-term} be a brief description of the _Entity Metadata Collection_{:.term} in which the described changes occurred. If there are multiple entry points to the same collection, it is _RECOMMENDED_{:.strong-term} that the summary include information that distinguishes each entry point from the others.
 
 ```json-doc
-{ "summary": "My Authority - Notifications of Change" }
+{ "summary": "My Authority - Entity Change List" }
 ```
 
 ```json-doc
@@ -353,9 +353,9 @@ __totalItems__
 Reference: [totalItems][org-w3c-activitystreams-property-totalitems] property definition
 {:.reference}
 
-The count of all _Entity Change Notifications_{:.term} across all _Change Sets_{:.term} in the _Entry Point_{:term} for the _Entity Collection_{:.term}.
+The count of all _Entity Change Activities_{:.term} across all _Change Sets_{:.term} in the _Entry Point_{:term} for the _Entity Collection_{:.term}.
 
-The _Entry Point_{:.term} _MAY_{:.strong-term} have a _totalItems_{:.term} property. If included, the value _MUST_{:.strong-term} be an integer, and it _SHOULD_{:.strong-term} be the cumulative count of _Entity Change Notifications_{:.term} across all _Change Sets_{:.term}.
+The _Entry Point_{:.term} _MAY_{:.strong-term} have a _totalItems_{:.term} property. If included, the value _MUST_{:.strong-term} be an integer, and it _SHOULD_{:.strong-term} be the cumulative count of _Entity Change Activities_{:.term} across all _Change Sets_{:.term}.
 
 ```json-doc
 {
@@ -371,7 +371,7 @@ Reference:  [Ordered Collection Page][org-w3c-activitystreams-coretype-orderedco
 
 Each time a set of changes is published, changes _MUST_{:.strong-term} be released in at least one _Change Set_{:.term}. Changes _MAY_{:.strong-term} be published across multiple _Change Sets_{:.term}. For example, a site may decide that each _Change Set_{:.term} will have at most 50 changes and if that maximum is exceeded during the release time period, then a second _Change Set_{:.term} will be created. All changes within a _Change Set_{:.term} and, if applicable, across  Change Sets _MUST_{:.strong-term} be sorted in date-time order in the _orderedItems_{:.term} property with the earliest change in the set appearing first and most recent change in the set appearing last.
 
-It is _RECOMMENDED_{:.strong-term} that change sets be published on a regular schedule. It is recognized that there are many factors that can impact this recommendation, including but not limited to, the volume of changes, the consistency of timing of changes, the tolerance of consumers for delays in notifications, resources for producing _Change Sets_{:.term}.
+It is _RECOMMENDED_{:.strong-term} that change sets be published on a regular schedule. It is recognized that there are many factors that can impact this recommendation, including but not limited to, the volume of changes, the consistency of timing of changes, the tolerance of consumers for delays in the publication schedule, resources for producing _Change Sets_{:.term}.
 
 _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collection Page_{:.term} following the definition in the Activity Stream specification. The key points are repeated here with examples specific to Entity Metadata Management.
 
@@ -434,7 +434,7 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
 }
 ```
 
-NOTE: See [Entity Change Notification](#entity-change-notification) under [Entity Level Structures](#entity-level-structures) for more information on the data to be included in the `orderedItems` property.
+NOTE: See [Entity Change Activity](#entity-change-activity) under [Entity Level Structures](#entity-level-structures) for more information on the data to be included in the `orderedItems` property.
 {: .info}
 
 
@@ -443,18 +443,18 @@ NOTE: See [Entity Change Notification](#entity-change-notification) under [Entit
 
 Entity level structures describe the individual changes to entity metadata from an Entity Metadata Provider.
 
-The structures described in this section are used in the _orderedItems_{:.term} property of the [Change Set](#change-set). The level of detail in the _orderedItems_{:.term} depends on the use case being addressed. The [Notifications](#notifications) use case can be addressed by the [Entity Change Notification](#entity-change-notification). The [Local Cache of Labels](#local-cache-of-labels) and [Local Cache of Full Dataset](#local-cache-of-full-dataset) use cases can be addressed more efficiently by also including an [Entity Patch](#entity-patch). Without an [Entity Patch](#entity-patch), the consumer must dereference the entity URI to obtain the updated entity description.
+The structures described in this section are used in the _orderedItems_{:.term} property of the [Change Set](#change-set). The level of detail in the _orderedItems_{:.term} depends on the use case being addressed. The [Entity Change Activities List](##entity-change-activities-list) use case can be addressed by the [Entity Change Activity](#entity-change-activities). The [Local Cache of Labels](#local-cache-of-labels) and [Local Cache of Full Dataset](#local-cache-of-full-dataset) use cases can be addressed more efficiently by also including an [Entity Patch](#entity-patch). Without an [Entity Patch](#entity-patch), the consumer must dereference the entity URI to obtain the updated entity description.
 
-### 4.1. Entity Change Notification
-{: #entity-change-notification}
+### 4.1. Entity Change Activities
+{: #entity-change-activities}
 
 Reference:  [Activity][org-w3c-activitystreams-coretype-activity] in the [Activity Stream specification][org-w3c-activitystreams]
 {:.reference}
 
-A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Notification_{:.term}. An _Entity Change Notification_{:.term} _MUST_{:.strong-term} be implemented as an [Activity Streams][org-w3c-activitystreams] [`Activity`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-activity). The notification _MUST_{:.strong-term} provide information about the type of change and the entity or entities changed. It _MAY_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset. This level is sufficient to address the [Notifications](#notifications) use case.
+A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Activity_{:.term}. An _Entity Change Activity_{:.term} _MUST_{:.strong-term} be implemented as an [Activity Streams][org-w3c-activitystreams] [`Activity`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-activity). The activity _MUST_{:.strong-term} provide information about the type of change and the entity or entities changed. It _MAY_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset. This level is sufficient to address the [Entity Change Activities List](##entity-change-activities-list) use case.
 
 
-#### FULL EXAMPLE for Entity Change Notification:
+#### FULL EXAMPLE for Entity Change Activity:
 
 ```json-doc
 {
@@ -478,20 +478,20 @@ A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Cha
 }
 ```
 
-Properties shared across all _Entity Change Notification_{:.term} types are described here. If a specific notification type handles a property differently, it will be described with that notification type in section [Types of Change](#types-of-change).
+Properties shared across all _Entity Change Activity_{:.term} types are described here. If a specific activity type handles a property differently, it will be described with that activity type in section [Types of Change](#types-of-change).
 
-<a id="entity-change-notification-context" class="anchor-definition">
+<a id="entity-change-activity-context" class="anchor-definition">
 __@context__
 
 Follow the recommendations for [@context](#entry-point-context) as described in the [Entry Point](#entry-point) section.
 
-<a id="entity-change-notification-summary" class="anchor-definition">
+<a id="entity-change-activity-summary" class="anchor-definition">
 __summary__
 
 Reference:  [summary][org-w3c-activitystreams-property-summary] property definition
 {:.reference}
 
-For _Entity Change Notification_{:.term}, the summary is a brief description of the change to entity metadata that the notification represents. It is _RECOMMENDED_{:.strong-term} that a summary be included and that it reference the type of change (e.g. "Add entity") and the entity being changed (e.g. "subject Science").
+For an _Entity Change Activity_{:.term}, the summary is a brief description of the change to entity metadata that the activity represents. It is _RECOMMENDED_{:.strong-term} that a summary be included and that it reference the type of change (e.g. "Add entity") and the entity being changed (e.g. "subject Science").
 
 There are a limited set of types of change. See [Types of Change](#type-of-change) section for a list of types and example summaries for each. Identification of the entity will vary depending on the data represented in the _Entity Metadata Collection_{:.term}.
 
@@ -499,43 +499,43 @@ There are a limited set of types of change. See [Types of Change](#type-of-chang
 { "summary": "Add entity for subject Science" }
 ```
 
-<a id="entity-change-notification-type" class="anchor-definition">
+<a id="entity-change-activity-type" class="anchor-definition">
 __type__
 
 Reference:  [type][org-w3c-activitystreams-property-type] property definition
 {:.reference}
 
-Each _Entity Change Notification_{:.term} _MUST_{:.strong-term} have a _type_{:.term} property.
+Each _Entity Change Activity_{:.term} _MUST_{:.strong-term} have a _type_{:.term} property.
 
-The type is the one of a set of predefined _Entity Change Notification_{:.term} activity types. See [Types of Change](#type-of-change) section for a list of types and recommendations for the value of type for each activity type.
+The type is the one of a set of predefined _Entity Change Activity_{:.term} types. See [Types of Change](#type-of-change) section for a list of types and recommendations for the value of type for each activity type.
 
 ```json-doc
 { "type": "Create" }
 ```
 
-<a id="entity-change-notification-id" class="anchor-definition">
+<a id="entity-change-activity-id" class="anchor-definition">
 __id__
 
 Reference:  [id][org-w3c-activitystreams-property-id] property definition
 {:.reference}
 
-The unique identifier of the _Entity Change Notification_{:.term}.
+The unique identifier of the _Entity Change Activity_{:.term}.
 
-The _Entity Change Notification_{:.term} _MUST_{:.strong-term} have an _id_{:.term} property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Entity Change Notification_{:.term} _MUST_{:.strong-term} be available at the URI.
+The _Entity Change Activity_{:.term} _MUST_{:.strong-term} have an _id_{:.term} property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Entity Change Activity_{:.term} _MUST_{:.strong-term} be available at the URI.
 
 ```json-doc
 { "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11" }
 ```
 
-<a id="entity-change-notification-partof" class="anchor-definition">
+<a id="entity-change-activity-partof" class="anchor-definition">
 __partOf__
 
 Reference:  [partOf][org-w3c-activitystreams-property-partof] property definition
 {:.reference}
 
-The _partOf_ property identifies the _Change Set_{:.term} in which this notification was published.
+The _partOf_ property identifies the _Change Set_{:.term} in which this activity was published.
 
-An _Entity Change Notification_{:.term} _MAY_{:.strong-term} use the _partOf_ property to refer back to the _Change Set_{:.term} that includes the notification. The _partOf_ property _MUST NOT_{:.strong-term} be used for any other purpose. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Change Set_{:.term} publishing this notification _MUST_{:.strong-term} be available at the URI.
+An _Entity Change Activity_{:.term} _MAY_{:.strong-term} use the _partOf_ property to refer back to the _Change Set_{:.term} that includes the activity. The _partOf_ property _MUST NOT_{:.strong-term} be used for any other purpose. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Change Set_{:.term} publishing this activity _MUST_{:.strong-term} be available at the URI.
 
 ```json-doc
 "partOf": {
@@ -547,7 +547,7 @@ An _Entity Change Notification_{:.term} _MAY_{:.strong-term} use the _partOf_ pr
 ### 4.2. Entity Patch
 {: #entity-patch}
 
-To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cache of Full Dataset](#local-cache-of-full-dataset) use cases efficiently, it is _OPTIONAL_{:.strong-term} that each [Entity Change Notification](#entity-change-notification) include the _instrument_{:.term} property which provides a link an _Entity Patch_{:.term}. Without an [Entity Patch](#entity-patch), the consumer must dereference the entity URI to obtain the updated entity description.
+To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cache of Full Dataset](#local-cache-of-full-dataset) use cases efficiently, it is _OPTIONAL_{:.strong-term} that each [Entity Change Activity](#entity-change-activity) include the _instrument_{:.term} property which provides a link an _Entity Patch_{:.term}. Without an [Entity Patch](#entity-patch), the consumer must dereference the entity URI to obtain the updated entity description.
 
 #### FULL EXAMPLE for Entity Patch
 
@@ -576,7 +576,7 @@ To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cac
 ## 5. Types of Change
 {: #types-of-change}
 
-All _Entity Change Notifications_{:.term} have a core set of properties that are described in the [Entity Change Notification](#entity-change-notification) section. Some properties are specific to the _Types of Change_. This section provides examples and descriptions of the _Entity Change Notification_{:.term} and _Entity Patch_{:.term} for each type of change. They also describe differences between similar Activity Types (e.g. _Create_{:.term} vs. _Add_{:.term}).
+All _Entity Change Activities_{:.term} have a core set of properties that are described in the [Entity Change Activity](#entity-change-activity) section. Some properties are specific to the _Types of Change_. This section provides examples and descriptions of the _Entity Change Notification_{:.term} and _Entity Patch_{:.term} for each type of change. They also describe differences between similar Activity Types (e.g. _Create_{:.term} vs. _Add_{:.term}).
 
 ### 5.1. New Entity
 {: #new-entity}
@@ -586,7 +586,7 @@ Reference: [add][org-w3c-activitystreams-activity-add] activity definition
 Reference: [create][org-w3c-activitystreams-activity-create] activity definition
 {:.reference}
 
-A new entity _SHOULD_{:.strong-term} have an [Entity Change Notification](#entity-change-notification) with a _type_{:.term} of either _"Create"_{:.term} or _"Add"_{:.term}.
+A new entity _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-Activity) with a _type_{:.term} of either _"Create"_{:.term} or _"Add"_{:.term}.
 
 A new entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [Create type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-create) or the [Add type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-add) in the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples specific to Entity Metadata Management.
 
@@ -600,7 +600,7 @@ _Add_{:.term} _SHOULD_{:.strong-term} be used when the entity exists in the sour
 
 A new _Entry Point_{:.term} _MAY_{:.strong-term} choose to populate the stream with all existing entities. In this case, the initial population of the stream with all existing entities _SHOULD_{:.strong-term} use _Add_{:.term}.
 
-#### EXAMPLE Entity Change Notification for Create
+#### EXAMPLE Entity Change Activity for Create
 
 Complete Example
 
@@ -643,9 +643,9 @@ __type__
 Reference:  [type][org-w3c-activitystreams-property-type] property definition
 {:.reference}
 
-The type is the one of a set of predefined _Entity Change Notification_{:.term} activity types.
+The type is the one of a set of predefined _Entity Change Activity_{:.term} types.
 
-Each _Entity Change Notification_{:.term} _MUST_{:.strong-term} have a _type_{:.term} property. For a notification of a newly available entity, the value _SHOULD_{:.strong-term} be one of either `Create` or `Add`.
+Each _Entity Change Activity_{:.term} _MUST_{:.strong-term} have a _type_{:.term} property. For an activity for a newly available entity, the value _SHOULD_{:.strong-term} be one of either `Create` or `Add`.
 
 ```json-doc
 { "type": "Create" }
@@ -660,9 +660,9 @@ __id__
 Reference:  [id][org-w3c-activitystreams-property-id] property definition
 {:.reference}
 
-The unique identifier of the _Entity Change Notification_{:.term}.
+The unique identifier of the _Entity Change Activity_{:.term}.
 
-The _Entity Change Notification_{:.term} _MUST_{:.strong-term} have an _id_{:.term} property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Entity Change Notification_{:.term} _MUST_{:.strong-term} be available at the URI.
+The _Entity Change Activity_{:.term} _MUST_{:.strong-term} have an _id_{:.term} property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Entity Change Activity_{:.term} _MUST_{:.strong-term} be available at the URI.
 
 ```json-doc
 { "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11" }
@@ -673,9 +673,9 @@ __partOf__
 Reference:  [partOf][org-w3c-activitystreams-property-partof] property definition
 {:.reference}
 
-The _partOf_ property identifies the _Change Set_{:.term} in which this notification was published.
+The _partOf_ property identifies the _Change Set_{:.term} in which this activity was published.
 
-An _Entity Change Notification_{:.term} _MAY_{:.strong-term} use the _partOf_ property to refer back to the _Change Set_{:.term} that includes the notification. The _partOf_ property _MUST NOT_{:.strong-term} be used for any other purpose.
+An _Entity Change Activity_{:.term} _MAY_{:.strong-term} use the _partOf_ property to refer back to the _Change Set_{:.term} that includes the activity. The _partOf_ property _MUST NOT_{:.strong-term} be used for any other purpose.
 
 ```json-doc
 "partOf": {
@@ -712,11 +712,11 @@ Complete Example
 ### 5.2. Update Entity
 {: #update-entity}
 
-An updated entity _SHOULD_{:.strong-term} have an [Entity Change Notification](#entity-change-notification) with a _type_{:.term} of _"Update"_{:.term}.
+An updated entity _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-activity) with a _type_{:.term} of _"Update"_{:.term}.
 
 An updated entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [Update type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-update)in the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples specific to Entity Metadata Management.
 
-EXAMPLE Entity Change Notification for Update
+EXAMPLE Entity Change Activity for Update
 
 ```json-doc
 {
@@ -760,14 +760,14 @@ EXAMPLE Entity Patch for Update
 ### 5.3. Delete Entity
 {: #delete-entity}
 
-It is _RECOMMENDED_{:.strong-term} that entities be marked as _Deprecated_{:.term} in the source dataset instead of deleting the entity from the source dataset. If the entity is deprecated, follow the _Entity Change Notification_{:.term} described in [Deprecate Entity](#deprecate-entity).
+It is _RECOMMENDED_{:.strong-term} that entities be marked as _Deprecated_{:.term} in the source dataset instead of deleting the entity from the source dataset. If the entity is deprecated, follow the _Entity Change Activity_{:.term} described in [Deprecate Entity](#deprecate-entity).
 {: .warning}
 
-An entity that has been fully deleted from the source dataset _SHOULD_{:.strong-term} have an [Entity Change Notification](#entity-change-notification) with a _type_{:.term} of _"Delete"_{:.term} or _"Remove"_{:.term}.
+An entity that has been fully deleted from the source dataset _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-activity) with a _type_{:.term} of _"Delete"_{:.term} or _"Remove"_{:.term}.
 
 A deleted entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [Delete type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-delete) or the [Remove type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-remove) in the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples specific to Entity Metadata Management.
 
-EXAMPLE Entity Change Notification for Delete
+EXAMPLE Entity Change Activity for Delete
 
 ```json-doc
 {
@@ -821,9 +821,9 @@ Deprecation indicates that an existing entity in the authority has been updated 
 
 There are two common scenarios. In the first, the replacement entity already exists and the deprecation updates the deprecated entity only. In the second scenario, the replacement entity does not exist prior to the deprecation. In this case, the replacement entity is created and the deprecation updates the deprecated entity.
 
-An entity that has been deprecated _SHOULD_{:.strong-term} have an [Entity Change Notification](#entity-change-notification) with the _type_{:.term} `Deprecate`. The `Deprecate` activity _MUST_{:.strong-term} be implemented as either a single activity (similar to the [Update Entity](#update-entity) case but with more specific semantics), or using the `orderedItems` property with a sequence of activities that implement the deprecation. In the second scenario this would typically involve a `Create` activity for the replacement entity, and an `Update` activity for the deprecated entity.
+An entity that has been deprecated _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-activity) with the _type_{:.term} `Deprecate`. The `Deprecate` activity _MUST_{:.strong-term} be implemented as either a single activity (similar to the [Update Entity](#update-entity) case but with more specific semantics), or using the `orderedItems` property with a sequence of activities that implement the deprecation. In the second scenario this would typically involve a `Create` activity for the replacement entity, and an `Update` activity for the deprecated entity.
 
-EXAMPLE Entity Change Notification for Deprecate in the Scenario where a Replacement Entity Already Exists
+EXAMPLE Entity Change Activity for Deprecate in the Scenario where a Replacement Entity Already Exists
 
 ```json-doc
 {
@@ -847,7 +847,7 @@ EXAMPLE Entity Change Notification for Deprecate in the Scenario where a Replace
 }
 ```
 
-EXAMPLE Entity Change Notification for Deprecate in the Scenario where a Replacement Entity is Created
+EXAMPLE Entity Change Activity for Deprecate in the Scenario where a Replacement Entity is Created
 
 ```json-doc
 {
@@ -893,9 +893,9 @@ EXAMPLE Entity Change Notification for Deprecate in the Scenario where a Replace
 ### 5.5. Split Entity
 {: #split-entity}
 
-An entity that has been split into two or more new entities _SHOULD_{:.strong-term} have an [Entity Change Notification](#entity-change-notification) with the _type_{:.term} `Split`. The `Split` activity _MUST_{:.strong-term} be implemented using the `orderedItems` property with a sequence of activities that implement the split. This typically involves multiple `Create` activities for new entities created by the split, and deprecation of the original entity that was split through a `Deprecate` activity.
+An entity that has been split into two or more new entities _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-activity) with the _type_{:.term} `Split`. The `Split` activity _MUST_{:.strong-term} be implemented using the `orderedItems` property with a sequence of activities that implement the split. This typically involves multiple `Create` activities for new entities created by the split, and deprecation of the original entity that was split through a `Deprecate` activity.
 
-EXAMPLE Entity Change Notification for Split
+EXAMPLE Entity Change Activity for Split
 
 ```json-doc
 {
@@ -953,9 +953,9 @@ EXAMPLE Entity Change Notification for Split
 ### 5.6. Merge Entities
 {: #merge-entity}
 
-Two or more entities that have been merged into one new entity _SHOULD_{:.strong-term} have an [Entity Change Notification](#entity-change-notification) with the _type_{:.term} `Merge`. The `Merge` activity _MUST_{:.strong-term} be implemented using the `orderedItems` property with a sequence of activities that implement the merge. This typically involves a `Create` activity for a new entity created by the merge, and deprecation of the original entities that were merged through `Deprecate` activities.
+Two or more entities that have been merged into one new entity _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-activity) with the _type_{:.term} `Merge`. The `Merge` activity _MUST_{:.strong-term} be implemented using the `orderedItems` property with a sequence of activities that implement the merge. This typically involves a `Create` activity for a new entity created by the merge, and deprecation of the original entities that were merged through `Deprecate` activities.
 
-EXAMPLE Entity Change Notification for Merge
+EXAMPLE Entity Change Activity for Merge
 
 ```json-doc
 {
@@ -1048,12 +1048,12 @@ Reference:  [deleted][org-w3c-activitystreams-property-deleted] property definit
 TODO: Add discussion and reasoning for when to use each type of date. Still need to determine our recommendations around dates.
 {:.todo}
 
-### For Notifications
+### For Activities
 
 QUESTION: Should each place that talks about a part of the feed include a link into the examples of that part?  For example, include link to Entry Point in the instructions to create it; a link to a Change Set when it is created; etc. OR as is done here, a link at the top of the section to the entry point for the use case being described.
 {:.todo}
 
-[Live Example of Notifications Entry Point][emm-change-api-example-notifications]
+[Live Example of an Activity Entry Point][emm-change-api-example-activities]
 
 #### When a full download of the dataset is created
 
@@ -1074,7 +1074,7 @@ Record information about the entity and the changes
 * type of change (e.g. `Add`, `Remove`, `Update`, `Deprecate`, `Split`, `Merge`)
 * RDF patch steps describing what was changed (optional, see note)
 
-NOTE: Storing RDF patch steps is optional for Notifications. All changes are required for Incremental Updates and changes to labels are required for Label Changes.
+NOTE: Storing RDF patch steps is optional for Activities. All changes are required for Incremental Updates and changes to labels are required for Label Changes.
 {:.info}
 
 #### When ready to publish a change set
@@ -1121,16 +1121,16 @@ Create each change activity:
 
 [Live Example of Label Changes Entry Point][emm-change-api-example-partialcache]
 
-The process for creating Label Changes is the same as for Notifications with a few additional steps noted in this section if RDF patches are implemented.
+The process for creating Label Changes is the same as for Activities with a few additional steps noted in this section if RDF patches are implemented.
 
 #### As changes are made to the dataset
 
-Record all the information listed under Notification and also:
+Record all the information listed under Entity Change Activity and also:
 * RDF patch steps describing the label changes
 
 #### When ready to publish a change set
 
-Create the change set as described for Notifications and also:
+Create the change set as described for Entity Change Activities and also:
 * for each change activity:
     * set `instrument` property to use `change_rdf_patch_uri` for `id`
 
@@ -1141,16 +1141,16 @@ Create an RDF patch for each change activity:
 
 [Live Example of Incremental Updates Entry Point][emm-change-api-example-fullcache]
 
-The process for creating Incremental Updates is the same as for Notifications with a few additional steps noted in this section if RDF patches are implemented.
+The process for creating Incremental Updates is the same as for Activities with a few additional steps noted in this section if RDF patches are implemented.
 
 #### As changes are made to the dataset
 
-Record all the information listed under Notification and also:
+Record all the information listed under Entity Change Activity and also:
 * RDF patch steps describing what was changed
 
 #### When ready to publish a change set
 
-Create the change set as described for Notifications and also:
+Create the change set as described for Entity Change Activities and also:
 * for each change activity:
     * set `instrument` property to use `change_rdf_patch_uri` for `id`
 
