@@ -443,7 +443,7 @@ NOTE: See [Entity Change Activity](#entity-change-activity) under [Entity Level 
 
 Entity level structures describe the individual changes to entity metadata within an _Entity Set_{:.term}.
 
-The structures described in this section are used in the _orderedItems_{:.term} property of the [Change Set](#change-set). The level of detail in the _orderedItems_{:.term} depends on the use case being addressed. The [Entity Change Activities List](##entity-change-activities-list) use case can be addressed by the [Entity Change Activity](#entity-change-activities). The [Local Cache of Labels](#local-cache-of-labels) and [Local Cache of Full Dataset](#local-cache-of-full-dataset) use cases can be addressed more efficiently by also including an [Entity Patch](#entity-patch). Without an [Entity Patch](#entity-patch), the consumer must dereference the entity URI to obtain the updated entity description.
+The structures described in this section are used in the _orderedItems_{:.term} property of the [Change Set](#change-set). The level of detail in the _orderedItems_{:.term} depends on the use case being addressed. The [Entity Change Activities List](#entity-change-activities-list) use case can be addressed by the [Entity Change Activity](#entity-change-activities). The [Local Cache of Labels](#local-cache-of-labels) and [Local Cache of Full Dataset](#local-cache-of-full-dataset) use cases can be addressed more efficiently by also including an [Entity Patch](#entity-patch). Without an [Entity Patch](#entity-patch), the consumer must dereference the entity URI to obtain the updated entity description.
 
 ### 4.1. Entity Change Activities
 {: #entity-change-activities}
@@ -451,7 +451,7 @@ The structures described in this section are used in the _orderedItems_{:.term} 
 Reference:  [Activity][org-w3c-activitystreams-coretype-activity] in the [Activity Stream specification][org-w3c-activitystreams]
 {:.reference}
 
-A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Activity_{:.term}. An _Entity Change Activity_{:.term} _MUST_{:.strong-term} be implemented as an [Activity Streams][org-w3c-activitystreams] [`Activity`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-activity). The activity _MUST_{:.strong-term} provide information about the type of change and the entity or entities changed. It _MAY_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset. This level is sufficient to address the [Entity Change Activities List](##entity-change-activities-list) use case.
+A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Activity_{:.term}. An _Entity Change Activity_{:.term} _MUST_{:.strong-term} be implemented as an [Activity Streams][org-w3c-activitystreams] [`Activity`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-activity). The activity _MUST_{:.strong-term} provide information about the type of change and the entity or entities changed. It _MAY_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset. This level is sufficient to address the [Entity Change Activities List](#entity-change-activities-list) use case.
 
 #### FULL EXAMPLE for Entity Change Activity:
 
