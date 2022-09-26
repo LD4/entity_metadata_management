@@ -142,15 +142,15 @@ TODO:  Maybe put a list of providers in an appendix instead of here.
 {: #terms-about-entities}
 
 * Entity: An entity is any resource (a thing or a concept) identified with a URI that we may want to reference or make use of in data set. Entities include, but are not limited to, what are referred to _authorities_, _controlled vocabulary terms_, or _real world objects (RWOs)_ in library, archives, and museum domains.
-* Entity Metadata Collection: Entities can be grouped based on varying criteria (e.g. subject headings, names, thesaurus, controlled vocabulary). The term Entity Metadata Collection will be used as a generic representation of these grouping regardless of type.
+* Entity Set: A set of entities that are grouped together by an Entity Metadata Provider. Entities can be grouped based on various criteria (e.g. subject headings, names, thesaurus, controlled vocabulary).
 
 #### 1.3.3. Terms from Activity Streams
 {: #terms-from-activity-streams}
 
 This recommendation is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams] and uses the following key terms from Activity Streams:
 
-* [Activity](https://www.w3.org/TR/activitystreams-core/#activity): `Activity` objects are used to describe an individual change in an Entity Metadata Provider. These often affect just one Entity but in the case of changes such as Entity merges and splits, more than one Entity may be involved and sometimes subordinate Actions.
-* [Collection](https://www.w3.org/TR/activitystreams-core/#collections): The entry point for all the information about changes from an Entity Metadata Provider is modeled as a Collection, using the [`OrderedCollection`](https://www.w3.org/TR/activitystreams-core/#dfn-orderedcollection) type to indicate that the activities in the collection are in time order.
+* [Activity](https://www.w3.org/TR/activitystreams-core/#activity): `Activity` objects are used to describe an individual change to the metadata of an Entity Set. These often affect just one Entity but in the case of changes such as Entity merges and splits, more than one Entity may be involved and sometimes subordinate Actions.
+* [Collection](https://www.w3.org/TR/activitystreams-core/#collections): The entry point for all the information about changes to the metadata of an Entity Set is modeled as a Collection, using the [`OrderedCollection`](https://www.w3.org/TR/activitystreams-core/#dfn-orderedcollection) type to indicate that the activities in the collection are in time order.
 * [`OrderedCollectionPage`](https://www.w3.org/TR/activitystreams-core/#dfn-orderedcollectionpage): The completed `OrderedCollection` of changes is expressed as a set of `OrderedCollectionPage` to ensure that there are manageable chunks of change activities described even for large and long-running sets of updates.
 
 Many properties from Activity Streams are used, and are described throughout this document.
@@ -188,7 +188,7 @@ The use of JSON-LD with a specific `@context` that extends the [Activity Streams
 Reference:  [Ordered Collection][org-w3c-activitystreams-coretype-orderedcollection] in the [Activity Stream specification][org-w3c-activitystreams]
 {:.reference}
 
-Each _Entity Metadata Collection_{:.term} _MUST_{:.strong-term} have at least one Entry Point. It _MAY_{:.strong-term} have multiple Entry Points to satisfy different use cases. For example, one Entry Point may provide detailed changes to support incremental updates of a full cache and a second may only provide notifications of primary label changes.
+Each _Entity Set_{:.term} _MUST_{:.strong-term} have at least one Entry Point. It _MAY_{:.strong-term} have multiple Entry Points to satisfy different use cases. For example, one Entry Point may provide detailed changes to support incremental updates of a full cache and a second may only provide notifications of primary label changes.
 
 The Entry Point _MUST_{:.strong-term} be implemented as an _Ordered Collection_{:.term} following the definition in the Activity Stream specification. The key points are repeated here with examples specific to Entity Metadata Management.
 
@@ -249,7 +249,7 @@ Reference:  [summary][org-w3c-activitystreams-property-summary] property definit
 
 The summary is a natural language summarization of the purpose of the _Entry Point_{:.term}
 
-The _Entry Point_{:.term} _SHOULD_{:.strong-term} have a _summary_{:.term} property. For an _Entry Point_{:.term}, the summary _MAY_{:.strong-term} be a brief description of the _Entity Metadata Collection_{:.term} in which the described changes occurred. If there are multiple entry points to the same collection, it is _RECOMMENDED_{:.strong-term} that the summary include information that distinguishes each entry point from the others.
+The _Entry Point_{:.term} _SHOULD_{:.strong-term} have a _summary_{:.term} property. For an _Entry Point_{:.term}, the summary _MAY_{:.strong-term} be a brief description of the _Entity Set_{:.term} in which the described changes occurred. If there are multiple entry points to the same collection, it is _RECOMMENDED_{:.strong-term} that the summary include information that distinguishes each entry point from the others.
 
 ```json-doc
 { "summary": "My Authority - Notifications of Change" }
@@ -293,7 +293,7 @@ __url__
 Reference: [url][org-w3c-activitystreams-property-url] property definition
 {:.reference}
 
-The _Entry Point_{:.term} _MAY_{:.strong_term} have a `url` property providing one or more links to representations of the _Entity Metadata Collection_{:.term}. If there are multiple links then the value of the `url` property will be an array.
+The _Entry Point_{:.term} _MAY_{:.strong_term} have a `url` property providing one or more links to representations of the _Entity Set_{:.term}. If there are multiple links then the value of the `url` property will be an array.
 
 A common use of the `url` property is a link to the full download for the collection.
 
@@ -441,7 +441,7 @@ NOTE: See [Entity Change Notification](#entity-change-notification) under [Entit
 ## 4. Entity Level Structures
 {: #entity-level-structures}
 
-Entity level structures describe the individual changes to entity metadata from an Entity Metadata Provider.
+Entity level structures describe the individual changes to entity metadata within an _Entity Set_{:.term}.
 
 The structures described in this section are used in the _orderedItems_{:.term} property of the [Change Set](#change-set). The level of detail in the _orderedItems_{:.term} depends on the use case being addressed. The [Notifications](#notifications) use case can be addressed by the [Entity Change Notification](#entity-change-notification). The [Local Cache of Labels](#local-cache-of-labels) and [Local Cache of Full Dataset](#local-cache-of-full-dataset) use cases can be addressed more efficiently by also including an [Entity Patch](#entity-patch). Without an [Entity Patch](#entity-patch), the consumer must dereference the entity URI to obtain the updated entity description.
 
@@ -451,7 +451,7 @@ The structures described in this section are used in the _orderedItems_{:.term} 
 Reference:  [Activity][org-w3c-activitystreams-coretype-activity] in the [Activity Stream specification][org-w3c-activitystreams]
 {:.reference}
 
-A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Notification_{:.term}. An _Entity Change Notification_{:.term} _MUST_{:.strong-term} be implemented as an [Activity Streams][org-w3c-activitystreams] [`Activity`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-activity). The notification _MUST_{:.strong-term} provide information about the type of change and the entity or entities changed. It _MAY_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset. This level is sufficient to address the [Notifications](#notifications) use case.
+A change to entity metadata _MUST_{:.strong-term} be described in an _Entity Change Notification_{:.term}. An _Entity Change Notification_{:.term} _MUST_{:.strong-term} be implemented as an [Activity Streams][org-w3c-activitystreams] [`Activity`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-activity). The notification _MUST_{:.strong-term} provide information about the type of change and the entity or entities changed. It _MAY_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset. This level is sufficient to address the [Notifications](#notifications) use case.
 
 
 #### FULL EXAMPLE for Entity Change Notification:
@@ -493,7 +493,7 @@ Reference:  [summary][org-w3c-activitystreams-property-summary] property definit
 
 For _Entity Change Notification_{:.term}, the summary is a brief description of the change to entity metadata that the notification represents. It is _RECOMMENDED_{:.strong-term} that a summary be included and that it reference the type of change (e.g. "Add entity") and the entity being changed (e.g. "subject Science").
 
-There are a limited set of types of change. See [Types of Change](#type-of-change) section for a list of types and example summaries for each. Identification of the entity will vary depending on the data represented in the _Entity Metadata Collection_{:.term}.
+There are a limited set of types of change. See [Types of Change](#type-of-change) section for a list of types and example summaries for each. Identification of the entity will vary depending on the data represented in the _Entity Set_{:.term}.
 
 ```json-doc
 { "summary": "Add entity for subject Science" }
