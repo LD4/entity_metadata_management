@@ -400,7 +400,7 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
   "orderedItems": [{
       "type": "Create",
       "id": "https://data.my.authority/change_documents/2021/activity-stream/cd1",
-      "published": "2021-02-01T15:04:22Z",
+      "updated": "2021-02-01T15:04:22Z",
       "object": {
         "id": "https://my.authority/term/milk",
         "type": "Term"
@@ -409,11 +409,11 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
     {
       "type": "Deprecate",
       "id": "https://data.my.authority/change_documents/2021/activity-stream/cd2",
-      "published": "2021-02-01T17:11:03Z",
+      "updated": "2021-02-01T17:11:03Z",
       "orderedItems": [{
           "id": "https://data.my.authority/change_documents/2021/activity-stream/cd3",
           "type": "Create",
-          "published": "2021-02-01T17:11:03Z",
+          "updated": "2021-02-01T17:11:03Z",
           "object": {
             "id": "https://my.authority/term/bovine_milk",
             "type": "Term"
@@ -422,7 +422,7 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
         {
           "id": "https://data.my.authority/change_documents/2021/activity-stream/cd4",
           "type": "Update",
-          "published": "2021-02-01T17:11:03Z",
+          "updated": "2021-02-01T17:11:03Z",
           "object": {
             "id": "https://my.authority/term/cow_milk",
             "type": "Term"
