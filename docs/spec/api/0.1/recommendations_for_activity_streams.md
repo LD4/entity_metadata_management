@@ -304,15 +304,14 @@ A common use of the `url` property is a link to the full download for the collec
 <a id="entry-point-first" class="anchor-definition">
 __first__
 
-Reference:  [first][org-w3c-activitystreams-property-first] property definition
+Reference: [first](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-first) property definition
 {:.reference}
 
 A link to the first _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}.
 
-The _Entry Point_{:.term} _MUST_{:.strong-term} have a _first_{:.term} property. The value _MUST_{:.strong-term} be a JSON object, with the _id_{:.term} and _type_{:.term} properties. The value of the _id_{:.term} property _MUST_{:.strong-term} be a string, and it _MUST_{:.strong-term} be the HTTP(S) URI of the first page of items in the _Entry Point_{:.term}. The value of the _type_{:.term} property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
-
-QUESTION: should the example include published?
-{:.todo}
+The _Entry Point_{:.term} _MUST_{:.strong-term} have a _first_{:.term} property. The value _MUST_{:.strong-term} be either:
+  * a string that is HTTP(S) URI of the first page of items in the _Entry Point_{:.term}, or
+  * a JSON object, with at least the _id_{:.term} and _type_{:.term} properties. The value of the _id_{:.term} property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the first page of items in the _Entry Point_{:.term}. The value of the _type_{:.term} property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
 
 ```json-doc
 {
@@ -327,15 +326,14 @@ QUESTION: should the example include published?
 <a id="entry-point-last" class="anchor-definition">
 __last__
 
-Reference:  [last][org-w3c-activitystreams-property-last] property definition
+Reference: [last](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-last) property definition
 {:.reference}
 
 A link to the last _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}.
 
-The _Entry Point_{:.term} _MUST_{:.strong-term} have a _last_{:.term} property. The value _MUST_{:.strong-term} be a JSON object, with the _id_{:.term} and _type_{:.term} properties. The value of the _id_{:.term} property _MUST_{:.strong-term} be a string, and it _MUST_{:.strong-term} be the HTTP(S) URI of the last page of items in the _Entry Point_{:.term}. The value of the _type_{:.term} property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
-
-QUESTION: should the example include published?
-{:.todo}
+The _Entry Point_{:.term} _MUST_{:.strong-term} have a _last_{:.term} property. The value _MUST_{:.strong-term} be either:
+  * a string that is HTTP(S) URI of the last page of items in the _Entry Point_{:.term}, or
+  * a JSON object, with at least the _id_{:.term} and _type_{:.term} properties. The value of the _id_{:.term} property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the last page of items in the _Entry Point_{:.term}. The value of the _type_{:.term} property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
 
 ```json-doc
 {
@@ -343,7 +341,7 @@ QUESTION: should the example include published?
     "type": "OrderedCollectionPage",
     "id": "https://data.my.authority/change_documents/2021/activity-stream/page/12",
     "published": "2021-08-27T05:00:01Z"
-  }  
+  }
 }
 ```
 
@@ -366,7 +364,7 @@ The _Entry Point_{:.term} _MAY_{:.strong-term} have a _totalItems_{:.term} prope
 ### 3.2. Change Set
 {: #change-set}
 
-Reference:  [Ordered Collection Page][org-w3c-activitystreams-coretype-orderedcollectionpage] in the [Activity Stream specification][org-w3c-activitystreams]
+Reference: [Ordered Collection Page][org-w3c-activitystreams-coretype-orderedcollectionpage] in the [Activity Stream specification][org-w3c-activitystreams]
 {:.reference}
 
 Each time a set of changes is published, changes _MUST_{:.strong-term} be released in at least one _Change Set_{:.term}. Changes _MAY_{:.strong-term} be published across multiple _Change Sets_{:.term}. For example, a site may decide that each _Change Set_{:.term} will have at most 50 changes and if that maximum is exceeded during the release time period, then a second _Change Set_{:.term} will be created. All changes within a _Change Set_{:.term} and, if applicable, across  Change Sets _MUST_{:.strong-term} be sorted in date-time order in the _orderedItems_{:.term} property with the earliest change in the set appearing first and most recent change in the set appearing last.
@@ -437,6 +435,43 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
 NOTE: See [Entity Change Notification](#entity-change-notification) under [Entity Level Structures](#entity-level-structures) for more information on the data to be included in the `orderedItems` property.
 {: .info}
 
+<a id="change-set-next" class="anchor-definition">
+__next__
+
+Reference: [next](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-next) property definition
+{:.reference}
+
+A link to the next _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}.
+
+The _Change Set_{:.term} _MUST_{:.strong-term} have a _next_{:.term} property if there are
+subsequent _Change Sets_ in the _Entry Point_{:.term} for this _Entity Collection_. The value _MUST_{:.strong-term} be either:
+  * a string that is HTTP(S) URI of the next page of items in the _Entry Point_{:.term}, or
+  * a JSON object, with at least the _id_{:.term} and _type_{:.term} properties. The value of the _id_{:.term} property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the next page of items in the _Entry Point_{:.term}. The value of the _type_{:.term} property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
+
+```json-doc
+{
+  "next": "https://data.my.authority/change_documents/2021/activity-stream/page/3"
+}
+```
+
+<a id="change-set-prev" class="anchor-definition">
+__next__
+
+Reference: [prev](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-prev) property definition
+{:.reference}
+
+A link to the previous _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}.
+
+The _Change Set_{:.term} _MAY_{:.strong-term} have a _prev_{:.term} property if there are
+preceding _Change Sets_ in the _Entry Point_{:.term} for this _Entity Collection_. If present, the value _MUST_{:.strong-term} be either:
+  * a string that is HTTP(S) URI of the previous page of items in the _Entry Point_{:.term}, or
+  * a JSON object, with at least the _id_{:.term} and _type_{:.term} properties. The value of the _id_{:.term} property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the previous page of items in the _Entry Point_{:.term}. The value of the _type_{:.term} property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
+
+```json-doc
+{
+  "prev": "https://data.my.authority/change_documents/2021/activity-stream/page/1"
+}
+```
 
 ## 4. Entity Level Structures
 {: #entity-level-structures}
