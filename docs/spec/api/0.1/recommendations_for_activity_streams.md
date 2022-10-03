@@ -54,6 +54,9 @@ editors:
   - name: Vitus Tang
     orcid: https://orcid.org/0000-0003-1946-3518
     institution: Stanford University Libraries
+  - name: Simeon Warner
+    orcid: https://orcid.org/0000-0002-7970-7855
+    institution: Cornell University Library
 ---
 
 ## Status of this Document
