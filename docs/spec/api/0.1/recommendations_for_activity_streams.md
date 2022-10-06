@@ -455,7 +455,7 @@ subsequent _Change Sets_ in the _Entry Point_{:.term} for this _Entity Collectio
 ```
 
 <a id="change-set-prev" class="anchor-definition">
-__next__
+__previous__
 
 Reference: [prev](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-prev) property definition
 {:.reference}
