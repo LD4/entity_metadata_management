@@ -84,7 +84,7 @@ __Previous Version:__
 
 The Entity Metadata Management API is intended to establish a pattern that supports sharing changes to entities and their metadata curated by Entity Metadata Providers with the community of Entity Metadata Consumers (e.g. libraries, museums, galleries, archives). Use of a consistent pattern allows for the creation of software tools for producing and consuming changes in entity metadata.
 
-The recommendations in this document leverage existing techniques, specifications, and tools in order to promote widespread adoption of an easy-to-implement service. The service describes changes to entity metadata and the location of those resources to harvest. Content providers can implement this API to record and publish a list of changes and incremental cache updates.
+The recommendations in this document leverage existing techniques, specifications, and tools in order to promote widespread adoption of an easy-to-implement service. The service describes changes to entity metadata and the location of those resources to harvest. Metadata providers can implement this API to record and publish a list of changes and incremental cache updates.
 
 ### 1.1. Objectives and Scope
 {: #objectives-and-scope}
@@ -93,7 +93,7 @@ The objective of these recommendations is to provide a machine to machine API th
 
 The discovery of changes to entity metadata requires a consistent and well understood pattern for entity metadata providers to publish lists of links to entities that have metadata changes and details on changes that have occurred. Changes include newly available entities with metadata, removed entities, as well as, changes to entities and their metadata. This allows a baseline implementation of change management systems that process the list of changes.
 
-This process can be optimized by allowing the content providers to publish changes in chronological order including descriptions of how their content has changed, enabling consuming systems to retrieve only the resources that have been modified since they were last retrieved.
+This process can be optimized by allowing the metadata providers to publish changes in chronological order including descriptions of how their entity descriptions have changed, enabling consuming systems to retrieve only the resources that have been modified since they were last retrieved.
 
 __Change Notifications__<br>These recommendations do not include a subscription mechanism for enabling change notifications to be pushed to remote systems. Only periodic polling for the set of changes that must be processed is supported. A subscription/notification pattern may be added in a future version after implementation experience with the polling pattern has demonstrated that it would be valuable.
 {: .warning}
