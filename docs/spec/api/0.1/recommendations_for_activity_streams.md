@@ -138,7 +138,7 @@ To address this use case, the provider creates and makes available a dated list 
 TODO:  Maybe put a list of providers in an appendix instead of here.
 {:.todo}
 
-* Entity Metadata Provider: An organization that collects, curates, and provides access to metadata about entities within an area of interest. The Library of Congress maintains several [collections](https://id.loc.gov/), including but not limited to, Library Subject Headings, Name Authority, Genres/Form Terms. The Getty maintains several [vocabularies](https://www.getty.edu/research/tools/vocabularies/index.html). There are many other providers.
+* Entity Metadata Provider: An organization that collects, curates, and provides access to metadata about entities within an area of interest. The Library of Congress maintains several [entity sets](https://id.loc.gov/), including but not limited to, Library Subject Headings, Name Authority, Genres/Form Terms. The Getty maintains several [vocabularies](https://www.getty.edu/research/tools/vocabularies/index.html). There are many other providers.
 * Entity Metadata Consumer: Any institution that references or caches entity metadata from a provider. The use cases driving the recommendations were created from libraries, museums, galleries, and archives.
 
 #### 1.3.2. Terms about Entities
