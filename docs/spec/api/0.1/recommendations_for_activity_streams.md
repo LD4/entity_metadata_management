@@ -472,10 +472,6 @@ A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Cha
   "object": {
     "type": "Subject",
     "id": "http://my_repo/entity/science"
-  },
-  "instrument": {
-    "type": "rdf_patch",
-    "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11/instrument/1"
   }
 }
 ```
