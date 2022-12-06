@@ -127,7 +127,7 @@ __Additional Cached Metadata__<br>In some cases, additional metadata is also cac
 
 A consumer may decide to make a full cache of a dataset of entity metadata. This is commonly done for one or more reasons including, but not limited to, increased control over uptime, throughput, and indexing for search. The cache needs to stay in sync with the source dataset as near to real time as is possible using incremental updates.
 
-To address this use case, the provider creates and makes available a dated list of all new, modified, and deleted entities along with specifics about how the entities have changed. The consumer can process a stream of change documents, from oldest to newest, that was published since their last incremental update. Specific details about each change can be used to update the local cache.
+To address this use case, the provider creates and makes available a dated list of all new, modified, and deleted entities along with specifics about how the entities have changed. The consumer can process a stream of change documents that was published since their last incremental update. Specific details about each change can be used to update the local cache.
 
 ### 1.3. Terminology
 {: #terminology}
@@ -135,7 +135,7 @@ To address this use case, the provider creates and makes available a dated list 
 #### 1.3.1. Roles
 {: #roles}
 
-TODO:  Maybe put a list of providers in an appendix instead of here.
+TODO: Maybe put a list of providers in an appendix instead of here.
 {:.todo}
 
 * Entity Metadata Provider: An organization that collects, curates, and provides access to metadata about entities within an area of interest. The Library of Congress maintains several [entity sets](https://id.loc.gov/), including but not limited to, Library Subject Headings, Name Authority, Genres/Form Terms. The Getty maintains several [vocabularies](https://www.getty.edu/research/tools/vocabularies/index.html). There are many other providers.
@@ -370,7 +370,7 @@ The _Entry Point_{:.term} _MAY_{:.strong-term} have a _totalItems_{:.term} prope
 Reference: [Ordered Collection Page][org-w3c-activitystreams-coretype-orderedcollectionpage] in the [Activity Stream specification][org-w3c-activitystreams]
 {:.reference}
 
-Each time a set of changes is published, changes _MUST_{:.strong-term} be released in at least one _Change Set_{:.term}. Changes _MAY_{:.strong-term} be published across multiple _Change Sets_{:.term}. For example, a site may decide that each _Change Set_{:.term} will have at most 50 changes and if that maximum is exceeded during the release time period, then a second _Change Set_{:.term} will be created. All changes within a _Change Set_{:.term} and, if applicable, across  Change Sets _MUST_{:.strong-term} be sorted in date-time order in the _orderedItems_{:.term} property with the earliest change in the set appearing first and most recent change in the set appearing last.
+Each time a set of changes is published, changes _MUST_{:.strong-term} be released in at least one _Change Set_{:.term}.  Changes _MAY_{:.strong-term} be published across multiple _Change Sets_{:.term}.  For example, a site may decide that each _Change Set_{:.term} will have at most 50 changes and if that maximum is exceeded during the release time period, then a second _Change Set_{:.term} will be created. It is recommended that all changes within a _Change Set_{:.term} and, if applicable, across Change Sets be sorted in date-time order in the _orderedItems_{:.term}. For practical reasons, _Change Set_{:.term} and corresponding _Activities_{:.term} _MAY_{:.strong-term} be in ascending or descending order, but the order _MUST_{:.strong-term} be consistent within the _Entity Metadata Collection_{:.term}. Acknowledging not all implementations will store every change for an entity over time, _Entity Metadata Collection_{:.term} _MAY_{:.strong-term} provide feeds of only the last known metadata update for an entity. In these cases, because the _Entity Metadata Collection_{:.term} is not persistent (meaning _Ordered Collection Pages_{:.term} are overwritten, providing only the latest updates), _Activities_{:.term} within the _Entity Metadata Collection_{:.term} must include a date using _property_{:.term} because the page number can not be used to know the last _Activities_{:.term} processed by a consumer.
 
 It is _RECOMMENDED_{:.strong-term} that change sets be published on a regular schedule. It is recognized that there are many factors that can impact this recommendation, including but not limited to, the volume of changes, the consistency of timing of changes, the tolerance of consumers for delays in the publication schedule, resources for producing _Change Sets_{:.term}.
 
@@ -1126,7 +1126,7 @@ Create the change set:
 * set `partOf` property to use `entry_point_uri` for `id`
 * set `prev` property to use `prev_change_set_uri` for `id`
 * set `totalItems` property to the number of change activities that will be in this change set
-* for each change activity from oldest to newest, add it to the `orderedItems` property array
+* for each change activity from oldest to newest or newest to oldest, add it to the `orderedItems` property array
   * set `type` property to the change type (e.g. `Add`, `Remove`, etc.)
   * set `id` property to the `change_activity_uri` for this change
   * set a date
