@@ -604,6 +604,8 @@ To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cac
     "A <https://my_repo/entity/cow_milk>
          <https://my.authority/vocab/hasLabel> 'cow milk'@en.
      A <https://my_repo/entity/cow_milk>
+         <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept>.
+     A <https://my_repo/entity/cow_milk>
          <https://my.authority/vocab/broaderTerm> <https://my_repo/entity/milk>.
      A <https://my_repo/entity/cow_milk>
          <https://my.authority/vocab/narrow_term>
@@ -740,6 +742,8 @@ Complete Example
     "A <https://my_repo/entity/cow_milk>
          <https://my.authority/vocab/hasLabel> 'cow milk'@en.
      A <https://my_repo/entity/cow_milk>
+           <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept>.
+     A <https://my_repo/entity/cow_milk>
          <https://my.authority/vocab/broaderTerm> <https://my_repo/entity/milk>.
      A <https://my_repo/entity/cow_milk>
          <https://my.authority/vocab/narrow_term>
@@ -844,6 +848,8 @@ EXAMPLE Entity Patch for Delete
   "content":
     "D <http://my_repo/entity/cow_milk>
          <http://my.authority/vocab/hasLabel> 'cow milk'@en.
+     D <https://my_repo/entity/cow_milk>
+           <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept>.
      D <http://my_repo/entity/cow_milk>
          <http://my.authority/vocab/broaderTerm> <http://my_repo/entity/milk>.
      D <http://my_repo/entity/cow_milk>
