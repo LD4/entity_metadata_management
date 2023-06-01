@@ -89,7 +89,7 @@ The recommendations in this document leverage existing techniques, specification
 ### 1.1. Objectives and Scope
 {: #objectives-and-scope}
 
-The objective of these recommendations is to provide a machine to machine API that provides the information needed to describe changes to entity metadata across the lifecycle of an entity. The intended audiences are Entity Metadata Providers who curate aggregations of entity metadata within an area of interest, Entity Metadata Consumers who use the entity metadata, and developers who create applications and tools that help consumers connect to entity metadata from providers. While this work may benefit others wanting to express changes in data, the objective of the API is to specify an interoperable solution that best and most easily fulfills the need to express and process changes in entity metadata within the community of participating organizations.
+The objective of these recommendations is to provide a machine to machine API that provides the information needed to describe changes to entity metadata across the lifecycle of an entity. The intended audiences are Entity Metadata Providers who curate and publish entity metadata within an area of interest, Entity Metadata Consumers who use the entity metadata, and developers who create applications and tools that help consumers connect to entity metadata from providers. While this work may benefit others wanting to express changes in data, the objective of the API is to specify an interoperable solution that best and most easily fulfills the need to express and process changes in entity metadata within the community of participating organizations.
 
 The discovery of changes to entity metadata requires a consistent and well understood pattern for entity metadata providers to publish lists of links to entities that have metadata changes and details on changes that have occurred. Changes include newly available entities with metadata, removed entities, as well as, changes to entities and their metadata. This allows a baseline implementation of change management systems that process the list of changes.
 
@@ -403,7 +403,8 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
     "type": "OrderedCollectionPage",
     "published": "2021-03-01T05:00:01Z"
   },
-  "orderedItems": [{
+  "orderedItems": [
+    {
       "type": "Create",
       "id": "https://data.my.authority/change_documents/2021/activity-stream/cd1",
       "updated": "2021-02-01T15:04:22Z",
@@ -416,7 +417,8 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
       "type": "Deprecate",
       "id": "https://data.my.authority/change_documents/2021/activity-stream/cd2",
       "updated": "2021-02-01T17:11:03Z",
-      "orderedItems": [{
+      "orderedItems": [
+        {
           "id": "https://data.my.authority/change_documents/2021/activity-stream/cd3",
           "type": "Create",
           "updated": "2021-02-01T17:11:03Z",
@@ -573,7 +575,7 @@ Reference:  [partOf][org-w3c-activitystreams-property-partof] property definitio
 
 The _partOf_ property identifies the _Change Set_{:.term} in which this activity was published.
 
-An _Entity Change Activity_{:.term} _MAY_{:.strong-term} use the _partOf_ property to refer back to the _Change Set_{:.term} that includes the activity. The _partOf_ property _MUST NOT_{:.strong-term} be used for any other purpose. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Change Set_{:.term} publishing this activity _MUST_{:.strong-term} be available at the URI.
+An _Entity Change Activity_{:.term} _MAY_{:.strong-term} use the _partOf_ property to refer back to the _Change Set_{:.term} that includes the activity. When used on an Activity, the _partOf_ property _MUST NOT_{:.strong-term} be used for any other purpose. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Change Set_{:.term} publishing this activity _MUST_{:.strong-term} be available at the URI.
 
 ```json-doc
 "partOf": {
@@ -585,7 +587,7 @@ An _Entity Change Activity_{:.term} _MAY_{:.strong-term} use the _partOf_ proper
 ### 4.2. Entity Patch
 {: #entity-patch}
 
-To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cache of Full Dataset](#local-cache-of-full-dataset) use cases efficiently, it is _OPTIONAL_{:.strong-term} that each [Entity Change Activity](#entity-change-activity) include the _instrument_{:.term} property which provides a link an _Entity Patch_{:.term}. Without an [Entity Patch](#entity-patch), the consumer must dereference the entity URI to obtain the updated entity description.
+To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cache of Full Dataset](#local-cache-of-full-dataset) use cases efficiently, it is _OPTIONAL_{:.strong-term} that each [Entity Change Activity](#entity-change-activity) include the _instrument_ property which provides a link an _Entity Patch_{:.term}. Without an [Entity Patch](#entity-patch), the consumer must dereference the entity URI to obtain the updated entity description.
 
 #### FULL EXAMPLE for Entity Patch
 
