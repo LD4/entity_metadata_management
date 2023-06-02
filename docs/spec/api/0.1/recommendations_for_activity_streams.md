@@ -108,14 +108,15 @@ Three primary use cases were identified that drive the recommendations in this d
 #### 1.2.1. Entity Change Activities List
 {: #entity-change-activities-list}
 
-Entity metadata consumers want to learn of any modifications or deletions for entities on their interest list, as well as new entities. This allows for a comparison between the consumer's list and the producer's entity change activity list of modified and deleted entities. For any that overlap, the consumer will take additional actions if needed.
+Entity metadata consumers want to learn of any modifications or deletions for entities on their interest list, as well as new entities. This allows for a comparison between the consumer's list and the provider's entity change activity list of modified and deleted entities. For any that overlap, the consumer will take additional actions if needed. 
 
-To address this use case, the provider creates and makes available a list of the URIs for any new, modified, or deleted entities. The consumer will need to take additional actions to identify specific changes to entities of interest.
+To address this use case, the provider creates and makes available a list of activities with the URIs for any new, modified, or deleted entities. While the provider may have internal needs for tracking more than these three moments in an entity's lifecycle (e.g. if the provider workflow requires a review activity), this recommendation focuses on public changes to the dataset that may require action from a consumer. The consumer will need to take additional actions to identify specific changes to entities of interest. 
+
 
 #### 1.2.2. Local Cache of Labels
 {: #local-cache-of-labels}
 
-Entity metadata consumers persist references to entity metadata by saving the URI as part of their local datastore. URIs may not be understandable to application users. In order to be able to display a human readable label, a label may be retrieved from the producer's datastore by dereferencing the URI. For performance reasons, the label is generally cached in the local datastore to avoid having to fetch the label every time the entity reference is displayed to an end user. If the label changes in the producer's datastore, the consumer would like to update the local cache of the label.
+Entity metadata consumers persist references to entity metadata by saving the URI as part of their local datastore. URIs may not be understandable to application users. In order to be able to display a human readable label, a label may be retrieved from the provider's datastore by dereferencing the URI. For performance reasons, the label is generally cached in the local datastore to avoid having to fetch the label every time the entity reference is displayed to an end user. If the label changes in the provider's datastore, the consumer would like to update the local cache of the label.
 
 To address this use case, the provider creates and makes available a list of URIs and their new labels. The consumer can compare the list of URIs with those stored in the local application and update the cached labels.
 
@@ -413,7 +414,7 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
       }
     },
     {
-      "type": "Deprecate",
+      "type": "Delete",
       "id": "https://data.my.authority/change_documents/2021/activity-stream/cd2",
       "updated": "2021-02-01T17:11:03Z",
       "orderedItems": [{
@@ -616,7 +617,7 @@ To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cac
 ## 5. Types of Change
 {: #types-of-change}
 
-All _Entity Change Activities_{:.term} have a core set of properties that are described in the [Entity Change Activity](#entity-change-activity) section. Some properties are specific to the _Types of Change_. This section provides examples and descriptions of the _Entity Change Notification_{:.term} and _Entity Patch_{:.term} for each type of change. They also describe differences between similar Activity Types (e.g. _Create_{:.term} vs. _Add_{:.term}).
+All _Entity Change Activities_{:.term} have a core set of properties that are described in the [Entity Change Activity](#entity-change-activity) section. Some properties are specific to the _Types of Change_. This section provides examples and descriptions of the _Entity Change Notification_{:.term} and _Entity Patch_{:.term} for each type of change. They also describe the relationship between similar Activity Types (e.g. _Create_{:.term} vs. _Add_{:.term}).
 
 ### 5.1. New Entity
 {: #new-entity}
@@ -632,7 +633,7 @@ A new entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} follo
 
 #### Create vs. Add
 
-An entity appearing in an _Entry Point_{:.term} stream for the first time _MUST_{:.strong-term} use _Activity_{:.term} type _Create_{:.term} or _Add_{:.term}.
+An entity appearing in an _Entry Point_{:.term} stream for the first time _MUST_{:.strong-term} use _Activity_{:.term} type _Create_{:.term} and/or _Add_{:.term} 
 
 _Create_{:.term} _SHOULD_{:.strong-term} be used when the entity is new in the source dataset.
 
