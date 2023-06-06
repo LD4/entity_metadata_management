@@ -637,9 +637,9 @@ A new entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} follo
 
 An entity appearing in an _Entry Point_{:.term} stream for the first time _MUST_{:.strong-term} use _Activity_{:.term} type _Create_{:.term} and/or _Add_{:.term} 
 
-_Create_{:.term} _SHOULD_{:.strong-term} be used when the entity is new in the source dataset.
+_Create_{:.term} _SHOULD_{:.strong-term} be used when the entity is new in the source dataset and available for use. A provider MUST NOT use _Create_{:.term} to broadcast that an entity exists unless it can be dereferenced at the entity URI. A Create activity indicates that the entity is new and available for use by consumers, see also _Add_{:.term} below.
 
-_Add_{:.term} _SHOULD_{:.strong-term} be used when the entity exists in the source dataset, but was previously not available through the _Entry Point_{:.term} and now is being made available in the stream. Situations where this might happen include, but are not limited to, change in permissions, end of an embargo, temporary removal and now being made available again.
+_Add_{:.term} _SHOULD_{:.strong-term} be used when the entity exists in the source dataset, but was previously not available through the _Entry Point_{:.term} and now is being made available in the stream. Situations where this might happen include, but are not limited to, change in permissions, end of an embargo, temporary removal and now being made available.
 
 A new _Entry Point_{:.term} _MAY_{:.strong-term} choose to populate the stream with all existing entities. In this case, the initial population of the stream with all existing entities _SHOULD_{:.strong-term} use _Add_{:.term}.
 
