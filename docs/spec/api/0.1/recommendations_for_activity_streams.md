@@ -759,7 +759,7 @@ Complete Example
 
 An updated entity _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-activity) with a _type_{:.term} of _"Update"_{:.term}.
 
-An updated entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [Update type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-update)in the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples specific to Entity Metadata Management.
+An updated entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [Update type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-update) in the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples specific to Entity Metadata Management.
 
 EXAMPLE Entity Change Activity for Update
 
@@ -808,7 +808,7 @@ EXAMPLE Entity Patch for Update
 It is _RECOMMENDED_{:.strong-term} that entities be marked as _Deprecated_{:.term} in the source dataset instead of deleting the entity from the source dataset. If the entity is deprecated, follow the _Entity Change Activity_{:.term} described in [Deprecate Entity](#deprecate-entity).
 {: .warning}
 
-An entity that has been fully deleted from the source dataset _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-activity) with a _type_{:.term} of _"Delete"_{:.term} or _"Remove"_{:.term}.
+An entity that has been fully deleted from the source dataset where the entity URI is no longer dereferencable _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-activity) with a _type_{:.term} of _"Delete"_{:.term} or _"Remove"_{:.term}.
 
 A deleted entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [Delete type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-delete) or the [Remove type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-remove) in the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples specific to Entity Metadata Management.
 
@@ -864,11 +864,11 @@ EXAMPLE Entity Patch for Delete
 ### 5.4. Deprecate Entity
 {: #deprecate-entity}
 
-Deprecation indicates that an existing entity in the authority has been updated to indicate that it should no longer be used. Whenever possible, the description should indicate which entity should be used instead.
+Deprecation indicates that an existing entity in the authority has been updated to reflect that it should no longer be used though the URI remains dereferencable reflecting the deprecation. Whenever possible, the entity description should indicate which entity should be used instead.
 
 There are two common scenarios. In the first, the replacement entity already exists and the deprecation updates the deprecated entity only. In the second scenario, the replacement entity does not exist prior to the deprecation. In this case, the replacement entity is created and the deprecation updates the deprecated entity.
 
-An entity that has been deprecated _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-activity) with the _type_{:.term} `Deprecate`. The `Deprecate` activity _MUST_{:.strong-term} be implemented as either a single activity (similar to the [Update Entity](#update-entity) case but with more specific semantics), or using the `orderedItems` property with a sequence of activities that implement the deprecation. In the second scenario this would typically involve a `Create` activity for the replacement entity, and an `Update` activity for the deprecated entity.
+An entity that has been deprecated _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-activity) with the _type_{:.term} `Deprecate`. The `Deprecate` activity _MUST_{:.strong-term} be implemented as either a single activity (when the entity that is replacing the deprecated entity already exists, or if the deprecated entity is not replaced), or two activities a `Create` activity for the replacement entity, and an `Deprecate` activity for the deprecated entity. Without an Entity Patch on the `Deprecate` activity, the consumer must dereference the deprecated entity URI to obtain the updated entity description including whether it was replaced by a new or existing entity.
 
 EXAMPLE Entity Change Activity for Deprecate in the Scenario where a Replacement Entity Already Exists
 
