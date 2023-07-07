@@ -200,7 +200,7 @@ QUESTION: should the example include published for last?
 
 ```json-doc
 {
-  "@context": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json",
+  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   "summary": "My Authority - Change Documents",
   "type": "OrderedCollection",
   "id": "https://data.my.authority/change_documents/2021/activity-stream",
@@ -231,7 +231,7 @@ _Entity Metadata Management_{:.term} activity streams _MUST_{:.strong-term} incl
 
 ```json-doc
 {
-  "@context": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json",
+  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   // rest of API response
 }
 ```
@@ -381,7 +381,7 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
 
 ```json-doc
 {
-  "@context": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json",
+  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   "type": "OrderedCollectionPage",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2",
   "partOf": {
@@ -498,7 +498,7 @@ A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Cha
 
 ```json-doc
 {
-  "@context": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json",
+  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   "summary": "Add entity for subject Science",
   "updated": "2021-08-02T16:59:54Z",
   "type": "Add",
@@ -590,7 +590,7 @@ To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cac
 ```json-doc
 
 {
-  "@context": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json",
+  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   "summary": "rdf_patch to create entity for term milk",
   "type": "rdf_patch",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11/instrument/1",
@@ -644,7 +644,7 @@ Complete Example
 
 ```json-doc
 {
-  "@context": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json",
+  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   "summary": "New entity for term milk",
   "updated": "2021-08-02T16:59:54Z",
   "type": "Create",
@@ -728,7 +728,7 @@ Complete Example
 
 ```json-doc
 {
-  "@context": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json",
+  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   "summary": "rdf_patch to create entity for term milk",
   "type": "rdf_patch",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11/instrument/1",
@@ -760,7 +760,7 @@ EXAMPLE Entity Change Activity for Update
 
 ```json-doc
 {
-  "@context": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json",
+  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   "summary": "Update entity term milk",
   "updated": "2021-08-02T16:59:54Z",
   "type": "Update",
@@ -784,7 +784,7 @@ EXAMPLE Entity Patch for Update
 
 ```json-doc
 {
-  "@context": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json",
+  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   "summary": "rdf_patch to update entity term milk",
   "type": "rdf_patch",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/cd31/instrument/1",
@@ -811,7 +811,7 @@ EXAMPLE Entity Change Activity for Delete
 
 ```json-doc
 {
-  "@context": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json",
+  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   "summary": "Delete term cow_milk",
   "updated": "2021-08-02T16:59:54Z",
   "type": "Delete",
@@ -835,7 +835,7 @@ EXAMPLE Entity Patch for Delete
 
 ```json-doc
 {
-  "@context": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json",
+  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   "summary": "rdf_patch to delete entity term cow_milk",
   "type": "rdf_patch",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/cd21/instrument/1",
@@ -869,7 +869,7 @@ EXAMPLE Entity Change Activity for Deprecate in the Scenario where a Replacement
 
 ```json-doc
 {
-  "@context": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json",
+  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   "summary": "Deprecate term cow milk",
   "updated": "2021-08-02T16:59:57Z",
   "type": "Deprecate",
@@ -893,7 +893,7 @@ EXAMPLE Entity Change Activity for Deprecate in the Scenario where a Replacement
 
 ```json-doc
 {
-  "@context": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json",
+  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   "summary": "Create term bovine milk and Deprecate term cow milk",
   "updated": "2021-08-02T16:59:54Z",
   "type": "Deprecate",
@@ -941,7 +941,7 @@ EXAMPLE Entity Change Activity for Split
 
 ```json-doc
 {
-  "@context": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json",
+  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   "summary": "Split cow milk into bovine milk and oxen milk",
   "updated": "2021-08-02T16:59:54Z",
   "type": "Split",
@@ -1001,7 +1001,7 @@ EXAMPLE Entity Change Activity for Merge
 
 ```json-doc
 {
-  "@context": "https://ld4.github.io/entity_metadata_management/api/0.1/context.json",
+  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   "summary": "Merge bovine milk and oxen milk into cow milk",
   "updated": "2021-08-02T16:59:54Z",
   "type": "Merge",
