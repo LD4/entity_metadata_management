@@ -56,15 +56,15 @@ editors:
 
 ## Status of this Document
 
-_This is a very preliminary draft. Expect considerable changes to this document._
+_This is a draft API specification. Expect changes to this document._
 {:.todo}
 
 {:.no_toc}
 __This Version:__ {{ page.major }}.{{ page.minor }}.{{ page.patch }}{% if page.pre != 'final' %}-{{ page.pre }}{% endif %}
 
-__Latest Stable Version:__ [{{ site.change_api.stable.major }}.{{ site.change_api.stable.minor }}.{{ site.change_api.stable.patch }}][change-stable-version]
+__Latest Stable Version:__ None
 
-__Previous Version:__
+__Previous Version:__ None
 
 **Editors**
 
