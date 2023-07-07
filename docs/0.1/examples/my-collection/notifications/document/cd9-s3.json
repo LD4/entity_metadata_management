@@ -1,7 +1,3 @@
----
-layout: none
-permalink: examples/my-collection/notifications/document/cd9-s3.json
----
 {
   "@context": {
     "@vocab": "https://www.w3.org/ns/activitystreams",

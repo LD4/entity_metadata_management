@@ -1,7 +1,3 @@
----
-layout: none
-permalink: examples/my-collection/notifications/document/cd4-delete.json
----
 {
   "@context": {
     "@vocab": "https://www.w3.org/ns/activitystreams",
