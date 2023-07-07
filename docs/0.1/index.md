@@ -1,6 +1,5 @@
 ---
 title: Entity Metadata Management API 0.1
-permalink: 0.1/
 layout: spec
 cssversion: 3
 tags: [specifications, api]
@@ -10,7 +9,6 @@ patch: 1
 pre: final
 redirect_from:
   - /
-  - /index.html
   - /0.1/index.html
 editors:
   - name: David Eichmann

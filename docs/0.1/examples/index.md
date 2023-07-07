@@ -1,12 +1,11 @@
 ---
 title: "EMM Change Document Examples"
-permalink: 0.1/examples/
 layout: page
 tags: [examples]
 redirect_from:
 - /examples
 - /examples/
-- /examples/index.html
+- /0.1/examples/index.html
 ---
 
 ## Examples for Use Cases
