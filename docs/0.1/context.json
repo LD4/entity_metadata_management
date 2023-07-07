@@ -1,6 +1,6 @@
 ---
 layout: none
-permalink: api/0.1/context.json
+permalink: 0.1/context.json
 ---
 {
   "@context": [
