@@ -9,7 +9,6 @@ patch: 1
 pre: final
 redirect_from:
   - /
-  - /0.1/index.html
 editors:
   - name: David Eichmann
     orcid: https://orcid.org/0000-0003-3150-8758
