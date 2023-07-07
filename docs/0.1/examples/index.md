@@ -1,11 +1,9 @@
 ---
-title: "EMM Change Document Examples"
+title: "EMM Change Document Examples 0.1"
 layout: page
 tags: [examples]
 redirect_from:
 - /examples
-- /examples/
-- /0.1/examples/index.html
 ---
 
 ## Examples for Use Cases
