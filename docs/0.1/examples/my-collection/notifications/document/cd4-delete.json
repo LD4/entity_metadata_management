@@ -1,0 +1,18 @@
+{
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/0.1/context.json"
+  },
+  "summary": "Delete subject Peeler (deleted from datasource)",
+  "type": "Delete",
+  "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd4-delete.json",
+  "published": "2022-02-02T15:04:19Z",
+  "partOf": {
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/set/2.json",
+    "type": "OrderedCollection"
+  },
+  "object": {
+    "id": "https://my.authority/subject/1096",
+    "type": "Subject"
+  }
+}

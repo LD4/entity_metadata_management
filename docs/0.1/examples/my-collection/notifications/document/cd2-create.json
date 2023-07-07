@@ -1,0 +1,18 @@
+{
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/0.1/context.json"
+  },
+  "summary": "Create entity for subject Archery (newly created in the datasource)",
+  "type": "Create",
+  "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd2-create.json",
+  "published": "2022-02-01T15:06:13Z",
+  "partOf": {
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/set/1.json",
+    "type": "OrderedCollection"
+  },
+  "object": {
+    "id": "https://my.authority/subject/1002",
+    "type": "Subject"
+  }
+}

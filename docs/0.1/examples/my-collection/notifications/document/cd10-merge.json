@@ -1,0 +1,53 @@
+{
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/0.1/context.json"
+  },
+  "summary": "Merge subjects Juggernaut and Barrage in to subject Campaign",
+  "type": "Merge",
+  "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd10-merge.json",
+  "partOf": {
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/set/4.json",
+    "type": "OrderedCollection"
+  },
+  "orderedItems": [
+    {
+      "summary": "Create subject Campaign",
+      "type": "Create",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd10-m1.json",
+      "published": "2022-02-04T15:04:19Z",
+      "object": {
+        "id": "https://my.authority/subject/2221",
+        "type": "Subject"
+      }
+    },
+    {
+      "summary": "Deprecate subject Juggernaut",
+      "type": "Deprecate",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd10-m2.json",
+      "published": "2022-02-04T15:04:19Z",
+      "object": {
+        "id": "https://my.authority/subject/1096",
+        "type": "Subject"
+      },
+      "useInstead": {
+        "id": "https://my.authority/subject/2221",
+        "type": "Subject"
+      }
+    },
+    {
+      "summary": "Deprecate subject Barrage",
+      "type": "Deprecate",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd10-m3.json",
+      "published": "2022-02-04T15:04:19Z",
+      "object": {
+        "id": "https://my.authority/subject/1338",
+        "type": "Subject"
+      },
+      "useInstead": {
+        "id": "https://my.authority/subject/2221",
+        "type": "Subject"
+      }
+    }
+  ]
+}

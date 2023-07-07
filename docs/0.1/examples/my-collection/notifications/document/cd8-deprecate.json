@@ -1,0 +1,18 @@
+
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/0.1/context.json"
+  },
+  "summary": "Deprecate subject Ambuscade (no replacement)",
+  "type": "Deprecate",
+  "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd8-deprecate.json",
+  "published": "2022-02-03T15:06:14Z",
+  "partOf": {
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/set/3.json",
+    "type": "OrderedCollection"
+  },
+  "object": {
+    "id": "https://my.authority/subject/1015",
+    "type": "Subject"
+  }
+}

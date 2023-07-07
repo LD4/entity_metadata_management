@@ -1,0 +1,8 @@
+{
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/0.1/context.json"
+  },
+  "summary": "My Entity Collection - Full Cache",
+  "FIXME": "FLESH OUT EXAMPLE"
+}

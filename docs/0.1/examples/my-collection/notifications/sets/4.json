@@ -1,0 +1,111 @@
+{
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/0.1/context.json"
+  },
+  "type": "OrderedCollectionPage",
+  "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/set/4.json",
+  "partOf": {
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/entry-point.json",
+    "type": "OrderedCollection"
+  },
+  "totalItems": 2,
+  "prev": {
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/set/3.json",
+    "type": "OrderedCollectionPage"
+  },
+  "orderedItems": [
+    {
+      "summary": "Split name Alekseev, B. A. in to names Alekseev, B. A. (Electrical engineer) and Alekseev, B. A. (Mechanical engineer)",
+      "type": "Split",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd9-split.json",
+      "orderedItems": [
+        {
+          "summary": "Create name Alekseev, B. A. (Electrical engineer)",
+          "type": "Create",
+          "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd9-s1.json",
+          "published": "2022-02-04T15:04:18Z",
+          "object": {
+            "id": "https://my.authority/subject/2191",
+            "type": "Name"
+          }
+        },
+        {
+          "summary": "Create name Alekseev, B. A. (Mechanical engineer)",
+          "type": "Create",
+          "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd9-s2.json",
+          "published": "2022-02-04T15:04:18Z",
+          "object": {
+            "id": "https://my.authority/subject/2192",
+            "type": "Name"
+          }
+        },
+        {
+          "summary": "Deprecate name Alekseev, B. A.",
+          "type": "Deprecate",
+          "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd9-s3.json",
+          "published": "2022-02-04T15:04:18Z",
+          "object": {
+            "id": "https://my.authority/subject/1101",
+            "type": "Name"
+          },
+          "useInstead": [
+            {
+              "id": "https://my.authority/subject/2191",
+              "type": "Subject"
+            },
+            {
+              "id": "https://my.authority/subject/2192",
+              "type": "Subject"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "summary": "Merge subjects Juggernaut and Barrage in to subject Campaign",
+      "type": "Merge",
+      "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd10-merge.json",
+      "orderedItems": [
+        {
+          "summary": "Create subject Campaign",
+          "type": "Create",
+          "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd10-m1.json",
+          "published": "2022-02-04T15:04:19Z",
+          "object": {
+            "id": "https://my.authority/subject/2221",
+            "type": "Subject"
+          }
+        },
+        {
+          "summary": "Deprecate subject Juggernaut",
+          "type": "Deprecate",
+          "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd10-m2.json",
+          "published": "2022-02-04T15:04:19Z",
+          "object": {
+            "id": "https://my.authority/subject/1096",
+            "type": "Subject"
+          },
+          "useInstead": {
+            "id": "https://my.authority/subject/2221",
+            "type": "Subject"
+          }
+        },
+        {
+          "summary": "Deprecate subject Barrage",
+          "type": "Deprecate",
+          "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd10-m3.json",
+          "published": "2022-02-04T15:04:19Z",
+          "object": {
+            "id": "https://my.authority/subject/1338",
+            "type": "Subject"
+          },
+          "useInstead": {
+            "id": "https://my.authority/subject/2221",
+            "type": "Subject"
+          }
+        }
+      ]
+    }
+  ]
+}

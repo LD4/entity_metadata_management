@@ -1,0 +1,18 @@
+{
+  "@context": {
+    "@vocab": "https://www.w3.org/ns/activitystreams",
+    "emm": "https://ld4.github.io/entity_metadata_management/0.1/context.json"
+  },
+  "summary": "Create name Alekseev, B. A. (Mechanical engineer)",
+  "type": "Create",
+  "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd9-s2.json",
+  "published": "2022-02-04T15:04:18Z",
+  "partOf": {
+    "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/document/cd9-split.json",
+    "type": "Split"
+  },
+  "object": {
+    "id": "https://my.authority/subject/2192",
+    "type": "Name"
+  }
+}
