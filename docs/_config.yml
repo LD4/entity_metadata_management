@@ -8,17 +8,3 @@ exclude:        [node_modules]
 sass:
   style:        compressed
   sass_dir:     _sass
-
-root_url:       https://entity-metadata-management.io
-
-navbar_menu:
-  - label: 'API'
-    link: '{{ site.root_url }}/api'
-  - label: 'Demos'
-    link: '{{ site.root_url }}/demos'
-
-footer_menu:
-  - label: 'API'
-    link: '{{ site.root_url }}/api'
-  - label: 'Demos'
-    link: '{{ site.root_url }}/demos'

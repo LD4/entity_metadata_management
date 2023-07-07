@@ -1,19 +1,17 @@
 ---
 title: Entity Metadata Management API 0.1
-permalink: api/0.1/recommendations.html
+permalink: 0.1/
 layout: spec
 cssversion: 3
-tags: [specifications, recommendations, api]
+tags: [specifications, api]
 major: 0
 minor: 0
 patch: 1
 pre: final
 redirect_from:
+  - /
   - /index.html
-  - /recommendations.html
-  - /api/
-  - /api/index.html
-  - /api/recommendations.html
+  - /0.1/index.html
 editors:
   - name: David Eichmann
     orcid: https://orcid.org/0000-0003-3150-8758
@@ -108,9 +106,9 @@ Three primary use cases were identified that drive the recommendations in this d
 #### 1.2.1. Entity Change Activities List
 {: #entity-change-activities-list}
 
-Entity metadata consumers want to learn of any modifications or deletions for entities on their interest list, as well as new entities. This allows for a comparison between the consumer's list and the provider's entity change activity list of modified and deleted entities. For any that overlap, the consumer will take additional actions if needed. 
+Entity metadata consumers want to learn of any modifications or deletions for entities on their interest list, as well as new entities. This allows for a comparison between the consumer's list and the provider's entity change activity list of modified and deleted entities. For any that overlap, the consumer will take additional actions if needed.
 
-To address this use case, the provider creates and makes available a list of activities with the URIs for any new, modified, or deleted entities. While the provider may have internal needs for tracking more than these three moments in an entity's lifecycle (e.g. if the provider workflow requires a review activity), this recommendation focuses on public changes to the dataset that may require action from a consumer. The consumer will need to take additional actions to identify specific changes to entities of interest. 
+To address this use case, the provider creates and makes available a list of activities with the URIs for any new, modified, or deleted entities. While the provider may have internal needs for tracking more than these three moments in an entity's lifecycle (e.g. if the provider workflow requires a review activity), this recommendation focuses on public changes to the dataset that may require action from a consumer. The consumer will need to take additional actions to identify specific changes to entities of interest.
 
 
 #### 1.2.2. Local Cache of Labels
@@ -635,7 +633,7 @@ A new entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} follo
 
 #### Create vs. Add
 
-An entity appearing in an _Entry Point_{:.term} stream for the first time _MUST_{:.strong-term} use _Activity_{:.term} type _Create_{:.term} and/or _Add_{:.term} 
+An entity appearing in an _Entry Point_{:.term} stream for the first time _MUST_{:.strong-term} use _Activity_{:.term} type _Create_{:.term} and/or _Add_{:.term}
 
 _Create_{:.term} _SHOULD_{:.strong-term} be used when the entity is new in the source dataset and available for use. A provider MUST NOT use _Create_{:.term} to broadcast that an entity exists unless it can be dereferenced at the entity URI. A Create activity indicates that the entity is new and available for use by consumers, see also _Add_{:.term} below.
 

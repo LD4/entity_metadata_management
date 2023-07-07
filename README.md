@@ -32,8 +32,8 @@ Option 1:
 Option 2:
 
 * Navigate to the page in GitHub.
-  * [Recommendations](https://github.com/LD4/entity_metadata_management/blob/main/docs/api/0.1/index.md)
-  * [Examples](https://github.com/LD4/entity_metadata_management/tree/main/docs/api/0.1/examples/my-collection) - multiple files under this directory
+  * [Recommendations](https://github.com/LD4/entity_metadata_management/blob/main/docs/0.1/index.md)
+  * [Examples](https://github.com/LD4/entity_metadata_management/tree/main/docs/0.1/examples/my-collection) - multiple files under this directory
 * Edit the page.
 * Commit changes
   * Set a title describing your change.
