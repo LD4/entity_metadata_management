@@ -79,18 +79,21 @@ __Previous Version:__ None
 
 The Entity Metadata Management API is intended to establish a pattern that supports sharing changes to entities and their metadata curated by Entity Metadata Providers with the community of Entity Metadata Consumers (e.g. libraries, museums, galleries, archives). Use of a consistent pattern allows for the creation of software tools for producing and consuming changes in entity metadata.
 
-The recommendations in this document leverage existing techniques, specifications, and tools in order to promote widespread adoption of an easy-to-implement service. The service describes changes to entity metadata and the location of those resources to harvest. Metadata providers can implement this API to record and publish a list of changes and incremental cache updates.
+
+This API specification leverages existing techniques, specifications, and tools in order to promote widespread adoption of an easy-to-implement service. The service describes changes to entity metadata and the location of those resources to harvest. Metadata providers can implement this API to record and publish a list of changes and incremental cache updates.
+
 
 ### 1.1. Objectives and Scope
 {: #objectives-and-scope}
 
-The objective of these recommendations is to provide a machine to machine API that provides the information needed to describe changes to entity metadata across the lifecycle of an entity. The intended audiences are Entity Metadata Providers who curate and publish entity metadata within an area of interest, Entity Metadata Consumers who use the entity metadata, and developers who create applications and tools that help consumers connect to entity metadata from providers. While this work may benefit others wanting to express changes in data, the objective of the API is to specify an interoperable solution that best and most easily fulfills the need to express and process changes in entity metadata within the community of participating organizations.
+The objective of this API specification is to provide a machine to machine API that provides the information needed to describe changes to entity metadata across the lifecycle of an entity. The intended audiences are Entity Metadata Providers who curate and publish entity metadata within an area of interest, Entity Metadata Consumers who use the entity metadata, and developers who create applications and tools that help consumers connect to entity metadata from providers. While this work may benefit others wanting to express changes in data, the objective of the API is to specify an interoperable solution that best and most easily fulfills the need to express and process changes in entity metadata within the community of participating organizations.
 
 The discovery of changes to entity metadata requires a consistent and well understood pattern for entity metadata providers to publish lists of links to entities that have metadata changes and details on changes that have occurred. Changes include newly available entities with metadata, removed entities, as well as, changes to entities and their metadata. This allows a baseline implementation of change management systems that process the list of changes.
 
 This process can be optimized by allowing the metadata providers to publish changes in chronological order including descriptions of how their entity descriptions have changed, enabling consuming systems to retrieve only the resources that have been modified since they were last retrieved.
 
-__Change Notifications__<br>These recommendations do not include a subscription mechanism for enabling change notifications to be pushed to remote systems. Only periodic polling for the set of changes that must be processed is supported. A subscription/notification pattern may be added in a future version after implementation experience with the polling pattern has demonstrated that it would be valuable.
+__Change Notifications__<br>This specification does not include a subscription mechanism for enabling change notifications to be pushed to remote systems. Only periodic polling for the set of changes that must be processed is supported. A subscription/notification pattern may be added in a future version after implementation experience with the polling pattern has demonstrated that it would be valuable.
+
 {: .warning}
 
 Work that is out of scope of this API includes the recommendation or creation of any descriptive metadata formats, and the recommendation or creation of metadata search APIs or protocols. The diverse domains represented across the entity metadata already have successful standards fulfilling these use cases. Also out of scope is optimization of the transmission mechanisms providing access points for consumers to query.
@@ -98,14 +101,15 @@ Work that is out of scope of this API includes the recommendation or creation of
 ### 1.2. Use Cases
 {: #use-cases}
 
-Three primary use cases were identified that drive the recommendations in this document. The use cases are listed from a simple change document with minimal information to a fully defined change document including details about what changed.
+
+Three primary use cases were identified that motivate this specification. The use cases are listed from a simple change document with minimal information to a fully defined change document including details about what changed.
 
 #### 1.2.1. Entity Change Activities List
 {: #entity-change-activities-list}
 
 Entity metadata consumers want to learn of any modifications or deletions for entities on their interest list, as well as new entities. This allows for a comparison between the consumer's list and the provider's entity change activity list of modified and deleted entities. For any that overlap, the consumer will take additional actions if needed.
 
-To address this use case, the provider creates and makes available a list of activities with the URIs for any new, modified, or deleted entities. While the provider may have internal needs for tracking more than these three moments in an entity's lifecycle (e.g. if the provider workflow requires a review activity), this recommendation focuses on public changes to the dataset that may require action from a consumer. The consumer will need to take additional actions to identify specific changes to entities of interest.
+To address this use case, the provider creates and makes available a list of activities with the URIs for any new, modified, or deleted entities. While the provider may have internal needs for tracking more than these three moments in an entity's lifecycle (e.g. if the provider workflow requires a review activity), this specification focuses on public changes to the dataset that may require action from a consumer. The consumer will need to take additional actions to identify specific changes to entities of interest.
 
 
 #### 1.2.2. Local Cache of Labels
@@ -135,7 +139,8 @@ TODO: Maybe put a list of providers in an appendix instead of here.
 {:.todo}
 
 * Entity Metadata Provider: An organization that collects, curates, and provides access to metadata about entities within an area of interest. The Library of Congress maintains several [entity sets](https://id.loc.gov/), including but not limited to, Library Subject Headings, Name Authority, Genres/Form Terms. The Getty maintains several [vocabularies](https://www.getty.edu/research/tools/vocabularies/index.html). There are many other providers.
-* Entity Metadata Consumer: Any institution that references or caches entity metadata from a provider. The use cases driving the recommendations were created from libraries, museums, galleries, and archives.
+
+* Entity Metadata Consumer: Any institution that references or caches entity metadata from a provider. The use cases driving this specification were drawn from workflows needed by libraries, museums, galleries, and archives.
 
 #### 1.3.2. Terms about Entities
 {: #terms-about-entities}
@@ -146,7 +151,8 @@ TODO: Maybe put a list of providers in an appendix instead of here.
 #### 1.3.3. Terms from Activity Streams
 {: #terms-from-activity-streams}
 
-This recommendation is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams] and uses the following key terms from Activity Streams:
+
+This specification is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams] and uses the following key terms from Activity Streams:
 
 * [Activity](https://www.w3.org/TR/activitystreams-core/#activity): `Activity` objects are used to describe an individual change to the metadata of an Entity Set. These often affect just one Entity but in the case of changes such as Entity merges and splits, more than one Entity may be involved and sometimes subordinate Actions.
 * [Collection](https://www.w3.org/TR/activitystreams-core/#collections): The entry point for all the information about changes to the metadata of an Entity Set is modeled as a Collection, using the [`OrderedCollection`](https://www.w3.org/TR/activitystreams-core/#dfn-orderedcollection) type to indicate that the activities in the collection are in time order.
@@ -157,7 +163,8 @@ Many properties from Activity Streams are used, and are described throughout thi
 #### 1.3.4. Terms from Specifications
 {: #terms-from-specifications}
 
-The recommendations use the following terms:
+
+This specification uses the following terms:
 
 * __HTTP(S)__: The HTTP or HTTPS URI scheme and internet protocol.
 * [Javascript Object Notation (JSON)][org-rfc-8259]: The terms _array_, _JSON object_, _number_, and _string_ in this document are to be interpreted as defined by the Javascript Object Notation (JSON) specification.
@@ -169,7 +176,7 @@ The recommendations use the following terms:
 ## 2. Architecture
 {: #architecture}
 
-This recommendation is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams]. Changes in entity metadata over time are communicated from providers to consumers via _Entity Change Activities_{:.term} that describe a change to an entity. These are collected together in _Change Set_{:.term} documents that are organized as shown in the diagram below.
+This specification is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams]. Changes in entity metadata over time are communicated from providers to consumers via _Entity Change Activities_{:.term} that describe a change to an entity. These are collected together in _Change Set_{:.term} documents that are organized as shown in the diagram below.
 
 <img src="{{site.baseurl}}/assets/images/figures/emm_architecture.png">
 
@@ -236,7 +243,8 @@ _Entity Metadata Management_{:.term} activity streams _MUST_{:.strong-term} incl
 }
 ```
 
-The _Entity Metadata Management_{:.term} context includes information for all parts of this recommendation and thus the same context definition is used in all API responses. The _Entity Metadata Management_{:.term} context imports the _Activity Stream_{:.term} [context][org-w3c-activitystreams-context-definition] and thus it is not necessarily to specify that explicitly in API responses.
+
+The _Entity Metadata Management_{:.term} context includes information for all parts of this specification and thus the same context definition is used in all API responses. The _Entity Metadata Management_{:.term} context imports the _Activity Stream_{:.term} [context][org-w3c-activitystreams-context-definition] and thus it is not necessarily to specify that explicitly in API responses.
 
 Implementations _MAY_{:.strong-term} include additional extension contexts, in which case the value of `@context` will be a list with the _Entity Metadata Management_{:.term} context first. Extension contexts _MUST NOT_{:.strong-term} override terms defined in the _Entity Metadata Management_{:.term} context or the underlying _Activity Stream_{:.term} context. Implementations _MAY_ also use additional properties and values not defined in a JSON-LD `@context` with the understanding that any such properties will likely be unsupported and ignored by consuming implementations that use the standard JSON-LD algorithms.
 
@@ -373,7 +381,7 @@ Each time a set of changes is published, changes _MUST_{:.strong-term} be releas
 
 Not all implementations will store every change for an entity over time. A _Collection_{:.term} _MAY_{:.strong-term} provide feeds of only the last known metadata update for each entity. In this case, because the _Collection_{:.term} is not persistent (meaning _Ordered Collection Pages_{:.term} are overwritten, providing only the latest updates), _Activities_{:.term} within the _Collection_{:.term} _MUST_{:.strong-term} include a date using the `updated` property because the page identifier cannot be used to know the last _Activities_{:.term} processed by a consumer.
 
-It is _RECOMMENDED_{:.strong-term} that change sets be published on a regular schedule. It is recognized that there are many factors that can impact this recommendation, including but not limited to, the volume of changes, the consistency of timing of changes, the tolerance of consumers for delays in the publication schedule, resources for producing _Change Sets_{:.term}.
+It is _RECOMMENDED_{:.strong-term} that change sets be published on a regular schedule. It is recognized that there are many factors that can impact implementation, including but not limited to, the volume of changes, the consistency of timing of changes, the tolerance of consumers for delays in the publication schedule, resources for producing _Change Sets_{:.term}.
 
 _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collection Page_{:.term} following the definition in the Activity Stream specification. The key points are repeated here with examples specific to Entity Metadata Management.
 
@@ -519,7 +527,7 @@ Properties shared across all _Entity Change Activity_{:.term} types are describe
 <a id="entity-change-activity-context" class="anchor-definition">
 __@context__
 
-Follow the recommendations for [@context](#entry-point-context) as described in the [Entry Point](#entry-point) section.
+See [@context](#entry-point-context) as described in the [Entry Point](#entry-point) section.
 
 <a id="entity-change-activity-summary" class="anchor-definition">
 __summary__
@@ -543,7 +551,7 @@ Reference:  [type][org-w3c-activitystreams-property-type] property definition
 
 Each _Entity Change Activity_{:.term} _MUST_{:.strong-term} have a _type_{:.term} property.
 
-The type is the one of a set of predefined _Entity Change Activity_{:.term} types. See [Types of Change](#type-of-change) section for a list of types and recommendations for the value of type for each activity type.
+The type is the one of a set of predefined _Entity Change Activity_{:.term} types. See [Types of Change](#type-of-change) section for a list of types and values for each activity type.
 
 ```json-doc
 { "type": "Create" }
@@ -1087,7 +1095,8 @@ Reference:  [updated][org-w3c-activitystreams-property-updated] property definit
 Reference:  [deleted][org-w3c-activitystreams-property-deleted] property definition
 {:.reference}
 
-TODO: Add discussion and reasoning for when to use each type of date. Still need to determine our recommendations around dates.
+
+TODO: Add discussion and reasoning for when to use each type of date. Still need to determine our guidance for dates.
 {:.todo}
 
 ### For Activities
@@ -1205,7 +1214,8 @@ Create an RDF patch for each change activity:
 
 ### 7.1 Example consuming Library of Congress Activity Stream
 
-_CAUTION: This section is under construction. This section may or may not be removed from the final draft, in lieu of, a section that is a general example based off the final recommendations._
+_CAUTION: This section is under construction. This section may or may not be removed from the final draft, in lieu of, a section that is a general example._
+
 {:.todo}
 
 Library of Congress provides an activity stream for several authorities (e.g. names, genre/forms, subjects, etc.).
@@ -1225,7 +1235,7 @@ Assumptions:
   * MUST include all triples where the entity is the subject (<entity_uri> <predicate> <object>)
   * MUST include all blanknodes, and related sub-graph, where the blanknode is the object and the entity is the subject (<entity_uri> <predicate> <_:b1>)
   * MAY include triples for entities that are external to the base datasource if the entity is not available in another activity stream
-* the activity MAY include another URL that derefences to a graph that
+  * The activity MAY include another URL that dereferences to a graph that
   * MAY include additional triple for other entities that are external to the base datasource that serve as object of the entity's triple (<entity_uri> <predicate> <another_entity_uri)
 
 _NOTE: A site may choose to use the second graph if they do not process other activity streams nor maintain their cache of each datasource in a separate triple store._
