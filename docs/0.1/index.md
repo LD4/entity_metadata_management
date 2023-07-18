@@ -154,7 +154,7 @@ TODO: Maybe put a list of providers in an appendix instead of here.
 
 This specification is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams] and uses the following key terms from Activity Streams:
 
-* [Activity](https://www.w3.org/TR/activitystreams-core/#activity): `Activity` objects are used to describe an individual change to the metadata of an Entity Set. These often affect just one Entity but in the case of changes such as Entity merges and splits, more than one Entity may be involved and sometimes subordinate Actions.
+* [Activity](https://www.w3.org/TR/activitystreams-core/#activity): `Activity` objects are used to describe an individual change to the metadata of an Entity Set. These often affect just one Entity but in the case of changes such as Entity merges and splits, more than one Entity may be involved and sometimes sequenced Actions.
 * [Collection](https://www.w3.org/TR/activitystreams-core/#collections): The entry point for all the information about changes to the metadata of an Entity Set is modeled as a Collection, using the [`OrderedCollection`](https://www.w3.org/TR/activitystreams-core/#dfn-orderedcollection) type to indicate that the activities in the collection are in time order.
 * [`OrderedCollectionPage`](https://www.w3.org/TR/activitystreams-core/#dfn-orderedcollectionpage): The completed `OrderedCollection` of changes is expressed as a set of `OrderedCollectionPage` to ensure that there are manageable chunks of change activities described even for large and long-running sets of updates.
 
@@ -764,6 +764,8 @@ An updated entity _SHOULD_{:.strong-term} have an [Entity Change Activity](#enti
 
 An updated entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [Update type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-update) in the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples specific to Entity Metadata Management.
 
+See [Deprecate Entity](#deprecate-entity) for more information on how to reflect updates involving entities that are replaced or merged into other entities.
+
 EXAMPLE Entity Change Activity for Update
 
 ```json-doc
@@ -869,7 +871,7 @@ EXAMPLE Entity Patch for Delete
 
 Deprecation indicates that an existing entity in the authority has been updated to reflect that it should no longer be used though the URI remains dereferencable reflecting the deprecation. Whenever possible, the entity description should indicate which entity should be used instead.
 
-There are two common scenarios. In the first, the replacement entity already exists and the deprecation updates the deprecated entity only. In the second scenario, the replacement entity does not exist prior to the deprecation. In this case, the replacement entity is created and the deprecation updates the deprecated entity.
+There are two common scenarios. In the first, the replacement entity already exists and the deprecation updates the deprecated entity only. In the second scenario, the replacement entity does not exist prior to the deprecation. In this case, the replacement entity is created and the status of the original entity is changed to deprecrated.
 
 An entity that has been deprecated _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-activity) with the _type_{:.term} `Deprecate`. The `Deprecate` activity _MUST_{:.strong-term} be implemented as either a single activity (when the entity that is replacing the deprecated entity already exists, or if the deprecated entity is not replaced), or two activities a `Create` activity for the replacement entity, and an `Deprecate` activity for the deprecated entity. Without an Entity Patch on the `Deprecate` activity, the consumer must dereference the deprecated entity URI to obtain the updated entity description including whether it was replaced by a new or existing entity.
 
@@ -940,127 +942,6 @@ EXAMPLE Entity Change Activity for Deprecate in the Scenario where a Replacement
 }
 ```
 
-### 5.5. Split Entity
-{: #split-entity}
-
-An entity that has been split into two or more new entities _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-activity) with the _type_{:.term} `Split`. The `Split` activity _MUST_{:.strong-term} be implemented using the `orderedItems` property with a sequence of activities that implement the split. This typically involves multiple `Create` activities for new entities created by the split, and deprecation of the original entity that was split through a `Deprecate` activity.
-
-EXAMPLE Entity Change Activity for Split
-
-```json-doc
-{
-  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
-  "summary": "Split cow milk into bovine milk and oxen milk",
-  "updated": "2021-08-02T16:59:54Z",
-  "type": "Split",
-  "id": "https://data.my.authority/change_documents/2021/activity-stream/cd51",
-  "partOf": {
-    "type": "OrderedCollectionPage",
-    "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
-  },
-  "totalItems": 3,
-  "orderedItems": [
-    {
-      "summary": "Create term bovine milk",
-      "type": "Create",
-      "object": {
-        "type": "Term",
-        "id": "http://my_repo/entity/bovine_milk"
-      },
-      "instrument": {
-        "type": "rdf_patch",
-        "id": "https://data.my.authority/change_documents/2021/activity-stream/cd51/instrument/1"
-      }
-    },
-    {
-      "summary": "Create term oxen milk",
-      "type": "Create",
-      "object": {
-        "type": "Term",
-        "id": "http://my_repo/entity/oxen_milk"
-      },
-      "instrument": {
-        "type": "rdf_patch",
-        "id": "https://data.my.authority/change_documents/2021/activity-stream/cd51/instrument/2"
-      }
-    },
-    {
-      "summary": "Deprecate term cow milk",
-      "type": "Deprecate",
-      "object": {
-        "type": "Term",
-        "id": "http://my_repo/entity/cow_milk"
-      },
-      "instrument": {
-        "type": "rdf_patch",
-        "id": "https://data.my.authority/change_documents/2021/activity-stream/cd51/instrument/3"
-      }
-    }
-  ]
-}
-```
-
-### 5.6. Merge Entities
-{: #merge-entity}
-
-Two or more entities that have been merged into one new entity _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-activity) with the _type_{:.term} `Merge`. The `Merge` activity _MUST_{:.strong-term} be implemented using the `orderedItems` property with a sequence of activities that implement the merge. This typically involves a `Create` activity for a new entity created by the merge, and deprecation of the original entities that were merged through `Deprecate` activities.
-
-EXAMPLE Entity Change Activity for Merge
-
-```json-doc
-{
-  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
-  "summary": "Merge bovine milk and oxen milk into cow milk",
-  "updated": "2021-08-02T16:59:54Z",
-  "type": "Merge",
-  "id": "https://data.my.authority/change_documents/2021/activity-stream/cd61",
-  "partOf": {
-    "type": "OrderedCollectionPage",
-    "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
-  },
-  "totalItems": 3,
-  "orderedItems": [
-    {
-      "summary": "Create term cow milk",
-      "type": "Create",
-      "object": {
-        "type": "Term",
-        "id": "http://my_repo/entity/cow_milk"
-      },
-      "instrument": {
-        "type": "rdf_patch",
-        "id": "https://data.my.authority/change_documents/2021/activity-stream/cd61/instrument/1"
-      }
-    },
-    {
-      "summary": "Deprecate term bovine milk",
-      "type": "Deprecate",
-      "object": {
-        "type": "Term",
-        "id": "http://my_repo/entity/bovine_milk"
-      },
-      "instrument": {
-        "type": "rdf_patch",
-        "id": "https://data.my.authority/change_documents/2021/activity-stream/cd61/instrument/2"
-      }
-    },
-    {
-      "summary": "Deprecate term oxen milk",
-      "type": "Deprecate",
-      "object": {
-        "type": "Term",
-        "id": "http://my_repo/entity/oxen_milk"
-      },
-      "instrument": {
-        "type": "rdf_patch",
-        "id": "https://data.my.authority/change_documents/2021/activity-stream/cd61/instrument/3"
-      }
-    }
-  ]
-}
-```
-
-
 ## 6. Producing Entity Change Sets
 {: #producing-entity-change-sets}
 
@@ -1122,7 +1003,7 @@ Record information about the entity and the changes
 * dereferencable URI for the entity in your system
 * summary description of change (e.g. Add term Science)
 * type of entity (e.g. Term, ...)
-* type of change (e.g. `Add`, `Remove`, `Update`, `Deprecate`, `Split`, `Merge`)
+* type of change (e.g. `Add`, `Remove`, `Update`, `Deprecate`)
 * RDF patch steps describing what was changed (optional, see note)
 
 NOTE: Storing RDF patch steps is optional for Activities. All changes are required for Incremental Updates and changes to labels are required for Label Changes.
