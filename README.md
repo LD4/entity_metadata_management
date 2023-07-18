@@ -6,7 +6,8 @@ not limited to, authoritative data, controlled vocabularies, bibliographic
 data, etc.. See:
 
 * [Entity Metadata Management API](https://ld4.github.io/entity_metadata_management/0.1/)
-* [Entity Metadata Management API JSON-LD context](https://github.com/LD4/entity_metadata_management/0.1/context.json)
+* [Entity Metadata Management API JSON-LD context](https://ld4.github.io/entity_metadata_management/0.1/context.json)
+
 
 ## Reference
 
@@ -32,7 +33,7 @@ Option 1:
 Option 2:
 
 * Navigate to the page in GitHub.
-  * [Recommendations](https://github.com/LD4/entity_metadata_management/blob/main/docs/0.1/index.md)
+  * [API specification](https://github.com/LD4/entity_metadata_management/blob/main/docs/0.1/index.md)
   * [Examples](https://github.com/LD4/entity_metadata_management/tree/main/docs/0.1/examples/my-collection) - multiple files under this directory
 * Edit the page.
 * Commit changes

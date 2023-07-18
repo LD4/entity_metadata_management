@@ -79,7 +79,9 @@ __Previous Version:__ None
 
 The Entity Metadata Management API is intended to establish a pattern that supports sharing changes to entities and their metadata curated by Entity Metadata Providers with the community of Entity Metadata Consumers (e.g. libraries, museums, galleries, archives). Use of a consistent pattern allows for the creation of software tools for producing and consuming changes in entity metadata.
 
+
 This API specification leverages existing techniques, specifications, and tools in order to promote widespread adoption of an easy-to-implement service. The service describes changes to entity metadata and the location of those resources to harvest. Metadata providers can implement this API to record and publish a list of changes and incremental cache updates.
+
 
 ### 1.1. Objectives and Scope
 {: #objectives-and-scope}
@@ -91,12 +93,14 @@ The discovery of changes to entity metadata requires a consistent and well under
 This process can be optimized by allowing the metadata providers to publish changes in chronological order including descriptions of how their entity descriptions have changed, enabling consuming systems to retrieve only the resources that have been modified since they were last retrieved.
 
 __Change Notifications__<br>This specification does not include a subscription mechanism for enabling change notifications to be pushed to remote systems. Only periodic polling for the set of changes that must be processed is supported. A subscription/notification pattern may be added in a future version after implementation experience with the polling pattern has demonstrated that it would be valuable.
+
 {: .warning}
 
 Work that is out of scope of this API includes the recommendation or creation of any descriptive metadata formats, and the recommendation or creation of metadata search APIs or protocols. The diverse domains represented across the entity metadata already have successful standards fulfilling these use cases. Also out of scope is optimization of the transmission mechanisms providing access points for consumers to query.
 
 ### 1.2. Use Cases
 {: #use-cases}
+
 
 Three primary use cases were identified that motivate this specification. The use cases are listed from a simple change document with minimal information to a fully defined change document including details about what changed.
 
@@ -135,6 +139,7 @@ TODO: Maybe put a list of providers in an appendix instead of here.
 {:.todo}
 
 * Entity Metadata Provider: An organization that collects, curates, and provides access to metadata about entities within an area of interest. The Library of Congress maintains several [entity sets](https://id.loc.gov/), including but not limited to, Library Subject Headings, Name Authority, Genres/Form Terms. The Getty maintains several [vocabularies](https://www.getty.edu/research/tools/vocabularies/index.html). There are many other providers.
+
 * Entity Metadata Consumer: Any institution that references or caches entity metadata from a provider. The use cases driving this specification were drawn from workflows needed by libraries, museums, galleries, and archives.
 
 #### 1.3.2. Terms about Entities
@@ -146,6 +151,7 @@ TODO: Maybe put a list of providers in an appendix instead of here.
 #### 1.3.3. Terms from Activity Streams
 {: #terms-from-activity-streams}
 
+
 This specification is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams] and uses the following key terms from Activity Streams:
 
 * [Activity](https://www.w3.org/TR/activitystreams-core/#activity): `Activity` objects are used to describe an individual change to the metadata of an Entity Set. These often affect just one Entity but in the case of changes such as Entity merges and splits, more than one Entity may be involved and sometimes subordinate Actions.
@@ -156,6 +162,7 @@ Many properties from Activity Streams are used, and are described throughout thi
 
 #### 1.3.4. Terms from Specifications
 {: #terms-from-specifications}
+
 
 This specification uses the following terms:
 
@@ -235,6 +242,7 @@ _Entity Metadata Management_{:.term} activity streams _MUST_{:.strong-term} incl
   // rest of API response
 }
 ```
+
 
 The _Entity Metadata Management_{:.term} context includes information for all parts of this specification and thus the same context definition is used in all API responses. The _Entity Metadata Management_{:.term} context imports the _Activity Stream_{:.term} [context][org-w3c-activitystreams-context-definition] and thus it is not necessarily to specify that explicitly in API responses.
 
@@ -1087,6 +1095,7 @@ Reference:  [updated][org-w3c-activitystreams-property-updated] property definit
 Reference:  [deleted][org-w3c-activitystreams-property-deleted] property definition
 {:.reference}
 
+
 TODO: Add discussion and reasoning for when to use each type of date. Still need to determine our guidance for dates.
 {:.todo}
 
@@ -1206,6 +1215,7 @@ Create an RDF patch for each change activity:
 ### 7.1 Example consuming Library of Congress Activity Stream
 
 _CAUTION: This section is under construction. This section may or may not be removed from the final draft, in lieu of, a section that is a general example._
+
 {:.todo}
 
 Library of Congress provides an activity stream for several authorities (e.g. names, genre/forms, subjects, etc.).
@@ -1225,7 +1235,7 @@ Assumptions:
   * MUST include all triples where the entity is the subject (<entity_uri> <predicate> <object>)
   * MUST include all blanknodes, and related sub-graph, where the blanknode is the object and the entity is the subject (<entity_uri> <predicate> <_:b1>)
   * MAY include triples for entities that are external to the base datasource if the entity is not available in another activity stream
-* the activity MAY include another URL that dereferences to a graph that
+  * The activity MAY include another URL that dereferences to a graph that
   * MAY include additional triple for other entities that are external to the base datasource that serve as object of the entity's triple (<entity_uri> <predicate> <another_entity_uri)
 
 _NOTE: A site may choose to use the second graph if they do not process other activity streams nor maintain their cache of each datasource in a separate triple store._
