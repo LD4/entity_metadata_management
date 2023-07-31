@@ -154,7 +154,7 @@ TODO: Maybe put a list of providers in an appendix instead of here.
 
 This specification is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams] and uses the following key terms from Activity Streams:
 
-* [Activity](https://www.w3.org/TR/activitystreams-core/#activity): `Activity` objects are used to describe an individual change to the metadata of an Entity Set. These often affect just one Entity but in the case of changes such as Entity merges and splits, more than one Entity may be involved and sometimes sequenced Actions.
+* [Activity](https://www.w3.org/TR/activitystreams-core/#activity): `Activity` objects are used to describe an individual change to the metadata of an Entity Set. These often affect just one Entity but in some cases more than one Entity may be affected by related changes that are reflected in multiple sequenced Activities.
 * [Collection](https://www.w3.org/TR/activitystreams-core/#collections): The entry point for all the information about changes to the metadata of an Entity Set is modeled as a Collection, using the [`OrderedCollection`](https://www.w3.org/TR/activitystreams-core/#dfn-orderedcollection) type to indicate that the activities in the collection are in time order.
 * [`OrderedCollectionPage`](https://www.w3.org/TR/activitystreams-core/#dfn-orderedcollectionpage): The completed `OrderedCollection` of changes is expressed as a set of `OrderedCollectionPage` to ensure that there are manageable chunks of change activities described even for large and long-running sets of updates.
 
@@ -764,7 +764,7 @@ An updated entity _SHOULD_{:.strong-term} have an [Entity Change Activity](#enti
 
 An updated entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [Update type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-update) in the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples specific to Entity Metadata Management.
 
-See [Deprecate Entity](#deprecate-entity) for more information on how to reflect updates involving entities that are replaced or merged into other entities.
+Examples of updates in the library domain include splits and merges. See the [Deprecate Entity](#deprecate-entity) below for an illustration of how you can reflect these scenarios without explicitly typing them as splits or merge activities using a sequence of related activities.
 
 EXAMPLE Entity Change Activity for Update
 
