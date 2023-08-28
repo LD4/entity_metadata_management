@@ -200,11 +200,6 @@ The Entry Point _MUST_{:.strong-term} be implemented as an _Ordered Collection_{
 
 #### FULL EXAMPLE for Entry Point:
 
-QUESTION: should the example include published for first?
-{:.todo}
-QUESTION: should the example include published for last?
-{:.todo}
-
 ```json-doc
 {
   "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
@@ -214,13 +209,11 @@ QUESTION: should the example include published for last?
   "url": "https://my.authority/2021-01-01/full_download",
   "first": {
     "type": "OrderedCollectionPage",
-    "id": "https://data.my.authority/change_documents/2021/activity-stream/page/1",
-    "published": "2021-01-01T05:00:01Z"
+    "id": "https://data.my.authority/change_documents/2021/activity-stream/page/1"
   },
   "last": {
     "type": "OrderedCollectionPage",
-    "id": "https://data.my.authority/change_documents/2021/activity-stream/page/12",
-    "published": "2021-08-27T05:00:01Z"
+    "id": "https://data.my.authority/change_documents/2021/activity-stream/page/12"
   },
   "totalItems": 123
 }
@@ -324,8 +317,7 @@ The _Entry Point_{:.term} _MUST_{:.strong-term} have a _first_{:.term} property.
 {
   "first": {
     "type": "OrderedCollectionPage",
-    "id": "https://data.my.authority/change_documents/2021/activity-stream/page/1",
-    "published": "2021-01-01T05:00:01Z"
+    "id": "https://data.my.authority/change_documents/2021/activity-stream/page/1"
   }  
 }
 ```
@@ -346,8 +338,7 @@ The _Entry Point_{:.term} _MUST_{:.strong-term} have a _last_{:.term} property. 
 {
   "last": {
     "type": "OrderedCollectionPage",
-    "id": "https://data.my.authority/change_documents/2021/activity-stream/page/12",
-    "published": "2021-08-27T05:00:01Z"
+    "id": "https://data.my.authority/change_documents/2021/activity-stream/page/12"
   }
 }
 ```
@@ -379,8 +370,6 @@ Each time a set of changes is published, changes _MUST_{:.strong-term} be releas
   * The _Activities_{:.term} within a _Change Set_{:.term} _MUST_{:.strong-term} be sorted in date-time order in the `orderedItems` array. The _Activities_{:.term} _MAY_{:.strong-term} be in ascending or descending order, but the order _MUST_{:.strong-term} be consistent within the _Collection_{:.term}.
   * Where there are multiple _Change Sets_{:.term}, these sets _MUST_{:.strong-term} be arranged in ascending or descending date-time order, consistent with the _Activity_{:.term} ordering within each _Change Set_{:.term}.
 
-Not all implementations will store every change for an entity over time. A _Collection_{:.term} _MAY_{:.strong-term} provide feeds of only the last known metadata update for each entity. In this case, because the _Collection_{:.term} is not persistent (meaning _Ordered Collection Pages_{:.term} are overwritten, providing only the latest updates), _Activities_{:.term} within the _Collection_{:.term} _MUST_{:.strong-term} include a date using the `updated` property because the page identifier cannot be used to know the last _Activities_{:.term} processed by a consumer.
-
 It is _RECOMMENDED_{:.strong-term} that change sets be published on a regular schedule. It is recognized that there are many factors that can impact implementation, including but not limited to, the volume of changes, the consistency of timing of changes, the tolerance of consumers for delays in the publication schedule, resources for producing _Change Sets_{:.term}.
 
 _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collection Page_{:.term} following the definition in the Activity Stream specification. The key points are repeated here with examples specific to Entity Metadata Management.
@@ -399,48 +388,42 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
   "totalItems": 2,
   "prev": {
     "id": "https://data.my.authority/change_documents/2021/activity-stream/page/1",
-    "type": "OrderedCollectionPage",
-    "published": "2021-01-01T05:00:01Z"
+    "type": "OrderedCollectionPage"
   },
   "next": {
     "id": "https://data.my.authority/change_documents/2021/activity-stream/page/3",
-    "type": "OrderedCollectionPage",
-    "published": "2021-03-01T05:00:01Z"
+    "type": "OrderedCollectionPage"
   },
   "orderedItems": [
     {
       "type": "Create",
       "id": "https://data.my.authority/change_documents/2021/activity-stream/cd1",
-      "updated": "2021-02-01T15:04:22Z",
+      "published": "2021-02-01T15:04:22Z",
       "object": {
         "id": "https://my.authority/term/milk",
-        "type": "Term"
+        "type": "Term",
+        "updated": "2021-02-01T15:04:22Z"
       }
     },
     {
-      "type": "Delete",
+      "type": "Create",
       "id": "https://data.my.authority/change_documents/2021/activity-stream/cd2",
-      "updated": "2021-02-01T17:11:03Z",
-      "orderedItems": [
-        {
-          "id": "https://data.my.authority/change_documents/2021/activity-stream/cd3",
-          "type": "Create",
-          "updated": "2021-02-01T17:11:03Z",
-          "object": {
-            "id": "https://my.authority/term/bovine_milk",
-            "type": "Term"
-          }
-        },
-        {
-          "id": "https://data.my.authority/change_documents/2021/activity-stream/cd4",
-          "type": "Update",
-          "updated": "2021-02-01T17:11:03Z",
-          "object": {
-            "id": "https://my.authority/term/cow_milk",
-            "type": "Term"
-          }
-        }
-      ]
+      "published": "2021-02-01T17:11:03Z",
+      "object": {
+        "id": "https://my.authority/term/bovine_milk",
+        "type": "Term",
+        "updated": "2021-02-01T17:11:03Z"
+      }
+    },
+    {
+      "type": "Deprecate",
+      "id": "https://data.my.authority/change_documents/2021/activity-stream/cd2",
+      "published": "2021-02-01T17:11:03Z",
+      "object": {
+        "id": "https://my.authority/term/cow_milk",
+        "type": "Term",
+        "updated": "2021-02-01T17:11:03Z"
+      }
     }
   ]
 }
@@ -500,7 +483,11 @@ The structures described in this section are used in the _orderedItems_{:.term} 
 Reference:  [Activity][org-w3c-activitystreams-coretype-activity] in the [Activity Stream specification][org-w3c-activitystreams]
 {:.reference}
 
-A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Activity_{:.term}. An _Entity Change Activity_{:.term} _MUST_{:.strong-term} be implemented as an [Activity Streams][org-w3c-activitystreams] [`Activity`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-activity). The activity _MUST_{:.strong-term} provide information about the type of change and the entity or entities changed. It _MAY_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset. This level is sufficient to address the [Entity Change Activities List](#entity-change-activities-list) use case.
+A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Activity_{:.term}. An _Entity Change Activity_{:.term} _MUST_{:.strong-term} be implemented as an [Activity Streams][org-w3c-activitystreams] [`Activity`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-activity). The activity _MUST_{:.strong-term} provide information about the type of change and the entity or entities changed. It _MAY_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset. 
+
+Not all implementations will store every change for an entity over time. A _Collection_{:.term} _MAY_{:.strong-term} provide feeds of only the last known metadata update for each entity. In the case where the _Collection_ provides feeds of only the last known metadata update for each entity case, the page identifier cannot be used to know the last _Activities_{:.term} processed by a consumer. For this reason the _Activities_{:.term} within the _Collection_{:.term} _MUST_ have a date property and _SHOULD_{:.strong-term} include the date using the `published` property. The `updated` property _SHOULD_ be used on the _Object_{:.term} for when the entity actually occurred.
+
+This level is sufficient to address the [Entity Change Activities List](#entity-change-activities-list) use case.
 
 #### FULL EXAMPLE for Entity Change Activity:
 
@@ -508,7 +495,7 @@ A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Cha
 {
   "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   "summary": "Add entity for subject Science",
-  "updated": "2021-08-02T16:59:54Z",
+  "published": "2021-08-02T16:59:54Z",
   "type": "Add",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11",
   "partOf": {
@@ -517,7 +504,8 @@ A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Cha
   },
   "object": {
     "type": "Subject",
-    "id": "http://my_repo/entity/science"
+    "id": "http://my_repo/entity/science",
+    "updated": "2021-08-02T16:59:54Z"
   }
 }
 ```
@@ -654,7 +642,7 @@ Complete Example
 {
   "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   "summary": "New entity for term milk",
-  "updated": "2021-08-02T16:59:54Z",
+  "published": "2021-08-02T16:59:54Z",
   "type": "Create",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11",
   "partOf": {
@@ -663,7 +651,8 @@ Complete Example
   },
   "object": {
     "type": "Term",
-    "id": "http://my_repo/entity/cow_milk"
+    "id": "http://my_repo/entity/cow_milk",
+    "updated": "2021-08-02T16:59:54Z"
   },
   "instrument":
   {
@@ -772,7 +761,7 @@ EXAMPLE Entity Change Activity for Update
 {
   "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   "summary": "Update entity term milk",
-  "updated": "2021-08-02T16:59:54Z",
+  "published": "2021-08-02T16:59:54Z",
   "type": "Update",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/cd31",
   "partOf": {
@@ -781,7 +770,8 @@ EXAMPLE Entity Change Activity for Update
   },
   "object": {
     "type": "Term",
-    "id": "http://my_repo/entity/milk"
+    "id": "http://my_repo/entity/milk",
+    "updated": "2021-08-02T16:59:54Z"
   },
   "instrument": {
     "type": "rdf_patch",
@@ -823,7 +813,7 @@ EXAMPLE Entity Change Activity for Delete
 {
   "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   "summary": "Delete term cow_milk",
-  "updated": "2021-08-02T16:59:54Z",
+  "published": "2021-08-02T16:59:54Z",
   "type": "Delete",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/cd21",
   "partOf": {
@@ -832,7 +822,8 @@ EXAMPLE Entity Change Activity for Delete
   },
   "object": {
     "type": "Term",
-    "id": "http://my_repo/entity/cow_milk"
+    "id": "http://my_repo/entity/cow_milk",
+    "updated": "2021-08-02T16:59:54Z"
   },
   "instrument": {
     "type": "rdf_patch",
@@ -881,7 +872,7 @@ EXAMPLE Entity Change Activity for Deprecate in the Scenario where a Replacement
 {
   "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   "summary": "Deprecate term cow milk",
-  "updated": "2021-08-02T16:59:57Z",
+  "published": "2021-08-02T16:59:57Z",
   "type": "Deprecate",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/cd47",
   "partOf": {
@@ -889,8 +880,9 @@ EXAMPLE Entity Change Activity for Deprecate in the Scenario where a Replacement
     "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
   },
   "object": {
-     "type": "Term",
-     "id": "http://my_repo/entity/cow_milk"
+    "type": "Term",
+    "id": "http://my_repo/entity/cow_milk",
+    "updated": "2021-08-02T16:59:57Z"
   },
   "instrument": {
     "type": "rdf_patch",
@@ -902,44 +894,36 @@ EXAMPLE Entity Change Activity for Deprecate in the Scenario where a Replacement
 EXAMPLE Entity Change Activity for Deprecate in the Scenario where a Replacement Entity is Created
 
 ```json-doc
-{
-  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
-  "summary": "Create term bovine milk and Deprecate term cow milk",
-  "updated": "2021-08-02T16:59:54Z",
-  "type": "Deprecate",
-  "id": "https://data.my.authority/change_documents/2021/activity-stream/cd42",
-  "partOf": {
-    "type": "OrderedCollectionPage",
-    "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
-  },
-  "totalItems": 2,
-  "orderedItems": [
-    {
-      "summary": "Create term bovine milk",
-      "type": "Create",
-      "object": {
-        "type": "Term",
-        "id": "http://my_repo/entity/bovine_milk"
-      },
-      "instrument": {
-        "type": "rdf_patch",
-        "id": "https://data.my.authority/change_documents/2021/activity-stream/cd42/instrument/1"
-      }
+[
+  {
+    "type": "Create",
+    "id": "https://data.my.authority/change_documents/2021/activity-stream/cd2",
+    "published": "2021-02-01T17:11:03Z",
+    "object": {
+      "id": "https://my.authority/term/bovine_milk",
+      "type": "Term",
+      "updated": "2021-02-01T17:11:03Z"
     },
-    {
-      "summary": "Deprecate term cow milk",
-      "type": "Update",
-      "object": {
-        "type": "Term",
-        "id": "http://my_repo/entity/cow_milk"
-      },
-      "instrument": {
-        "type": "rdf_patch",
-        "id": "https://data.my.authority/change_documents/2021/activity-stream/cd42/instrument/2"
-      }
+    "instrument": {
+      "type": "rdf_patch",
+      "id": "https://data.my.authority/change_documents/2021/activity-stream/cd42/instrument/2"
     }
-  ]
-}
+  },
+  {
+    "type": "Deprecate",
+    "id": "https://data.my.authority/change_documents/2021/activity-stream/cd2",
+    "published": "2021-02-01T17:11:03Z",
+    "object": {
+      "id": "https://my.authority/term/cow_milk",
+      "type": "Term",
+      "updated": "2021-02-01T17:11:03Z"
+    },
+    "instrument": {
+      "type": "rdf_patch",
+      "id": "https://data.my.authority/change_documents/2021/activity-stream/cd42/instrument/2"
+    }
+  }
+]
 ```
 
 ## 6. Producing Entity Change Sets
@@ -960,25 +944,6 @@ Considerations for this decision:
 * How often does you data change?
 * How much of your data typically changes during a time interval?
 * What is the tolerance of consumers for delays before a change is available?
-
-##### What date property to use?
-
-Reference:  [Date and Times][org-w3c-activitystreams-core-datetime]
-{:.reference}
-Reference:  [endTime][org-w3c-activitystreams-property-endtime] property definition
-{:.reference}
-Reference:  [startTime][org-w3c-activitystreams-property-starttime] property definition
-{:.reference}
-Reference:  [published][org-w3c-activitystreams-property-published] property definition
-{:.reference}
-Reference:  [updated][org-w3c-activitystreams-property-updated] property definition
-{:.reference}
-Reference:  [deleted][org-w3c-activitystreams-property-deleted] property definition
-{:.reference}
-
-
-TODO: Add discussion and reasoning for when to use each type of date. Still need to determine our guidance for dates.
-{:.todo}
 
 ### For Activities
 
@@ -1021,7 +986,6 @@ Determine URIs for new and existing objects that will be referenced in various p
 
 Create the change set:
 * set `id` property to `change_set_uri`
-* set `published` property to the datetime this change set will become public
 * set `partOf` property to use `entry_point_uri` for `id`
 * set `prev` property to use `prev_change_set_uri` for `id`
 * set `totalItems` property to the number of change activities that will be in this change set
@@ -1030,7 +994,7 @@ Create the change set:
   * set `id` property to the `change_activity_uri` for this change
   * set a date
     * the `published` property to the datetime the change set is being published
-    * the `endDate` property to the datetime the change was completed in the system of record
+    * the `updated` property to the datetime the change was completed in the system of record
   * set `object` to use `entity_uri` for `id`
 
 Update previous change set:
@@ -1040,11 +1004,11 @@ Update entry point:
 * if this is the first change set published for an entry point, add the `first` property in the entry point with
     * set `type` property to `OrderCollectionPage`
     * set `id` property to the _URI resolving to the new change set_
-    * set `published` property to the  _datetime the change set is published_
+    * set `published` property to Activities for the _datetime the change set is published_
 * add or update the `last` property in the entry point
     * set `type` property to `OrderCollectionPage`
     * set `id` property to the _URI resolving to the new change set_
-    * set `published` property to the _datetime the change set is published_
+    * set `published` property to Activities for the _datetime the change set is published_
 
 Create each change activity:
 * create a change activity using the information saved as changes were created
