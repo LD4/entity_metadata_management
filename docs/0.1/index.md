@@ -178,7 +178,8 @@ This specification uses the following terms:
 
 This specification is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams]. Changes in entity metadata over time are communicated from providers to consumers via _Entity Change Activities_{:.term} that describe a change to an entity. These are collected together in _Change Set_{:.term} documents that are organized as shown in the diagram below.
 
-<img src="{{site.baseurl}}/assets/images/figures/emm_architecture.png">
+### Entity Metadata Management API Architecture representing changes using Activity Streams
+<img src="{{site.baseurl}}/assets/images/figures/EMM_API_Architecture.png">
 
 ### 2.1. JSON-LD Representation
 
