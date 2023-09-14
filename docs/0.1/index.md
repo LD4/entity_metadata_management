@@ -927,132 +927,88 @@ EXAMPLE Entity Change Activity for Deprecate in the Scenario where a Replacement
 ]
 ```
 
-## 6. Producing Entity Change Sets
-{: #producing-entity-change-sets}
+## 6. Provider Workflows
+{: #provider-workflows}
 
-Refer to individual sections for detailed examples of all structures being created by these steps.
-{:.info}
+The section describes how an Entity Metadata Provider can implement this specification to allow consumer to follow changes in a set of entities they manage.
 
-#### Decision points
+### 6.1 Provider Decisions
 
-##### When to release
+The choice of how often to create new Change Sets will depend upon how frequently entities are updated, expected needs of consumers for timely updates, resource constraints, and likely other local consideration. Two common approaches are to create Change Sets at predetermined time intervals (e.g. hourly, nightly, weekly, monthly), or after a certain number of changes have occurred (e.g. 10, 20, 100, 500 changes).
 
-How often do you want to create change sets?  Some common approaches are:
-* at predetermined time intervals (e.g. hourly, nightly, weekly, monthly, quarterly)
-* after a certain number of changes have occurred (e.g. 10, 20, 50, 100, 500 changes)
+The [Local Cache of Labels](#local-cache-of-labels) and [Local Cache of Full Dataset](#local-cache-of-full-dataset) use cases require the consumer to be able to download a copy of all entities in the dataset before following changes. Coordination of snapshots with the production of Changes Sets will make this easier.
 
-Considerations for this decision:
-* How often does you data change?
-* How much of your data typically changes during a time interval?
-* What is the tolerance of consumers for delays before a change is available?
+Support for RDF patches to efficiently convey changes is optional.
 
-### For Activities
+### 6.2 Creating Full Downloads
 
-QUESTION: Should each place that talks about a part of the feed include a link into the examples of that part?  For example, include link to Entry Point in the instructions to create it; a link to a Change Set when it is created; etc. OR as is done here, a link at the top of the section to the entry point for the use case being described.
-{:.todo}
+When a full download of the dataset is created, the producer should:
 
-[Live Example of an Activity Entry Point][emm-change-api-example-activities]
+* If already creating Change Sets, write any unrecorded entity changes to a last [Change Set](#change-set) before the snapshot.
+* Record the datetime when the snapshot for the download was taken.
+* On the human-readable download page, include a link to the download file and indicate the datatime of creation.
+* Create or update the [Entry Point](#entry-point) to include the new download in the `url` property.
 
-#### When a full download of the dataset is created
+### 6.3 Creating Change Sets
 
-* Note the datetime when the snapshot for the download was taken.
-* On your download page, include a link to the download file.
-* Beside the download link, mark the datetime stamp.
-* Create an entry point.
+The provider must record information about changes in the Entity Set as they occur, then at some point write a Change Set and make accompanying changes to the Entry Point.
 
-#### As changes are made to the dataset
+#### Recording Changes Made to the Entity Set
 
-TODO: What entity types do we want to list?  These aren't formally defined.
-{:.todo}
+For each change in an Entity Set, the provider must record all information necessary to write the Activity entry in a Change Set. This includes:
+* The dereferencable URI for the entity
+* The `type` of entity (e.g. `http://vocab.getty.edu/ontology#Subject`)
+* The Activity `type` of change (e.g. `Add`, `Update`, `Deprecate`)
+* The datetime of the change to the entity
+* A recommended summary description of change (e.g. "Add term Science")
+* Optionally, the RDF patch describing the change in the entity RDF
 
-Record information about the entity and the changes
-* dereferencable URI for the entity in your system
-* summary description of change (e.g. Add term Science)
-* type of entity (e.g. Term, ...)
-* type of change (e.g. `Add`, `Remove`, `Update`, `Deprecate`)
-* RDF patch steps describing what was changed (optional, see note)
+#### Publishing a Change Set
 
-NOTE: Storing RDF patch steps is optional for Activities. All changes are required for Incremental Updates and changes to labels are required for Label Changes.
-{:.info}
+After some time recording changes, a provider publishes a new Change Set linked from an Entry Point. Several URIs for new and existing objects will be referenced in the algorithm below:
+* _entry_point_uri_ - the URI of the newly created or existing Entry Point
+* _prev_change_set_uri_ - the previous Change Set URI in the Entry Point's `last` property
+* _change_set_uri_ - the new URI that will resolve to the new Change Set
 
-#### When ready to publish a change set
+and for each change recorded:
+* _entity_uri_ - the URI of the entity changed
+* _change_activity_uri_ - the new URI that will resolve to the new  Entity Change Activity describing the change
+* _change_rdf_patch_uri_ - optionally, the new URI that will resolve to the new RDF patch describing the change
 
-Determine URIs for new and existing objects that will be referenced in various properties:
-* `entry_point_uri` = get the URI of the newly created or existing entry point
-* `prev_change_set_uri` = get the previous change set URI from the entry point's `last` property
-* `change_set_uri` = determine URI that will resolve to the change set
-* `entity_uri` = the dereferencable URI for the entity that return the entity graph
-* `change_activity_uri` = determine URI that will resolve to each entity change activity
-* `change_rdf_patch_uri` = determine URI that will resolve to the instrument holding the RDF patch for each activity
+With these URIs the new [Change Set](#change-set) can be created as follows:
+* set the `id` property to _change_set_uri_
+* set the `partOf` property to use _entry_point_uri_ for `id`
+* set the `prev` property to use _prev_change_set_uri_ for `id`
+* set the `totalItems` property to the number of change activities that will be in this change set
+* for each change, from oldest to newest or newest to oldest, add an Activity to the `orderedItems` property array, and:
+    * set the `type` property to the change type (e.g. `Add`, `Update`, etc.)
+    * set the `id` property to the _change_activity_uri_ for this change
+    * set the `published` property to the datetime the change set is being published
+    * set the `object` property to be a JSON object with the following properties:
+        * set the `id` property to the _entity_uri_
+        * set the `type` property to the entity type
+        * set the `updated` property to the datetime of the change to the entity
+        * set the `summary` property to the human readable description of the change
+    * if RDF patch is supported, set the `instrument` proporty to be a JSON object with the following properties:
+        * set the `type` property to the string `rdf_patch`
+        * set the `id` property to the _change_rdf_patch_uri_
 
-Create the change set:
-* set `id` property to `change_set_uri`
-* set `partOf` property to use `entry_point_uri` for `id`
-* set `prev` property to use `prev_change_set_uri` for `id`
-* set `totalItems` property to the number of change activities that will be in this change set
-* for each change activity from oldest to newest or newest to oldest, add it to the `orderedItems` property array
-  * set `type` property to the change type (e.g. `Add`, `Remove`, etc.)
-  * set `id` property to the `change_activity_uri` for this change
-  * set a date
-    * the `published` property to the datetime the change set is being published
-    * the `updated` property to the datetime the change was completed in the system of record
-  * set `object` to use `entity_uri` for `id`
+Update the previous Change Set:
+* add a `next` property that points to the new Change Set
 
-Update previous change set:
-* add a `next` property that points to the new change set
+Update the Entry Point:
+* if this is the first Change Set published, add the `first` property in the entry point with:
+    * set the `type` property to `OrderCollectionPage`
+    * set the `id` property to the _change_set_uri_
+    * set the `published` property to the datetime the Change Set is being published
+* add or update the `last` property in the Entry Point:
+    * set the `type` property to `OrderCollectionPage`
+    * set the `id` property to the _change_set_uri_
+    * set the `published` property to the datetime the Change Set is being published
 
-Update entry point:
-* if this is the first change set published for an entry point, add the `first` property in the entry point with
-    * set `type` property to `OrderCollectionPage`
-    * set `id` property to the _URI resolving to the new change set_
-    * set `published` property to Activities for the _datetime the change set is published_
-* add or update the `last` property in the entry point
-    * set `type` property to `OrderCollectionPage`
-    * set `id` property to the _URI resolving to the new change set_
-    * set `published` property to Activities for the _datetime the change set is published_
+For each change create a separate [Entity Change Activity](#entity-change-activities) document at the _change_activity_uri_ with the same information used in the Change Set.
 
-Create each change activity:
-* create a change activity using the information saved as changes were created
-
-### For Label Changes
-
-[Live Example of Label Changes Entry Point][emm-change-api-example-partialcache]
-
-The process for creating Label Changes is the same as for Activities with a few additional steps noted in this section if RDF patches are implemented.
-
-#### As changes are made to the dataset
-
-Record all the information listed under Entity Change Activity and also:
-* RDF patch steps describing the label changes
-
-#### When ready to publish a change set
-
-Create the change set as described for Entity Change Activities and also:
-* for each change activity:
-    * set `instrument` property to use `change_rdf_patch_uri` for `id`
-
-Create an RDF patch for each change activity:
-* record the RDF patch statements in the order that they need to be applied to recreate the label changes to an entity
-
-### For Incremental Updates
-
-[Live Example of Incremental Updates Entry Point][emm-change-api-example-fullcache]
-
-The process for creating Incremental Updates is the same as for Activities with a few additional steps noted in this section if RDF patches are implemented.
-
-#### As changes are made to the dataset
-
-Record all the information listed under Entity Change Activity and also:
-* RDF patch steps describing what was changed
-
-#### When ready to publish a change set
-
-Create the change set as described for Entity Change Activities and also:
-* for each change activity:
-    * set `instrument` property to use `change_rdf_patch_uri` for `id`
-
-Create an RDF patch for each change activity:
-* record the RDF patch statements in the order that they need to be applied to recreate the changes to an entity
+If RDF Patch is supported then for each change create a separate [Entity Patch](#entity-patch) document at the _change_rdf_patch_uri_.
 
 
 ## 7. Consuming Entity Change Sets
