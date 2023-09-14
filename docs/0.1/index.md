@@ -79,7 +79,7 @@ __Previous Version:__ None
 
 The Entity Metadata Management API is intended to establish a pattern that supports sharing changes to entities and their metadata curated by entity metadata providers with the community of entity metadata consumers (e.g. libraries, museums, galleries, archives). Use of a consistent pattern allows for the creation of software tools for producing and consuming changes in entity metadata.
 
-This specification is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams]. It defines a usage pattern and adds minor extensions specific to entity management.
+This specification is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams]. It defines a usage pattern and minor extensions specific to entity management.
 
 ### 1.1. Objectives and Scope
 {: #objectives-and-scope}
@@ -146,7 +146,7 @@ This specification is based on the [Activity Streams 2.0 specification][org-w3c-
 
 * [Activity](https://www.w3.org/TR/activitystreams-core/#activity): `Activity` objects are used to describe an individual change to the metadata of an Entity Set. These often affect just one Entity but in some cases more than one Entity may be affected by related changes that are reflected in multiple sequenced Activities.
 * [Collection](https://www.w3.org/TR/activitystreams-core/#collections): The entry point for all the information about changes to the metadata of an Entity Set is modeled as a Collection, using the [`OrderedCollection`](https://www.w3.org/TR/activitystreams-core/#dfn-orderedcollection) type to indicate that the activities in the collection are in time order.
-* [`OrderedCollectionPage`](https://www.w3.org/TR/activitystreams-core/#dfn-orderedcollectionpage): The completed `OrderedCollection` of changes is expressed as a set of `OrderedCollectionPage` to ensure that there are manageable chunks of change activities described even for large and long-running sets of updates.
+* [OrderedCollectionPage](https://www.w3.org/TR/activitystreams-core/#dfn-orderedcollectionpage): The complete Collection of changes is expressed as a set of `OrderedCollectionPage` objects to ensure that there are manageable chunks of change activities described even for large and long-running sets of updates.
 
 Many properties from Activity Streams are used, and are described throughout this document.
 
@@ -155,7 +155,7 @@ Many properties from Activity Streams are used, and are described throughout thi
 
 This specification uses the following terms:
 
-* __HTTP(S)__: The HTTP or HTTPS URI scheme and internet protocol.
+* HTTP(S): The HTTP or HTTPS URI scheme and internet protocol.
 * [Javascript Object Notation (JSON)][org-rfc-8259]: The terms _array_, _JSON object_, _number_, and _string_ in this document are to be interpreted as defined by the Javascript Object Notation (JSON) specification.
 * [JSON-LD][org-w3c-json-ld]: Entitiy Metadata Management context is defined following JSON-LD specification.
 * [RFC 2119][org-rfc-2119]: The key words _MUST_{:.strong-term}, _MUST NOT_{:.strong-term}, _REQUIRED_{:.strong-term}, _SHALL_{:.strong-term}, _SHALL NOT_{:.strong-term}, _SHOULD_{:.strong-term}, _SHOULD NOT_{:.strong-term}, _RECOMMENDED_{:.strong-term}, _MAY_{:.strong-term}, and _OPTIONAL_{:.strong-term} in this document are to be interpreted as described in RFC 2119.
@@ -1124,6 +1124,6 @@ end
 
 ## Acknowledgements
 
-This specification was influenced by prior Activity Streams implementations for Library of Congress [entity sets](https://id.loc.gov/) (including LC Subject Headings, the LC Name Authority File, and LC Genres/Form Terms) and Getty [vocabularies](https://www.getty.edu/research/tools/vocabularies/index.html). 
+This specification was influenced by prior implementations for [Library of Congress entity sets](https://id.loc.gov/) and [Getty vocabularies](https://www.getty.edu/research/tools/vocabularies/index.html).
 
 {% include api/links.md %}
