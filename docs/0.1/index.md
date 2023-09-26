@@ -465,7 +465,7 @@ preceding _Change Sets_ in the _Entry Point_{:.term} for this _Entity Collection
 
 Entity level structures describe the individual changes to entity metadata within an _Entity Set_{:.term}.
 
-The structures described in this section are used in the _orderedItems_{:.term} property of the [Change Set](#change-set). The level of detail in the _orderedItems_{:.term} depends on the use case being addressed. The [Entity Change Activities List](#entity-change-activities-list) use case can be addressed by the [Entity Change Activity](#entity-change-activities). The [Local Cache of Labels](#local-cache-of-labels) and [Local Cache of Full Dataset](#local-cache-of-full-dataset) use cases can be addressed more efficiently by also including an [Entity Patch](#entity-patch). Without an [Entity Patch](#entity-patch), the consumer must dereference the entity URI to obtain the updated entity description.
+The structures described in this section are used in the _orderedItems_{:.term} property of the [Change Set](#change-set). The level of detail in the _orderedItems_{:.term} depends on the use case being addressed. The [Entity Change Activities List](#entity-change-activities-list) use case can be addressed by the [Entity Change Activity](#entity-change-activities).
 
 ### 4.1. Entity Change Activities
 {: #entity-change-activities}
@@ -566,36 +566,6 @@ An _Entity Change Activity_{:.term} _MAY_{:.strong-term} use the _partOf_ proper
 }
 ```
 
-### 4.2. Entity Patch
-{: #entity-patch}
-
-To support the [Local Cache of Labels](#local-cache-of-labels) or the [Local Cache of Full Dataset](#local-cache-of-full-dataset) use cases efficiently, it is _OPTIONAL_{:.strong-term} that each [Entity Change Activity](#entity-change-activity) include the _instrument_ property which provides a link an _Entity Patch_{:.term}. Without an [Entity Patch](#entity-patch), the consumer must dereference the entity URI to obtain the updated entity description.
-
-#### FULL EXAMPLE for Entity Patch
-
-```json-doc
-
-{
-  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
-  "summary": "rdf_patch to create entity for term milk",
-  "type": "rdf_patch",
-  "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11/instrument/1",
-  "partOf": {
-    "type": "Create",
-    "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11"
-  },
-  "content":
-    "A <https://my_repo/entity/cow_milk>
-         <https://my.authority/vocab/hasLabel> 'cow milk'@en.
-     A <https://my_repo/entity/cow_milk>
-         <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept>.
-     A <https://my_repo/entity/cow_milk>
-         <https://my.authority/vocab/broaderTerm> <https://my_repo/entity/milk>.
-     A <https://my_repo/entity/cow_milk>
-         <https://my.authority/vocab/narrow_term>
-         <https://my_repo/entity/bovine_milk>."
-```
-
 
 ## 5. Types of Change
 {: #types-of-change}
@@ -643,11 +613,6 @@ Complete Example
     "type": "Term",
     "id": "http://my_repo/entity/cow_milk",
     "updated": "2021-08-02T16:59:54Z"
-  },
-  "instrument":
-  {
-    "type": "rdf_patch",
-    "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11/instrument/1"
   }
 }
 ```
@@ -709,32 +674,6 @@ An _Entity Change Activity_{:.term} _MAY_{:.strong-term} use the _partOf_ proper
 }
 ```
 
-#### EXAMPLE Entity Patch for Create
-
-Complete Example
-
-```json-doc
-{
-  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
-  "summary": "rdf_patch to create entity for term milk",
-  "type": "rdf_patch",
-  "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11/instrument/1",
-  "partOf": {
-    "type": "Create",
-    "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11"
-  },
-  "content":
-    "A <https://my_repo/entity/cow_milk>
-         <https://my.authority/vocab/hasLabel> 'cow milk'@en.
-     A <https://my_repo/entity/cow_milk>
-           <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept>.
-     A <https://my_repo/entity/cow_milk>
-         <https://my.authority/vocab/broaderTerm> <https://my_repo/entity/milk>.
-     A <https://my_repo/entity/cow_milk>
-         <https://my.authority/vocab/narrow_term>
-         <https://my_repo/entity/bovine_milk>."
-}  
-```
 
 ### 5.2. Update Entity
 {: #update-entity}
@@ -762,30 +701,10 @@ EXAMPLE Entity Change Activity for Update
     "type": "Term",
     "id": "http://my_repo/entity/milk",
     "updated": "2021-08-02T16:59:54Z"
-  },
-  "instrument": {
-    "type": "rdf_patch",
-    "id": "https://data.my.authority/change_documents/2021/activity-stream/cd31/instrument/1"
   }
 }
 ```
 
-EXAMPLE Entity Patch for Update
-
-```json-doc
-{
-  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
-  "summary": "rdf_patch to update entity term milk",
-  "type": "rdf_patch",
-  "id": "https://data.my.authority/change_documents/2021/activity-stream/cd31/instrument/1",
-  "partOf": {
-    "type": "Update",
-    "id": "https://data.my.authority/change_documents/2021/activity-stream/cd31",
-  },
-  "content":
-    "A <http://my_repo/entity/milk> <http://my.authority/vocab/hasLabel> 'Milk'@en.
-     D <http://my_repo/entity/milk> <http://my.authority/vocab/hasLabel> 'milk'@en."
-```
 
 ### 5.3. Delete Entity
 {: #delete-entity}
@@ -814,38 +733,10 @@ EXAMPLE Entity Change Activity for Delete
     "type": "Term",
     "id": "http://my_repo/entity/cow_milk",
     "updated": "2021-08-02T16:59:54Z"
-  },
-  "instrument": {
-    "type": "rdf_patch",
-    "id": "https://data.my.authority/change_documents/2021/activity-stream/cd21/instrument/1"
   }
 }
 ```
 
-EXAMPLE Entity Patch for Delete
-
-```json-doc
-{
-  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
-  "summary": "rdf_patch to delete entity term cow_milk",
-  "type": "rdf_patch",
-  "id": "https://data.my.authority/change_documents/2021/activity-stream/cd21/instrument/1",
-  "partOf": {
-    "type": "Delete",
-    "id": "https://data.my.authority/change_documents/2021/activity-stream/cd21"
-  },
-  "content":
-    "D <http://my_repo/entity/cow_milk>
-         <http://my.authority/vocab/hasLabel> 'cow milk'@en.
-     D <https://my_repo/entity/cow_milk>
-           <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept>.
-     D <http://my_repo/entity/cow_milk>
-         <http://my.authority/vocab/broaderTerm> <http://my_repo/entity/milk>.
-     D <http://my_repo/entity/cow_milk>
-         <http://my.authority/vocab/narrow_term>
-         <http://my_repo/entity/bovine_milk>."
-}  
-```
 
 ### 5.4. Deprecate Entity
 {: #deprecate-entity}
@@ -873,10 +764,6 @@ EXAMPLE Entity Change Activity for Deprecate in the Scenario where a Replacement
     "type": "Term",
     "id": "http://my_repo/entity/cow_milk",
     "updated": "2021-08-02T16:59:57Z"
-  },
-  "instrument": {
-    "type": "rdf_patch",
-    "id": "https://data.my.authority/change_documents/2021/activity-stream/cd42/instrument/2"
   }
 }
 ```
@@ -893,10 +780,6 @@ EXAMPLE Entity Change Activity for Deprecate in the Scenario where a Replacement
       "id": "https://my.authority/term/bovine_milk",
       "type": "Term",
       "updated": "2021-02-01T17:11:03Z"
-    },
-    "instrument": {
-      "type": "rdf_patch",
-      "id": "https://data.my.authority/change_documents/2021/activity-stream/cd42/instrument/2"
     }
   },
   {
@@ -907,10 +790,6 @@ EXAMPLE Entity Change Activity for Deprecate in the Scenario where a Replacement
       "id": "https://my.authority/term/cow_milk",
       "type": "Term",
       "updated": "2021-02-01T17:11:03Z"
-    },
-    "instrument": {
-      "type": "rdf_patch",
-      "id": "https://data.my.authority/change_documents/2021/activity-stream/cd42/instrument/2"
     }
   }
 ]
@@ -926,8 +805,6 @@ The section describes how an Entity Metadata Provider can implement this specifi
 The choice of how often to create new Change Sets will depend upon how frequently entities are updated, expected needs of consumers for timely updates, resource constraints, and likely other local consideration. Two common approaches are to create Change Sets at predetermined time intervals (e.g. hourly, nightly, weekly, monthly), or after a certain number of changes have occurred (e.g. 10, 20, 100, 500 changes).
 
 The [Local Cache of Labels](#local-cache-of-labels) and [Local Cache of Full Dataset](#local-cache-of-full-dataset) use cases require the consumer to be able to download a copy of all entities in the dataset before following changes. Coordination of snapshots with the production of Changes Sets will make this easier.
-
-Support for RDF patches to efficiently convey changes is optional.
 
 ### 6.2 Creating Full Downloads
 
@@ -950,7 +827,6 @@ For each change in an Entity Set, the provider must record all information neces
 * The Activity `type` of change (e.g. `Add`, `Update`, `Deprecate`)
 * The datetime of the change to the entity
 * A recommended summary description of change (e.g. "Add term Science")
-* Optionally, the RDF patch describing the change in the entity RDF
 
 #### Publishing a Change Set
 
@@ -962,7 +838,6 @@ After some time recording changes, a provider publishes a new Change Set linked 
 and for each change recorded:
 * _entity_uri_ - the URI of the entity changed
 * _change_activity_uri_ - the new URI that will resolve to the new  Entity Change Activity describing the change
-* _change_rdf_patch_uri_ - optionally, the new URI that will resolve to the new RDF patch describing the change
 
 With these URIs the new [Change Set](#change-set) can be created as follows:
 * set the `id` property to _change_set_uri_
@@ -978,9 +853,6 @@ With these URIs the new [Change Set](#change-set) can be created as follows:
         * set the `type` property to the entity type
         * set the `updated` property to the datetime of the change to the entity
         * set the `summary` property to the human readable description of the change
-    * if RDF patch is supported, set the `instrument` proporty to be a JSON object with the following properties:
-        * set the `type` property to the string `rdf_patch`
-        * set the `id` property to the _change_rdf_patch_uri_
 
 Update the previous Change Set:
 * add a `next` property that points to the new Change Set
@@ -996,8 +868,6 @@ Update the Entry Point:
     * set the `published` property to the datetime the Change Set is being published
 
 For each change create a separate [Entity Change Activity](#entity-change-activities) document at the _change_activity_uri_ with the same information used in the Change Set.
-
-If RDF Patch is supported then for each change create a separate [Entity Patch](#entity-patch) document at the _change_rdf_patch_uri_.
 
 
 ## 7. Consuming Entity Change Sets
