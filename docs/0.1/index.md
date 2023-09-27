@@ -165,12 +165,16 @@ This specification uses the following terms:
 ## 2. Architecture
 {: #architecture}
 
-This specification is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams]. Changes in entity metadata over time are communicated from providers to consumers via _Entity Change Activities_{:.term} that describe a change to an entity. These are collected together in _Change Set_{:.term} documents that are organized as shown in the diagram below.
+This specification provides an API via which Entity Metadata Providers can publish information about changes in entity metadata, which Entity Metadata Consumers can follow. Changes in entity metadata over time are communicated from providers to consumers via _Entity Change Activities_{:.term} that describe a change to an entity. These are collected together in _Change Set_{:.term} documents that are organized under an _Entry Point_{:.term} as shown in the diagram below.
 
-### Entity Metadata Management API Architecture representing changes using Activity Streams
+#### Entity Metadata Management API Architecture representing changes using Activity Streams
 <img src="{{site.baseurl}}/assets/images/figures/EMM_API_Architecture.png">
 
-### 2.1. JSON-LD Representation
+### 2.1. Activity Streams and Extensibility
+
+This specification is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams]. The following sections describe the use of Activity Streams to meet Entity Metadata Management use cases. They describe only the Activity Streams classes and properties used, and any restrictions or additional semantics in the context of this specification. Implementations _MAY_{:.strong-term} use other properties from Activity Streams or elsewhere for extension, consumers _SHOULD_{:.strong-term} ignore any properties not defined in this specification that they don't understand.
+
+### 2.2. JSON-LD Representation
 
 The use of JSON-LD with a specific `@context` that extends the [Activity Streams 2.0 specification][org-w3c-activitystreams] allows Entity Metadata Consumers to parse the resulting documents using standard JSON tools, and also allows the data to be interpreted according to the RDF Data Model (see [Relationship to RDF](https://www.w3.org/TR/json-ld/#relationship-to-rdf)).
 
