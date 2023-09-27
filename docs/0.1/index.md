@@ -179,20 +179,20 @@ This specification is based on the [Activity Streams 2.0 specification][org-w3c-
 The use of JSON-LD with a specific `@context` that extends the [Activity Streams 2.0 specification][org-w3c-activitystreams] allows Entity Metadata Consumers to parse the resulting documents using standard JSON tools, and also allows the data to be interpreted according to the RDF Data Model (see [Relationship to RDF](https://www.w3.org/TR/json-ld/#relationship-to-rdf)).
 
 
-## 3. Organizational Structures
-{: #organizational-structures}
+## 3. API Responses
+{: #api-responses}
 
 ### 3.1. Entry Point
 {: #entry-point}
 
-Reference:  [Ordered Collection][org-w3c-activitystreams-coretype-orderedcollection] in the [Activity Stream specification][org-w3c-activitystreams]
+Reference: [Ordered Collection][org-w3c-activitystreams-coretype-orderedcollection] description
 {:.reference}
 
 Each _Entity Set_{:.term} _MUST_{:.strong-term} have at least one Entry Point. It _MAY_{:.strong-term} have multiple Entry Points to satisfy different use cases. For example, one Entry Point may provide detailed changes to support incremental updates of a full cache and a second may only provide a list of primary label changes.
 
 The Entry Point _MUST_{:.strong-term} be implemented as an _Ordered Collection_{:.term} following the definition in the Activity Stream specification. The key points are repeated here with examples specific to Entity Metadata Management.
 
-#### FULL EXAMPLE for Entry Point:
+#### Complete example for an Entry Point
 
 ```json-doc
 {
@@ -230,7 +230,6 @@ _Entity Metadata Management_{:.term} activity streams _MUST_{:.strong-term} incl
 }
 ```
 
-
 The _Entity Metadata Management_{:.term} context includes information for all parts of this specification and thus the same context definition is used in all API responses. The _Entity Metadata Management_{:.term} context imports the _Activity Stream_{:.term} [context][org-w3c-activitystreams-context-definition] and thus it is not necessarily to specify that explicitly in API responses.
 
 Implementations _MAY_{:.strong-term} include additional extension contexts, in which case the value of `@context` will be a list with the _Entity Metadata Management_{:.term} context first. Extension contexts _MUST NOT_{:.strong-term} override terms defined in the _Entity Metadata Management_{:.term} context or the underlying _Activity Stream_{:.term} context. Implementations _MAY_ also use additional properties and values not defined in a JSON-LD `@context` with the understanding that any such properties will likely be unsupported and ignored by consuming implementations that use the standard JSON-LD algorithms.
@@ -238,47 +237,47 @@ Implementations _MAY_{:.strong-term} include additional extension contexts, in w
 <a id="entry-point-summary" class="anchor-definition">
 __summary__
 
-Reference:  [summary][org-w3c-activitystreams-property-summary] property definition
+Reference: [summary][org-w3c-activitystreams-property-summary] property definition
 {:.reference}
 
 The summary is a natural language summarization of the purpose of the _Entry Point_{:.term}
 
-The _Entry Point_{:.term} _SHOULD_{:.strong-term} have a _summary_{:.term} property. For an _Entry Point_{:.term}, the summary _MAY_{:.strong-term} be a brief description of the _Entity Set_{:.term} in which the described changes occurred. If there are multiple entry points to the same collection, it is _RECOMMENDED_{:.strong-term} that the summary include information that distinguishes each entry point from the others.
+The _Entry Point_{:.term} _SHOULD_{:.strong-term} have a `summary` property. For an _Entry Point_{:.term}, the summary _MAY_{:.strong-term} be a brief description of the _Entity Set_{:.term} in which the described changes occurred. If there are multiple entry points to the same collection, it is _RECOMMENDED_{:.strong-term} that the summary include information that distinguishes each entry point from the others.
 
 ```json-doc
-{ "summary": "My Authority - Entity Change List" }
+  "summary": "My Authority - Entity Change List"
 ```
 
 ```json-doc
-{ "summary": "My Authority - Incremental Updates from 2022-01-01 Full Download" }
+  "summary": "My Authority - Incremental Updates from 2022-01-01 Full Download"
 ```
 
 <a id="entry-point-type" class="anchor-definition">
 __type__
 
-Reference:  [type][org-w3c-activitystreams-property-type] property definition
+Reference: [type][org-w3c-activitystreams-property-type] property definition
 {:.reference}
 
 The type property identifies the Activity Stream type for the _Entry Point_{:.term}.
 
-The _Entry Point_{:.term} _MUST_{:.strong-term} have a _type_{:.term} property. The value _MUST_{:.strong-term} be `OrderedCollection`.
+The _Entry Point_{:.term} _MUST_{:.strong-term} have a `type` property. The value _MUST_{:.strong-term} be `OrderedCollection`.
 
 ```json-doc
-{ "type": "OrderedCollection" }
+  "type": "OrderedCollection"
 ```
 
 <a id="entry-point-id" class="anchor-definition">
 __id__
 
-Reference:  [id][org-w3c-activitystreams-property-id] property definition
+Reference: [id][org-w3c-activitystreams-property-id] property definition
 {:.reference}
 
 The id is a unique identifier of the _Entry Point_{:.term}.
 
-The _Entry Point_{:.term} _MUST_{:.strong-term} have an _id_{:.term} property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Ordered Collection_{:.term} _Entry Point_{:.term} _MUST_{:.strong-term} be available at the URI.
+The _Entry Point_{:.term} _MUST_{:.strong-term} have an `id` property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Ordered Collection_{:.term} _Entry Point_{:.term} _MUST_{:.strong-term} be available at the URI.
 
 ```json-doc
-{ "id": "https://data.my.authority/change_documents/2021/activity-stream" }
+  "id": "https://data.my.authority/change_documents/2021/activity-stream"
 ```
 
 <a id="entry-point-url" class="anchor-definition">
@@ -292,7 +291,7 @@ The _Entry Point_{:.term} _MAY_{:.strong_term} have a `url` property providing o
 A common use of the `url` property is a link to the full download for the collection.
 
 ```json-doc
-{ "url": "https://my.authority/2021-01-01/full_download" }
+  "url": "https://my.authority/2021-01-01/full_download"
 ```
 
 <a id="entry-point-first" class="anchor-definition">
@@ -303,17 +302,15 @@ Reference: [first](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-first) 
 
 A link to the first _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}.
 
-The _Entry Point_{:.term} _MUST_{:.strong-term} have a _first_{:.term} property. The value _MUST_{:.strong-term} be either:
+The _Entry Point_{:.term} _MUST_{:.strong-term} have a `first` property. The value _MUST_{:.strong-term} be either:
   * a string that is HTTP(S) URI of the first page of items in the _Entry Point_{:.term}, or
-  * a JSON object, with at least the _id_{:.term} and _type_{:.term} properties. The value of the _id_{:.term} property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the first page of items in the _Entry Point_{:.term}. The value of the _type_{:.term} property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
+  * a JSON object, with at least the `id` and `type` properties. The value of the `id` property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the first page of items in the _Entry Point_{:.term}. The value of the `type` property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
 
 ```json-doc
-{
   "first": {
     "type": "OrderedCollectionPage",
     "id": "https://data.my.authority/change_documents/2021/activity-stream/page/1"
   }  
-}
 ```
 
 <a id="entry-point-last" class="anchor-definition">
@@ -324,17 +321,15 @@ Reference: [last](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-last) pr
 
 A link to the last _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}.
 
-The _Entry Point_{:.term} _MUST_{:.strong-term} have a _last_{:.term} property. The value _MUST_{:.strong-term} be either:
+The _Entry Point_{:.term} _MUST_{:.strong-term} have a `last` property. The value _MUST_{:.strong-term} be either:
   * a string that is HTTP(S) URI of the last page of items in the _Entry Point_{:.term}, or
-  * a JSON object, with at least the _id_{:.term} and _type_{:.term} properties. The value of the _id_{:.term} property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the last page of items in the _Entry Point_{:.term}. The value of the _type_{:.term} property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
+  * a JSON object, with at least the `id` and `type` properties. The value of the `id` property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the last page of items in the _Entry Point_{:.term}. The value of the `type` property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
 
 ```json-doc
-{
   "last": {
     "type": "OrderedCollectionPage",
     "id": "https://data.my.authority/change_documents/2021/activity-stream/page/12"
   }
-}
 ```
 
 <a id="entry-point-totalitems" class="anchor-definition">
@@ -345,18 +340,16 @@ Reference: [totalItems][org-w3c-activitystreams-property-totalitems] property de
 
 The count of all _Entity Change Activities_{:.term} across all _Change Sets_{:.term} in the _Entry Point_{:term} for the _Entity Collection_{:.term}.
 
-The _Entry Point_{:.term} _MAY_{:.strong-term} have a _totalItems_{:.term} property. If included, the value _MUST_{:.strong-term} be an integer, and it _SHOULD_{:.strong-term} be the cumulative count of _Entity Change Activities_{:.term} across all _Change Sets_{:.term}.
+The _Entry Point_{:.term} _MAY_{:.strong-term} have a `totalItems` property. If included, the value _MUST_{:.strong-term} be an integer, and it _SHOULD_{:.strong-term} be the cumulative count of _Entity Change Activities_{:.term} across all _Change Sets_{:.term}.
 
 ```json-doc
-{
   "totalItems": 123
-}
 ```
 
 ### 3.2. Change Set
 {: #change-set}
 
-Reference: [Ordered Collection Page][org-w3c-activitystreams-coretype-orderedcollectionpage] in the [Activity Stream specification][org-w3c-activitystreams]
+Reference: [Ordered Collection Page][org-w3c-activitystreams-coretype-orderedcollectionpage] description
 {:.reference}
 
 Each time a set of changes is published, changes _MUST_{:.strong-term} be released in at least one _Change Set_{:.term}. Changes _MAY_{:.strong-term} be published across multiple _Change Sets_{:.term}. For example, a site may decide that each _Change Set_{:.term} will have at most 50 changes and if that maximum is exceeded during the release time period, then a second _Change Set_{:.term} will be created.
@@ -368,7 +361,7 @@ It is _RECOMMENDED_{:.strong-term} that change sets be published on a regular sc
 
 _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collection Page_{:.term} following the definition in the Activity Stream specification. The key points are repeated here with examples specific to Entity Metadata Management.
 
-#### FULL EXAMPLE for Change Set:
+#### Complete examples for a Change Set
 
 ```json-doc
 {
@@ -391,7 +384,6 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
   "orderedItems": [
     {
       "type": "Create",
-      "id": "https://data.my.authority/change_documents/2021/activity-stream/cd1",
       "published": "2021-02-01T15:04:22Z",
       "object": {
         "id": "https://my.authority/term/milk",
@@ -401,7 +393,6 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
     },
     {
       "type": "Create",
-      "id": "https://data.my.authority/change_documents/2021/activity-stream/cd2",
       "published": "2021-02-01T17:11:03Z",
       "object": {
         "id": "https://my.authority/term/bovine_milk",
@@ -411,7 +402,6 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
     },
     {
       "type": "Deprecate",
-      "id": "https://data.my.authority/change_documents/2021/activity-stream/cd2",
       "published": "2021-02-01T17:11:03Z",
       "object": {
         "id": "https://my.authority/term/cow_milk",
@@ -423,9 +413,6 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
 }
 ```
 
-NOTE: See [Entity Change Activity](#entity-change-activity) under [Entity Level Structures](#entity-level-structures) for more information on the data to be included in the `orderedItems` property.
-{: .info}
-
 <a id="change-set-next" class="anchor-definition">
 __next__
 
@@ -434,15 +421,13 @@ Reference: [next](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-next) pr
 
 A link to the next _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}.
 
-The _Change Set_{:.term} _MUST_{:.strong-term} have a _next_{:.term} property if there are
+The _Change Set_{:.term} _MUST_{:.strong-term} have a `next` property if there are
 subsequent _Change Sets_ in the _Entry Point_{:.term} for this _Entity Collection_. The value _MUST_{:.strong-term} be either:
   * a string that is HTTP(S) URI of the next page of items in the _Entry Point_{:.term}, or
-  * a JSON object, with at least the _id_{:.term} and _type_{:.term} properties. The value of the _id_{:.term} property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the next page of items in the _Entry Point_{:.term}. The value of the _type_{:.term} property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
+  * a JSON object, with at least the `id` and `type` properties. The value of the `id` property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the next page of items in the _Entry Point_{:.term}. The value of the `type` property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
 
 ```json-doc
-{
   "next": "https://data.my.authority/change_documents/2021/activity-stream/page/3"
-}
 ```
 
 <a id="change-set-prev" class="anchor-definition">
@@ -453,45 +438,47 @@ Reference: [prev](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-prev) pr
 
 A link to the previous _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}.
 
-The _Change Set_{:.term} _MAY_{:.strong-term} have a _prev_{:.term} property if there are
-preceding _Change Sets_ in the _Entry Point_{:.term} for this _Entity Collection_. If present, the value _MUST_{:.strong-term} be either:
+The _Change Set_{:.term} _MAY_{:.strong-term} have a `prev` property if there are preceding _Change Sets_{:.term} in the _Entry Point_{:.term} for this _Entity Collection_{:.term}. If present, the value _MUST_{:.strong-term} be either:
   * a string that is HTTP(S) URI of the previous page of items in the _Entry Point_{:.term}, or
-  * a JSON object, with at least the _id_{:.term} and _type_{:.term} properties. The value of the _id_{:.term} property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the previous page of items in the _Entry Point_{:.term}. The value of the _type_{:.term} property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
+  * a JSON object, with at least the `id` and `type` properties. The value of the `id` property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the previous page of items in the _Entry Point_{:.term}. The value of the `type` property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
 
 ```json-doc
-{
   "prev": "https://data.my.authority/change_documents/2021/activity-stream/page/1"
-}
 ```
 
-## 4. Entity Level Structures
-{: #entity-level-structures}
+<a id="change-set-ordereditems" class="anchor-definition">
+__orderedItems__
 
-Entity level structures describe the individual changes to entity metadata within an _Entity Set_{:.term}.
+The list of _Entity Change Activity_{:.term} entries in the _Change Set_{:.term}.
 
-The structures described in this section are used in the _orderedItems_{:.term} property of the [Change Set](#change-set). The level of detail in the _orderedItems_{:.term} depends on the use case being addressed. The [Entity Change Activities List](#entity-change-activities-list) use case can be addressed by the [Entity Change Activity](#entity-change-activities).
+The _Change Set_{:.term} _MUST_{:.strong-term} have an `orderedItems` property which is an array of [Entity Change Activity](#entity-change-activity) objects as described below.
 
-### 4.1. Entity Change Activities
+```json-doc
+  "ordredItems": [
+    // Entity Change Activity objects inserted here
+  ]
+```
+
+
+### 3.3. Entity Change Activities
 {: #entity-change-activities}
 
-Reference:  [Activity][org-w3c-activitystreams-coretype-activity] in the [Activity Stream specification][org-w3c-activitystreams]
+Reference: [Activity][org-w3c-activitystreams-coretype-activity] description
 {:.reference}
 
 A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Activity_{:.term}. An _Entity Change Activity_{:.term} _MUST_{:.strong-term} be implemented as an [Activity Streams][org-w3c-activitystreams] [`Activity`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-activity). The activity _MUST_{:.strong-term} provide information about the type of change and the entity or entities changed. It _MAY_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset.
 
-Not all implementations will store every change for an entity over time. A _Collection_{:.term} _MAY_{:.strong-term} provide feeds of only the last known metadata update for each entity. In the case where the _Collection_ provides feeds of only the last known metadata update for each entity case, the page identifier cannot be used to know the last _Activities_{:.term} processed by a consumer. For this reason the _Activities_{:.term} within the _Collection_{:.term} _MUST_ have a date property and _SHOULD_{:.strong-term} include the date using the `published` property. The `updated` property _SHOULD_ be used on the _Object_{:.term} for when the entity actually occurred.
+Not all implementations will store every change for an entity over time. A _Collection_{:.term} _MAY_{:.strong-term} provide feeds of only the last known metadata update for each entity. In the case where the _Collection_ provides feeds of only the last known metadata update for each entity case, the page identifier cannot be used to know the last _Activities_{:.term} processed by a consumer. For this reason the _Activities_{:.term} within the _Collection_{:.term} _MUST_ have a date property and _SHOULD_{:.strong-term} include the date using the `published` property. The `updated` property _SHOULD_ be used on the _Object_{:.term} for when the entity actually occurred. This level is sufficient to address the [Entity Change Activities List](#entity-change-activities-list) use case.
 
-This level is sufficient to address the [Entity Change Activities List](#entity-change-activities-list) use case.
+_Entity Change Activity_{:.term} objects appear in the `orderedItems` array within a [Change Set](#change-set) response.
 
-#### FULL EXAMPLE for Entity Change Activity:
+#### Example excerpt for an Entity Change Activity
 
 ```json-doc
 {
-  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   "summary": "Add entity for subject Science",
   "published": "2021-08-02T16:59:54Z",
   "type": "Add",
-  "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11",
   "partOf": {
     "type": "OrderedCollectionPage",
     "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
@@ -504,17 +491,12 @@ This level is sufficient to address the [Entity Change Activities List](#entity-
 }
 ```
 
-Properties shared across all _Entity Change Activity_{:.term} types are described here. If a specific activity type handles a property differently, it will be described with that activity type in section [Types of Change](#types-of-change).
-
-<a id="entity-change-activity-context" class="anchor-definition">
-__@context__
-
-See [@context](#entry-point-context) as described in the [Entry Point](#entry-point) section.
+Properties shared across all _Entity Change Activity_{:.term} types are described here. Specific activity types relevant to Entity Metadata Management are describe in the [Types of Change](#types-of-change) section.
 
 <a id="entity-change-activity-summary" class="anchor-definition">
 __summary__
 
-Reference:  [summary][org-w3c-activitystreams-property-summary] property definition
+Reference: [summary][org-w3c-activitystreams-property-summary] property definition
 {:.reference}
 
 For an _Entity Change Activity_{:.term}, the summary is a brief description of the change to entity metadata that the activity represents. It is _RECOMMENDED_{:.strong-term} that a summary be included and that it reference the type of change (e.g. "Add entity") and the entity being changed (e.g. "subject Science").
@@ -522,93 +504,73 @@ For an _Entity Change Activity_{:.term}, the summary is a brief description of t
 There are a limited set of types of change. See [Types of Change](#types-of-change) section for a list of types and example summaries for each. Identification of the entity will vary depending on the data represented in the _Entity Set_{:.term}.
 
 ```json-doc
-{ "summary": "Add entity for subject Science" }
+  "summary": "Add entity for subject Science"
 ```
 
 <a id="entity-change-activity-type" class="anchor-definition">
 __type__
 
-Reference:  [type][org-w3c-activitystreams-property-type] property definition
+Reference: [type][org-w3c-activitystreams-property-type] property definition
 {:.reference}
 
-Each _Entity Change Activity_{:.term} _MUST_{:.strong-term} have a _type_{:.term} property.
+Each _Entity Change Activity_{:.term} _MUST_{:.strong-term} have a `type` property.
 
 The type is the one of a set of predefined _Entity Change Activity_{:.term} types. See [Types of Change](#type-of-change) section for a list of types and values for each activity type.
 
 ```json-doc
-{ "type": "Create" }
-```
-
-<a id="entity-change-activity-id" class="anchor-definition">
-__id__
-
-Reference:  [id][org-w3c-activitystreams-property-id] property definition
-{:.reference}
-
-The unique identifier of the _Entity Change Activity_{:.term}.
-
-The _Entity Change Activity_{:.term} _MUST_{:.strong-term} have an _id_{:.term} property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Entity Change Activity_{:.term} _MUST_{:.strong-term} be available at the URI.
-
-```json-doc
-{ "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11" }
+  "type": "Create"
 ```
 
 <a id="entity-change-activity-partof" class="anchor-definition">
 __partOf__
 
-Reference:  [partOf][org-w3c-activitystreams-property-partof] property definition
+Reference: [partOf][org-w3c-activitystreams-property-partof] property definition
 {:.reference}
 
 The _partOf_ property identifies the _Change Set_{:.term} in which this activity was published.
 
-An _Entity Change Activity_{:.term} _MAY_{:.strong-term} use the _partOf_ property to refer back to the _Change Set_{:.term} that includes the activity. When used on an Activity, the _partOf_ property _MUST NOT_{:.strong-term} be used for any other purpose. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Change Set_{:.term} publishing this activity _MUST_{:.strong-term} be available at the URI.
+An _Entity Change Activity_{:.term} _MAY_{:.strong-term} use the `partOf` property to refer back to the _Change Set_{:.term} that includes the activity. When used on an Activity, the `partOf` property _MUST NOT_{:.strong-term} be used for any other purpose. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Change Set_{:.term} publishing this activity _MUST_{:.strong-term} be available at the URI.
 
 ```json-doc
-"partOf": {
-  "type": "OrderedCollectionPage",
-  "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
-}
+  "partOf": {
+    "type": "OrderedCollectionPage",
+    "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
+  }
 ```
 
 
-## 5. Types of Change
+## 4. Types of Change
 {: #types-of-change}
 
-All _Entity Change Activities_{:.term} have a core set of properties that are described in the [Entity Change Activity](#entity-change-activity) section. Some properties are specific to the _Types of Change_. This section provides examples and descriptions of the _Entity Change Notification_{:.term} and _Entity Patch_{:.term} for each type of change. They also describe the relationship between similar Activity Types (e.g. _Create_{:.term} vs. _Add_{:.term}).
+All _Entity Change Activities_{:.term} have a core set of properties that are described in the [Entity Change Activity](#entity-change-activity) section. Some properties are specific to the _Types of Change_. This section provides examples and descriptions of the _Entity Change Notification_{:.term} for each type of change. They also describe the relationship between similar Activity Types (e.g. `Create` vs. `Add`).
 
-### 5.1. New Entity
+### 4.1. New Entity
 {: #new-entity}
 
-Reference: [add][org-w3c-activitystreams-activity-add] activity definition
-{:.reference}
-Reference: [create][org-w3c-activitystreams-activity-create] activity definition
+Reference: [add][org-w3c-activitystreams-activity-add] and [create][org-w3c-activitystreams-activity-create] activity definitions
 {:.reference}
 
-A new entity _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-Activity) with a _type_{:.term} of either _"Create"_{:.term} or _"Add"_{:.term}.
+A new entity _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-Activity) with a `type` of either `Create` or `Add`.
 
 A new entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [Create type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-create) or the [Add type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-add) in the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples specific to Entity Metadata Management.
 
 #### Create vs. Add
 
-An entity appearing in an _Entry Point_{:.term} stream for the first time _MUST_{:.strong-term} use _Activity_{:.term} type _Create_{:.term} and/or _Add_{:.term}
+An entity appearing in an _Entry Point_{:.term} stream for the first time _MUST_{:.strong-term} use _Activity_{:.term} type `Create` and/or `Add`.
 
-_Create_{:.term} _SHOULD_{:.strong-term} be used when the entity is new in the source dataset and available for use. A provider MUST NOT use _Create_{:.term} to broadcast that an entity exists unless it can be dereferenced at the entity URI. A Create activity indicates that the entity is new and available for use by consumers, see also _Add_{:.term} below.
+`Create` _SHOULD_{:.strong-term} be used when the entity is new in the source dataset and available for use. A provider _MUST NOT_{:.strong-term} use `Create` to broadcast that an entity exists unless it can be dereferenced at the entity URI. A Create activity indicates that the entity is new and available for use by consumers, see also `Add` below.
 
-_Add_{:.term} _SHOULD_{:.strong-term} be used when the entity exists in the source dataset, but was previously not available through the _Entry Point_{:.term} and now is being made available in the stream. Situations where this might happen include, but are not limited to, change in permissions, end of an embargo, temporary removal and now being made available.
+`Add` _SHOULD_{:.strong-term} be used when the entity exists in the source dataset, but was previously not available through the _Entry Point_{:.term} and now is being made available in the stream. Situations where this might happen include, but are not limited to, change in permissions, end of an embargo, temporary removal and now being made available.
 
-A new _Entry Point_{:.term} _MAY_{:.strong-term} choose to populate the stream with all existing entities. In this case, the initial population of the stream with all existing entities _SHOULD_{:.strong-term} use _Add_{:.term}.
+A new _Entry Point_{:.term} _MAY_{:.strong-term} choose to populate the stream with all existing entities. In this case, the initial population of the stream with all existing entities _SHOULD_{:.strong-term} use `Add`.
 
-#### EXAMPLE Entity Change Activity for Create
-
-Complete Example
+#### Example Entity Change Activity excerpt for Create
 
 ```json-doc
 {
-  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   "summary": "New entity for term milk",
   "published": "2021-08-02T16:59:54Z",
   "type": "Create",
-  "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11",
   "partOf": {
     "type": "OrderedCollectionPage",
     "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
@@ -621,82 +583,22 @@ Complete Example
 }
 ```
 
-__summary__
-
-Reference:  [summary][org-w3c-activitystreams-property-summary] property definition
-{:.reference}
-
-A summary is a brief description of a change to entity metadata. It is _RECOMMENDED_{:.strong-term} that a summary be included and that it reference the type of change and the entity being changed.
-
-```json-doc
-{ "summary": "Add entity for subject Science" }
-```
-
-__type__
-
-Reference:  [type][org-w3c-activitystreams-property-type] property definition
-{:.reference}
-
-The type is the one of a set of predefined _Entity Change Activity_{:.term} types.
-
-Each _Entity Change Activity_{:.term} _MUST_{:.strong-term} have a _type_{:.term} property. For an activity for a newly available entity, the value _SHOULD_{:.strong-term} be one of either `Create` or `Add`.
-
-```json-doc
-{ "type": "Create" }
-```
-or
-```json-doc
-{ "type": "Add" }
-```
-
-__id__
-
-Reference:  [id][org-w3c-activitystreams-property-id] property definition
-{:.reference}
-
-The unique identifier of the _Entity Change Activity_{:.term}.
-
-The _Entity Change Activity_{:.term} _MUST_{:.strong-term} have an _id_{:.term} property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Entity Change Activity_{:.term} _MUST_{:.strong-term} be available at the URI.
-
-```json-doc
-{ "id": "https://data.my.authority/change_documents/2021/activity-stream/cd11" }
-```
-
-__partOf__
-
-Reference:  [partOf][org-w3c-activitystreams-property-partof] property definition
-{:.reference}
-
-The _partOf_ property identifies the _Change Set_{:.term} in which this activity was published.
-
-An _Entity Change Activity_{:.term} _MAY_{:.strong-term} use the _partOf_ property to refer back to the _Change Set_{:.term} that includes the activity. The _partOf_ property _MUST NOT_{:.strong-term} be used for any other purpose.
-
-```json-doc
-"partOf": {
-  "type": "OrderedCollectionPage",
-  "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
-}
-```
-
-
-### 5.2. Update Entity
+### 4.2. Update Entity
 {: #update-entity}
 
-An updated entity _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-activity) with a _type_{:.term} of _"Update"_{:.term}.
+An updated entity _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-activity) with a `type` of `Update`.
 
 An updated entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [Update type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-update) in the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples specific to Entity Metadata Management.
 
 Examples of updates in the library domain include splits and merges. See the [Deprecate Entity](#deprecate-entity) below for an illustration of how you can reflect these scenarios without explicitly typing them as splits or merge activities using a sequence of related activities.
 
-EXAMPLE Entity Change Activity for Update
+#### Example Entity Change Activity excerpt for Update
 
 ```json-doc
 {
-  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   "summary": "Update entity term milk",
   "published": "2021-08-02T16:59:54Z",
   "type": "Update",
-  "id": "https://data.my.authority/change_documents/2021/activity-stream/cd31",
   "partOf": {
     "type": "OrderedCollectionPage",
     "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
@@ -709,26 +611,74 @@ EXAMPLE Entity Change Activity for Update
 }
 ```
 
+### 4.3. Deprecate Entity
+{: #deprecate-entity}
 
-### 5.3. Delete Entity
+Deprecation indicates that an existing entity in the authority has been updated to reflect that it should no longer be used though the URI remains dereferencable reflecting the deprecation. Whenever possible, the entity description should indicate which entity should be used instead.
+
+There are two common scenarios. In the first, the replacement entity already exists and the deprecation updates the deprecated entity only. In the second scenario, the replacement entity does not exist prior to the deprecation. In this case, the replacement entity is created and the status of the original entity is changed to deprecrated.
+
+An entity that has been deprecated _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-activity) with the `type` `Deprecate`. The `Deprecate` activity _MUST_{:.strong-term} be implemented as either a single activity (when the entity that is replacing the deprecated entity already exists, or if the deprecated entity is not replaced), or two activities a `Create` activity for the replacement entity, and an `Deprecate` activity for the deprecated entity. Without an Entity Patch on the `Deprecate` activity, the consumer must dereference the deprecated entity URI to obtain the updated entity description including whether it was replaced by a new or existing entity.
+
+#### Example Entity Change Activity exceprt for Deprecate in the Scenario where a Replacement Entity Already Exists
+
+```json-doc
+{
+  "summary": "Deprecate term cow milk",
+  "published": "2021-08-02T16:59:57Z",
+  "type": "Deprecate",
+  "partOf": {
+    "type": "OrderedCollectionPage",
+    "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
+  },
+  "object": {
+    "type": "Term",
+    "id": "http://my_repo/entity/cow_milk",
+    "updated": "2021-08-02T16:59:57Z"
+  }
+}
+```
+
+#### Example Entity Change Activity excerpt for Deprecate in the Scenario where a Replacement Entity is Created
+
+```json-doc
+  {
+    "type": "Create",
+    "published": "2021-02-01T17:11:03Z",
+    "object": {
+      "id": "https://my.authority/term/bovine_milk",
+      "type": "Term",
+      "updated": "2021-02-01T17:11:03Z"
+    }
+  },
+  {
+    "type": "Deprecate",
+    "published": "2021-02-01T17:11:03Z",
+    "object": {
+      "id": "https://my.authority/term/cow_milk",
+      "type": "Term",
+      "updated": "2021-02-01T17:11:03Z"
+    }
+  }
+```
+
+### 4.4. Delete Entity
 {: #delete-entity}
 
 It is _RECOMMENDED_{:.strong-term} that entities be marked as _Deprecated_{:.term} in the source dataset instead of deleting the entity from the source dataset. If the entity is deprecated, follow the _Entity Change Activity_{:.term} described in [Deprecate Entity](#deprecate-entity).
 {: .warning}
 
-An entity that has been fully deleted from the source dataset where the entity URI is no longer dereferencable _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-activity) with a _type_{:.term} of _"Delete"_{:.term} or _"Remove"_{:.term}.
+An entity that has been fully deleted from the source dataset where the entity URI is no longer dereferencable _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-activity) with a `type` of `Delete` or `Remove`.
 
 A deleted entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [Delete type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-delete) or the [Remove type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-remove) in the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples specific to Entity Metadata Management.
 
-EXAMPLE Entity Change Activity for Delete
+#### Example Entity Change Activity excerpt for Delete
 
 ```json-doc
 {
-  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
   "summary": "Delete term cow_milk",
   "published": "2021-08-02T16:59:54Z",
   "type": "Delete",
-  "id": "https://data.my.authority/change_documents/2021/activity-stream/cd21",
   "partOf": {
     "type": "OrderedCollectionPage",
     "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
@@ -742,75 +692,18 @@ EXAMPLE Entity Change Activity for Delete
 ```
 
 
-### 5.4. Deprecate Entity
-{: #deprecate-entity}
-
-Deprecation indicates that an existing entity in the authority has been updated to reflect that it should no longer be used though the URI remains dereferencable reflecting the deprecation. Whenever possible, the entity description should indicate which entity should be used instead.
-
-There are two common scenarios. In the first, the replacement entity already exists and the deprecation updates the deprecated entity only. In the second scenario, the replacement entity does not exist prior to the deprecation. In this case, the replacement entity is created and the status of the original entity is changed to deprecrated.
-
-An entity that has been deprecated _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-activity) with the _type_{:.term} `Deprecate`. The `Deprecate` activity _MUST_{:.strong-term} be implemented as either a single activity (when the entity that is replacing the deprecated entity already exists, or if the deprecated entity is not replaced), or two activities a `Create` activity for the replacement entity, and an `Deprecate` activity for the deprecated entity. Without an Entity Patch on the `Deprecate` activity, the consumer must dereference the deprecated entity URI to obtain the updated entity description including whether it was replaced by a new or existing entity.
-
-EXAMPLE Entity Change Activity for Deprecate in the Scenario where a Replacement Entity Already Exists
-
-```json-doc
-{
-  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
-  "summary": "Deprecate term cow milk",
-  "published": "2021-08-02T16:59:57Z",
-  "type": "Deprecate",
-  "id": "https://data.my.authority/change_documents/2021/activity-stream/cd47",
-  "partOf": {
-    "type": "OrderedCollectionPage",
-    "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
-  },
-  "object": {
-    "type": "Term",
-    "id": "http://my_repo/entity/cow_milk",
-    "updated": "2021-08-02T16:59:57Z"
-  }
-}
-```
-
-EXAMPLE Entity Change Activity for Deprecate in the Scenario where a Replacement Entity is Created
-
-```json-doc
-[
-  {
-    "type": "Create",
-    "id": "https://data.my.authority/change_documents/2021/activity-stream/cd2",
-    "published": "2021-02-01T17:11:03Z",
-    "object": {
-      "id": "https://my.authority/term/bovine_milk",
-      "type": "Term",
-      "updated": "2021-02-01T17:11:03Z"
-    }
-  },
-  {
-    "type": "Deprecate",
-    "id": "https://data.my.authority/change_documents/2021/activity-stream/cd2",
-    "published": "2021-02-01T17:11:03Z",
-    "object": {
-      "id": "https://my.authority/term/cow_milk",
-      "type": "Term",
-      "updated": "2021-02-01T17:11:03Z"
-    }
-  }
-]
-```
-
-## 6. Provider Workflows
+## 5. Provider Workflows
 {: #provider-workflows}
 
 The section describes how an Entity Metadata Provider can implement this specification to allow consumer to follow changes in a set of entities they manage.
 
-### 6.1 Provider Decisions
+### 5.1 Provider Decisions
 
 The choice of how often to create new Change Sets will depend upon how frequently entities are updated, expected needs of consumers for timely updates, resource constraints, and likely other local consideration. Two common approaches are to create Change Sets at predetermined time intervals (e.g. hourly, nightly, weekly, monthly), or after a certain number of changes have occurred (e.g. 10, 20, 100, 500 changes).
 
 The [Local Cache of Labels](#local-cache-of-labels) and [Local Cache of Full Dataset](#local-cache-of-full-dataset) use cases require the consumer to be able to download a copy of all entities in the dataset before following changes. Coordination of snapshots with the production of Changes Sets will make this easier.
 
-### 6.2 Creating Full Downloads
+### 5.2 Creating Full Downloads
 
 When a full download of the dataset is created, the producer should:
 
@@ -819,7 +712,7 @@ When a full download of the dataset is created, the producer should:
 * On the human-readable download page, include a link to the download file and indicate the datatime of creation.
 * Create or update the [Entry Point](#entry-point) to include the new download in the `url` property.
 
-### 6.3 Creating Change Sets
+### 5.3 Creating Change Sets
 
 The provider must record information about changes in the Entity Set as they occur, then at some point write a Change Set and make accompanying changes to the Entry Point.
 
@@ -874,10 +767,10 @@ Update the Entry Point:
 For each change create a separate [Entity Change Activity](#entity-change-activities) document at the _change_activity_uri_ with the same information used in the Change Set.
 
 
-## 7. Consuming Entity Change Sets
+## 6. Consuming Entity Change Sets
 {: #consuming-entity-change-sets}
 
-### 7.1 Example consuming Library of Congress Activity Stream
+### 6.1 Example consuming Library of Congress Activity Stream
 
 _CAUTION: This section is under construction. This section may or may not be removed from the final draft, in lieu of, a section that is a general example._
 
