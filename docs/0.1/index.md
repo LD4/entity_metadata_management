@@ -25,24 +25,6 @@ editors:
   - name: Kevin M. Ford
     orcid: https://orcid.org/0000-0002-9066-2408
     institution: Library of Congress
-  - name: Jim Hahn   
-    orcid: https://orcid.org/0000-0001-7924-5294
-    institution: University of Pennsylvania Libraries
-  - name: Kirk Hess
-    orcid: https://orcid.org/0000-0002-9559-6649
-    institution: OCLC R&D
-  - name: Anna Lionetti
-    orcid: https://orcid.org/0000-0001-6157-8808
-    institution: Casalini Libri
-  - name: Tiziana Possemato
-    orcid: https://orcid.org/0000-0002-7184-4070
-    institution: Casalini Libri
-  - name: Erik Radio
-    orcid: https://orcid.org/0000-0003-0734-1978
-    institution: University of Colorado Boulder
-  - name: E. Lynette Rayle
-    orcid: https://orcid.org/0000-0001-7707-3572
-    institution: Cornell University Library
   - name: Gregory F. Reeve
     orcid: https://orcid.org/0000-0002-7908-3755
     institution: Brigham Young University
@@ -846,6 +828,8 @@ end
 ```
 
 ## Acknowledgements
+
+We are grateful to all participants in the LD4 [Best Practices for Authoritative Data Working Group](https://wiki.lyrasis.org/x/pgFrD), within which this specification was created. [E. Lynette Rayle](https://orcid.org/0000-0001-7707-3572) (formerly at Cornell University) led the initial development of this specification. [Jim Hahn](https://orcid.org/0000-0001-7924-5294) (University of Pennsylvania Libraries), [Kirk Hess](https://orcid.org/0000-0002-9559-6649) (OCLC R&D), [Anna Lionetti](https://orcid.org/0000-0001-6157-8808) (Casalini Libri), [Tiziana Possemato](https://orcid.org/0000-0002-7184-4070) (Casalini Libri), and [Erik Radio](https://orcid.org/0000-0003-0734-1978) (University of Colorado Boulder) also contributed to this work.
 
 This specification was influenced by prior implementations for [Library of Congress entity sets](https://id.loc.gov/) and [Getty vocabularies](https://www.getty.edu/research/tools/vocabularies/index.html).
 
