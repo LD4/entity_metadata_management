@@ -354,7 +354,7 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
     "type": "OrderedCollection",
     "id": "https://data.my.authority/change_documents/2021/activity-stream"
   },
-  "totalItems": 2,
+  "totalItems": 3,
   "prev": {
     "id": "https://data.my.authority/change_documents/2021/activity-stream/page/1",
     "type": "OrderedCollectionPage"
@@ -461,6 +461,20 @@ The _Change Set_{:.term} _MUST_{:.strong-term} have a `partOf` property. The val
   }
 ```
 
+<a id="change-set-totalItems" class="anchor-definition" />
+__totalItems__
+
+Reference: [id][org-w3c-activitystreams-property-totalitems] property definition
+{:.reference}
+
+A count of the number of items in the _Change Set_{:.term}.
+
+The _Change Set_{:.term} _SHOULD_{:.strong-term} have a `totalItems` property. If present, the value _MUST_{:.strong-term} be a non-negative integer that corresponds with the number of items in the `orderedItems` array in this _Change Set_{:.term}.
+
+```
+  "totalItems": 3
+```
+
 <a id="change-set-next" class="anchor-definition" />
 __next__
 
@@ -479,7 +493,7 @@ subsequent _Change Sets_ in the _Entry Point_{:.term} for this _Entity Collectio
 ```
 
 <a id="change-set-prev" class="anchor-definition" />
-__previous__
+__prev__
 
 Reference: [prev](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-prev) property definition
 {:.reference}
