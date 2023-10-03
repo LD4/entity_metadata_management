@@ -282,9 +282,7 @@ __first__
 Reference: [first](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-first) property definition
 {:.reference}
 
-A link to the first _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}.
-
-The _Entry Point_{:.term} _MUST_{:.strong-term} have a `first` property. The value _MUST_{:.strong-term} be either:
+The _Entry Point_{:.term} _SHOULD_{:.strong-term} have a `first` property to indicate the first _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}. If present, the value _MUST_{:.strong-term} be either:
   * a string that is HTTP(S) URI of the first page of items in the _Entry Point_{:.term}, or
   * a JSON object, with at least the `id` and `type` properties. The value of the `id` property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the first page of items in the _Entry Point_{:.term}. The value of the `type` property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
 
@@ -301,9 +299,9 @@ __last__
 Reference: [last](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-last) property definition
 {:.reference}
 
-A link to the last _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}.
+A link to .
 
-The _Entry Point_{:.term} _MUST_{:.strong-term} have a `last` property. The value _MUST_{:.strong-term} be either:
+The _Entry Point_{:.term} _SHOULD_{:.strong-term} have a `last` property to indicate the last _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}. If present, the value _MUST_{:.strong-term} be either:
   * a string that is HTTP(S) URI of the last page of items in the _Entry Point_{:.term}, or
   * a JSON object, with at least the `id` and `type` properties. The value of the `id` property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the last page of items in the _Entry Point_{:.term}. The value of the `type` property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
 
