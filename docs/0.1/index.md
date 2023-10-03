@@ -530,7 +530,7 @@ Reference: [Activity][org-w3c-activitystreams-coretype-activity] description
 
 A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Activity_{:.term}. An _Entity Change Activity_{:.term} _MUST_{:.strong-term} be implemented as an [Activity Streams][org-w3c-activitystreams] [`Activity`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-activity). The activity _MUST_{:.strong-term} provide information about the type of change and the entity or entities changed. It _MAY_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset.
 
-Not all implementations will store every change for an entity over time. A _Collection_{:.term} _MAY_{:.strong-term} provide feeds of only the last known metadata update for each entity. In the case where the _Collection_ provides feeds of only the last known metadata update for each entity case, the page identifier cannot be used to know the last _Activities_{:.term} processed by a consumer. For this reason the _Activities_{:.term} within the _Collection_{:.term} _MUST_{:.strong-term} have a date property and _SHOULD_{:.strong-term} include the date using the `published` property. The `updated` property _SHOULD_{:.strong-term} be used on the _Object_{:.term} for when the entity actually occurred. This level is sufficient to address the [Entity Change Activities List](#entity-change-activities-list) use case.
+Not all implementations will store every change for an entity over time. A _Collection_{:.term} _MAY_{:.strong-term} provide feeds of only the last known metadata update for each entity. In the case where the _Collection_ provides feeds of only the last known metadata update for each entity case, the page identifier cannot be used to know the last _Activities_{:.term} processed by a consumer. For this reason the _Activities_{:.term} within the _Collection_{:.term} _MUST_{:.strong-term} have a date property and _SHOULD_{:.strong-term} include the date using the `published` property. The `updated` property _SHOULD_{:.strong-term} be used on the _Object_{:.term} for when the entity change actually occurred. This level is sufficient to address the [Entity Change Activities List](#entity-change-activities-list) use case.
 
 _Entity Change Activity_{:.term} objects appear in the `orderedItems` array within a [Change Set](#change-set) response.
 
@@ -561,12 +561,26 @@ __summary__
 Reference: [summary][org-w3c-activitystreams-property-summary] property definition
 {:.reference}
 
-For an _Entity Change Activity_{:.term}, the summary is a brief description of the change to entity metadata that the activity represents. It is _RECOMMENDED_{:.strong-term} that a summary be included and that it reference the type of change (e.g. "Add entity") and the entity being changed (e.g. "subject Science").
+For an _Entity Change Activity_{:.term}, the `summary` is a brief description of the change to entity metadata that the activity represents. It is _RECOMMENDED_{:.strong-term} that a `summary` be included and that it describe the type of change (e.g. "Add entity") and the entity being changed (e.g. "subject Science"). If present, the value of `summary` _MUST_{:.strong-term} be a string.
 
 There are a limited set of types of change. See [Types of Change](#types-of-change) section for a list of types and example summaries for each. Identification of the entity will vary depending on the data represented in the _Entity Set_{:.term}.
 
 ```json-doc
   "summary": "Add entity for subject Science"
+```
+
+<a id="entity-change-activity-published" class="anchor-definition" />
+__published__
+
+Reference: [published][org-w3c-activitystreams-property-published] property definition
+{:.reference}
+
+The datetime at which the _Entity Change Activity_{:.term} was added to the _Change Set_{:.term}.
+
+Each _Entity Change Activity_{:.term} _MUST_{:.strong-term} have a `published` property with value as defined in the Activity Streams [published][org-w3c-activitystreams-property-published] property definition.
+
+```json-doc
+  published": "2021-08-02T16:59:54Z"
 ```
 
 <a id="entity-change-activity-type" class="anchor-definition" />
@@ -589,7 +603,7 @@ __partOf__
 Reference: [partOf][org-w3c-activitystreams-property-partof] property definition
 {:.reference}
 
-The _partOf_ property identifies the _Change Set_{:.term} in which this activity was published.
+The `partOf` property identifies the _Change Set_{:.term} in which this activity was published.
 
 An _Entity Change Activity_{:.term} _MAY_{:.strong-term} use the `partOf` property to refer back to the _Change Set_{:.term} that includes the activity. When used on an Activity, the `partOf` property _MUST NOT_{:.strong-term} be used for any other purpose. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Change Set_{:.term} publishing this activity _MUST_{:.strong-term} be available at the URI.
 
@@ -600,6 +614,26 @@ An _Entity Change Activity_{:.term} _MAY_{:.strong-term} use the `partOf` proper
   }
 ```
 
+<a id="entity-change-activity-object" class="anchor-definition" />
+__object__
+
+Reference: [object][org-w3c-activitystreams-property-object] property definition
+{:.reference}
+
+The entity that is the subject of the _Entity Change Activity_{:.term}, along with its update datatime.
+
+An _Entity Change Activity_{:.term} _MUST_{:.strong-term} include an `object` property. The value _MUST_{:.strong-term} be a JSON object with the following sub-properties:
+  * A `type` property that has the string value `Subject`.
+  * An `id` property that is the URI of the entity involved in the _Entity Change Activity_{:.term}.
+  * An `updated` property that gives the datetime of the change ot the entity.
+
+```json-doc
+  "object": {
+    "type": "Subject",
+    "id": "http://my_repo/entity/science",
+    "updated": "2021-08-02T16:59:54Z"
+  }
+```
 
 ## 4. Types of Change
 {: #types-of-change}

@@ -36,6 +36,7 @@
 [org-w3c-activitystreams-property-instrument]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-instrument
 [org-w3c-activitystreams-property-last]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-last
 [org-w3c-activitystreams-property-next]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-next
+[org-w3c-activitystreams-property-object]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-object
 [org-w3c-activitystreams-property-ordereditems]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-items
 [org-w3c-activitystreams-property-partof]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-partof
 [org-w3c-activitystreams-property-prev]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-prev
