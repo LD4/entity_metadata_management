@@ -841,6 +841,7 @@ With these URIs the new [Change Set](#change-set) can be created as follows:
 * set the `prev` property to use _prev_change_set_uri_ for `id`
 * set the `totalItems` property to the number of change activities that will be in this change set
 * for each change, from oldest to newest or newest to oldest, add an Activity to the `orderedItems` property array, and:
+    * set the `summary` property to the human readable description of the change
     * set the `type` property to the change type (e.g. `Add`, `Update`, etc.)
     * set the `id` property to the _change_activity_uri_ for this change
     * set the `published` property to the datetime the change set is being published
@@ -848,7 +849,6 @@ With these URIs the new [Change Set](#change-set) can be created as follows:
         * set the `id` property to the _entity_uri_
         * set the `type` property to the entity type
         * set the `updated` property to the datetime of the change to the entity
-        * set the `summary` property to the human readable description of the change
 
 Update the previous Change Set:
 * add a `next` property that points to the new Change Set
