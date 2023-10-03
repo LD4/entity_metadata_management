@@ -857,11 +857,9 @@ Update the Entry Point:
 * if this is the first Change Set published, add the `first` property in the entry point with:
     * set the `type` property to `OrderCollectionPage`
     * set the `id` property to the _change_set_uri_
-    * set the `published` property to the datetime the Change Set is being published
 * add or update the `last` property in the Entry Point:
     * set the `type` property to `OrderCollectionPage`
     * set the `id` property to the _change_set_uri_
-    * set the `published` property to the datetime the Change Set is being published
 
 For each change create a separate [Entity Change Activity](#entity-change-activities) document at the _change_activity_uri_ with the same information used in the Change Set.
 
