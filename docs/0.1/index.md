@@ -213,7 +213,7 @@ The Entry Point _MUST_{:.strong-term} be implemented as an _Ordered Collection_{
 }
 ```
 
-<a id="entry-point-context" class="anchor-definition">
+<a id="entry-point-context" class="anchor-definition" />
 __@context__
 
 Reference: [JSON-LD scoped context][org-w3c-json-ld-scoped-contexts]
@@ -232,9 +232,9 @@ _Entity Metadata Management_{:.term} activity streams _MUST_{:.strong-term} incl
 
 The _Entity Metadata Management_{:.term} context includes information for all parts of this specification and thus the same context definition is used in all API responses. The _Entity Metadata Management_{:.term} context imports the _Activity Stream_{:.term} [context][org-w3c-activitystreams-context-definition] and thus it is not necessarily to specify that explicitly in API responses.
 
-Implementations _MAY_{:.strong-term} include additional extension contexts, in which case the value of `@context` will be a list with the _Entity Metadata Management_{:.term} context first. Extension contexts _MUST NOT_{:.strong-term} override terms defined in the _Entity Metadata Management_{:.term} context or the underlying _Activity Stream_{:.term} context. Implementations _MAY_ also use additional properties and values not defined in a JSON-LD `@context` with the understanding that any such properties will likely be unsupported and ignored by consuming implementations that use the standard JSON-LD algorithms.
+Implementations _MAY_{:.strong-term} include additional extension contexts, in which case the value of `@context` will be a list with the _Entity Metadata Management_{:.term} context first. Extension contexts _MUST NOT_{:.strong-term} override terms defined in the _Entity Metadata Management_{:.term} context or the underlying _Activity Stream_{:.term} context. Implementations _MAY_{:.strong-term} also use additional properties and values not defined in a JSON-LD `@context` with the understanding that any such properties will likely be unsupported and ignored by consuming implementations that use the standard JSON-LD algorithms.
 
-<a id="entry-point-summary" class="anchor-definition">
+<a id="entry-point-summary" class="anchor-definition" />
 __summary__
 
 Reference: [summary][org-w3c-activitystreams-property-summary] property definition
@@ -252,7 +252,7 @@ The _Entry Point_{:.term} _SHOULD_{:.strong-term} have a `summary` property. For
   "summary": "My Authority - Incremental Updates from 2022-01-01 Full Download"
 ```
 
-<a id="entry-point-type" class="anchor-definition">
+<a id="entry-point-type" class="anchor-definition" />
 __type__
 
 Reference: [type][org-w3c-activitystreams-property-type] property definition
@@ -266,7 +266,7 @@ The _Entry Point_{:.term} _MUST_{:.strong-term} have a `type` property. The valu
   "type": "OrderedCollection"
 ```
 
-<a id="entry-point-id" class="anchor-definition">
+<a id="entry-point-id" class="anchor-definition" />
 __id__
 
 Reference: [id][org-w3c-activitystreams-property-id] property definition
@@ -280,7 +280,7 @@ The _Entry Point_{:.term} _MUST_{:.strong-term} have an `id` property. The value
   "id": "https://data.my.authority/change_documents/2021/activity-stream"
 ```
 
-<a id="entry-point-url" class="anchor-definition">
+<a id="entry-point-url" class="anchor-definition" />
 __url__
 
 Reference: [url][org-w3c-activitystreams-property-url] property definition
@@ -294,7 +294,7 @@ A common use of the `url` property is a link to the full download for the collec
   "url": "https://my.authority/2021-01-01/full_download"
 ```
 
-<a id="entry-point-first" class="anchor-definition">
+<a id="entry-point-first" class="anchor-definition" />
 __first__
 
 Reference: [first](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-first) property definition
@@ -313,7 +313,7 @@ The _Entry Point_{:.term} _MUST_{:.strong-term} have a `first` property. The val
   }  
 ```
 
-<a id="entry-point-last" class="anchor-definition">
+<a id="entry-point-last" class="anchor-definition" />
 __last__
 
 Reference: [last](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-last) property definition
@@ -332,7 +332,7 @@ The _Entry Point_{:.term} _MUST_{:.strong-term} have a `last` property. The valu
   }
 ```
 
-<a id="entry-point-totalitems" class="anchor-definition">
+<a id="entry-point-totalitems" class="anchor-definition" />
 __totalItems__
 
 Reference: [totalItems][org-w3c-activitystreams-property-totalitems] property definition
@@ -413,7 +413,7 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
 }
 ```
 
-<a id="change-set-next" class="anchor-definition">
+<a id="change-set-next" class="anchor-definition" />
 __next__
 
 Reference: [next](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-next) property definition
@@ -430,7 +430,7 @@ subsequent _Change Sets_ in the _Entry Point_{:.term} for this _Entity Collectio
   "next": "https://data.my.authority/change_documents/2021/activity-stream/page/3"
 ```
 
-<a id="change-set-prev" class="anchor-definition">
+<a id="change-set-prev" class="anchor-definition" />
 __previous__
 
 Reference: [prev](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-prev) property definition
@@ -446,7 +446,7 @@ The _Change Set_{:.term} _MAY_{:.strong-term} have a `prev` property if there ar
   "prev": "https://data.my.authority/change_documents/2021/activity-stream/page/1"
 ```
 
-<a id="change-set-ordereditems" class="anchor-definition">
+<a id="change-set-ordereditems" class="anchor-definition" />
 __orderedItems__
 
 The list of _Entity Change Activity_{:.term} entries in the _Change Set_{:.term}.
@@ -468,7 +468,7 @@ Reference: [Activity][org-w3c-activitystreams-coretype-activity] description
 
 A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Activity_{:.term}. An _Entity Change Activity_{:.term} _MUST_{:.strong-term} be implemented as an [Activity Streams][org-w3c-activitystreams] [`Activity`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-activity). The activity _MUST_{:.strong-term} provide information about the type of change and the entity or entities changed. It _MAY_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset.
 
-Not all implementations will store every change for an entity over time. A _Collection_{:.term} _MAY_{:.strong-term} provide feeds of only the last known metadata update for each entity. In the case where the _Collection_ provides feeds of only the last known metadata update for each entity case, the page identifier cannot be used to know the last _Activities_{:.term} processed by a consumer. For this reason the _Activities_{:.term} within the _Collection_{:.term} _MUST_ have a date property and _SHOULD_{:.strong-term} include the date using the `published` property. The `updated` property _SHOULD_ be used on the _Object_{:.term} for when the entity actually occurred. This level is sufficient to address the [Entity Change Activities List](#entity-change-activities-list) use case.
+Not all implementations will store every change for an entity over time. A _Collection_{:.term} _MAY_{:.strong-term} provide feeds of only the last known metadata update for each entity. In the case where the _Collection_ provides feeds of only the last known metadata update for each entity case, the page identifier cannot be used to know the last _Activities_{:.term} processed by a consumer. For this reason the _Activities_{:.term} within the _Collection_{:.term} _MUST_{:.strong-term} have a date property and _SHOULD_{:.strong-term} include the date using the `published` property. The `updated` property _SHOULD_{:.strong-term} be used on the _Object_{:.term} for when the entity actually occurred. This level is sufficient to address the [Entity Change Activities List](#entity-change-activities-list) use case.
 
 _Entity Change Activity_{:.term} objects appear in the `orderedItems` array within a [Change Set](#change-set) response.
 
@@ -493,7 +493,7 @@ _Entity Change Activity_{:.term} objects appear in the `orderedItems` array with
 
 Properties shared across all _Entity Change Activity_{:.term} types are described here. Specific activity types relevant to Entity Metadata Management are describe in the [Types of Change](#types-of-change) section.
 
-<a id="entity-change-activity-summary" class="anchor-definition">
+<a id="entity-change-activity-summary" class="anchor-definition" />
 __summary__
 
 Reference: [summary][org-w3c-activitystreams-property-summary] property definition
@@ -507,7 +507,7 @@ There are a limited set of types of change. See [Types of Change](#types-of-chan
   "summary": "Add entity for subject Science"
 ```
 
-<a id="entity-change-activity-type" class="anchor-definition">
+<a id="entity-change-activity-type" class="anchor-definition" />
 __type__
 
 Reference: [type][org-w3c-activitystreams-property-type] property definition
@@ -521,7 +521,7 @@ The type is the one of a set of predefined _Entity Change Activity_{:.term} type
   "type": "Create"
 ```
 
-<a id="entity-change-activity-partof" class="anchor-definition">
+<a id="entity-change-activity-partof" class="anchor-definition" />
 __partOf__
 
 Reference: [partOf][org-w3c-activitystreams-property-partof] property definition
