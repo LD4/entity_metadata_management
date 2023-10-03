@@ -47,5 +47,5 @@
 [org-w3c-activitystreams-property-updated]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-updated
 [org-w3c-activitystreams-property-url]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-url
 [org-w3c-json-as-json-ld]: http://www.w3.org/TR/json-ld/#interpreting-json-as-json-ld "Interpreting JSON as JSON-LD"
-[org-w3c-json-ld-scoped-contexts]: https://json-ld.org/spec/latest/json-ld/#scoped-contexts "JSON-LD Scoped Contexts"
+[org-w3c-json-ld-context]: https://json-ld.org/spec/latest/json-ld/#the-context "JSON-LD Context"
 [org-w3c-json-ld]: http://www.w3.org/TR/json-ld/ "JSON-LD 1.0"

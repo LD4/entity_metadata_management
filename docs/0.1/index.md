@@ -198,7 +198,7 @@ The Entry Point _MUST_{:.strong-term} be implemented as an _Ordered Collection_{
 <a id="entry-point-context" class="anchor-definition" />
 __@context__
 
-Reference: [JSON-LD scoped context][org-w3c-json-ld-scoped-contexts]
+Reference: [JSON-LD context][org-w3c-json-ld-context]
 {:.reference}
 
 The `@context` is used to refer a JSON-LD context which, in its simplest form, maps terms to IRIs.
@@ -208,7 +208,7 @@ _Entity Metadata Management_{:.term} activity streams _MUST_{:.strong-term} incl
 ```json-doc
 {
   "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
-  // rest of API response
+  // rest of API Entry Point response
 }
 ```
 
@@ -222,7 +222,7 @@ __summary__
 Reference: [summary][org-w3c-activitystreams-property-summary] property definition
 {:.reference}
 
-The summary is a natural language summarization of the purpose of the _Entry Point_{:.term}
+The `summary` is a natural language summarization of the purpose of the _Entry Point_{:.term}
 
 The _Entry Point_{:.term} _SHOULD_{:.strong-term} have a `summary` property. For an _Entry Point_{:.term}, the summary _MAY_{:.strong-term} be a brief description of the _Entity Set_{:.term} in which the described changes occurred. If there are multiple entry points to the same collection, it is _RECOMMENDED_{:.strong-term} that the summary include information that distinguishes each entry point from the others.
 
@@ -240,7 +240,7 @@ __type__
 Reference: [type][org-w3c-activitystreams-property-type] property definition
 {:.reference}
 
-The type property identifies the Activity Stream type for the _Entry Point_{:.term}.
+The `type` property identifies the Activity Stream type for the _Entry Point_{:.term}.
 
 The _Entry Point_{:.term} _MUST_{:.strong-term} have a `type` property. The value _MUST_{:.strong-term} be `OrderedCollection`.
 
@@ -254,9 +254,9 @@ __id__
 Reference: [id][org-w3c-activitystreams-property-id] property definition
 {:.reference}
 
-The id is a unique identifier of the _Entry Point_{:.term}.
+The `id` is a unique identifier of the _Entry Point_{:.term}.
 
-The _Entry Point_{:.term} _MUST_{:.strong-term} have an `id` property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Ordered Collection_{:.term} _Entry Point_{:.term} _MUST_{:.strong-term} be available at the URI.
+The _Entry Point_{:.term} _MUST_{:.strong-term} have an `id` property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Ordered Collection_{:.term} _Entry Point_{:.term} _MUST_{:.strong-term} be available at the URI given.
 
 ```json-doc
   "id": "https://data.my.authority/change_documents/2021/activity-stream"
@@ -393,6 +393,72 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
     }
   ]
 }
+```
+
+<a id="change-set-context" class="anchor-definition" />
+__@context__
+
+Reference: [JSON-LD context][org-w3c-json-ld-context]
+{:.reference}
+
+The `@context` is used to refer a JSON-LD context which, in its simplest form, maps terms to IRIs.
+
+_Entity Metadata Management_{:.term} activity streams _MUST_{:.strong-term} include the following [context][emm-context-api-01] definition at the top-level of each API response:
+
+```json-doc
+{
+  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
+  // rest of API Change Set response
+}
+```
+
+See additional discussion in [Entry Point `@context`](#entry-point-context).
+
+<a id="change-set-type" class="anchor-definition" />
+__type__
+
+Reference: [type][org-w3c-activitystreams-property-type] property definition
+{:.reference}
+
+The `type` property identifies the Activity Stream type for the _Change Set_{:.term}.
+
+The _Change Set_{:.term} _MUST_{:.strong-term} have a `type` property. The value _MUST_{:.strong-term} be `OrderedCollectionPage`.
+
+```json-doc
+  "type": "OrderedCollectionPage"
+```
+
+<a id="change-set-id" class="anchor-definition" />
+__id__
+
+Reference: [id][org-w3c-activitystreams-property-id] property definition
+{:.reference}
+
+The `id` is a unique identifier of the _Change Set_{:.term}.
+
+The _Change Set_{:.term} _MUST_{:.strong-term} have an `id` property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Change Set_{:.term} _MUST_{:.strong-term} be available at the URI given.
+
+```json-doc
+  "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
+```
+
+<a id="change-set-partOf" class="anchor-definition" />
+__partOf__
+
+Reference: [id][org-w3c-activitystreams-property-partof] property definition
+{:.reference}
+
+The `partOf` property provides a link from the _Change Set_{:.term} to the _Entry Point_{:.term} is it part of.
+
+The _Change Set_{:.term} _MUST_{:.strong-term} have a `partOf` property. The value _MUST_{:.strong-term} be either:
+  * a string that is HTTP(S) URI of the _Entry Point_{:.term}, or
+  * a JSON object, with at least the `id` and `type` properties. The value of the `id` property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the _Entry Point_{:.term}. The value of the `type` property _MUST_{:.strong-term} be the string `OrderedCollection`.
+
+```
+  "partOf": {
+    "type": "OrderedCollection",
+    "id": "https://data.my.authority/change_documents/2021/activity-stream"
+  }
 ```
 
 <a id="change-set-next" class="anchor-definition" />
