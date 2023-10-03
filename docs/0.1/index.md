@@ -369,7 +369,7 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
       "published": "2021-02-01T15:04:22Z",
       "object": {
         "id": "https://my.authority/term/milk",
-        "type": "Term",
+        "type": "http://www.w3.org/2004/02/skos/core#Concept",
         "updated": "2021-02-01T15:04:22Z"
       }
     },
@@ -378,7 +378,7 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
       "published": "2021-02-01T17:11:03Z",
       "object": {
         "id": "https://my.authority/term/bovine_milk",
-        "type": "Term",
+        "type": "http://www.w3.org/2004/02/skos/core#Concept",
         "updated": "2021-02-01T17:11:03Z"
       }
     },
@@ -387,7 +387,7 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
       "published": "2021-02-01T17:11:03Z",
       "object": {
         "id": "https://my.authority/term/cow_milk",
-        "type": "Term",
+        "type": "http://www.w3.org/2004/02/skos/core#Concept",
         "updated": "2021-02-01T17:11:03Z"
       }
     }
@@ -530,7 +530,7 @@ Reference: [Activity][org-w3c-activitystreams-coretype-activity] description
 
 A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Activity_{:.term}. An _Entity Change Activity_{:.term} _MUST_{:.strong-term} be implemented as an [Activity Streams][org-w3c-activitystreams] [`Activity`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-activity). The activity _MUST_{:.strong-term} provide information about the type of change and the entity or entities changed. It _MAY_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset.
 
-Not all implementations will store every change for an entity over time. A _Collection_{:.term} _MAY_{:.strong-term} provide feeds of only the last known metadata update for each entity. In the case where the _Collection_ provides feeds of only the last known metadata update for each entity case, the page identifier cannot be used to know the last _Activities_{:.term} processed by a consumer. For this reason the _Activities_{:.term} within the _Collection_{:.term} _MUST_{:.strong-term} have a date property and _SHOULD_{:.strong-term} include the date using the `published` property. The `updated` property _SHOULD_{:.strong-term} be used on the _Object_{:.term} for when the entity change actually occurred. This level is sufficient to address the [Entity Change Activities List](#entity-change-activities-list) use case.
+Not all implementations will store every change for an entity over time. A _Collection_{:.term} _MAY_{:.strong-term} provide feeds of only the last known metadata update for each entity. In the case where the _Collection_ provides feeds of only the last known metadata update for each entity case, the page identifier cannot be used to know the last _Activities_{:.term} processed by a consumer. For this reason the _Activities_{:.term} within the _Collection_{:.term} _MUST_{:.strong-term} have either a `published` or `endTime` datetime property as described below. The `updated` property _SHOULD_{:.strong-term} be used on the entity description `object` to indicate when the entity change actually occurred. This level is sufficient to address the [Entity Change Activities List](#entity-change-activities-list) use case.
 
 _Entity Change Activity_{:.term} objects appear in the `orderedItems` array within a [Change Set](#change-set) response.
 
@@ -546,7 +546,7 @@ _Entity Change Activity_{:.term} objects appear in the `orderedItems` array with
     "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
   },
   "object": {
-    "type": "Subject",
+    "type": "http://www.w3.org/2004/02/skos/core#Concept",
     "id": "http://my_repo/entity/science",
     "updated": "2021-08-02T16:59:54Z"
   }
@@ -570,17 +570,21 @@ There are a limited set of types of change. See [Types of Change](#types-of-chan
 ```
 
 <a id="entity-change-activity-published" class="anchor-definition" />
-__published__
+__published__ or __endTime__
 
-Reference: [published][org-w3c-activitystreams-property-published] property definition
+Reference: [published][org-w3c-activitystreams-property-published] and [endTime][org-w3c-activitystreams-property-endtime] property definitions
 {:.reference}
 
-The datetime at which the _Entity Change Activity_{:.term} was added to the _Change Set_{:.term}.
+The datetime at which the _Entity Change Activity_{:.term} ended or was added to the _Change Set_{:.term}.
 
-Each _Entity Change Activity_{:.term} _MUST_{:.strong-term} have a `published` property with value as defined in the Activity Streams [published][org-w3c-activitystreams-property-published] property definition.
+Each _Entity Change Activity_{:.term} _MUST_{:.strong-term} have either a `published` property or an `endTime` property. It is _RECOMMENDED_{:.strong-term} that the `published` property is used. In either case, the value must be a datetime as defined in the corresponding Activity Streams property definitions (e.g. [`published`][org-w3c-activitystreams-property-published]).
 
 ```json-doc
-  published": "2021-08-02T16:59:54Z"
+  "published": "2021-08-02T16:59:54Z"
+```
+
+```json-doc
+  "endTime": "2021-08-02T16:59:54Z"
 ```
 
 <a id="entity-change-activity-type" class="anchor-definition" />
@@ -623,13 +627,13 @@ Reference: [object][org-w3c-activitystreams-property-object] property definition
 The entity that is the subject of the _Entity Change Activity_{:.term}, along with its update datatime.
 
 An _Entity Change Activity_{:.term} _MUST_{:.strong-term} include an `object` property. The value _MUST_{:.strong-term} be a JSON object with the following sub-properties:
-  * A `type` property that has the string value `Subject`.
-  * An `id` property that is the URI of the entity involved in the _Entity Change Activity_{:.term}.
-  * An `updated` property that gives the datetime of the change ot the entity.
+  * A _RECOMMENDED_{:.strong-term} `type` property that is either a URI string or a plain string indicating the entity type.
+  * A _REQUIRED_{:.strong-term} `id` property that is the URI of the entity involved in the _Entity Change Activity_{:.term}.
+  * A _RECOMMENDED_{:.strong-term} `updated` property that gives the datetime of the change to the entity.
 
 ```json-doc
   "object": {
-    "type": "Subject",
+    "type": "http://www.w3.org/2004/02/skos/core#Concept",
     "id": "http://my_repo/entity/science",
     "updated": "2021-08-02T16:59:54Z"
   }
@@ -672,7 +676,7 @@ A new _Entry Point_{:.term} _MAY_{:.strong-term} choose to populate the stream w
     "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
   },
   "object": {
-    "type": "Term",
+    "type": "http://www.w3.org/2004/02/skos/core#Concept",
     "id": "http://my_repo/entity/cow_milk",
     "updated": "2021-08-02T16:59:54Z"
   }
@@ -700,7 +704,7 @@ Examples of updates in the library domain include splits and merges. See the [De
     "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
   },
   "object": {
-    "type": "Term",
+    "type": "http://www.w3.org/2004/02/skos/core#Concept",
     "id": "http://my_repo/entity/milk",
     "updated": "2021-08-02T16:59:54Z"
   }
@@ -731,7 +735,7 @@ In all cases, it is expected that the consumer will dereference the deprecated e
     "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
   },
   "object": {
-    "type": "Term",
+    "type": "http://www.w3.org/2004/02/skos/core#Concept",
     "id": "http://my_repo/entity/cow_milk",
     "updated": "2021-08-02T16:59:57Z"
   }
@@ -746,7 +750,7 @@ In all cases, it is expected that the consumer will dereference the deprecated e
     "published": "2021-02-01T17:11:03Z",
     "object": {
       "id": "https://my.authority/term/bovine_milk",
-      "type": "Term",
+      "type": "http://www.w3.org/2004/02/skos/core#Concept",
       "updated": "2021-02-01T17:11:03Z"
     }
   },
@@ -755,7 +759,7 @@ In all cases, it is expected that the consumer will dereference the deprecated e
     "published": "2021-02-01T17:11:03Z",
     "object": {
       "id": "https://my.authority/term/cow_milk",
-      "type": "Term",
+      "type": "http://www.w3.org/2004/02/skos/core#Concept",
       "updated": "2021-02-01T17:11:03Z"
     }
   }
@@ -783,7 +787,7 @@ A deleted entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} f
     "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
   },
   "object": {
-    "type": "Term",
+    "type": "http://www.w3.org/2004/02/skos/core#Concept",
     "id": "http://my_repo/entity/cow_milk",
     "updated": "2021-08-02T16:59:54Z"
   }
