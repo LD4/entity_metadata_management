@@ -198,7 +198,7 @@ The Entry Point _MUST_{:.strong-term} be implemented as an _Ordered Collection_{
 <a id="entry-point-context" class="anchor-definition" />
 __@context__
 
-Reference: [JSON-LD context][org-w3c-json-ld-context]
+Reference: [JSON-LD scoped context][org-w3c-json-ld-scoped-contexts]
 {:.reference}
 
 The `@context` is used to refer a JSON-LD context which, in its simplest form, maps terms to IRIs.
@@ -208,7 +208,7 @@ _Entity Metadata Management_{:.term} activity streams _MUST_{:.strong-term} incl
 ```json-doc
 {
   "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
-  // rest of API Entry Point response
+  // rest of API response
 }
 ```
 
@@ -222,7 +222,7 @@ __summary__
 Reference: [summary][org-w3c-activitystreams-property-summary] property definition
 {:.reference}
 
-The `summary` is a natural language summarization of the purpose of the _Entry Point_{:.term}
+The summary is a natural language summarization of the purpose of the _Entry Point_{:.term}
 
 The _Entry Point_{:.term} _SHOULD_{:.strong-term} have a `summary` property. For an _Entry Point_{:.term}, the summary _MAY_{:.strong-term} be a brief description of the _Entity Set_{:.term} in which the described changes occurred. If there are multiple entry points to the same collection, it is _RECOMMENDED_{:.strong-term} that the summary include information that distinguishes each entry point from the others.
 
@@ -240,7 +240,7 @@ __type__
 Reference: [type][org-w3c-activitystreams-property-type] property definition
 {:.reference}
 
-The `type` property identifies the Activity Stream type for the _Entry Point_{:.term}.
+The type property identifies the Activity Stream type for the _Entry Point_{:.term}.
 
 The _Entry Point_{:.term} _MUST_{:.strong-term} have a `type` property. The value _MUST_{:.strong-term} be `OrderedCollection`.
 
@@ -254,9 +254,9 @@ __id__
 Reference: [id][org-w3c-activitystreams-property-id] property definition
 {:.reference}
 
-The `id` is a unique identifier of the _Entry Point_{:.term}.
+The id is a unique identifier of the _Entry Point_{:.term}.
 
-The _Entry Point_{:.term} _MUST_{:.strong-term} have an `id` property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Ordered Collection_{:.term} _Entry Point_{:.term} _MUST_{:.strong-term} be available at the URI given.
+The _Entry Point_{:.term} _MUST_{:.strong-term} have an `id` property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Ordered Collection_{:.term} _Entry Point_{:.term} _MUST_{:.strong-term} be available at the URI.
 
 ```json-doc
   "id": "https://data.my.authority/change_documents/2021/activity-stream"
@@ -352,7 +352,7 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
     "type": "OrderedCollection",
     "id": "https://data.my.authority/change_documents/2021/activity-stream"
   },
-  "totalItems": 3,
+  "totalItems": 2,
   "prev": {
     "id": "https://data.my.authority/change_documents/2021/activity-stream/page/1",
     "type": "OrderedCollectionPage"
@@ -393,86 +393,6 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
 }
 ```
 
-<a id="change-set-context" class="anchor-definition" />
-__@context__
-
-Reference: [JSON-LD context][org-w3c-json-ld-context]
-{:.reference}
-
-The `@context` is used to refer a JSON-LD context which, in its simplest form, maps terms to IRIs.
-
-_Entity Metadata Management_{:.term} activity streams _MUST_{:.strong-term} include the following [context][emm-context-api-01] definition at the top-level of each API response:
-
-```json-doc
-{
-  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
-  // rest of API Change Set response
-}
-```
-
-See additional discussion in [Entry Point `@context`](#entry-point-context).
-
-<a id="change-set-type" class="anchor-definition" />
-__type__
-
-Reference: [type][org-w3c-activitystreams-property-type] property definition
-{:.reference}
-
-The `type` property identifies the Activity Stream type for the _Change Set_{:.term}.
-
-The _Change Set_{:.term} _MUST_{:.strong-term} have a `type` property. The value _MUST_{:.strong-term} be `OrderedCollectionPage`.
-
-```json-doc
-  "type": "OrderedCollectionPage"
-```
-
-<a id="change-set-id" class="anchor-definition" />
-__id__
-
-Reference: [id][org-w3c-activitystreams-property-id] property definition
-{:.reference}
-
-The `id` is a unique identifier of the _Change Set_{:.term}.
-
-The _Change Set_{:.term} _MUST_{:.strong-term} have an `id` property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Change Set_{:.term} _MUST_{:.strong-term} be available at the URI given.
-
-```json-doc
-  "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2"
-```
-
-<a id="change-set-partOf" class="anchor-definition" />
-__partOf__
-
-Reference: [id][org-w3c-activitystreams-property-partof] property definition
-{:.reference}
-
-The `partOf` property provides a link from the _Change Set_{:.term} to the _Entry Point_{:.term} is it part of.
-
-The _Change Set_{:.term} _MUST_{:.strong-term} have a `partOf` property. The value _MUST_{:.strong-term} be either:
-  * a string that is HTTP(S) URI of the _Entry Point_{:.term}, or
-  * a JSON object, with at least the `id` and `type` properties. The value of the `id` property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the _Entry Point_{:.term}. The value of the `type` property _MUST_{:.strong-term} be the string `OrderedCollection`.
-
-```
-  "partOf": {
-    "type": "OrderedCollection",
-    "id": "https://data.my.authority/change_documents/2021/activity-stream"
-  }
-```
-
-<a id="change-set-totalItems" class="anchor-definition" />
-__totalItems__
-
-Reference: [id][org-w3c-activitystreams-property-totalitems] property definition
-{:.reference}
-
-A count of the number of items in the _Change Set_{:.term}.
-
-The _Change Set_{:.term} _SHOULD_{:.strong-term} have a `totalItems` property. If present, the value _MUST_{:.strong-term} be a non-negative integer that corresponds with the number of items in the `orderedItems` array in this _Change Set_{:.term}.
-
-```
-  "totalItems": 3
-```
-
 <a id="change-set-next" class="anchor-definition" />
 __next__
 
@@ -491,7 +411,7 @@ subsequent _Change Sets_ in the _Entry Point_{:.term} for this _Entity Collectio
 ```
 
 <a id="change-set-prev" class="anchor-definition" />
-__prev__
+__previous__
 
 Reference: [prev](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-prev) property definition
 {:.reference}
@@ -528,7 +448,7 @@ Reference: [Activity][org-w3c-activitystreams-coretype-activity] description
 
 A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Activity_{:.term}. An _Entity Change Activity_{:.term} _MUST_{:.strong-term} be implemented as an [Activity Streams][org-w3c-activitystreams] [`Activity`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-activity). The activity _MUST_{:.strong-term} provide information about the type of change and the entity or entities changed. It _MAY_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset.
 
-Not all implementations will store every change for an entity over time. A _Collection_{:.term} _MAY_{:.strong-term} provide feeds of only the last known metadata update for each entity. In the case where the _Collection_ provides feeds of only the last known metadata update for each entity case, the page identifier cannot be used to know the last _Activities_{:.term} processed by a consumer. For this reason the _Activities_{:.term} within the _Collection_{:.term} _MUST_{:.strong-term} have a date property and _SHOULD_{:.strong-term} include the date using the `published` property. The `updated` property _SHOULD_{:.strong-term} be used on the _Object_{:.term} for when the entity change actually occurred. This level is sufficient to address the [Entity Change Activities List](#entity-change-activities-list) use case.
+Not all implementations will store every change for an entity over time. A _Collection_{:.term} _MAY_{:.strong-term} provide feeds of only the last known metadata update for each entity. In the case where the _Collection_ provides feeds of only the last known metadata update for each entity case, the page identifier cannot be used to know the last _Activities_{:.term} processed by a consumer. For this reason the _Activities_{:.term} within the _Collection_{:.term} _MUST_{:.strong-term} have a date property and _SHOULD_{:.strong-term} include the date using the `published` property. The `updated` property _SHOULD_{:.strong-term} be used on the _Object_{:.term} for when the entity actually occurred. This level is sufficient to address the [Entity Change Activities List](#entity-change-activities-list) use case.
 
 _Entity Change Activity_{:.term} objects appear in the `orderedItems` array within a [Change Set](#change-set) response.
 
@@ -559,26 +479,12 @@ __summary__
 Reference: [summary][org-w3c-activitystreams-property-summary] property definition
 {:.reference}
 
-For an _Entity Change Activity_{:.term}, the `summary` is a brief description of the change to entity metadata that the activity represents. It is _RECOMMENDED_{:.strong-term} that a `summary` be included and that it describe the type of change (e.g. "Add entity") and the entity being changed (e.g. "subject Science"). If present, the value of `summary` _MUST_{:.strong-term} be a string.
+For an _Entity Change Activity_{:.term}, the summary is a brief description of the change to entity metadata that the activity represents. It is _RECOMMENDED_{:.strong-term} that a summary be included and that it reference the type of change (e.g. "Add entity") and the entity being changed (e.g. "subject Science").
 
 There are a limited set of types of change. See [Types of Change](#types-of-change) section for a list of types and example summaries for each. Identification of the entity will vary depending on the data represented in the _Entity Set_{:.term}.
 
 ```json-doc
   "summary": "Add entity for subject Science"
-```
-
-<a id="entity-change-activity-published" class="anchor-definition" />
-__published__
-
-Reference: [published][org-w3c-activitystreams-property-published] property definition
-{:.reference}
-
-The datetime at which the _Entity Change Activity_{:.term} was added to the _Change Set_{:.term}.
-
-Each _Entity Change Activity_{:.term} _MUST_{:.strong-term} have a `published` property with value as defined in the Activity Streams [published][org-w3c-activitystreams-property-published] property definition.
-
-```json-doc
-  published": "2021-08-02T16:59:54Z"
 ```
 
 <a id="entity-change-activity-type" class="anchor-definition" />
@@ -601,7 +507,7 @@ __partOf__
 Reference: [partOf][org-w3c-activitystreams-property-partof] property definition
 {:.reference}
 
-The `partOf` property identifies the _Change Set_{:.term} in which this activity was published.
+The _partOf_ property identifies the _Change Set_{:.term} in which this activity was published.
 
 An _Entity Change Activity_{:.term} _MAY_{:.strong-term} use the `partOf` property to refer back to the _Change Set_{:.term} that includes the activity. When used on an Activity, the `partOf` property _MUST NOT_{:.strong-term} be used for any other purpose. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Change Set_{:.term} publishing this activity _MUST_{:.strong-term} be available at the URI.
 
@@ -612,26 +518,6 @@ An _Entity Change Activity_{:.term} _MAY_{:.strong-term} use the `partOf` proper
   }
 ```
 
-<a id="entity-change-activity-object" class="anchor-definition" />
-__object__
-
-Reference: [object][org-w3c-activitystreams-property-object] property definition
-{:.reference}
-
-The entity that is the subject of the _Entity Change Activity_{:.term}, along with its update datatime.
-
-An _Entity Change Activity_{:.term} _MUST_{:.strong-term} include an `object` property. The value _MUST_{:.strong-term} be a JSON object with the following sub-properties:
-  * A `type` property that has the string value `Subject`.
-  * An `id` property that is the URI of the entity involved in the _Entity Change Activity_{:.term}.
-  * An `updated` property that gives the datetime of the change ot the entity.
-
-```json-doc
-  "object": {
-    "type": "Subject",
-    "id": "http://my_repo/entity/science",
-    "updated": "2021-08-02T16:59:54Z"
-  }
-```
 
 ## 4. Types of Change
 {: #types-of-change}
@@ -839,7 +725,6 @@ With these URIs the new [Change Set](#change-set) can be created as follows:
 * set the `prev` property to use _prev_change_set_uri_ for `id`
 * set the `totalItems` property to the number of change activities that will be in this change set
 * for each change, from oldest to newest or newest to oldest, add an Activity to the `orderedItems` property array, and:
-    * set the `summary` property to the human readable description of the change
     * set the `type` property to the change type (e.g. `Add`, `Update`, etc.)
     * set the `id` property to the _change_activity_uri_ for this change
     * set the `published` property to the datetime the change set is being published
@@ -847,6 +732,7 @@ With these URIs the new [Change Set](#change-set) can be created as follows:
         * set the `id` property to the _entity_uri_
         * set the `type` property to the entity type
         * set the `updated` property to the datetime of the change to the entity
+        * set the `summary` property to the human readable description of the change
 
 Update the previous Change Set:
 * add a `next` property that points to the new Change Set
@@ -855,9 +741,11 @@ Update the Entry Point:
 * if this is the first Change Set published, add the `first` property in the entry point with:
     * set the `type` property to `OrderCollectionPage`
     * set the `id` property to the _change_set_uri_
+    * set the `published` property to the datetime the Change Set is being published
 * add or update the `last` property in the Entry Point:
     * set the `type` property to `OrderCollectionPage`
     * set the `id` property to the _change_set_uri_
+    * set the `published` property to the datetime the Change Set is being published
 
 For each change create a separate [Entity Change Activity](#entity-change-activities) document at the _change_activity_uri_ with the same information used in the Change Set.
 
