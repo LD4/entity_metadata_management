@@ -471,6 +471,22 @@ The _Change Set_{:.term} _SHOULD_{:.strong-term} have a `totalItems` property. I
   "totalItems": 3
 ```
 
+<a id="change-set-prev" class="anchor-definition" />
+__prev__
+
+Reference: [prev](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-prev) property definition
+{:.reference}
+
+A link to the previous _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}.
+
+The _Change Set_{:.term} _MAY_{:.strong-term} have a `prev` property if there are preceding _Change Sets_{:.term} in the _Entry Point_{:.term} for this _Entity Collection_{:.term}. If present, the value _MUST_{:.strong-term} be either:
+  * a string that is HTTP(S) URI of the previous page of items in the _Entry Point_{:.term}, or
+  * a JSON object, with at least the `id` and `type` properties. The value of the `id` property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the previous page of items in the _Entry Point_{:.term}. The value of the `type` property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
+
+```json-doc
+  "prev": "https://data.my.authority/change_documents/2021/activity-stream/page/1"
+```
+
 <a id="change-set-next" class="anchor-definition" />
 __next__
 
@@ -486,22 +502,6 @@ subsequent _Change Sets_ in the _Entry Point_{:.term} for this _Entity Collectio
 
 ```json-doc
   "next": "https://data.my.authority/change_documents/2021/activity-stream/page/3"
-```
-
-<a id="change-set-prev" class="anchor-definition" />
-__prev__
-
-Reference: [prev](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-prev) property definition
-{:.reference}
-
-A link to the previous _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}.
-
-The _Change Set_{:.term} _MAY_{:.strong-term} have a `prev` property if there are preceding _Change Sets_{:.term} in the _Entry Point_{:.term} for this _Entity Collection_{:.term}. If present, the value _MUST_{:.strong-term} be either:
-  * a string that is HTTP(S) URI of the previous page of items in the _Entry Point_{:.term}, or
-  * a JSON object, with at least the `id` and `type` properties. The value of the `id` property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the previous page of items in the _Entry Point_{:.term}. The value of the `type` property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
-
-```json-doc
-  "prev": "https://data.my.authority/change_documents/2021/activity-stream/page/1"
 ```
 
 <a id="change-set-ordereditems" class="anchor-definition" />
