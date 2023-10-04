@@ -167,12 +167,12 @@ The use of JSON-LD with a specific `@context` that extends the [Activity Streams
 ### 3.1. Entry Point
 {: #entry-point}
 
-Reference: [Ordered Collection][org-w3c-activitystreams-coretype-orderedcollection] description
+Reference: [OrderedCollection][org-w3c-activitystreams-coretype-orderedcollection] description
 {:.reference}
 
-Each _Entity Set_{:.term} _MUST_{:.strong-term} have at least one Entry Point. It _MAY_{:.strong-term} have multiple Entry Points to satisfy different use cases. For example, one Entry Point may provide detailed changes to support incremental updates of a full cache and a second may only provide a list of primary label changes.
+Each _Entity Set_{:.term} _MUST_{:.strong-term} have at least one _Entry Point_{:.term}. It _MAY_{:.strong-term} have multiple Entry Points to satisfy different use cases. For example, one Entry Point may provide detailed changes to support incremental updates of a full cache and a second may only provide a list of primary label changes.
 
-The Entry Point _MUST_{:.strong-term} be implemented as an _Ordered Collection_{:.term} following the definition in the Activity Stream specification. The key points are repeated here with examples specific to Entity Metadata Management.
+The _Entry Point_{:.term} _MUST_{:.strong-term} be implemented as an _OrderedCollection_{:.term} following the definition in the Activity Stream specification. The key points are repeated here with examples specific to Entity Metadata Management.
 
 #### Complete example for an Entry Point
 
@@ -222,7 +222,7 @@ __summary__
 Reference: [summary][org-w3c-activitystreams-property-summary] property definition
 {:.reference}
 
-The summary is a natural language summarization of the purpose of the _Entry Point_{:.term}
+The `summary` is a natural language summarization of the purpose of the _Entry Point_{:.term}
 
 The _Entry Point_{:.term} _SHOULD_{:.strong-term} have a `summary` property. For an _Entry Point_{:.term}, the summary _MAY_{:.strong-term} be a brief description of the _Entity Set_{:.term} in which the described changes occurred. If there are multiple entry points to the same collection, it is _RECOMMENDED_{:.strong-term} that the summary include information that distinguishes each entry point from the others.
 
@@ -240,7 +240,7 @@ __type__
 Reference: [type][org-w3c-activitystreams-property-type] property definition
 {:.reference}
 
-The type property identifies the Activity Stream type for the _Entry Point_{:.term}.
+The `type` property identifies the Activity Stream type for the _Entry Point_{:.term}.
 
 The _Entry Point_{:.term} _MUST_{:.strong-term} have a `type` property. The value _MUST_{:.strong-term} be `OrderedCollection`.
 
@@ -254,9 +254,9 @@ __id__
 Reference: [id][org-w3c-activitystreams-property-id] property definition
 {:.reference}
 
-The id is a unique identifier of the _Entry Point_{:.term}.
+The `id` is a unique identifier of the _Entry Point_{:.term}.
 
-The _Entry Point_{:.term} _MUST_{:.strong-term} have an `id` property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Ordered Collection_{:.term} _Entry Point_{:.term} _MUST_{:.strong-term} be available at the URI.
+The _Entry Point_{:.term} _MUST_{:.strong-term} have an `id` property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Entry Point_{:.term} _MUST_{:.strong-term} be available at the URI.
 
 ```json-doc
   "id": "https://data.my.authority/change_documents/2021/activity-stream"
@@ -327,7 +327,7 @@ The _Entry Point_{:.term} _MAY_{:.strong-term} have a `totalItems` property. If 
 ### 3.2. Change Set
 {: #change-set}
 
-Reference: [Ordered Collection Page][org-w3c-activitystreams-coretype-orderedcollectionpage] description
+Reference: [OrderedCollectionPage][org-w3c-activitystreams-coretype-orderedcollectionpage] description
 {:.reference}
 
 Each time a set of changes is published, changes _MUST_{:.strong-term} be released in at least one _Change Set_{:.term}. Changes _MAY_{:.strong-term} be published across multiple _Change Sets_{:.term}. For example, a site may decide that each _Change Set_{:.term} will have at most 50 changes and if that maximum is exceeded during the release time period, then a second _Change Set_{:.term} will be created.
@@ -337,7 +337,7 @@ Each time a set of changes is published, changes _MUST_{:.strong-term} be releas
 
 It is _RECOMMENDED_{:.strong-term} that change sets be published on a regular schedule. It is recognized that there are many factors that can impact implementation, including but not limited to, the volume of changes, the consistency of timing of changes, the tolerance of consumers for delays in the publication schedule, resources for producing _Change Sets_{:.term}.
 
-_Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collection Page_{:.term} following the definition in the Activity Stream specification. The key points are repeated here with examples specific to Entity Metadata Management.
+_Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _OrderedCollectionPage_{:.term} following the definition in the Activity Stream specification. The key points are repeated here with examples specific to Entity Metadata Management.
 
 #### Complete examples for a Change Set
 
