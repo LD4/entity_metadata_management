@@ -198,7 +198,7 @@ The Entry Point _MUST_{:.strong-term} be implemented as an _Ordered Collection_{
 <a id="entry-point-context" class="anchor-definition" />
 __@context__
 
-Reference: [JSON-LD context][org-w3c-json-ld-context]
+Reference: [JSON-LD scoped context][org-w3c-json-ld-scoped-contexts]
 {:.reference}
 
 The `@context` is used to refer a JSON-LD context which, in its simplest form, maps terms to IRIs.
@@ -208,7 +208,7 @@ _Entity Metadata Management_{:.term} activity streams _MUST_{:.strong-term} incl
 ```json-doc
 {
   "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
-  // rest of API Entry Point response
+  // rest of API response
 }
 ```
 
@@ -222,7 +222,7 @@ __summary__
 Reference: [summary][org-w3c-activitystreams-property-summary] property definition
 {:.reference}
 
-The `summary` is a natural language summarization of the purpose of the _Entry Point_{:.term}
+The summary is a natural language summarization of the purpose of the _Entry Point_{:.term}
 
 The _Entry Point_{:.term} _SHOULD_{:.strong-term} have a `summary` property. For an _Entry Point_{:.term}, the summary _MAY_{:.strong-term} be a brief description of the _Entity Set_{:.term} in which the described changes occurred. If there are multiple entry points to the same collection, it is _RECOMMENDED_{:.strong-term} that the summary include information that distinguishes each entry point from the others.
 
@@ -240,7 +240,7 @@ __type__
 Reference: [type][org-w3c-activitystreams-property-type] property definition
 {:.reference}
 
-The `type` property identifies the Activity Stream type for the _Entry Point_{:.term}.
+The type property identifies the Activity Stream type for the _Entry Point_{:.term}.
 
 The _Entry Point_{:.term} _MUST_{:.strong-term} have a `type` property. The value _MUST_{:.strong-term} be `OrderedCollection`.
 
@@ -254,9 +254,9 @@ __id__
 Reference: [id][org-w3c-activitystreams-property-id] property definition
 {:.reference}
 
-The `id` is a unique identifier of the _Entry Point_{:.term}.
+The id is a unique identifier of the _Entry Point_{:.term}.
 
-The _Entry Point_{:.term} _MUST_{:.strong-term} have an `id` property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Ordered Collection_{:.term} _Entry Point_{:.term} _MUST_{:.strong-term} be available at the URI given.
+The _Entry Point_{:.term} _MUST_{:.strong-term} have an `id` property. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Ordered Collection_{:.term} _Entry Point_{:.term} _MUST_{:.strong-term} be available at the URI.
 
 ```json-doc
   "id": "https://data.my.authority/change_documents/2021/activity-stream"
@@ -350,7 +350,7 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _Ordered Collec
     "type": "OrderedCollection",
     "id": "https://data.my.authority/change_documents/2021/activity-stream"
   },
-  "totalItems": 3,
+  "totalItems": 2,
   "prev": {
     "id": "https://data.my.authority/change_documents/2021/activity-stream/page/1",
     "type": "OrderedCollectionPage"
@@ -557,7 +557,7 @@ __summary__
 Reference: [summary][org-w3c-activitystreams-property-summary] property definition
 {:.reference}
 
-For an _Entity Change Activity_{:.term}, the `summary` is a brief description of the change to entity metadata that the activity represents. It is _RECOMMENDED_{:.strong-term} that a `summary` be included and that it describe the type of change (e.g. "Add entity") and the entity being changed (e.g. "subject Science"). If present, the value of `summary` _MUST_{:.strong-term} be a string.
+For an _Entity Change Activity_{:.term}, the summary is a brief description of the change to entity metadata that the activity represents. It is _RECOMMENDED_{:.strong-term} that a summary be included and that it reference the type of change (e.g. "Add entity") and the entity being changed (e.g. "subject Science").
 
 ```json-doc
   "summary": "Add entity for subject Science"
@@ -603,7 +603,7 @@ __partOf__
 Reference: [partOf][org-w3c-activitystreams-property-partof] property definition
 {:.reference}
 
-The `partOf` property identifies the _Change Set_{:.term} in which this activity was published.
+The _partOf_ property identifies the _Change Set_{:.term} in which this activity was published.
 
 An _Entity Change Activity_{:.term} _MAY_{:.strong-term} use the `partOf` property to refer back to the _Change Set_{:.term} that includes the activity. When used on an Activity, the `partOf` property _MUST NOT_{:.strong-term} be used for any other purpose. The value _MUST_{:.strong-term} be a string and it _MUST_{:.strong-term} be an HTTP(S) URI. The JSON representation of the _Change Set_{:.term} publishing this activity _MUST_{:.strong-term} be available at the URI.
 
@@ -849,6 +849,7 @@ With these URIs the new [Change Set](#change-set) can be created as follows:
         * set the `id` property to the _entity_uri_
         * set the `type` property to the entity type
         * set the `updated` property to the datetime of the change to the entity
+        * set the `summary` property to the human readable description of the change
 
 Update the previous Change Set:
 * add a `next` property that points to the new Change Set
@@ -857,9 +858,11 @@ Update the Entry Point:
 * if this is the first Change Set published, add the `first` property in the entry point with:
     * set the `type` property to `OrderCollectionPage`
     * set the `id` property to the _change_set_uri_
+    * set the `published` property to the datetime the Change Set is being published
 * add or update the `last` property in the Entry Point:
     * set the `type` property to `OrderCollectionPage`
     * set the `id` property to the _change_set_uri_
+    * set the `published` property to the datetime the Change Set is being published
 
 For each change create a separate [Entity Change Activity](#entity-change-activities) document at the _change_activity_uri_ with the same information used in the Change Set.
 
