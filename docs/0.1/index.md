@@ -557,7 +557,7 @@ __summary__
 Reference: [summary][org-w3c-activitystreams-property-summary] property definition
 {:.reference}
 
-For an _Entity Change Activity_{:.term}, the summary is a brief description of the change to entity metadata that the activity represents. It is _RECOMMENDED_{:.strong-term} that a summary be included and that it reference the type of change (e.g. "Add entity") and the entity being changed (e.g. "subject Science").
+For an _Entity Change Activity_{:.term}, the `summary` is a brief description of the change to entity metadata that the activity represents. It is _RECOMMENDED_{:.strong-term} that a summary be included and that it reference the type of change (e.g. "Add entity") and the entity being changed (e.g. "subject Science").
 
 ```json-doc
   "summary": "Add entity for subject Science"
@@ -591,7 +591,7 @@ Reference: [type][org-w3c-activitystreams-property-type] property definition
 
 Each _Entity Change Activity_{:.term} _MUST_{:.strong-term} have a `type` property.
 
-The type is the one of a set of predefined _Entity Change Activity_{:.term} types. See [Types of Change](#type-of-change) section for a list of types and values for each activity type.
+The type is the one of a set of predefined _Entity Change Activity_{:.term} types: `Create`, `Add`, `Update`, `Deprecate`, `Delete` or `Remove`. See [Types of Change](#types-of-change) section for more details.
 
 ```json-doc
   "type": "Create"
