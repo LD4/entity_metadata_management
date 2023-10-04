@@ -282,9 +282,7 @@ __first__
 Reference: [first](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-first) property definition
 {:.reference}
 
-A link to the first _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}.
-
-The _Entry Point_{:.term} _MUST_{:.strong-term} have a `first` property. The value _MUST_{:.strong-term} be either:
+The _Entry Point_{:.term} _SHOULD_{:.strong-term} have a `first` property to indicate the first _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}. If present, the value _MUST_{:.strong-term} be either:
   * a string that is HTTP(S) URI of the first page of items in the _Entry Point_{:.term}, or
   * a JSON object, with at least the `id` and `type` properties. The value of the `id` property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the first page of items in the _Entry Point_{:.term}. The value of the `type` property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
 
@@ -301,9 +299,7 @@ __last__
 Reference: [last](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-last) property definition
 {:.reference}
 
-A link to the last _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}.
-
-The _Entry Point_{:.term} _MUST_{:.strong-term} have a `last` property. The value _MUST_{:.strong-term} be either:
+The _Entry Point_{:.term} _SHOULD_{:.strong-term} have a `last` property to indicate the last _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}. If present, the value _MUST_{:.strong-term} be either:
   * a string that is HTTP(S) URI of the last page of items in the _Entry Point_{:.term}, or
   * a JSON object, with at least the `id` and `type` properties. The value of the `id` property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the last page of items in the _Entry Point_{:.term}. The value of the `type` property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
 
@@ -563,11 +559,11 @@ Reference: [summary][org-w3c-activitystreams-property-summary] property definiti
 
 For an _Entity Change Activity_{:.term}, the `summary` is a brief description of the change to entity metadata that the activity represents. It is _RECOMMENDED_{:.strong-term} that a `summary` be included and that it describe the type of change (e.g. "Add entity") and the entity being changed (e.g. "subject Science"). If present, the value of `summary` _MUST_{:.strong-term} be a string.
 
-There are a limited set of types of change. See [Types of Change](#types-of-change) section for a list of types and example summaries for each. Identification of the entity will vary depending on the data represented in the _Entity Set_{:.term}.
-
 ```json-doc
   "summary": "Add entity for subject Science"
 ```
+
+There are a limited set of types of change. See [Types of Change](#types-of-change) section for a list of types and example summaries for each. Identification of the entity will vary depending on the data represented in the _Entity Set_{:.term}.
 
 <a id="entity-change-activity-published" class="anchor-definition" />
 __published__ or __endTime__
@@ -624,7 +620,7 @@ __object__
 Reference: [object][org-w3c-activitystreams-property-object] property definition
 {:.reference}
 
-The entity that is the subject of the _Entity Change Activity_{:.term}, along with its update datatime.
+The entity that is the subject of the _Entity Change Activity_{:.term}, along with its update datetime.
 
 An _Entity Change Activity_{:.term} _MUST_{:.strong-term} include an `object` property. The value _MUST_{:.strong-term} be a JSON object with the following sub-properties:
   * A _RECOMMENDED_{:.strong-term} `type` property that is either a URI string or a plain string indicating the entity type.
@@ -846,9 +842,9 @@ With these URIs the new [Change Set](#change-set) can be created as follows:
 * set the `totalItems` property to the number of change activities that will be in this change set
 * for each change, from oldest to newest or newest to oldest, add an Activity to the `orderedItems` property array, and:
     * set the `summary` property to the human readable description of the change
+    * set the `published` (or `endTime`) property to the datetime the activity is being published
     * set the `type` property to the change type (e.g. `Add`, `Update`, etc.)
     * set the `id` property to the _change_activity_uri_ for this change
-    * set the `published` property to the datetime the change set is being published
     * set the `object` property to be a JSON object with the following properties:
         * set the `id` property to the _entity_uri_
         * set the `type` property to the entity type
