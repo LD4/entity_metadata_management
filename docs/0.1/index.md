@@ -753,6 +753,11 @@ For each change create a separate [Entity Change Activity](#entity-change-activi
 ## 6. Consuming Entity Change Sets
 {: #consuming-entity-change-sets}
 
+Activity streams are inherently temporal constructs, and as such, the order of presentation in a stream may be _forward_ (i.e. the starting point
+in the stream reflects its oldest elements and consuming the stream involves newer and newer elements) or it may be _reverse_ (i.e. the starting
+point in the stream reflects its most recent elements and consuming the stream involves older and older elements). This specification espouses
+no preference of either approach. Rather example approaches to each are presented below.
+
 ### 6.1 Example consuming Library of Congress Activity Stream
 
 _CAUTION: This section is under construction. This section may or may not be removed from the final draft, in lieu of, a section that is a general example._
@@ -827,6 +832,40 @@ LOOP
   STOP if activity.date < last_process_date
 end
 ```
+
+### 6.2 Consuming a forward delta stream
+
+Characteristics:
+* an entity will appear in the activity stream one or more times
+* the date of the activity for an entity will be the date of the most recent change
+* the first page of the stream has the oldest activities
+* activities on a page are listed from oldest to newest
+* the date of an activity is the time the ???
+
+Assumptions:
+* the consumer fully processes all activities appearing in a given page in the stream
+* the consumer maintains a persistent reference to the last page published in the stream (last_page)
+
+Pseudocode:
+```
+go to the activity stream
+current = activity.last_page
+
+while (current.next != null)
+  for each activity in current
+    process activity by type
+  end
+end
+```
+
+### 6.3 Discussion
+
+The Library of Congress reverse delta approach is inherently the most compact, as any given entity appears in the stream exactly once, at its most recent
+point of modification. However, this is accomplished by completely regenerating the activity stream in its entirety whenever new content is
+made available. The Getty forward delta approach yields pages that are immutable - once issued a page will never be altered - with new content
+appearing incrementally on new pages attached to the end of the pages comprising the stream. Any given entity may appear multiple times in the
+stream, reflecting the number of modifications it has undergone over its life, and each appearance need only update the entity rather than
+provide a complete representation.
 
 ## Acknowledgements
 
