@@ -840,7 +840,7 @@ Characteristics:
 * the date of the activity for an entity will be the date of the most recent change
 * the first page of the stream has the oldest activities
 * activities on a page are listed from oldest to newest
-* the date of an activity is the time the ???
+* the date of an activity is the time of that given modification
 
 Assumptions:
 * the consumer fully processes all activities appearing in a given page in the stream
