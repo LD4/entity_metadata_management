@@ -339,7 +339,7 @@ It is _RECOMMENDED_{:.strong-term} that change sets be published on a regular sc
 
 _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _OrderedCollectionPage_{:.term} following the definition in the Activity Stream specification. The key points are repeated here with examples specific to Entity Metadata Management.
 
-#### Complete examples for a Change Set
+#### Complete example for a Change Set
 
 ```json-doc
 {
@@ -719,7 +719,7 @@ An entity that has been deprecated _SHOULD_{:.strong-term} have an [Entity Chang
   * A `Deprecate` activity for the deprecated entity, and one or more `Create` activities for the replacement entity or entities.
 In all cases, it is expected that the consumer will dereference the deprecated entity URI to obtain the updated entity description, including whether it was replaced.
 
-#### Example Entity Change Activity exceprt for Deprecate in the Scenario where a Replacement Entity Already Exists
+#### Example Entity Change Activity excerpt for Deprecate in the Scenario where a Replacement Entity Already Exists
 
 ```json-doc
 {
