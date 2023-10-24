@@ -716,8 +716,7 @@ There are two common scenarios. In the first, the replacement entity or entities
 
 An entity that has been deprecated _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-activity) with the `type` `Deprecate`. The two scenarios are implemented as follows:
   * A single `Deprecate` activity when the entity that is replacing the deprecated entity already exists, or if the deprecated entity is not replaced.
-  * A `Deprecate` activity for the deprecated entity, and one or more `Create` activities for the replacement entity or entities.
-In all cases, it is expected that the consumer will dereference the deprecated entity URI to obtain the updated entity description, including whether it was replaced.
+  * A `Deprecate` activity for the deprecated entity, and one or more activities (e.g. Create, Update, Add) for the replacement entity or entities. In all cases, it is expected that the consumer will dereference the deprecated entity URI to obtain the updated entity description, including whether it was replaced.
 
 #### Example Entity Change Activity excerpt for Deprecate in the Scenario where a Replacement Entity Already Exists
 
