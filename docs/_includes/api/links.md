@@ -14,7 +14,6 @@
 [emm-use-cases]: {{ site.url }}{{ site.baseurl }}/0.1/#use-cases "Use Cases for Entity Metadata Change Management"
 [org-cc-licenses]: https://creativecommons.org/licenses/ "Create Commons Licenses"
 [org-iana-uri-schemes]: http://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml "IANA URI Schemes"
-[org-json-ld]: http://www.json-ld.org/ "JSON for Linking Data"
 [org-linked-data]: http://linkeddata.org/ "Linked Data"
 [org-rfc-2119]: https://tools.ietf.org/html/rfc2119 "RFC Keywords"
 [org-rfc-8259]: https://tools.ietf.org/html/rfc8259 "JSON RFC"
@@ -46,6 +45,6 @@
 [org-w3c-activitystreams-property-type]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-type
 [org-w3c-activitystreams-property-updated]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-updated
 [org-w3c-activitystreams-property-url]: https://www.w3.org/TR/activitystreams-vocabulary/#dfn-url
-[org-w3c-json-as-json-ld]: http://www.w3.org/TR/json-ld/#interpreting-json-as-json-ld "Interpreting JSON as JSON-LD"
-[org-w3c-json-ld-scoped-contexts]: https://json-ld.org/spec/latest/json-ld/#scoped-contexts "JSON-LD Scoped Contexts"
-[org-w3c-json-ld]: http://www.w3.org/TR/json-ld/ "JSON-LD 1.0"
+[org-w3c-json-ld]: http://www.w3.org/TR/json-ld11/ "JSON-LD 1.1"
+[org-w3c-json-as-json-ld]: http://www.w3.org/TR/json-ld11/#interpreting-json-as-json-ld "Interpreting JSON as JSON-LD"
+[org-w3c-json-ld-context]: https://www.w3.org/TR/json-ld11/#the-context "JSON-LD Context"
