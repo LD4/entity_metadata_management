@@ -227,7 +227,7 @@ __@context__
 Reference: [JSON-LD context][org-w3c-json-ld-context]
 {:.reference}
 
-The `@context` _MUST_{:.strong-term} as describe in [JSON-LD Representation](#jsonld-representation).
+The _Entry Point_{:.term} _MUST_{:.strong-term} have a `@context` property as described in [JSON-LD Representation](#jsonld-representation).
 
 <a id="entry-point-summary" class="anchor-definition" />
 __summary__
@@ -413,7 +413,7 @@ __@context__
 Reference: [JSON-LD context][org-w3c-json-ld-context]
 {:.reference}
 
-The `@context` _MUST_{:.strong-term} as describe in [JSON-LD Representation](#jsonld-representation).
+The _Change Set_{:.term} _MUST_{:.strong-term} have a `@context` property as described in [JSON-LD Representation](#jsonld-representation).
 
 <a id="change-set-type" class="anchor-definition" />
 __type__
