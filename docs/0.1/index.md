@@ -157,9 +157,32 @@ This specification provides an API via which Entity Metadata Providers can publi
 This specification is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams]. The following sections describe the use of Activity Streams to meet Entity Metadata Management use cases. They describe only the Activity Streams classes and properties used, and any restrictions or additional semantics in the context of this specification. Implementations _MAY_{:.strong-term} use other properties from Activity Streams or elsewhere for extension, consumers _SHOULD_{:.strong-term} ignore any properties not defined in this specification that they don't understand.
 
 ### 2.2. JSON-LD Representation
+{: #jsonld-representation}
 
-The use of JSON-LD with a specific `@context` that extends the [Activity Streams 2.0 specification][org-w3c-activitystreams] allows Entity Metadata Consumers to parse the resulting documents using standard JSON tools, and also allows the data to be interpreted according to the RDF Data Model (see [Relationship to RDF](https://www.w3.org/TR/json-ld/#relationship-to-rdf)).
+The use of [JSON-LD][org-w3c-json-ld] with a specific `@context` allows Entity Metadata Consumers to parse the resulting documents using standard JSON tools, and also allows the data to be interpreted according to the RDF Data Model (see [Relationship to RDF](https://www.w3.org/TR/json-ld/#relationship-to-rdf)).
 
+In the simplest form, a JSON-LD `@context` maps terms to IRIs. All _Entity Metadata Management_{:.term} API responses _MUST_{:.strong-term} include the [Activity Streams 2.0 context][org-w3c-activitystreams-context-definition] definition at the top-level of each API response:
+
+```json-doc
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  // rest of API response
+}
+```
+
+It is _RECOMMENDED_ that implementations also include the [Entity Metadata Management context][emm-context-api-01], in which case the value of `@context` will be a list. The _Entity Metadata Management_{:.term} context includes definition of the term `Deprecate` and _MUST_ thus be included if the [`Deprecate` activity](#deprecate-entity) is used. Including the _Entity Metadata Management_{:.term} context also serves to signal to consumers that this specification is being followed.
+
+```json-doc
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://ld4.github.io/entity_metadata_management/0.1/context.json"
+  ],
+  // rest of API response
+}
+```
+
+Implementations _MAY_{:.strong-term} include additional extension contexts. Extension contexts _MUST NOT_{:.strong-term} override terms defined in the underlying _Activity Stream_{:.term} context and _Entity Metadata Management_{:.term} contexts. Implementations _MAY_{:.strong-term} also use additional properties and values not defined in a JSON-LD `@context` with the understanding that any such properties will likely be unsupported and ignored by consuming implementations that use the standard JSON-LD algorithms.
 
 ## 3. API Responses
 {: #api-responses}
@@ -178,7 +201,10 @@ The _Entry Point_{:.term} _MUST_{:.strong-term} be implemented as an _OrderedCol
 
 ```json-doc
 {
-  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://ld4.github.io/entity_metadata_management/0.1/context.json"
+  ],
   "summary": "My Authority - Change Documents",
   "type": "OrderedCollection",
   "id": "https://data.my.authority/change_documents/2021/activity-stream",
@@ -198,23 +224,10 @@ The _Entry Point_{:.term} _MUST_{:.strong-term} be implemented as an _OrderedCol
 <a id="entry-point-context" class="anchor-definition" />
 __@context__
 
-Reference: [JSON-LD scoped context][org-w3c-json-ld-scoped-contexts]
+Reference: [JSON-LD context][org-w3c-json-ld-context]
 {:.reference}
 
-The `@context` is used to refer a JSON-LD context which, in its simplest form, maps terms to IRIs.
-
-_Entity Metadata Management_{:.term} activity streams _MUST_{:.strong-term} include the following [context][emm-context-api-01] definition at the top-level of each API response:
-
-```json-doc
-{
-  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
-  // rest of API response
-}
-```
-
-The _Entity Metadata Management_{:.term} context includes information for all parts of this specification and thus the same context definition is used in all API responses. The _Entity Metadata Management_{:.term} context imports the _Activity Stream_{:.term} [context][org-w3c-activitystreams-context-definition] and thus it is not necessarily to specify that explicitly in API responses.
-
-Implementations _MAY_{:.strong-term} include additional extension contexts, in which case the value of `@context` will be a list with the _Entity Metadata Management_{:.term} context first. Extension contexts _MUST NOT_{:.strong-term} override terms defined in the _Entity Metadata Management_{:.term} context or the underlying _Activity Stream_{:.term} context. Implementations _MAY_{:.strong-term} also use additional properties and values not defined in a JSON-LD `@context` with the understanding that any such properties will likely be unsupported and ignored by consuming implementations that use the standard JSON-LD algorithms.
+The `@context` _MUST_{:.strong-term} as describe in [JSON-LD Representation](#jsonld-representation).
 
 <a id="entry-point-summary" class="anchor-definition" />
 __summary__
@@ -343,7 +356,10 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _OrderedCollect
 
 ```json-doc
 {
-  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://ld4.github.io/entity_metadata_management/0.1/context.json"
+  ],
   "type": "OrderedCollectionPage",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2",
   "partOf": {
@@ -397,18 +413,7 @@ __@context__
 Reference: [JSON-LD context][org-w3c-json-ld-context]
 {:.reference}
 
-The `@context` is used to refer a JSON-LD context which, in its simplest form, maps terms to IRIs.
-
-_Entity Metadata Management_{:.term} activity streams _MUST_{:.strong-term} include the following [context][emm-context-api-01] definition at the top-level of each API response:
-
-```json-doc
-{
-  "@context": "https://ld4.github.io/entity_metadata_management/0.1/context.json",
-  // rest of API Change Set response
-}
-```
-
-See additional discussion in [Entry Point `@context`](#entry-point-context).
+The `@context` _MUST_{:.strong-term} as describe in [JSON-LD Representation](#jsonld-representation).
 
 <a id="change-set-type" class="anchor-definition" />
 __type__
@@ -718,6 +723,8 @@ An entity that has been deprecated _SHOULD_{:.strong-term} have an [Entity Chang
   * A single `Deprecate` activity when the entity that is replacing the deprecated entity already exists, or if the deprecated entity is not replaced.
   * A `Deprecate` activity for the deprecated entity, and one or more `Create` activities for the replacement entity or entities.
 In all cases, it is expected that the consumer will dereference the deprecated entity URI to obtain the updated entity description, including whether it was replaced.
+
+Note that the _Entity Metadata Management_{:.term} context includes definition of the term `Deprecate` and thus _MUST_{:strong-term} be included in the `@context` definition if `Deprecate` activities are used. See [JSON-LD Representation](#jsondld-representation) for more details.
 
 #### Example Entity Change Activity exceprt for Deprecate in the Scenario where a Replacement Entity Already Exists
 
