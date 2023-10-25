@@ -352,7 +352,7 @@ It is _RECOMMENDED_{:.strong-term} that change sets be published on a regular sc
 
 _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _OrderedCollectionPage_{:.term} following the definition in the Activity Stream specification. The key points are repeated here with examples specific to Entity Metadata Management.
 
-#### Complete examples for a Change Set
+#### Complete example for a Change Set
 
 ```json-doc
 {
@@ -721,12 +721,12 @@ There are two common scenarios. In the first, the replacement entity or entities
 
 An entity that has been deprecated _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-activity) with the `type` `Deprecate`. The two scenarios are implemented as follows:
   * A single `Deprecate` activity when the entity that is replacing the deprecated entity already exists, or if the deprecated entity is not replaced.
-  * A `Deprecate` activity for the deprecated entity, and one or more `Create` activities for the replacement entity or entities.
-In all cases, it is expected that the consumer will dereference the deprecated entity URI to obtain the updated entity description, including whether it was replaced.
+  * A `Deprecate` activity for the deprecated entity, and one or more activities (e.g. Create, Update, Add) for the replacement entity or entities. In all cases, it is expected that the consumer will dereference the deprecated entity URI to obtain the updated entity description, including whether it was replaced.
+
 
 Note that the _Entity Metadata Management_{:.term} context includes definition of the term `Deprecate` and thus _MUST_{:strong-term} be included in the `@context` definition if `Deprecate` activities are used. See [JSON-LD Representation](#jsondld-representation) for more details.
 
-#### Example Entity Change Activity exceprt for Deprecate in the Scenario where a Replacement Entity Already Exists
+#### Example Entity Change Activity excerpt for Deprecate in the Scenario where a Replacement Entity Already Exists
 
 ```json-doc
 {
@@ -797,19 +797,19 @@ A deleted entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} f
 }
 ```
 
-
-## 5. Provider Workflows
+## Appendices
+### A. Provider Workflows
 {: #provider-workflows}
 
 The section describes how an Entity Metadata Provider can implement this specification to allow consumer to follow changes in a set of entities they manage.
 
-### 5.1 Provider Decisions
+#### A.1 Provider Decisions
 
 The choice of how often to create new Change Sets will depend upon how frequently entities are updated, expected needs of consumers for timely updates, resource constraints, and likely other local consideration. Two common approaches are to create Change Sets at predetermined time intervals (e.g. hourly, nightly, weekly, monthly), or after a certain number of changes have occurred (e.g. 10, 20, 100, 500 changes).
 
 The [Local Cache of Labels](#local-cache-of-labels) and [Local Cache of Full Dataset](#local-cache-of-full-dataset) use cases require the consumer to be able to download a copy of all entities in the dataset before following changes. Coordination of snapshots with the production of Changes Sets will make this easier.
 
-### 5.2 Creating Full Downloads
+#### A.2 Creating Full Downloads
 
 When a full download of the dataset is created, the producer should:
 
@@ -818,11 +818,11 @@ When a full download of the dataset is created, the producer should:
 * On the human-readable download page, include a link to the download file and indicate the datatime of creation.
 * Create or update the [Entry Point](#entry-point) to include the new download in the `url` property.
 
-### 5.3 Creating Change Sets
+#### A.3 Creating Change Sets
 
 The provider must record information about changes in the Entity Set as they occur, then at some point write a Change Set and make accompanying changes to the Entry Point.
 
-#### Recording Changes Made to the Entity Set
+##### Recording Changes Made to the Entity Set
 
 For each change in an Entity Set, the provider must record all information necessary to write the Activity entry in a Change Set. This includes:
 * The dereferencable URI for the entity
@@ -831,7 +831,7 @@ For each change in an Entity Set, the provider must record all information neces
 * The datetime of the change to the entity
 * A recommended summary description of change (e.g. "Add term Science")
 
-#### Publishing a Change Set
+##### Publishing a Change Set
 
 After some time recording changes, a provider publishes a new Change Set linked from an Entry Point. Several URIs for new and existing objects will be referenced in the algorithm below:
 * _entry_point_uri_ - the URI of the newly created or existing Entry Point
