@@ -758,6 +758,9 @@ in the stream reflects its oldest elements and consuming the stream involves new
 point in the stream reflects its most recent elements and consuming the stream involves older and older elements). This specification espouses
 no preference of either approach. Rather example approaches to each are presented below.
 
+| Mutable Forward | Mutable Reverse |
+| Immutable Forward | Immutable Reverse |
+
 ### 6.1 Example consuming Library of Congress Activity Stream
 
 _CAUTION: This section is under construction. This section may or may not be removed from the final draft, in lieu of, a section that is a general example._
