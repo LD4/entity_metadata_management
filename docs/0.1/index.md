@@ -844,7 +844,6 @@ end
 
 Characteristics:
 * an entity will appear in the activity stream one or more times
-* the date of the activity for an entity will be the date of the most recent change
 * the first page of the stream has the oldest activities
 * activities on a page are listed from oldest to newest
 * the date of an activity is the time of that given modification
