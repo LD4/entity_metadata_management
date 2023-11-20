@@ -1,18 +1,18 @@
 {
   "@context": {
     "@vocab": "https://www.w3.org/ns/activitystreams",
-    "emm": "https://ld4.github.io/entity_metadata_management/0.1/context.json"
+    "emm": "https://emm-spec.org/0.1/context.json"
   },
   "summary": "My Entity Collection - Notification System",
   "type": "OrderedCollection",
-  "id": "https://ld4.github.io/entity_metadata_management/0.1/examples/my-collection/notifications/entry-point.json",
+  "id": "https://emm-spec.org/0.1/examples/my-collection/notifications/entry-point.json",
   "totalItems": 7,
   "first": {
-    "id": "https://ld4.github.io/entity_metadata_management/0.1/examples/my-collection/notifications/set/1.json",
+    "id": "https://emm-spec.org/0.1/examples/my-collection/notifications/set/1.json",
     "type": "OrderedCollectionPage"
   },
   "last": {
-    "id": "https://ld4.github.io/entity_metadata_management/0.1/examples/my-collection/notifications/set/4.json",
+    "id": "https://emm-spec.org/0.1/examples/my-collection/notifications/set/4.json",
     "type": "OrderedCollectionPage"
   }
 }

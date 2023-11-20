@@ -1,7 +1,7 @@
 {
   "@context": {
     "@version": 1.1,
-    "emm": "https://ld4.github.io/entity_metadata_management/0.1/#",
+    "emm": "https://emm-spec.org/0.1/#",
     "id": "@id",
     "type": "@type",
     "Deprecate": {

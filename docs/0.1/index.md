@@ -176,7 +176,7 @@ It is _RECOMMENDED_{:.strong-term} that implementations also include the [Entity
 {
   "@context": [
     "https://www.w3.org/ns/activitystreams",
-    "https://ld4.github.io/entity_metadata_management/0.1/context.json"
+    "https://emm-spec.org/0.1/context.json"
   ],
   // rest of API response
 }
@@ -203,7 +203,7 @@ The _Entry Point_{:.term} _MUST_{:.strong-term} be implemented as an _OrderedCol
 {
   "@context": [
     "https://www.w3.org/ns/activitystreams",
-    "https://ld4.github.io/entity_metadata_management/0.1/context.json"
+    "https://emm-spec.org/0.1/context.json"
   ],
   "summary": "My Authority - Change Documents",
   "type": "OrderedCollection",
@@ -358,7 +358,7 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _OrderedCollect
 {
   "@context": [
     "https://www.w3.org/ns/activitystreams",
-    "https://ld4.github.io/entity_metadata_management/0.1/context.json"
+    "https://emm-spec.org/0.1/context.json"
   ],
   "type": "OrderedCollectionPage",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2",

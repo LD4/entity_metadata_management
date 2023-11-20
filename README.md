@@ -5,8 +5,8 @@ in a repository of linked data entities. Linked data entities include, but are
 not limited to, authoritative data, controlled vocabularies, bibliographic
 data, etc.. See:
 
-* [Entity Metadata Management API](https://ld4.github.io/entity_metadata_management/0.1/)
-* [Entity Metadata Management API JSON-LD context](https://ld4.github.io/entity_metadata_management/0.1/context.json)
+* [Entity Metadata Management API](https://emm-spec.org/0.1/)
+* [Entity Metadata Management API JSON-LD context](https://emm-spec.org/0.1/context.json)
 
 
 ## Reference
