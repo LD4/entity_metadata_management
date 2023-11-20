@@ -758,10 +758,10 @@ in the stream reflects its oldest elements and consuming the stream involves new
 point in the stream reflects its most recent elements and consuming the stream involves older and older elements). Likewise, the content of a given page in the stream may be _immutable_ (i.e. once published the content of a given page never changes) or it may be _mutable_ (i.e. the content of a given page can be updated and can differ from release to release). This specification espouses
 no preference of either approach. Rather example approaches to each are presented below.
 
-| x | y |
-| --- | --- |
-| **Mutable Forward** Pages can be updated, and the content of a given page can differ by release. Older pages appear earlier in the stream than newer pages. | **Mutable Reverse** Pages can be updated, and the content of a given page can differ by release. Older pages appear later in the stream than newer pages. |
-| **Immutable Forward** Once published, pages never change. Older pages appear earlier in the stream than newer pages. | **Immutable Reverse** Once published, pages never change. Older pages appear later in the stream than newer pages. |
+| | Forward | Reverse |
+| --- | --- | --- |
+| **Mutable** | **Mutable Forward** Pages can be updated, and the content of a given page can differ by release. Older pages appear earlier in the stream than newer pages. | **Mutable Reverse** Pages can be updated, and the content of a given page can differ by release. Older pages appear later in the stream than newer pages. |
+| **Immutable** | **Immutable Forward** Once published, pages never change. Older pages appear earlier in the stream than newer pages. | **Immutable Reverse** Once published, pages never change. Older pages appear later in the stream than newer pages. |
 
 Of these four possibilities, we describe _mutable reverse_, of which the Library of Congress is an example, and _immutable forward_, of which Getty is an example. Regarding the remaining two possibilities, _mutable forward_, while feasible, requires the entire stream to be processed at each release, as there is no way of establishing where in the stream a change might occur. _Immutable reverse_ is inherently infeasible, as it requires that new content appear first, but on a page that cannot be changed.
 
