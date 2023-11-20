@@ -161,7 +161,7 @@ This specification is based on the [Activity Streams 2.0 specification][org-w3c-
 
 The use of [JSON-LD][org-w3c-json-ld] with a specific `@context` allows Entity Metadata Consumers to parse the resulting documents using standard JSON tools, and also allows the data to be interpreted according to the RDF Data Model (see [Relationship to RDF](https://www.w3.org/TR/json-ld/#relationship-to-rdf)).
 
-In the simplest form, a JSON-LD `@context` maps terms to IRIs. All _Entity Metadata Management_{:.term} API responses _MUST_{:.strong-term} include the [Activity Streams 2.0 context][org-w3c-activitystreams-context-definition] definition at the top-level of each API response:
+In the simplest form, a JSON-LD `@context` maps terms to IRIs. All Entity Metadata Management API responses _MUST_{:.strong-term} include the [Activity Streams 2.0 context][org-w3c-activitystreams-context-definition] definition at the top-level of each API response:
 
 ```json-doc
 {
@@ -170,7 +170,7 @@ In the simplest form, a JSON-LD `@context` maps terms to IRIs. All _Entity Metad
 }
 ```
 
-It is _RECOMMENDED_ that implementations also include the [Entity Metadata Management context][emm-context-api-01], in which case the value of `@context` will be a list. The _Entity Metadata Management_{:.term} context includes definition of the term `Deprecate` and _MUST_ thus be included if the [`Deprecate` activity](#deprecate-entity) is used. Including the _Entity Metadata Management_{:.term} context also serves to signal to consumers that this specification is being followed.
+It is _RECOMMENDED_{:.strong-term} that implementations also include the [Entity Metadata Management context][emm-context-api-01], in which case the value of `@context` will be a list. The Entity Metadata Management context includes definition of the term `Deprecate` and _MUST_{:.strong-term} thus be included if the [`Deprecate` activity](#deprecate-entity) is used. Including the Entity Metadata Management context also serves to signal to consumers that this specification is being followed.
 
 ```json-doc
 {
@@ -182,7 +182,7 @@ It is _RECOMMENDED_ that implementations also include the [Entity Metadata Manag
 }
 ```
 
-Implementations _MAY_{:.strong-term} include additional extension contexts. Extension contexts _MUST NOT_{:.strong-term} override terms defined in the underlying _Activity Stream_{:.term} context and _Entity Metadata Management_{:.term} contexts. Implementations _MAY_{:.strong-term} also use additional properties and values not defined in a JSON-LD `@context` with the understanding that any such properties will likely be unsupported and ignored by consuming implementations that use the standard JSON-LD algorithms.
+Implementations _MAY_{:.strong-term} include additional extension contexts. Extension contexts _MUST_{:.strong-term} be listed before the _Activity Stream_{:.term} context and Entity Metadata Management contexts. Implementations _MAY_{:.strong-term} also use additional properties and values not defined in a JSON-LD `@context` with the understanding that any such properties will likely be unsupported and ignored by consuming implementations that use the standard JSON-LD algorithms.
 
 ## 3. API Responses
 {: #api-responses}
@@ -724,7 +724,7 @@ An entity that has been deprecated _SHOULD_{:.strong-term} have an [Entity Chang
   * A `Deprecate` activity for the deprecated entity, and one or more activities (e.g. Create, Update, Add) for the replacement entity or entities. In all cases, it is expected that the consumer will dereference the deprecated entity URI to obtain the updated entity description, including whether it was replaced.
 
 
-Note that the _Entity Metadata Management_{:.term} context includes definition of the term `Deprecate` and thus _MUST_{:strong-term} be included in the `@context` definition if `Deprecate` activities are used. See [JSON-LD Representation](#jsondld-representation) for more details.
+Note that the Entity Metadata Management context includes definition of the term `Deprecate` and thus _MUST_{:strong-term} be included in the `@context` definition if `Deprecate` activities are used. See [JSON-LD Representation](#jsondld-representation) for more details.
 
 #### Example Entity Change Activity excerpt for Deprecate in the Scenario where a Replacement Entity Already Exists
 
