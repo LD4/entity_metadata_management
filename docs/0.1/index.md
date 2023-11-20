@@ -850,7 +850,7 @@ Characteristics:
 
 Assumptions:
 * the consumer fully processes all activities appearing in a given page in the stream
-* the consumer maintains a persistent reference to the last page published in the stream (last_page)
+* the consumer maintains a persistent reference to the last page processed in the stream (last_page)
 
 Pseudocode:
 ```
