@@ -1,7 +1,7 @@
 {
   "@context": {
     "@vocab": "https://www.w3.org/ns/activitystreams",
-    "emm": "https://ld4.github.io/entity_metadata_management/0.1/context.json"
+    "emm": "https://emm-spec.org/0.1/context.json"
   },
   "type": "OrderedCollectionPage",
   "id": "https://ld4.github.io/entity_metadata_management/examples/my-collection/notifications/set/1.json",
