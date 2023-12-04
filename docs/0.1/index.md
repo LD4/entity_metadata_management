@@ -19,7 +19,7 @@ editors:
   - name: Nancy J. Fallgren
     orcid: https://orcid.org/0000-0002-2232-6293
     institution: National Library of Medicine
-  - name: Steven Folsom
+  - name: Steven M. Folsom
     orcid: https://orcid.org/0000-0003-3427-5769
     institution: Cornell University Library
   - name: Kevin M. Ford
