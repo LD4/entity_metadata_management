@@ -1,8 +1,0 @@
-{
-  "@context": {
-    "@vocab": "https://www.w3.org/ns/activitystreams",
-    "emm": "https://emm-spec.org/0.1/context.json"
-  },
-  "summary": "My Entity Collection - Full Cache",
-  "FIXME": "FLESH OUT EXAMPLE"
-}
