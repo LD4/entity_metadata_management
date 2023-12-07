@@ -877,7 +877,19 @@ For each change create a separate [Entity Change Activity](#entity-change-activi
 ## 6. Consuming Entity Change Sets
 {: #consuming-entity-change-sets}
 
-### 6.1 Example consuming Library of Congress Activity Stream
+Activity streams are inherently temporal constructs, and as such, the order of presentation in a stream may be _forward_ (i.e. the starting point
+in the stream reflects its oldest elements and consuming the stream involves newer and newer elements) or it may be _reverse_ (i.e. the starting
+point in the stream reflects its most recent elements and consuming the stream involves older and older elements). Likewise, the content of a given page in the stream may be _immutable_ (i.e. once published the content of a given page never changes) or it may be _mutable_ (i.e. the content of a given page can be updated and can differ from release to release). This specification espouses
+no preference of either approach. Rather example approaches to each are presented below.
+
+| | Forward | Reverse |
+| --- | --- | --- |
+| **Mutable** | **Mutable Forward** Pages can be updated, and the content of a given page can differ by release. Older pages appear earlier in the stream than newer pages. | **Mutable Reverse** Pages can be updated, and the content of a given page can differ by release. Older pages appear later in the stream than newer pages. |
+| **Immutable** | **Immutable Forward** Once published, pages never change. Older pages appear earlier in the stream than newer pages. | **Immutable Reverse** Once published, pages never change. Older pages appear later in the stream than newer pages. |
+
+Of these four possibilities, we describe _mutable reverse_, of which the Library of Congress is an example, and _immutable forward_, of which Getty is an example. Regarding the remaining two possibilities, _mutable forward_, while feasible, requires the entire stream to be processed at each release, as there is no way of establishing where in the stream a change might occur. _Immutable reverse_ is inherently infeasible, as it requires that new content appear first, but on a page that cannot be changed.
+
+### 6.1 Consuming a _mutable reverse_ stream (e.g. Library of Congress)
 
 _CAUTION: This section is under construction. This section may or may not be removed from the final draft, in lieu of, a section that is a general example._
 
@@ -951,6 +963,39 @@ LOOP
   STOP if activity.date < last_process_date
 end
 ```
+
+### 6.2 Consuming an _immutable forward_ stream (e.g. Getty)
+
+Characteristics:
+* an entity will appear in the activity stream one or more times
+* the first page of the stream has the oldest activities
+* activities on a page are listed from oldest to newest
+* the date of an activity is the time of that given modification
+
+Assumptions:
+* the consumer fully processes all activities appearing in a given page in the stream
+* the consumer maintains a persistent reference to the last page processed in the stream (last_page)
+
+Pseudocode:
+```
+go to the activity stream
+current = activity.last_page
+
+while (current.next != null)
+  for each activity in current
+    process activity by type
+  end
+end
+```
+
+### 6.3 Discussion
+
+The Library of Congress mutable reverse approach is inherently the most compact, as any given entity appears in the stream exactly once, at its most recent
+point of modification. However, this is accomplished by completely regenerating the activity stream in its entirety whenever new content is
+made available. The Getty immutable forward approach yields pages that are immutable - once issued a page will never be altered - with new content
+appearing incrementally on new pages attached to the end of the pages comprising the stream. Any given entity may appear multiple times in the
+stream, reflecting the number of modifications it has undergone over its life, and each appearance need only update the entity rather than
+provide a complete representation.
 
 ## Acknowledgements
 
