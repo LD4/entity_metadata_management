@@ -193,7 +193,7 @@ Implementations _MAY_{:.strong-term} include additional extension contexts. Exte
 Reference: [OrderedCollection][org-w3c-activitystreams-coretype-orderedcollection] description
 {:.reference}
 
-An _Entry Point_{:.term} is an ActivityStreams Collection resource identifying a dataset whose changes are published using the Activity Streams vocabulary with EMM enhancements.  It provides pointers to one or more Change Sets.
+An _Entry Point_{:.term} is an ActivityStreams Collection resource identifying a dataset whose changes are published using the Activity Streams vocabulary with Entity Metadata Management enhancements. It provides pointers to one or more Change Sets.
 
 The _Entry Point_{:.term} _MUST_{:.strong-term} be implemented as an _OrderedCollection_{:.term} following the definition in the Activity Stream specification. The key points are repeated here with examples specific to Entity Metadata Management.
 
@@ -345,7 +345,7 @@ The _Entry Point_{:.term} _MAY_{:.strong-term} have a `totalItems` property. If 
 Reference: [OrderedCollectionPage][org-w3c-activitystreams-coretype-orderedcollectionpage] description
 {:.reference}
 
-A _Change Set_{:.term} is an Activity Streams Ordered Collection Page resource identifying individual _Entity Change Activities_{:.term}, which are resources that have been created, modified, or deprecated.  It may additionally identifying preceding or subsequent _Change Sets_{:.term} for automated crawling.
+A _Change Set_{:.term} is an Activity Streams Ordered Collection Page resource identifying individual _Entity Change Activities_{:.term}, which are resources that have been created, modified, or deprecated. It may additionally identifying preceding or subsequent _Change Sets_{:.term} for automated crawling.
 
 Each time a set of changes is published, changes _MUST_{:.strong-term} be released in at least one _Change Set_{:.term}. Changes _MAY_{:.strong-term} be published across multiple _Change Sets_{:.term}. For example, a site may decide that each _Change Set_{:.term} will have at most 50 changes and if that maximum is exceeded during the release time period, then a second _Change Set_{:.term} will be created.
 
@@ -533,7 +533,7 @@ The _Change Set_{:.term} _MUST_{:.strong-term} have an `orderedItems` property w
 Reference: [Activity][org-w3c-activitystreams-coretype-activity] description
 {:.reference}
 
-An _Entity Change Activity_{:.term} advertises a change to a resource.  The change may be its creation, a modification, or its deprecation, among others.
+An _Entity Change Activity_{:.term} advertises a change to a resource. The change may be its creation, a modification, or its deprecation, among others.
 
 A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Activity_{:.term}. An _Entity Change Activity_{:.term} _MUST_{:.strong-term} be implemented as an [Activity Streams][org-w3c-activitystreams] [`Activity`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-activity). The activity _MUST_{:.strong-term} provide information about the type of change and the entity or entities changed. It _MAY_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset.
 
