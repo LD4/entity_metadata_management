@@ -910,8 +910,8 @@ Recommendations:
 Pseudocode (to consume updated resources since a specific date):
 ```
 # uri_of_first_activity_stream_page = Input URI of first Activity Stream page
-# date_from = Date of last activity processed in previous pocessing run.
-# last_update = Date of last activity processed in current pocessing run.
+# date_from = Date of last activity processed in previous processing run.
+# last_update = Date of last activity processed in current processing run.
  
 func process_as(date_from, as_uri)
     activity_stream_page = get as_uri
