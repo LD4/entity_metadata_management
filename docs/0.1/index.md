@@ -909,26 +909,25 @@ Recommendations:
 
 Pseudocode (to consume updated resources since a specific date):
 ```
+# uri_of_first_activity_stream_page = Input URI of first Activity Stream page
+# date_from = Date of last activity processed in previous pocessing run.
+# last_update = Date of last activity processed in current pocessing run.
+ 
 func process_as(date_from, as_uri)
     activity_stream_page = get as_uri
-    process_as_page(date_from, activity_stream_page)
-end func
-
-func process_as_page(date_from, activity_stream_page)
     for each activity in activity_stream_page
         if activity.published >= date_from then
             process activity by type
+            last_update = activity.published
         else
             return
     
         if activity.last == true and activity.published >= date_from then
-            process_as(activity_stream.next, date_from)
+            process_as(date_from, activity_stream.next)
 end func
 
-# a week
-date_from = today - 6 days 
 process_as(date_from, uri_of_first_activity_stream_page)
-
+# for next run: date_from = last_update
 ```
 
 ### 6.2 Consuming an _immutable forward_ stream (e.g. Getty)
