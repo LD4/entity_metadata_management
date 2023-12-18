@@ -83,12 +83,12 @@ Work that is out of scope of this API includes the recommendation or creation of
 
 The following three use cases motivate this specification. They are drawn from workflows needed by libraries, museums, galleries, and archives.
 
-#### 1.2.1. Entity Change Activities List
-{: #entity-change-activities-list}
+#### 1.2.1. Change Tracking
+{: #change-tracking}
 
-Entity metadata consumers want to learn of any modifications or deletions for entities on their interest list, as well as new entities. This allows for a comparison between the consumer's list and the provider's entity change activity list of modified and deleted entities. For any that overlap, the consumer will take additional actions if needed.
+Entity metadata consumers may want to learn about modifications or deletions for entities they use, or about the creation of new entities by the same provider.
 
-To address this use case, the provider creates and makes available a list of activities with the URIs for any new, modified, or deleted entities. While the provider may have internal needs for tracking more than these three moments in an entity's lifecycle (e.g. if the provider workflow requires a review activity), this specification focuses on public changes to the dataset that may require action from a consumer. The consumer will need to take additional actions to identify specific changes to entities of interest.
+To address this generic use case, the provider creates and makes available a list of changes with the URIs for any new, modified, or deleted entities. While the provider may have internal needs for tracking more than these three moments in an entity's lifecycle (e.g. if the provider workflow requires a review activity), this specification focuses on public changes to the dataset that may require action from a consumer. The consumer will need to take additional actions to identify and act on changes to entities of interest, which many be automatic or manual.
 
 #### 1.2.2. Local Cache of Labels
 {: #local-cache-of-labels}
@@ -537,7 +537,7 @@ An _Entity Change Activity_{:.term} advertises a change to a resource. The chang
 
 A change to Entity Metadata _MUST_{:.strong-term} be described in an _Entity Change Activity_{:.term}. An _Entity Change Activity_{:.term} _MUST_{:.strong-term} be implemented as an [Activity Streams][org-w3c-activitystreams] [`Activity`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-activity). The activity _MUST_{:.strong-term} provide information about the type of change and the entity or entities changed. It _MAY_{:.strong-term} provide links that facilitate the consumer gathering additional information from the source dataset.
 
-Not all implementations will store every change for an entity over time. A _Collection_{:.term} _MAY_{:.strong-term} provide feeds of only the last known metadata update for each entity. In the case where the _Collection_ provides feeds of only the last known metadata update for each entity case, the page identifier cannot be used to know the last _Activities_{:.term} processed by a consumer. For this reason the _Activities_{:.term} within the _Collection_{:.term} _MUST_{:.strong-term} have either a `published` or `endTime` datetime property as described below. The `updated` property _SHOULD_{:.strong-term} be used on the entity description `object` to indicate when the entity change actually occurred. This level is sufficient to address the [Entity Change Activities List](#entity-change-activities-list) use case.
+Not all implementations will store every change for an entity over time. A _Collection_{:.term} _MAY_{:.strong-term} provide feeds of only the last known metadata update for each entity. In the case where the _Collection_ provides feeds of only the last known metadata update for each entity case, the page identifier cannot be used to know the last _Activities_{:.term} processed by a consumer. For this reason the _Activities_{:.term} within the _Collection_{:.term} _MUST_{:.strong-term} have either a `published` or `endTime` datetime property as described below. The `updated` property _SHOULD_{:.strong-term} be used on the entity description `object` to indicate when the entity change actually occurred. This level is sufficient to address the [Change Tracking](#change-tracking) use case.
 
 _Entity Change Activity_{:.term} objects appear in the `orderedItems` array within a [Change Set](#change-set) response.
 
@@ -918,7 +918,7 @@ Pseudocode (to consume updated resources since a specific date):
 # uri_of_first_activity_stream_page = Input URI of first Activity Stream page
 # date_from = Date of last activity processed in previous processing run.
 # last_update = Date of last activity processed in current processing run.
- 
+
 func process_as(date_from, as_uri)
     activity_stream_page = get as_uri
     for each activity in activity_stream_page
@@ -927,7 +927,7 @@ func process_as(date_from, as_uri)
             last_update = activity.published
         else
             return
-    
+
         if activity.last == true and activity.published >= date_from then
             process_as(date_from, activity_stream.next)
 end func
