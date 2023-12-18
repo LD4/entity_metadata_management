@@ -126,7 +126,7 @@ To address this use case, the provider creates and makes available a dated list 
 
 This specification is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams] and uses the following key terms from Activity Streams:
 
-* [Activity](https://www.w3.org/TR/activitystreams-core/#activity): `Activity` objects are used to describe an individual change to the metadata of an Entity Set. These often affect just one Entity but in some cases more than one Entity may be affected by related changes that are reflected in multiple sequenced Activities.
+* [Activity](https://www.w3.org/TR/activitystreams-core/#activity): `Activity` objects are used to describe an individual change to the metadata of an Entity Set.
 * [Collection](https://www.w3.org/TR/activitystreams-core/#collections): The entry point for all the information about changes to the metadata of an Entity Set is modeled as a Collection, using the [`OrderedCollection`](https://www.w3.org/TR/activitystreams-core/#dfn-orderedcollection) type to indicate that the activities in the collection are in time order.
 * [OrderedCollectionPage](https://www.w3.org/TR/activitystreams-core/#dfn-orderedcollectionpage): The complete Collection of changes is expressed as a set of `OrderedCollectionPage` objects to ensure that there are manageable chunks of change activities described even for large and long-running sets of updates.
 
@@ -918,7 +918,7 @@ Pseudocode (to consume updated resources since a specific date):
 # uri_of_first_activity_stream_page = Input URI of first Activity Stream page
 # date_from = Date of last activity processed in previous processing run.
 # last_update = Date of last activity processed in current processing run.
- 
+
 func process_as(date_from, as_uri)
     activity_stream_page = get as_uri
     for each activity in activity_stream_page
@@ -927,7 +927,7 @@ func process_as(date_from, as_uri)
             last_update = activity.published
         else
             return
-    
+
         if activity.last == true and activity.published >= date_from then
             process_as(date_from, activity_stream.next)
 end func
