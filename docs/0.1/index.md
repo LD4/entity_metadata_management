@@ -897,77 +897,43 @@ Of these four possibilities, we describe _mutable reverse_, of which the Library
 
 ### 6.1 Consuming a _mutable reverse_ stream (e.g. Library of Congress)
 
-_CAUTION: This section is under construction. This section may or may not be removed from the final draft, in lieu of, a section that is a general example._
-
-{:.todo}
-
 Library of Congress provides an activity stream for several authorities (e.g. names, genre/forms, subjects, etc.).
 
 Characteristics:
 * an entity will appear in the activity stream at most one time
-* the date of the activity for an entity will be the date of the most recent change
+* the `published` date of the activity for an entity will be the date of the most recent change of the object of the activity
 * the first page of the stream has the most recent activities
 * activities on a page are listed from newest to oldest
-* the date of an activity is the time the ???
-
-_What does the date of an activity represent?_
-{:.todo}
 
 Assumptions:
-* the activity MUST includes a URL that dereferences to a first order graph that
-  * MUST include all triples where the entity is the subject (<entity_uri> <predicate> <object>)
-  * MUST include all blanknodes, and related sub-graph, where the blanknode is the object and the entity is the subject (<entity_uri> <predicate> <_:b1>)
-  * MAY include triples for entities that are external to the base datasource if the entity is not available in another activity stream
-  * The activity MAY include another URL that dereferences to a graph that
-  * MAY include additional triple for other entities that are external to the base datasource that serve as object of the entity's triple (<entity_uri> <predicate> <another_entity_uri)
-
-_NOTE: A site may choose to use the second graph if they do not process other activity streams nor maintain their cache of each datasource in a separate triple store._
-{:.note}
+* the consumer processes activities in descending date order, as presented in the stream
+* the consumer maintains a persistent reference to the last activity date processed in the stream (`published`)
 
 Recommendations:
 * if maintaining a full cache, ingest latest full download before processing the related activity stream
 * each time the activity stream is processed, save the date of the more recently processed entity
 
-Processing for a full cache:
-* navigate to the entry point for the activity stream
-* navigate to the first page of the activity stream
-* starting with the first activity on the first page and continue processing until the date of the activity is older than the date recorded the last time the stream was processed
-  * if activity type == REMOVE, remove the following triples from the cache
-    * blank nodes, and related sub-graph, where the blank nodes is the object for a triple with the entity as subject (<entity_uri> <predicate> <_:b1>)
-    * triples where the entity is the subject (<entity_uri> <predicate> <object>)
-  * if activity type == ADD, dereference the entity URI and add the following triples to the cache
-    * all triples where the entity is subject (<entity_uri> <predicate> <object>)
-    * all triples, and related sub-graph, where the entity is subject and a blank node is object (<entity_uri> <predicate> <_:b1>)
-  * if activity type == UPDATE, dereference the entity URI and add the following triples to the cache
-    * perform the steps for a REMOVE
-    * perform the steps for an ADD
-  * next activity if there is one OR first activity on the next page OR stop if no next page  
-  * stop if date of the activity is later than saved last processed date
-
-Pseudocode:
+Pseudocode (to consume updated resources since a specific date):
 ```
-go to activity stream
-page = activity_stream.first
-activity = page.activities.first
-LOOP
-  switch(activity.type)
-  case REMOVE, UPDATE
-    remove all triples, and sub-graph, where <subject_uri> == activity.object.id && <object_uri>.is_a? blank_node
-    remove all triples where <subject_uri> == activity.object.id
-  case ADD, UPDATE
-    graph = dereference(activity.object.url.skos.nt)
-    add all triples, and sub-graph, where graph.triple.subject == activity.object.id && <object_uri>.is_a? blank_node
-    add all triples where graph.triple.subject == activity.object.id  
-  end
+# uri_of_first_activity_stream_page = Input URI of first Activity Stream page
+# date_from = Date of last activity processed in previous processing run.
+# last_update = Date of last activity processed in current processing run.
+ 
+func process_as(date_from, as_uri)
+    activity_stream_page = get as_uri
+    for each activity in activity_stream_page
+        if activity.published >= date_from then
+            process activity by type
+            last_update = activity.published
+        else
+            return
+    
+        if activity.last == true and activity.published >= date_from then
+            process_as(date_from, activity_stream.next)
+end func
 
-  if activity == page.last_activity
-    page = page.next
-    activity == page.first_activity
-  else
-    activity == activity.next_activity
-  end
-  STOP if activity.date < last_process_date
-end
+process_as(date_from, uri_of_first_activity_stream_page)
+# for next run: date_from = last_update
 ```
 
 ### 6.2 Consuming an _immutable forward_ stream (e.g. Getty)
