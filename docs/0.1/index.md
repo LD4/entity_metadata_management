@@ -99,12 +99,14 @@ To address this use case, the provider creates and makes available a list of URI
 
 In some cases, additional metadata is also cached as part of the external reference, but this is less common. Verification of the additional metadata may require the consumer to take additional actions.
 
-#### 1.2.3. Local Cache of Full Dataset
-{: #local-cache-of-full-dataset}
+#### 1.2.3. Local Cache of Full Entity Metadata
+{: #local-cache-of-full-entity-metadata}
 
-A consumer may decide to make a full cache of a dataset of entity metadata. This is commonly done for increased control over uptime, throughput, and indexing for search. The cache needs timely updates to stay in sync with the source dataset.
+A consumer may decide to make a cache of a dataset of full entity metadata. This is commonly done for increased control over uptime, throughput, and indexing for search. The cache needs timely updates to stay in sync with the source dataset.
 
 To address this use case, the provider creates and makes available a dated list of all new, modified, and deleted entities along with specifics about how the entities have changed. The consumer can process a stream of change documents that was published since their last incremental update. Specific details about each change can be used to update the local cache.
+
+In some cases, caching of full descriptions of select entities may desired, by limiting to only those entities referenced in local bibliographic data.
 
 ### 1.3. Terminology
 {: #terminology}
@@ -813,7 +815,7 @@ The section describes how an Entity Metadata Provider can implement this specifi
 
 The choice of how often to create new Change Sets will depend upon how frequently entities are updated, expected needs of consumers for timely updates, resource constraints, and likely other local consideration. Two common approaches are to create Change Sets at predetermined time intervals (e.g. hourly, nightly, weekly, monthly), or after a certain number of changes have occurred (e.g. 10, 20, 100, 500 changes).
 
-The [Local Cache of Labels](#local-cache-of-labels) and [Local Cache of Full Dataset](#local-cache-of-full-dataset) use cases require the consumer to be able to download a copy of all entities in the dataset before following changes. Coordination of snapshots with the production of Changes Sets will make this easier.
+The [Local Cache of Labels](#local-cache-of-labels) and [Local Cache of Full Dataset](#local-cache-of-full-entity-metadata) use cases require the consumer to be able to download a copy of all entities in the dataset before following changes. Coordination of snapshots with the production of Changes Sets will make this easier.
 
 #### A.2 Creating Full Downloads
 
