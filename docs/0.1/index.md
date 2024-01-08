@@ -351,10 +351,11 @@ A _Change Set_{:.term} is an Activity Streams Ordered Collection Page resource i
 
 Each time a set of changes is published, changes _MUST_{:.strong-term} be released in at least one _Change Set_{:.term}. Changes _MAY_{:.strong-term} be published across multiple _Change Sets_{:.term}. For example, a site may decide that each _Change Set_{:.term} will have at most 50 changes and if that maximum is exceeded during the release time period, then a second _Change Set_{:.term} will be created.
 
-  * The _Entity Change Activities_{:.term} within a _Change Set_{:.term} _MUST_{:.strong-term} be sorted in date-time order in the `orderedItems` array. The _Entity Change Activities_{:.term} _MAY_{:.strong-term} be in ascending or descending order, but the order _MUST_{:.strong-term} be consistent within the _Collection_{:.term}.
-  * Where there are multiple _Change Sets_{:.term}, these sets _MUST_{:.strong-term} be arranged in ascending or descending date-time order, consistent with the _Entity Change Activity_{:.term} ordering within each _Change Set_{:.term}.
+The _Entity Change Activities_{:.term} within a _Change Set_{:.term} _MUST_{:.strong-term} be sorted in date-time order in the `orderedItems` array. The _Entity Change Activities_{:.term} _MAY_{:.strong-term} be in ascending or descending order, but the order _MUST_{:.strong-term} be consistent within the _Collection_{:.term}.
 
-It is _RECOMMENDED_{:.strong-term} that change sets be published on a regular schedule. It is recognized that there are many factors that can impact implementation, including but not limited to, the volume of changes, the consistency of timing of changes, the tolerance of consumers for delays in the publication schedule, resources for producing _Change Sets_{:.term}.
+Where there are multiple _Change Sets_{:.term}, these sets _MUST_{:.strong-term} be arranged in ascending or descending date-time order, consistent with the _Entity Change Activity_{:.term} ordering within each _Change Set_{:.term}.
+
+It is _RECOMMENDED_{:.strong-term} that change sets be published on a regular schedule. It is recognized that there are many factors that can impact implementation, including but not limited to, the volume of changes, the consistency of timing of changes, the tolerance of consumers for delays in the publication schedule, and resources for producing _Change Sets_{:.term}.
 
 _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _OrderedCollectionPage_{:.term} following the definition in the Activity Stream specification. The key points are repeated here with examples specific to Entity Metadata Management.
 
