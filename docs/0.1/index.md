@@ -77,7 +77,7 @@ This process can be optimized if metadata providers publish changes in chronolog
 This specification does not include a mechanism for enabling change notifications to be pushed to remote systems. Only periodic polling for the set of changes that must be processed is supported. A push mechanism may be added in a future version.
 {: .warning}
 
-Work that is out of scope of this API includes the recommendation or creation of any descriptive metadata formats, and the recommendation or creation of metadata search APIs or protocols. The diverse domains represented across the entity metadata already have successful standards fulfilling these use cases. Also out of scope is optimization of the transmission mechanisms providing access points for consumers to query.
+Work that is out of scope of this API includes the recommendation or creation of any descriptive metadata formats, and the recommendation or creation of metadata search APIs or protocols. The diverse domains represented across the entity metadata already have standards fulfilling these use cases. Also out of scope is optimization of the transmission mechanisms providing access points for consumers to query.
 {: .warning}
 
 ### 1.2. Use Cases
