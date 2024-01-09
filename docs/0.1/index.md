@@ -59,7 +59,7 @@ __Previous Version:__ None
 ## 1. Introduction
 {: #introduction}
 
-The Entity Metadata Management API is intended to establish a pattern that supports sharing changes to entities and their metadata curated by entity metadata providers with the community of entity metadata consumers (e.g. libraries, museums, galleries, archives). Use of a consistent pattern allows for the creation of software tools for producing and consuming changes in entity metadata.
+The Entity Metadata Management API is intended to establish a pattern that supports sharing changes to entities and their metadata curated by Entity Metadata Providers with the community of entity metadata consumers (e.g. libraries, museums, galleries, archives). Use of a consistent pattern allows for the creation of software tools for producing and consuming changes in entity metadata.
 
 This specification is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams]. It defines a usage pattern and minor extensions specific to entity metadata management.
 
@@ -68,9 +68,9 @@ This specification is based on the [Activity Streams 2.0 specification][org-w3c-
 
 The objective of this specification is to provide a machine to machine API that conveys the information needed for an entity metadata consumer to understand all the changes to entity metadata across the lifecycle of an entity. The intended audiences are Entity Metadata Providers who curate and publish entity metadata within an area of interest, Entity Metadata Consumers who use the entity metadata, and developers who create applications and tools that help consumers connect to entity metadata from providers.
 
-The discovery of changes to entity metadata requires a consistent pattern for entity metadata providers to implement when publishing lists of entities whose metadata has changed. This pattern needs to include links to those entities and the types of changes that have occurred. Changes include newly available entities with metadata, removed entities, as well as changes to entities and their metadata.
+The discovery of changes to entity metadata requires a consistent pattern for Entity Metadata Providers to implement when publishing lists of entities whose metadata has changed. This pattern needs to include links to those entities and the types of changes that have occurred. Changes include newly available entities with metadata, removed entities, as well as changes to entities and their metadata.
 
-The discovery of changes to entity metadata requires a consistent pattern for entity metadata providers to publish lists of links to entities that have metadata changes and the types of changes that have occurred. Changes include newly available entities with metadata, removed entities, as well as changes to entities and their metadata.
+The discovery of changes to entity metadata requires a consistent pattern for Entity Metadata Providers to publish lists of links to entities that have metadata changes and the types of changes that have occurred. Changes include newly available entities with metadata, removed entities, as well as changes to entities and their metadata.
 
 This process can be optimized if metadata providers publish changes in chronological order, including descriptions of how each entity’s metadata has changed, enabling consuming systems to retrieve only the resources that have been modified since they were last retrieved.
 
