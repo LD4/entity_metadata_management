@@ -59,7 +59,7 @@ __Previous Version:__ None
 ## 1. Introduction
 {: #introduction}
 
-The Entity Metadata Management API is intended to establish a pattern that supports sharing changes to entities and their metadata curated by Entity Metadata Providers with the community of Entity Metadata Consumers (e.g. libraries, museums, galleries, archives). Use of a consistent pattern allows for the creation of software tools for producing and consuming changes in entity metadata.
+The Entity Metadata Management API is intended to establish a pattern that supports sharing changes to entities and their metadata curated by Entity Metadata Providers with the community of Entity Metadata Consumers (e.g. libraries, museums, archives). Use of a consistent pattern allows for the creation of software tools for producing and consuming changes in entity metadata.
 
 This specification is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams]. It defines a usage pattern and minor extensions specific to entity metadata management.
 
@@ -83,7 +83,7 @@ Work that is out of scope of this API includes the recommendation or creation of
 ### 1.2. Use Cases
 {: #use-cases}
 
-The following three use cases motivate this specification. They are drawn from workflows needed by libraries, museums, galleries, and archives.
+The following three use cases motivate this specification. They are drawn from workflows needed by libraries, museums, and archives.
 
 #### 1.2.1. Change Tracking
 {: #change-tracking}
