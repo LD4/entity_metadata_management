@@ -726,11 +726,11 @@ Examples of updates in the library domain include splits and merges. See the [De
 
 Deprecation indicates that an existing entity in the authority has been updated to reflect that it should no longer be used though the URI remains dereferencable reflecting the deprecation. Whenever possible, the entity description should indicate which entity or entities should be used instead.
 
-There are two common scenarios. In the first, the replacement entity or entities already exist and the deprecation updates the deprecated entity only. In the second scenario, the replacement entity or entities do not exist prior to the deprecation. In this case, the replacement entity or entities are created and the status of the original entity is changed to deprecrated.
+There are two common scenarios. In the first, the replacement entity or entities already exist and the `Deprecate` activity updates the deprecated entity only. In the second scenario, the replacement entity or entities do not exist prior to the deprecation. In this case, the replacement entity or entities are created and the status of the original entity is changed to deprecrated.
 
 An entity that has been deprecated _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-activity) with the `type` `Deprecate`. The two scenarios are implemented as follows:
   * A single `Deprecate` activity when the entity that is replacing the deprecated entity already exists, or if the deprecated entity is not replaced.
-  * A `Deprecate` activity for the deprecated entity, and one or more activities (e.g. Create, Update, Add) for the replacement entity or entities. In all cases, it is expected that the consumer will dereference the deprecated entity URI to obtain the updated entity description, including whether it was replaced.
+  * A `Deprecate` activity for the deprecated entity, and one or more activities (e.g. `Create`, `Update`, `Add`) for the replacement entity or entities. In all cases, it is expected that the consumer will dereference the deprecated entity URI to obtain the updated entity description, including whether it was replaced.
 
 
 Note that the Entity Metadata Management context includes definition of the term `Deprecate` and thus _MUST_{:strong-term} be included in the `@context` definition if `Deprecate` activities are used. See [JSON-LD Representation](#jsondld-representation) for more details.
