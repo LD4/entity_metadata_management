@@ -976,6 +976,6 @@ provide a complete representation.
 
 We are grateful to all participants in the LD4 [Best Practices for Authoritative Data Working Group](https://wiki.lyrasis.org/x/pgFrD), within which this specification was created. [E. Lynette Rayle](https://orcid.org/0000-0001-7707-3572) (formerly at Cornell University) led the initial development of this specification. [Jim Hahn](https://orcid.org/0000-0001-7924-5294) (University of Pennsylvania Libraries), [Kirk Hess](https://orcid.org/0000-0002-9559-6649) (OCLC R&D), [Anna Lionetti](https://orcid.org/0000-0001-6157-8808) (Casalini Libri), [Tiziana Possemato](https://orcid.org/0000-0002-7184-4070) (Casalini Libri), and [Erik Radio](https://orcid.org/0000-0003-0734-1978) (University of Colorado Boulder) also contributed to this work.
 
-This specification was influenced by prior implementations for [Library of Congress entity sets](https://id.loc.gov/) and [Getty vocabularies](https://www.getty.edu/research/tools/vocabularies/index.html).
+This specification was influenced by prior implementations for [Library of Congress entity sets](https://id.loc.gov/) and [Getty Vocabularies](https://www.getty.edu/research/tools/vocabularies/index.html).
 
 {% include api/links.md %}
