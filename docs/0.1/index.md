@@ -156,7 +156,7 @@ This specification provides an API via which Entity Metadata Providers can publi
 
 ### 2.1. Activity Streams and Extensibility
 
-This specification is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams]. The following sections describe the use of Activity Streams to meet Entity Metadata Management use cases. They describe only the Activity Streams classes and properties used, and any restrictions or additional semantics in the context of this specification. Implementations _MAY_{:.strong-term} use other properties from Activity Streams or elsewhere for extension, consumers _SHOULD_{:.strong-term} ignore any properties not defined in this specification that they don't understand.
+This specification is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams]. The following sections describe the use of Activity Streams to meet Entity Metadata Management use cases. They describe only the Activity Streams classes and properties used, and any restrictions or additional semantics in the context of this specification. Implementations _MAY_{:.strong-term} use other properties from Activity Streams or elsewhere for extension, and consumers _SHOULD_{:.strong-term} ignore any properties not defined in this specification that they don't understand.
 
 ### 2.2. JSON-LD Representation
 {: #jsonld-representation}
