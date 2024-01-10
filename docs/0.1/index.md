@@ -668,7 +668,7 @@ A new entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} follo
 
 An entity appearing in an _Entry Point_{:.term} stream for the first time _MUST_{:.strong-term} use _Activity_{:.term} type `Create` and/or `Add`.
 
-`Create` _SHOULD_{:.strong-term} be used when the entity is new in the source dataset and available for use. A provider _MUST NOT_{:.strong-term} use `Create` to broadcast that an entity exists unless it can be dereferenced at the entity URI. A Create activity indicates that the entity is new and available for use by consumers, see also `Add` below.
+`Create` _SHOULD_{:.strong-term} be used when the entity is new in the source dataset and available for use. A provider _MUST NOT_{:.strong-term} use `Create` to broadcast that an entity exists unless it can be dereferenced at the entity URI. A `Create` activity indicates that the entity is new and available for use by consumers, see also `Add` below.
 
 `Add` _SHOULD_{:.strong-term} be used when the entity exists in the source dataset, but was previously not available through the _Entry Point_{:.term} and now is being made available in the stream. Situations where this might happen include, but are not limited to, change in permissions, end of an embargo, temporary removal and now being made available.
 
