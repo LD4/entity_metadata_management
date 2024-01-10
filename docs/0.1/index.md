@@ -824,7 +824,7 @@ When a full download of the dataset is created, the producer should:
 
 * If already creating Change Sets, write any unrecorded entity changes to a last [Change Set](#change-set) before the snapshot.
 * Record the datetime when the snapshot for the download was taken.
-* On the human-readable download page, include a link to the download file and indicate the datatime of creation.
+* On the human readable download page, include a link to the download file and indicate the datatime of creation.
 * Create or update the [Entry Point](#entry-point) to include the new download in the `url` property.
 
 #### A.3 Creating Change Sets
