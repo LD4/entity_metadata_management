@@ -859,7 +859,7 @@ With these URIs the new [Change Set](#change-set) can be created as follows:
 * for each change, from oldest to newest or newest to oldest, add an Activity to the `orderedItems` property array, and:
     * set the `summary` property to the human readable description of the change
     * set the `published` (or `endTime`) property to the datetime the activity is being published
-    * set the `type` property to the change type (e.g. `Add`, `Update`, etc.)
+    * set the `type` property to the change type (e.g. `Add`, `Update`)
     * set the `id` property to the _change_activity_uri_ for this change
     * set the `object` property to be a JSON object with the following properties:
         * set the `id` property to the _entity_uri_
@@ -900,7 +900,7 @@ Of these four possibilities, we describe _mutable reverse_, of which the Library
 
 ### 6.1 Consuming a _mutable reverse_ stream (e.g. Library of Congress)
 
-Library of Congress provides an activity stream for several authorities (e.g. names, genre/forms, subjects, etc.).
+Library of Congress provides an activity stream for several authorities (e.g. names, genre/forms, subjects).
 
 Characteristics:
 * an entity will appear in the activity stream at most one time
