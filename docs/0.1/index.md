@@ -115,7 +115,7 @@ In some cases, caching of full descriptions of select entities may desired, by l
 {: #roles}
 
 * Entity Metadata Provider: An organization that collects, curates, and provides access to metadata about entities within an area of interest.
-* Entity Metadata Consumer: Any institution that references or caches entity metadata from a provider.
+* Entity Metadata Consumer: An institution that references or caches entity metadata from a provider.
 
 #### 1.3.2. Terms about Entities
 {: #terms-about-entities}
