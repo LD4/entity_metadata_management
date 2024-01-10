@@ -889,18 +889,18 @@ For each change create a separate [Entity Change Activity](#entity-change-activi
 Activity streams are inherently temporal constructs, and as such, the order of presentation in a stream may be _forward_ (i.e. the starting point
 in the stream reflects its oldest elements and consuming the stream involves newer and newer elements) or it may be _reverse_ (i.e. the starting
 point in the stream reflects its most recent elements and consuming the stream involves older and older elements). Likewise, the content of a given page in the stream may be _immutable_ (i.e. once published the content of a given page never changes) or it may be _mutable_ (i.e. the content of a given page can be updated and can differ from release to release). This specification espouses
-no preference of either approach. Rather example approaches to each are presented below.
+no preference of either approach. Rather, example approaches to each are presented below.
 
 | | Forward | Reverse |
 | --- | --- | --- |
 | **Mutable** | **Mutable Forward** Pages can be updated, and the content of a given page can differ by release. Older pages appear earlier in the stream than newer pages. | **Mutable Reverse** Pages can be updated, and the content of a given page can differ by release. Older pages appear later in the stream than newer pages. |
 | **Immutable** | **Immutable Forward** Once published, pages never change. Older pages appear earlier in the stream than newer pages. | **Immutable Reverse** Once published, pages never change. Older pages appear later in the stream than newer pages. |
 
-Of these four possibilities, we describe _mutable reverse_, of which the Library of Congress is an example, and _immutable forward_, of which Getty is an example. Regarding the remaining two possibilities, _mutable forward_, while feasible, requires the entire stream to be processed at each release, as there is no way of establishing where in the stream a change might occur. _Immutable reverse_ is inherently infeasible, as it requires that new content appear first, but on a page that cannot be changed.
+Of these four possibilities, we describe _mutable reverse_, of which the Library of Congress's activity stream is an example, and _immutable forward_, of which Getty Vocabularies' activity stream is an example. Regarding the remaining two possibilities, _mutable forward_, while feasible, requires the entire stream to be processed at each release, as there is no way of establishing where in the stream a change might occur. _Immutable reverse_ is inherently infeasible, as it requires that new content appear first, but on a page that cannot be changed.
 
 ### 6.1 Consuming a _mutable reverse_ stream (e.g. Library of Congress)
 
-Library of Congress provides an activity stream for several authorities (e.g. names, genre/forms, subjects, etc.).
+The Library of Congress provides an activity stream for several authorities (e.g. names, genre/forms, subjects, etc.).
 
 Characteristics:
 * an entity will appear in the activity stream at most one time
