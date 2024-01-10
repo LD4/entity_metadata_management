@@ -93,7 +93,7 @@ To address this generic use case, the provider creates and makes available a lis
 #### 1.2.2. Local Cache of Labels
 {: #local-cache-of-labels}
 
-Entity metadata consumers persist references to entity metadata by saving the URI as part of their local datastore. URIs may not be understandable to application users. In order to be able to display a human readable label, a label may be retrieved from the provider's datastore by dereferencing the URI. For performance reasons, the label is generally cached in the local datastore to avoid having to fetch the label every time the entity reference is displayed to an end user. If the label changes in the provider's datastore, the consumer would like to update the local cache of the label.
+Entity metadata consumers persist references to entity metadata by saving the URI as part of their local datastore. URIs may not be understandable to end users. In order to be able to display a human readable label, a label may be retrieved from the provider's datastore by dereferencing the URI. For performance reasons, the label is generally cached in the local datastore to avoid having to fetch the label every time the entity reference is displayed to an end user. If the label changes in the provider's datastore, the consumer would like to update the local cache of the label.
 
 To address this use case, the provider creates and makes available a list of URIs and their new labels. The consumer can compare the list of URIs with those stored in the local application and update the cached labels.
 
