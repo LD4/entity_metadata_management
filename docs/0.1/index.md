@@ -724,7 +724,7 @@ Examples of updates in the library domain include splits and merges. See the [De
 ### 4.3. Deprecate Entity
 {: #deprecate-entity}
 
-Deprecation indicates that an existing entity in the authority has been updated to reflect that it should no longer be used though the URI remains dereferencable reflecting the deprecation. Whenever possible, the entity description should indicate which entity or entities should be used instead.
+Deprecation indicates that an existing entity in the authority has been updated to reflect that it should no longer be used though the URI remains dereferencable. Whenever possible, the entity description should indicate which entity or entities should be used instead.
 
 There are two common scenarios. In the first, the replacement entity or entities already exist and the deprecation updates the deprecated entity only. In the second scenario, the replacement entity or entities do not exist prior to the deprecation. In this case, the replacement entity or entities are created and the status of the original entity is changed to deprecrated.
 
