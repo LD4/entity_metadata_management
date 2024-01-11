@@ -700,7 +700,7 @@ An updated entity _SHOULD_{:.strong-term} have an [Entity Change Activity](#enti
 
 An updated entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [Update type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-update) in the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples specific to Entity Metadata Management.
 
-Examples of updates in the library domain include splits and merges. See the [Deprecate Entity](#deprecate-entity) below for an illustration of how you can reflect these scenarios without explicitly typing them as splits or merge activities using a sequence of related activities.
+Examples of updates in the library domain include splits and merges. See [Deprecate Entity](#deprecate-entity) below for an illustration of how you can reflect these scenarios without explicitly typing them as splits or merge activities using a sequence of related activities.
 
 #### Example Entity Change Activity excerpt for Update
 
