@@ -93,7 +93,7 @@ To address this generic use case, the provider creates and makes available a lis
 #### 1.2.2. Local Cache of Labels
 {: #local-cache-of-labels}
 
-Entity metadata consumers persist references to entity metadata by saving the URI as part of their local datastore. URIs may not be understandable to application users. In order to be able to display a human readable label, a label may be retrieved from the provider's datastore by dereferencing the URI. For performance reasons, the label is generally cached in the local datastore to avoid having to fetch the label every time the entity reference is displayed to an end user. If the label changes in the provider's datastore, the consumer would like to update the local cache of the label.
+Entity metadata consumers persist references to entity metadata by saving the URI as part of their local datastore. URIs may not be understandable to end users. In order to be able to display a human readable label, a label may be retrieved from the provider's datastore by dereferencing the URI. For performance reasons, the label is generally cached in the local datastore to avoid having to fetch the label every time the entity reference is displayed to an end user. If the label changes in the provider's datastore, the consumer would like to update the local cache of the label.
 
 To address this use case, the provider creates and makes available a list of URIs and their new labels. The consumer can compare the list of URIs with those stored in the local application and update the cached labels.
 
@@ -668,7 +668,7 @@ A new entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} follo
 
 An entity appearing in an _Entry Point_{:.term} stream for the first time _MUST_{:.strong-term} use _Activity_{:.term} type `Create` and/or `Add`.
 
-`Create` _SHOULD_{:.strong-term} be used when the entity is new in the source dataset and available for use. A provider _MUST NOT_{:.strong-term} use `Create` to broadcast that an entity exists unless it can be dereferenced at the entity URI. A Create activity indicates that the entity is new and available for use by consumers, see also `Add` below.
+`Create` _SHOULD_{:.strong-term} be used when the entity is new in the source dataset and available for use. A provider _MUST NOT_{:.strong-term} use `Create` to broadcast that an entity exists unless it can be dereferenced at the entity URI. A `Create` activity indicates that the entity is new and available for use by consumers, see also `Add` below.
 
 `Add` _SHOULD_{:.strong-term} be used when the entity exists in the source dataset, but was previously not available through the _Entry Point_{:.term} and now is being made available in the stream. Situations where this might happen include, but are not limited to, change in permissions, end of an embargo, temporary removal and now being made available.
 
@@ -700,7 +700,7 @@ An updated entity _SHOULD_{:.strong-term} have an [Entity Change Activity](#enti
 
 An updated entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [Update type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-update) in the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples specific to Entity Metadata Management.
 
-Examples of updates in the library domain include splits and merges. See the [Deprecate Entity](#deprecate-entity) below for an illustration of how you can reflect these scenarios without explicitly typing them as splits or merge activities using a sequence of related activities.
+Examples of updates in the library domain include splits and merges. See [Deprecate Entity](#deprecate-entity) below for an illustration of how you can reflect these scenarios without explicitly typing them as splits or merge activities using a sequence of related activities.
 
 #### Example Entity Change Activity excerpt for Update
 
@@ -824,7 +824,7 @@ When a full download of the dataset is created, the producer should:
 
 * If already creating Change Sets, write any unrecorded entity changes to a last [Change Set](#change-set) before the snapshot.
 * Record the datetime when the snapshot for the download was taken.
-* On the human-readable download page, include a link to the download file and indicate the datatime of creation.
+* On the human readable download page, include a link to the download file and indicate the datatime of creation.
 * Create or update the [Entry Point](#entry-point) to include the new download in the `url` property.
 
 #### A.3 Creating Change Sets
@@ -859,7 +859,7 @@ With these URIs the new [Change Set](#change-set) can be created as follows:
 * for each change, from oldest to newest or newest to oldest, add an Activity to the `orderedItems` property array, and:
     * set the `summary` property to the human readable description of the change
     * set the `published` (or `endTime`) property to the datetime the activity is being published
-    * set the `type` property to the change type (e.g. `Add`, `Update`, etc.)
+    * set the `type` property to the change type (e.g. `Add`, `Update`)
     * set the `id` property to the _change_activity_uri_ for this change
     * set the `object` property to be a JSON object with the following properties:
         * set the `id` property to the _entity_uri_
@@ -900,7 +900,7 @@ Of these four possibilities, we describe _mutable reverse_, of which the Library
 
 ### 6.1 Consuming a _mutable reverse_ stream (e.g. Library of Congress)
 
-The Library of Congress provides an activity stream for several authorities (e.g. names, genre/forms, subjects, etc.).
+The Library of Congress provides an activity stream for several authorities (e.g. names, genre/forms, subjects).
 
 Characteristics:
 * an entity will appear in the activity stream at most one time
@@ -976,6 +976,6 @@ provide a complete representation.
 
 We are grateful to all participants in the LD4 [Best Practices for Authoritative Data Working Group](https://wiki.lyrasis.org/x/pgFrD), within which this specification was created. [E. Lynette Rayle](https://orcid.org/0000-0001-7707-3572) (formerly at Cornell University) led the initial development of this specification. [Jim Hahn](https://orcid.org/0000-0001-7924-5294) (University of Pennsylvania Libraries), [Kirk Hess](https://orcid.org/0000-0002-9559-6649) (OCLC R&D), [Anna Lionetti](https://orcid.org/0000-0001-6157-8808) (Casalini Libri), [Tiziana Possemato](https://orcid.org/0000-0002-7184-4070) (Casalini Libri), and [Erik Radio](https://orcid.org/0000-0003-0734-1978) (University of Colorado Boulder) also contributed to this work.
 
-This specification was influenced by prior implementations for [Library of Congress entity sets](https://id.loc.gov/) and [Getty vocabularies](https://www.getty.edu/research/tools/vocabularies/index.html).
+This specification was influenced by prior implementations for [Library of Congress entity sets](https://id.loc.gov/) and [Getty Vocabularies](https://www.getty.edu/research/tools/vocabularies/index.html).
 
 {% include api/links.md %}
