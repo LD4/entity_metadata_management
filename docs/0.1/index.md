@@ -68,14 +68,14 @@ This specification is based on the [Activity Streams 2.0 specification][org-w3c-
 
 The objective of this specification is to provide a machine to machine API that conveys the information needed for an entity metadata consumer to understand all the changes to entity metadata across the lifecycle of an entity. The intended audiences are Entity Metadata Providers who curate and publish entity metadata within an area of interest, Entity Metadata Consumers who use the entity metadata, and developers who create applications and tools that help consumers connect to entity metadata from providers.
 
-The discovery of changes to entity metadata requires a consistent pattern for entity metadata providers to publish lists of links to entities that have metadata changes and the types of changes that have occurred. Changes include newly available entities with metadata, removed entities, as well as changes to entities and their metadata.
+The discovery of changes to entity metadata requires a consistent pattern of publication which must include a link to the entity and indication of the change or changes made. Such changes may include adding new entities, removing existing entities, and any other edits to current entities and/or their metadata.
 
-This process can be optimized if metadata providers publish changes in chronological order, including descriptions of how their entity descriptions have changed, enabling consuming systems to retrieve only the resources that have been modified since they were last retrieved.
+This process can be optimized if metadata providers publish changes in chronological order, including descriptions of how each entity’s metadata has changed, enabling consuming systems to retrieve only the resources that have been modified since they were last retrieved.
 
-This specification does not include a mechanism for enabling change notifications to be pushed to remote systems. Only periodic polling for the set of changes that must be processed is supported. Addition of a push mechanism may be added in a future version.
+This specification does not include a mechanism for enabling change notifications to be pushed to remote systems. Only periodic polling for the set of changes that must be processed is supported. A push mechanism may be added in a future version.
 {: .warning}
 
-Work that is out of scope of this API includes the recommendation or creation of any descriptive metadata formats, and the recommendation or creation of metadata search APIs or protocols. The diverse domains represented across the entity metadata already have successful standards fulfilling these use cases. Also out of scope is optimization of the transmission mechanisms providing access points for consumers to query.
+Work that is out of scope of this API includes the recommendation or creation of any descriptive metadata formats, and the recommendation or creation of metadata search APIs or protocols. The diverse domains represented across the entity metadata already have standards fulfilling these use cases. Also out of scope is optimization of the transmission mechanisms providing access points for consumers to query.
 {: .warning}
 
 ### 1.2. Use Cases
