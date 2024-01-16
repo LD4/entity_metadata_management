@@ -106,7 +106,7 @@ A consumer may decide to make a cache of a dataset of full entity metadata. This
 
 To address this use case, the provider creates and makes available a dated list of all new, modified, and deleted entities along with specifics about how the entities have changed. The consumer can process a stream of change documents that was published since their last incremental update. Specific details about each change can be used to update the local cache.
 
-In some cases, caching of full descriptions of s subset of entities may desired, limited to only those entities referenced in local bibliographic data.
+In some cases, caching of full descriptions of a subset of entities may desired, limited to only those entities referenced in local bibliographic data.
 
 ### 1.3. Terminology
 {: #terminology}
