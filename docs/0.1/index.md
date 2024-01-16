@@ -59,7 +59,7 @@ __Previous Version:__ None
 ## 1. Introduction
 {: #introduction}
 
-The Entity Metadata Management API is intended to establish a pattern that supports sharing changes to entities and their metadata curated by Entity Metadata Providers with the community of Entity Metadata Consumers (e.g. libraries, museums, galleries, archives). Use of a consistent pattern allows for the creation of software tools for producing and consuming changes in entity metadata.
+The Entity Metadata Management API is intended to establish a pattern that supports sharing changes to entities and their metadata curated by Entity Metadata Providers with the community of Entity Metadata Consumers (e.g. libraries, museums, archives). Use of a consistent pattern allows for the creation of software tools for producing and consuming changes in entity metadata.
 
 This specification is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams]. It defines a usage pattern and minor extensions specific to entity metadata management.
 
@@ -68,11 +68,9 @@ This specification is based on the [Activity Streams 2.0 specification][org-w3c-
 
 The objective of this specification is to provide a machine to machine API that conveys the information needed for an Entity Metadata Consumer to understand all the changes to entity metadata across the lifecycle of an entity. The intended audiences are Entity Metadata Providers who curate and publish entity metadata within an area of interest, Entity Metadata Consumers who use the entity metadata, and developers who create applications and tools that help consumers connect to entity metadata from providers.
 
-The discovery of changes to entity metadata requires a consistent pattern for Entity Metadata Providers to implement when publishing lists of entities whose metadata has changed. This pattern needs to include links to those entities and the types of changes that have occurred. Changes include newly available entities with metadata, removed entities, as well as changes to entities and their metadata.
+The discovery of changes to entity metadata requires a consistent pattern of publication which must include a link to the entity and indication of the change or changes made. Such changes may include adding new entities, removing existing entities, and any other edits to current entities and/or their metadata.
 
-The discovery of changes to entity metadata requires a consistent pattern for Entity Metadata Providers to publish lists of links to entities that have metadata changes and the types of changes that have occurred. Changes include newly available entities with metadata, removed entities, as well as changes to entities and their metadata.
-
-This process can be optimized if metadata providers publish changes in chronological order, including descriptions of how each entity’s metadata has changed, enabling consuming systems to retrieve only the resources that have been modified since they were last retrieved.
+This process can be optimized if Entity Metadata Providers publish changes in chronological order, including descriptions of how each entity’s metadata has changed, enabling consuming systems to retrieve only the resources that have been modified since they were last retrieved.
 
 This specification does not include a mechanism for enabling change notifications to be pushed to remote systems. Only periodic polling for the set of changes that must be processed is supported. A push mechanism may be added in a future version.
 {: .warning}
@@ -83,7 +81,7 @@ Work that is out of scope of this API includes the recommendation or creation of
 ### 1.2. Use Cases
 {: #use-cases}
 
-The following three use cases motivate this specification. They are drawn from workflows needed by libraries, museums, galleries, and archives.
+The following three use cases motivate this specification. They are drawn from workflows needed by libraries, museums, and archives.
 
 #### 1.2.1. Change Tracking
 {: #change-tracking}
@@ -95,7 +93,7 @@ To address this generic use case, the provider creates and makes available a lis
 #### 1.2.2. Local Cache of Labels
 {: #local-cache-of-labels}
 
-Entity Metadata Consumers persist references to entity metadata by saving the URI as part of their local datastore. URIs may not be understandable to application users. In order to be able to display a human readable label, a label may be retrieved from the provider's datastore by dereferencing the URI. For performance reasons, the label is generally cached in the local datastore to avoid having to fetch the label every time the entity reference is displayed to an end user. If the label changes in the provider's datastore, the consumer would like to update the local cache of the label.
+Entity Metadata Consumers persist references to entity metadata by saving the URI as part of their local datastore. URIs may not be understandable to end users. In order to be able to display a human readable label, a label may be retrieved from the provider's datastore by dereferencing the URI. For performance reasons, the label is generally cached in the local datastore to avoid having to fetch the label every time the entity reference is displayed to an end user. If the label changes in the provider's datastore, the consumer would like to update the local cache of the label.
 
 To address this use case, the provider creates and makes available a list of URIs and their new labels. The consumer can compare the list of URIs with those stored in the local application and update the cached labels.
 
@@ -117,7 +115,7 @@ In some cases, caching of full descriptions of select entities may desired, by l
 {: #roles}
 
 * Entity Metadata Provider: An organization that collects, curates, and provides access to metadata about entities within an area of interest.
-* Entity Metadata Consumer: Any institution that references or caches entity metadata from a provider.
+* Entity Metadata Consumer: An institution that references or caches entity metadata from a provider.
 
 #### 1.3.2. Terms about Entities
 {: #terms-about-entities}
@@ -158,7 +156,7 @@ This specification provides an API via which Entity Metadata Providers can publi
 
 ### 2.1. Activity Streams and Extensibility
 
-This specification is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams]. The following sections describe the use of Activity Streams to meet Entity Metadata Management use cases. They describe only the Activity Streams classes and properties used, and any restrictions or additional semantics in the context of this specification. Implementations _MAY_{:.strong-term} use other properties from Activity Streams or elsewhere for extension, consumers _SHOULD_{:.strong-term} ignore any properties not defined in this specification that they don't understand.
+This specification is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams]. The following sections describe the use of Activity Streams to meet Entity Metadata Management use cases. They describe only the Activity Streams classes and properties used, and any restrictions or additional semantics in the context of this specification. Implementations _MAY_{:.strong-term} use other properties from Activity Streams or elsewhere for extension, and consumers _SHOULD_{:.strong-term} ignore any properties not defined in this specification that they don't understand.
 
 ### 2.2. JSON-LD Representation
 {: #jsonld-representation}
@@ -670,7 +668,7 @@ A new entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} follo
 
 An entity appearing in an _Entry Point_{:.term} stream for the first time _MUST_{:.strong-term} use _Activity_{:.term} type `Create` and/or `Add`.
 
-`Create` _SHOULD_{:.strong-term} be used when the entity is new in the source dataset and available for use. A provider _MUST NOT_{:.strong-term} use `Create` to broadcast that an entity exists unless it can be dereferenced at the entity URI. A Create activity indicates that the entity is new and available for use by consumers, see also `Add` below.
+`Create` _SHOULD_{:.strong-term} be used when the entity is new in the source dataset and available for use. A provider _MUST NOT_{:.strong-term} use `Create` to broadcast that an entity exists unless it can be dereferenced at the entity URI. A `Create` activity indicates that the entity is new and available for use by consumers, see also `Add` below.
 
 `Add` _SHOULD_{:.strong-term} be used when the entity exists in the source dataset, but was previously not available through the _Entry Point_{:.term} and now is being made available in the stream. Situations where this might happen include, but are not limited to, change in permissions, end of an embargo, temporary removal and now being made available.
 
@@ -702,7 +700,7 @@ An updated entity _SHOULD_{:.strong-term} have an [Entity Change Activity](#enti
 
 An updated entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [Update type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-update) in the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples specific to Entity Metadata Management.
 
-Examples of updates in the library domain include splits and merges. See the [Deprecate Entity](#deprecate-entity) below for an illustration of how you can reflect these scenarios without explicitly typing them as splits or merge activities using a sequence of related activities.
+Examples of updates in the library domain include splits and merges. See [Deprecate Entity](#deprecate-entity) below for an illustration of how you can reflect these scenarios without explicitly typing them as splits or merge activities using a sequence of related activities.
 
 #### Example Entity Change Activity excerpt for Update
 
@@ -726,7 +724,7 @@ Examples of updates in the library domain include splits and merges. See the [De
 ### 4.3. Deprecate Entity
 {: #deprecate-entity}
 
-Deprecation indicates that an existing entity in the authority has been updated to reflect that it should no longer be used though the URI remains dereferencable reflecting the deprecation. Whenever possible, the entity description should indicate which entity or entities should be used instead.
+Deprecation indicates that an existing entity in the authority has been updated to reflect that it should no longer be used though the URI remains dereferencable. Whenever possible, the entity description should indicate which entity or entities should be used instead.
 
 There are two common scenarios. In the first, the replacement entity or entities already exist and the deprecation updates the deprecated entity only. In the second scenario, the replacement entity or entities do not exist prior to the deprecation. In this case, the replacement entity or entities are created and the status of the original entity is changed to deprecrated.
 
@@ -826,7 +824,7 @@ When a full download of the dataset is created, the producer should:
 
 * If already creating Change Sets, write any unrecorded entity changes to a last [Change Set](#change-set) before the snapshot.
 * Record the datetime when the snapshot for the download was taken.
-* On the human-readable download page, include a link to the download file and indicate the datatime of creation.
+* On the human readable download page, include a link to the download file and indicate the datatime of creation.
 * Create or update the [Entry Point](#entry-point) to include the new download in the `url` property.
 
 #### A.3 Creating Change Sets
@@ -861,7 +859,7 @@ With these URIs the new [Change Set](#change-set) can be created as follows:
 * for each change, from oldest to newest or newest to oldest, add an Activity to the `orderedItems` property array, and:
     * set the `summary` property to the human readable description of the change
     * set the `published` (or `endTime`) property to the datetime the activity is being published
-    * set the `type` property to the change type (e.g. `Add`, `Update`, etc.)
+    * set the `type` property to the change type (e.g. `Add`, `Update`)
     * set the `id` property to the _change_activity_uri_ for this change
     * set the `object` property to be a JSON object with the following properties:
         * set the `id` property to the _entity_uri_
@@ -902,7 +900,7 @@ Of these four possibilities, we describe _mutable reverse_, of which the Library
 
 ### 6.1 Consuming a _mutable reverse_ stream (e.g. Library of Congress)
 
-Library of Congress provides an activity stream for several authorities (e.g. names, genre/forms, subjects, etc.).
+Library of Congress provides an activity stream for several authorities (e.g. names, genre/forms, subjects).
 
 Characteristics:
 * an entity will appear in the activity stream at most one time
@@ -978,6 +976,6 @@ provide a complete representation.
 
 We are grateful to all participants in the LD4 [Best Practices for Authoritative Data Working Group](https://wiki.lyrasis.org/x/pgFrD), within which this specification was created. [E. Lynette Rayle](https://orcid.org/0000-0001-7707-3572) (formerly at Cornell University) led the initial development of this specification. [Jim Hahn](https://orcid.org/0000-0001-7924-5294) (University of Pennsylvania Libraries), [Kirk Hess](https://orcid.org/0000-0002-9559-6649) (OCLC R&D), [Anna Lionetti](https://orcid.org/0000-0001-6157-8808) (Casalini Libri), [Tiziana Possemato](https://orcid.org/0000-0002-7184-4070) (Casalini Libri), and [Erik Radio](https://orcid.org/0000-0003-0734-1978) (University of Colorado Boulder) also contributed to this work.
 
-This specification was influenced by prior implementations for [Library of Congress entity sets](https://id.loc.gov/) and [Getty vocabularies](https://www.getty.edu/research/tools/vocabularies/index.html).
+This specification was influenced by prior implementations for [Library of Congress entity sets](https://id.loc.gov/) and [Getty Vocabularies](https://www.getty.edu/research/tools/vocabularies/index.html).
 
 {% include api/links.md %}
