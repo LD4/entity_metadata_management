@@ -965,10 +965,10 @@ end
 
 ### 6.3 Discussion
 
-The Library of Congress mutable reverse approach is inherently the most compact, as any given entity appears in the stream exactly once, at its most recent
+The Library of Congress' mutable reverse approach is inherently the most compact, as any given entity appears in the stream exactly once, at its most recent
 point of modification. However, this is accomplished by completely regenerating the activity stream in its entirety whenever new content is
-made available. The Getty immutable forward approach yields pages that are immutable - once issued a page will never be altered - with new content
-appearing incrementally on new pages attached to the end of the pages comprising the stream. Any given entity may appear multiple times in the
+made available. Getty's immutable forward approach yields pages that are immutable – once issued a page will never be altered – with new content
+appearing incrementally on new pages attached to the end of the page sequence comprising the stream. Any given entity may appear multiple times in the
 stream, reflecting the number of modifications it has undergone over its life, and each appearance need only update the entity rather than
 provide a complete representation.
 
