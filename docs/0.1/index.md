@@ -59,18 +59,18 @@ __Previous Version:__ None
 ## 1. Introduction
 {: #introduction}
 
-The Entity Metadata Management API is intended to establish a pattern that supports sharing changes to entities and their metadata curated by entity metadata providers with the community of entity metadata consumers (e.g. libraries, museums, archives). Use of a consistent pattern allows for the creation of software tools for producing and consuming changes in entity metadata.
+The Entity Metadata Management API is intended to establish a pattern that supports sharing changes to entities and their metadata curated by Entity Metadata Providers with the community of Entity Metadata Consumers (e.g. libraries, museums, archives). Use of a consistent pattern allows for the creation of software tools for producing and consuming changes in entity metadata.
 
 This specification is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams]. It defines a usage pattern and minor extensions specific to entity metadata management.
 
 ### 1.1. Objectives and Scope
 {: #objectives-and-scope}
 
-The objective of this specification is to provide a machine to machine API that conveys the information needed for an entity metadata consumer to understand all the changes to entity metadata across the lifecycle of an entity. The intended audiences are Entity Metadata Providers who curate and publish entity metadata within an area of interest, Entity Metadata Consumers who use the entity metadata, and developers who create applications and tools that help consumers connect to entity metadata from providers.
+The objective of this specification is to provide a machine to machine API that conveys the information needed for an Entity Metadata Consumer to understand all the changes to entity metadata across the lifecycle of an entity. The intended audiences are Entity Metadata Providers who curate and publish entity metadata within an area of interest, Entity Metadata Consumers who use the entity metadata, and developers who create applications and tools that help consumers connect to entity metadata from providers.
 
 The discovery of changes to entity metadata requires a consistent pattern of publication which must include a link to the entity and indication of the change or changes made. Such changes may include adding new entities, removing existing entities, and any other edits to current entities and/or their metadata.
 
-This process can be optimized if metadata providers publish changes in chronological order, including descriptions of how each entity’s metadata has changed, enabling consuming systems to retrieve only the resources that have been modified since they were last retrieved.
+This process can be optimized if Entity Metadata Providers publish changes in chronological order, including descriptions of how each entity’s metadata has changed, enabling consuming systems to retrieve only the resources that have been modified since they were last retrieved.
 
 This specification does not include a mechanism for enabling change notifications to be pushed to remote systems. Only periodic polling for the set of changes that must be processed is supported. A push mechanism may be added in a future version.
 {: .warning}
@@ -86,14 +86,14 @@ The following three use cases motivate this specification. They are drawn from w
 #### 1.2.1. Change Tracking
 {: #change-tracking}
 
-Entity metadata consumers may want to learn about modifications or deletions for entities they use, or about the creation of new entities by the same provider.
+Entity Metadata Consumers may want to learn about modifications or deletions for entities they use, or about the creation of new entities by the same provider.
 
 To address this generic use case, the provider creates and makes available a list of changes with the URIs for any new, modified, or deleted entities. While the provider may have internal needs for tracking more than these three moments in an entity's lifecycle (e.g. if the provider workflow requires a review activity), this specification focuses on public changes to the dataset that may require action from a consumer. The consumer will need to take additional actions to identify and act on changes to entities of interest, which many be automatic or manual.
 
 #### 1.2.2. Local Cache of Labels
 {: #local-cache-of-labels}
 
-Entity metadata consumers persist references to entity metadata by saving the URI as part of their local datastore. URIs may not be understandable to end users. In order to be able to display a human readable label, a label may be retrieved from the provider's datastore by dereferencing the URI. For performance reasons, the label is generally cached in the local datastore to avoid having to fetch the label every time the entity reference is displayed to an end user. If the label changes in the provider's datastore, the consumer would like to update the local cache of the label.
+Entity Metadata Consumers persist references to entity metadata by saving the URI as part of their local datastore. URIs may not be understandable to end users. In order to be able to display a human readable label, a label may be retrieved from the provider's datastore by dereferencing the URI. For performance reasons, the label is generally cached in the local datastore to avoid having to fetch the label every time the entity reference is displayed to an end user. If the label changes in the provider's datastore, the consumer would like to update the local cache of the label.
 
 To address this use case, the provider creates and makes available a list of URIs and their new labels. The consumer can compare the list of URIs with those stored in the local application and update the cached labels.
 
