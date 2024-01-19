@@ -462,7 +462,7 @@ The _Change Set_{:.term} _MUST_{:.strong-term} have a `partOf` property. The val
   * a string that is HTTP(S) URI of the _Entry Point_{:.term}, or
   * a JSON object, with at least the `id` and `type` properties. The value of the `id` property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the _Entry Point_{:.term}. The value of the `type` property _MUST_{:.strong-term} be the string `OrderedCollection`.
 
-```
+```json-doc
   "partOf": {
     "type": "OrderedCollection",
     "id": "https://data.my.authority/change_documents/2021/activity-stream"
@@ -479,7 +479,7 @@ A count of the number of items in the _Change Set_{:.term}.
 
 The _Change Set_{:.term} _SHOULD_{:.strong-term} have a `totalItems` property. If present, the value _MUST_{:.strong-term} be a non-negative integer that corresponds with the number of items in the `orderedItems` array in this _Change Set_{:.term}.
 
-```
+```json-doc
   "totalItems": 3
 ```
 
@@ -677,7 +677,6 @@ A new _Entry Point_{:.term} _MAY_{:.strong-term} choose to populate the stream w
 #### Example Entity Change Activity excerpt for Create
 
 ```json-doc
-{
   "summary": "New entity for term milk",
   "published": "2021-08-02T16:59:54Z",
   "type": "Create",
@@ -690,7 +689,6 @@ A new _Entry Point_{:.term} _MAY_{:.strong-term} choose to populate the stream w
     "id": "http://my_repo/entity/cow_milk",
     "updated": "2021-08-02T16:59:54Z"
   }
-}
 ```
 
 ### 4.2. Update Entity
@@ -705,7 +703,6 @@ Examples of updates in the library domain include splits and merges. See [Deprec
 #### Example Entity Change Activity excerpt for Update
 
 ```json-doc
-{
   "summary": "Update entity term milk",
   "published": "2021-08-02T16:59:54Z",
   "type": "Update",
@@ -718,7 +715,6 @@ Examples of updates in the library domain include splits and merges. See [Deprec
     "id": "http://my_repo/entity/milk",
     "updated": "2021-08-02T16:59:54Z"
   }
-}
 ```
 
 ### 4.3. Deprecate Entity
@@ -738,7 +734,6 @@ Note that the Entity Metadata Management context includes definition of the term
 #### Example Entity Change Activity excerpt for Deprecate in the Scenario where a Replacement Entity Already Exists
 
 ```json-doc
-{
   "summary": "Deprecate term cow milk",
   "published": "2021-08-02T16:59:57Z",
   "type": "Deprecate",
@@ -751,7 +746,6 @@ Note that the Entity Metadata Management context includes definition of the term
     "id": "http://my_repo/entity/cow_milk",
     "updated": "2021-08-02T16:59:57Z"
   }
-}
 ```
 
 #### Example Entity Change Activity excerpt for Deprecate in the Scenario where a Replacement Entity is Created
@@ -790,7 +784,6 @@ A deleted entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} f
 #### Example Entity Change Activity excerpt for Delete
 
 ```json-doc
-{
   "summary": "Delete term cow_milk",
   "published": "2021-08-02T16:59:54Z",
   "type": "Delete",
@@ -803,7 +796,6 @@ A deleted entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} f
     "id": "http://my_repo/entity/cow_milk",
     "updated": "2021-08-02T16:59:54Z"
   }
-}
 ```
 
 ## Appendices
