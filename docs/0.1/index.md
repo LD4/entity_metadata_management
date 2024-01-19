@@ -75,7 +75,7 @@ This process can be optimized if Entity Metadata Providers publish changes in ch
 This specification does not include a mechanism for enabling change notifications to be pushed to remote systems. Only periodic polling for the set of changes that must be processed is supported. A push mechanism may be added in a future version.
 {: .warning}
 
-Work that is out of scope of this API includes the recommendation or creation of any descriptive metadata formats, and the recommendation or creation of metadata search APIs or protocols. The diverse domains represented across the entity metadata already have standards fulfilling these use cases. Also out of scope is optimization of the transmission mechanisms providing access points for consumers to query.
+Work that is out of scope of this API includes the recommendation or creation of any descriptive metadata formats, and the recommendation or creation of metadata search APIs or protocols. The diverse domains represented across entity metadata already have standards fulfilling these use cases. Also out of scope is optimization of the transmission mechanisms providing access points for consumers to query.
 {: .warning}
 
 ### 1.2. Use Cases
@@ -106,7 +106,7 @@ A consumer may decide to make a cache of a dataset of full entity metadata. This
 
 To address this use case, the provider creates and makes available a dated list of all new, modified, and deleted entities along with specifics about how the entities have changed. The consumer can process a stream of change documents that was published since their last incremental update. Specific details about each change can be used to update the local cache.
 
-In some cases, caching of full descriptions of a subset of entities may be desired, limited to only those entities referenced in local bibliographic data.
+In some cases, caching of full descriptions of a subset of entities may be desired, for example limiting to only those entities referenced in local bibliographic data.
 
 ### 1.3. Terminology
 {: #terminology}
@@ -115,12 +115,12 @@ In some cases, caching of full descriptions of a subset of entities may be desir
 {: #roles}
 
 * Entity Metadata Provider: An organization that collects, curates, and provides access to metadata about entities within an area of interest.
-* Entity Metadata Consumer: An institution that references or caches entity metadata from a provider.
+* Entity Metadata Consumer: An organization that references or caches entity metadata from an Entity Metadata Provider.
 
 #### 1.3.2. Terms about Entities
 {: #terms-about-entities}
 
-* Entity: An entity is any resource (a thing or a concept) identified with a URI that we may want to reference or make use of in data set. Entities include, but are not limited to, what are referred to _authorities_, _controlled vocabulary terms_, or _real world objects (RWOs)_ in library, archives, and museum domains.
+* Entity: An entity is any resource (a thing or a concept) identified with a URI that we may want to reference or make use of in a data set. Entities include, but are not limited to, what are referred to _authorities_, _controlled vocabulary terms_, or _real world objects (RWOs)_ in library, archives, and museum domains.
 * Entity Set: A set of entities that are grouped together by an Entity Metadata Provider. Entities can be grouped based on various criteria (e.g. subject headings, names, thesaurus, controlled vocabulary).
 
 #### 1.3.3. Terms from Activity Streams
@@ -149,7 +149,7 @@ This specification uses the following terms:
 ## 2. Architecture
 {: #architecture}
 
-This specification provides an API via which Entity Metadata Providers can publish information about changes in entity metadata, which Entity Metadata Consumers can follow. Changes in entity metadata over time are communicated from providers to consumers via _Entity Change Activities_{:.term} that describe a change to an entity. These are collected together in _Change Set_{:.term} documents that are organized under an _Entry Point_{:.term} as shown in the diagram below.
+This specification provides an API via which Entity Metadata Providers can publish information about changes in entity metadata, which Entity Metadata Consumers can follow. Changes in entity metadata over time are communicated from providers to consumers via _Entity Change Activities_{:.term}. These are collected together in _Change Set_{:.term} documents that are organized under an _Entry Point_{:.term} as shown in the diagram below.
 
 #### Entity Metadata Management API Architecture representing changes using Activity Streams
 <img src="{{site.baseurl}}/assets/images/figures/EMM_API_Architecture.png">
@@ -195,7 +195,7 @@ Implementations _MAY_{:.strong-term} include additional extension contexts. Exte
 Reference: [OrderedCollection][org-w3c-activitystreams-coretype-orderedcollection] description
 {:.reference}
 
-An _Entry Point_{:.term} is an ActivityStreams Collection resource identifying a dataset whose changes are published using the Activity Streams vocabulary with Entity Metadata Management enhancements. It provides pointers to one or more Change Sets.
+An _Entry Point_{:.term} is an Activity Streams Collection resource identifying a dataset whose changes are published using the Activity Streams vocabulary with Entity Metadata Management enhancements. It provides pointers to one or more Change Sets.
 
 The _Entry Point_{:.term} _MUST_{:.strong-term} be implemented as an _OrderedCollection_{:.term} following the definition in the Activity Stream specification. The key points are repeated here with examples specific to Entity Metadata Management.
 
@@ -300,7 +300,7 @@ Reference: [first](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-first) 
 {:.reference}
 
 The _Entry Point_{:.term} _SHOULD_{:.strong-term} have a `first` property to indicate the first _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}. If present, the value _MUST_{:.strong-term} be either:
-  * a string that is HTTP(S) URI of the first page of items in the _Entry Point_{:.term}, or
+  * a string that is the HTTP(S) URI of the first page of items in the _Entry Point_{:.term}, or
   * a JSON object, with at least the `id` and `type` properties. The value of the `id` property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the first page of items in the _Entry Point_{:.term}. The value of the `type` property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
 
 ```json-doc
@@ -317,7 +317,7 @@ Reference: [last](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-last) pr
 {:.reference}
 
 The _Entry Point_{:.term} _SHOULD_{:.strong-term} have a `last` property to indicate the last _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}. If present, the value _MUST_{:.strong-term} be either:
-  * a string that is HTTP(S) URI of the last page of items in the _Entry Point_{:.term}, or
+  * a string that is the HTTP(S) URI of the last page of items in the _Entry Point_{:.term}, or
   * a JSON object, with at least the `id` and `type` properties. The value of the `id` property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the last page of items in the _Entry Point_{:.term}. The value of the `type` property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
 
 ```json-doc
@@ -347,7 +347,7 @@ The _Entry Point_{:.term} _MAY_{:.strong-term} have a `totalItems` property. If 
 Reference: [OrderedCollectionPage][org-w3c-activitystreams-coretype-orderedcollectionpage] description
 {:.reference}
 
-A _Change Set_{:.term} is an Activity Streams Ordered Collection Page resource identifying individual _Entity Change Activities_{:.term}, which are resources that have been created, modified, or deprecated. It may additionally identifying preceding or subsequent _Change Sets_{:.term} for automated crawling.
+A _Change Set_{:.term} is an Activity Streams Ordered Collection Page resource identifying individual _Entity Change Activities_{:.term}, which are resources that have been created, modified, or deprecated. It may additionally help with identifying preceding or subsequent _Change Sets_{:.term} for automated crawling.
 
 Each time a set of changes is published, changes _MUST_{:.strong-term} be released in at least one _Change Set_{:.term}. Changes _MAY_{:.strong-term} be published across multiple _Change Sets_{:.term}. For example, a site may decide that each _Change Set_{:.term} will have at most 50 changes and if that maximum is exceeded during the release time period, then a second _Change Set_{:.term} will be created.
 
@@ -459,7 +459,7 @@ Reference: [id][org-w3c-activitystreams-property-partof] property definition
 The `partOf` property provides a link from the _Change Set_{:.term} to the _Entry Point_{:.term} is it part of.
 
 The _Change Set_{:.term} _MUST_{:.strong-term} have a `partOf` property. The value _MUST_{:.strong-term} be either:
-  * a string that is HTTP(S) URI of the _Entry Point_{:.term}, or
+  * a string that is the HTTP(S) URI of the _Entry Point_{:.term}, or
   * a JSON object, with at least the `id` and `type` properties. The value of the `id` property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the _Entry Point_{:.term}. The value of the `type` property _MUST_{:.strong-term} be the string `OrderedCollection`.
 
 ```
@@ -492,7 +492,7 @@ Reference: [prev](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-prev) pr
 A link to the previous _Change Set_{:.term} in this _Entry Point_{:.term} for the _Entity Collection_{:.term}.
 
 The _Change Set_{:.term} _MAY_{:.strong-term} have a `prev` property if there are preceding _Change Sets_{:.term} in the _Entry Point_{:.term} for this _Entity Collection_{:.term}. If present, the value _MUST_{:.strong-term} be either:
-  * a string that is HTTP(S) URI of the previous page of items in the _Entry Point_{:.term}, or
+  * a string that is the HTTP(S) URI of the previous page of items in the _Entry Point_{:.term}, or
   * a JSON object, with at least the `id` and `type` properties. The value of the `id` property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the previous page of items in the _Entry Point_{:.term}. The value of the `type` property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
 
 ```json-doc
@@ -509,7 +509,7 @@ A link to the next _Change Set_{:.term} in this _Entry Point_{:.term} for the _E
 
 The _Change Set_{:.term} _MUST_{:.strong-term} have a `next` property if there are
 subsequent _Change Sets_ in the _Entry Point_{:.term} for this _Entity Collection_. The value _MUST_{:.strong-term} be either:
-  * a string that is HTTP(S) URI of the next page of items in the _Entry Point_{:.term}, or
+  * a string that is the HTTP(S) URI of the next page of items in the _Entry Point_{:.term}, or
   * a JSON object, with at least the `id` and `type` properties. The value of the `id` property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the next page of items in the _Entry Point_{:.term}. The value of the `type` property _MUST_{:.strong-term} be the string `OrderedCollectionPage`.
 
 ```json-doc
@@ -563,7 +563,7 @@ _Entity Change Activity_{:.term} objects appear in the `orderedItems` array with
 }
 ```
 
-Properties shared across all _Entity Change Activity_{:.term} types are described here. Specific activity types relevant to Entity Metadata Management are describe in the [Types of Change](#types-of-change) section.
+Properties shared across all _Entity Change Activity_{:.term} types are described here. Specific activity types relevant to Entity Metadata Management are described in the [Types of Change](#types-of-change) section.
 
 <a id="entity-change-activity-summary" class="anchor-definition" />
 __summary__
@@ -700,7 +700,7 @@ An updated entity _SHOULD_{:.strong-term} have an [Entity Change Activity](#enti
 
 An updated entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [Update type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-update) in the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples specific to Entity Metadata Management.
 
-Examples of updates in the library domain include splits and merges. See [Deprecate Entity](#deprecate-entity) below for an illustration of how you can reflect these scenarios without explicitly typing them as splits or merge activities using a sequence of related activities.
+Examples of updates in the library domain include splits and merges. See [Deprecate Entity](#deprecate-entity) below for an illustration of how to reflect these scenarios without explicitly typing them as splits or merge activities using a sequence of related activities.
 
 #### Example Entity Change Activity excerpt for Update
 
@@ -810,7 +810,7 @@ A deleted entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} f
 ### A. Provider Workflows
 {: #provider-workflows}
 
-The section describes how an Entity Metadata Provider can implement this specification to allow consumer to follow changes in a set of entities they manage.
+The section describes how an Entity Metadata Provider can implement this specification to allow consumers to follow changes in a set of entities they manage.
 
 #### A.1 Provider Decisions
 
@@ -824,7 +824,7 @@ When a full download of the dataset is created, the producer should:
 
 * If already creating Change Sets, write any unrecorded entity changes to a last [Change Set](#change-set) before the snapshot.
 * Record the datetime when the snapshot for the download was taken.
-* On the human readable download page, include a link to the download file and indicate the datatime of creation.
+* On the human readable download page, include a link to the download file and indicate the datetime of creation.
 * Create or update the [Entry Point](#entry-point) to include the new download in the `url` property.
 
 #### A.3 Creating Change Sets
@@ -834,7 +834,7 @@ The provider must record information about changes in the Entity Set as they occ
 ##### Recording Changes Made to the Entity Set
 
 For each change in an Entity Set, the provider must record all information necessary to write the Activity entry in a Change Set. This includes:
-* The dereferencable URI for the entity
+* The dereferenceable URI for the entity
 * The `type` of entity (e.g. `http://vocab.getty.edu/ontology#Subject`)
 * The Activity `type` of change (e.g. `Add`, `Update`, `Deprecate`)
 * The datetime of the change to the entity
