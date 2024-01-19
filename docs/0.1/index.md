@@ -810,11 +810,11 @@ A deleted entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} f
 ### A. Provider Workflows
 {: #provider-workflows}
 
-The section describes how an Entity Metadata Provider can implement this specification to allow consumer to follow changes in a set of entities they manage.
+The section describes how an Entity Metadata Provider can implement this specification to allow consumer to follow changes in a set of entities that the provider manages.
 
 #### A.1 Provider Decisions
 
-The choice of how often to create new Change Sets will depend upon how frequently entities are updated, expected needs of consumers for timely updates, resource constraints, and likely other local consideration. Two common approaches are to create Change Sets at predetermined time intervals (e.g. hourly, nightly, weekly, monthly), or after a certain number of changes have occurred (e.g. 10, 20, 100, 500 changes).
+The choice of how often to create new Change Sets will depend upon how frequently entities are updated, consumers' expectations for timely updates, resource constraints, and likely other local considerations. Two common approaches are to create Change Sets at predetermined time intervals (e.g. hourly, nightly, weekly, monthly), or after a certain number of changes have occurred (e.g. 10, 20, 100, 500 changes).
 
 The [Local Cache of Labels](#local-cache-of-labels) and [Local Cache of Full Dataset](#local-cache-of-full-entity-metadata) use cases require the consumer to be able to download a copy of all entities in the dataset before following changes. Coordination of snapshots with the production of Changes Sets will make this easier.
 
