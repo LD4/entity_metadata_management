@@ -810,7 +810,7 @@ A deleted entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} f
 ### A. Provider Workflows
 {: #provider-workflows}
 
-The section describes how an Entity Metadata Provider can implement this specification to allow consumer to follow changes in a set of entities that they provider manages.
+The section describes how an Entity Metadata Provider can implement this specification to allow consumer to follow changes in a set of entities that the provider manages.
 
 #### A.1 Provider Decisions
 
