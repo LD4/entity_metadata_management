@@ -462,7 +462,7 @@ The _Change Set_{:.term} _MUST_{:.strong-term} have a `partOf` property. The val
   * a string that is HTTP(S) URI of the _Entry Point_{:.term}, or
   * a JSON object, with at least the `id` and `type` properties. The value of the `id` property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the _Entry Point_{:.term}. The value of the `type` property _MUST_{:.strong-term} be the string `OrderedCollection`.
 
-```
+```json-doc
   "partOf": {
     "type": "OrderedCollection",
     "id": "https://data.my.authority/change_documents/2021/activity-stream"
@@ -479,7 +479,7 @@ A count of the number of items in the _Change Set_{:.term}.
 
 The _Change Set_{:.term} _SHOULD_{:.strong-term} have a `totalItems` property. If present, the value _MUST_{:.strong-term} be a non-negative integer that corresponds with the number of items in the `orderedItems` array in this _Change Set_{:.term}.
 
-```
+```json-doc
   "totalItems": 3
 ```
 
