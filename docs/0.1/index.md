@@ -59,7 +59,7 @@ __Previous Version:__ None
 ## 1. Introduction
 {: #introduction}
 
-The Entity Metadata Management API is intended to establish a pattern that supports sharing changes to entities and their metadata curated by Entity Metadata Providers with the community of Entity Metadata Consumers (e.g. libraries, museums, archives). Use of a consistent pattern allows for the creation of software tools for producing and consuming changes in entity metadata.
+The Entity Metadata Management API is intended to establish a consistent pattern that supports Entity Metadata Providers sharing changes to curated entities and their metadata with the community of Entity Metadata Consumers (e.g. libraries, museums, archives). Use of a consistent pattern allows for the creation of software tools for producing and consuming changes in entity metadata.
 
 This specification is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams]. It defines a usage pattern and minor extensions specific to entity metadata management.
 
@@ -462,7 +462,7 @@ The _Change Set_{:.term} _MUST_{:.strong-term} have a `partOf` property. The val
   * a string that is the HTTP(S) URI of the _Entry Point_{:.term}, or
   * a JSON object, with at least the `id` and `type` properties. The value of the `id` property _MUST_{:.strong-term} be a string that is the HTTP(S) URI of the _Entry Point_{:.term}. The value of the `type` property _MUST_{:.strong-term} be the string `OrderedCollection`.
 
-```
+```json-doc
   "partOf": {
     "type": "OrderedCollection",
     "id": "https://data.my.authority/change_documents/2021/activity-stream"
@@ -479,7 +479,7 @@ A count of the number of items in the _Change Set_{:.term}.
 
 The _Change Set_{:.term} _SHOULD_{:.strong-term} have a `totalItems` property. If present, the value _MUST_{:.strong-term} be a non-negative integer that corresponds with the number of items in the `orderedItems` array in this _Change Set_{:.term}.
 
-```
+```json-doc
   "totalItems": 3
 ```
 
@@ -810,11 +810,11 @@ A deleted entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} f
 ### A. Provider Workflows
 {: #provider-workflows}
 
-The section describes how an Entity Metadata Provider can implement this specification to allow consumers to follow changes in a set of entities they manage.
+This section describes how an Entity Metadata Provider can implement this specification to allow consumers to follow changes to entity descriptions in the provider's data set.
 
 #### A.1 Provider Decisions
 
-The choice of how often to create new Change Sets will depend upon how frequently entities are updated, expected needs of consumers for timely updates, resource constraints, and likely other local consideration. Two common approaches are to create Change Sets at predetermined time intervals (e.g. hourly, nightly, weekly, monthly), or after a certain number of changes have occurred (e.g. 10, 20, 100, 500 changes).
+The choice of how often to create new Change Sets will depend upon how frequently entities are updated, consumers' expectations for timely updates, resource constraints, and likely other local considerations. Two common approaches are to create Change Sets at predetermined time intervals (e.g. hourly, nightly, weekly, monthly), or after a certain number of changes have occurred (e.g. 10, 20, 100, 500 changes).
 
 The [Local Cache of Labels](#local-cache-of-labels) and [Local Cache of Full Dataset](#local-cache-of-full-entity-metadata) use cases require the consumer to be able to download a copy of all entities in the dataset before following changes. Coordination of snapshots with the production of Changes Sets will make this easier.
 
