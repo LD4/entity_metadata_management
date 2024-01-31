@@ -129,8 +129,8 @@ In some cases, caching of full descriptions of a subset of entities may be desir
 This specification is based on the [Activity Streams 2.0 specification][org-w3c-activitystreams] and uses the following key terms from Activity Streams:
 
 * [Activity](https://www.w3.org/TR/activitystreams-core/#activity): `Activity` objects are used to describe an individual change to the metadata of an Entity Set.
-* [Collection](https://www.w3.org/TR/activitystreams-core/#collections): The entry point for all the information about changes to the metadata of an Entity Set is modeled as a Collection, using the [`OrderedCollection`](https://www.w3.org/TR/activitystreams-core/#dfn-orderedcollection) type to indicate that the activities in the collection are in time order.
-* [OrderedCollectionPage](https://www.w3.org/TR/activitystreams-core/#dfn-orderedcollectionpage): The complete Collection of changes is expressed as a set of `OrderedCollectionPage` objects to ensure that there are manageable chunks of change activities described even for large and long-running sets of updates.
+* [OrderedCollection](https://www.w3.org/TR/activitystreams-core/#dfn-orderedcollection): The entry point for all the information about changes to the metadata of an Entity Set. The `OrderedCollection` type indicates that the activities in the collection are in time order.
+* [OrderedCollectionPage](https://www.w3.org/TR/activitystreams-core/#dfn-orderedcollectionpage): The complete collection of changes is expressed as a set of `OrderedCollectionPage` objects to ensure that there are manageable chunks of change activities described even for large and long-running sets of updates.
 
 Many properties from Activity Streams are used, and are described throughout this document.
 
@@ -195,7 +195,7 @@ Implementations _MAY_{:.strong-term} include additional extension contexts. Exte
 Reference: [OrderedCollection][org-w3c-activitystreams-coretype-orderedcollection] description
 {:.reference}
 
-An _Entry Point_{:.term} is an Activity Streams Collection resource identifying a dataset whose changes are published using the Activity Streams vocabulary with Entity Metadata Management enhancements. It provides pointers to one or more Change Sets.
+An _Entry Point_{:.term} is an Activity Streams Ordered Collection resource identifying a dataset whose changes are published using the Activity Streams vocabulary with Entity Metadata Management enhancements. It provides pointers to one or more Change Sets.
 
 The _Entry Point_{:.term} _MUST_{:.strong-term} be implemented as an _OrderedCollection_{:.term} following the definition in the Activity Stream specification. The key points are repeated here with examples specific to Entity Metadata Management.
 
