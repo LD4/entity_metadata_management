@@ -816,7 +816,7 @@ This section describes how an Entity Metadata Provider can implement this specif
 
 The choice of how often to create new Change Sets will depend upon how frequently entities are updated, consumers' expectations for timely updates, resource constraints, and likely other local considerations. Two common approaches are to create Change Sets at predetermined time intervals (e.g. hourly, nightly, weekly, monthly), or after a certain number of changes have occurred (e.g. 10, 20, 100, 500 changes).
 
-The [Local Cache of Labels](#local-cache-of-labels) and [Local Cache of Full Dataset](#local-cache-of-full-entity-metadata) use cases require the consumer to be able to download a copy of all entities in the dataset before following changes. Coordination of snapshots with the production of Changes Sets will make this easier.
+The [Local Cache of Labels](#local-cache-of-labels) and [Local Cache of Full Dataset](#local-cache-of-full-entity-metadata) use cases require the consumer to be able to download a copy of all entities in the dataset before following changes. Coordination of snapshots of the full dataset with the production of Changes Sets will make this easier.
 
 #### A.2 Creating Full Downloads
 
