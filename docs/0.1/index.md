@@ -672,7 +672,7 @@ An entity appearing in an _Entry Point_{:.term} stream for the first time _MUST_
 
 `Add` _SHOULD_{:.strong-term} be used when the entity exists in the source dataset, but was previously not available through the _Entry Point_{:.term} and now is being made available in the stream. Situations where this might happen include, but are not limited to, change in permissions, end of an embargo, temporary removal and now being made available.
 
-A new _Entry Point_{:.term} _MAY_{:.strong-term} choose to populate the stream with all existing entities. In this case, the initial population of the stream with all existing entities _SHOULD_{:.strong-term} use `Add`.
+A new _Entry Point_{:.term} stream _MAY_{:.strong-term} choose to populate the stream with all existing entities from the source dataset. In this case, the initial population of the stream with all existing entities _SHOULD_{:.strong-term} use `Add`.
 
 #### Example Entity Change Activity excerpt for Create
 
