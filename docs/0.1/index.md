@@ -883,7 +883,7 @@ Update the Entry Point:
 For each change create a separate [Entity Change Activity](#entity-change-activities) document at the _change_activity_uri_ with the same information used in the Change Set.
 
 
-## 6. Consuming Entity Change Sets
+### B. Consuming Entity Change Sets
 {: #consuming-entity-change-sets}
 
 Activity streams are inherently temporal constructs, and as such, the order of presentation in a stream may be _forward_ (i.e. the starting point
@@ -898,7 +898,7 @@ no preference of either approach. Rather, example approaches to each are present
 
 Of these four possibilities, we describe _mutable reverse_, of which the Library of Congress's activity stream is an example, and _immutable forward_, of which Getty Vocabularies' activity stream is an example. Regarding the remaining two possibilities, _mutable forward_, while feasible, requires the entire stream to be processed at each release, as there is no way of establishing where in the stream a change might occur. _Immutable reverse_ is inherently infeasible, as it requires that new content appear first, but on a page that cannot be changed.
 
-### 6.1 Consuming a _mutable reverse_ stream (e.g. Library of Congress)
+#### B.1 Consuming a _mutable reverse_ stream (e.g. Library of Congress)
 
 The Library of Congress provides an activity stream for several authorities (e.g. names, genre/forms, subjects).
 
@@ -939,7 +939,7 @@ process_as(date_from, uri_of_first_activity_stream_page)
 # for next run: date_from = last_update
 ```
 
-### 6.2 Consuming an _immutable forward_ stream (e.g. Getty)
+#### B.2 Consuming an _immutable forward_ stream (e.g. Getty)
 
 Characteristics:
 * an entity will appear in the activity stream one or more times
@@ -963,7 +963,7 @@ while (current.next != null)
 end
 ```
 
-### 6.3 Discussion
+#### B.3 Discussion
 
 The Library of Congress' mutable reverse approach is inherently the most compact, as any given entity appears in the stream exactly once, at its most recent
 point of modification. However, this is accomplished by completely regenerating the activity stream in its entirety whenever new content is
