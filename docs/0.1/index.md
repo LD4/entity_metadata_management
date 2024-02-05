@@ -733,7 +733,7 @@ An entity that has been deprecated _SHOULD_{:.strong-term} have an [Entity Chang
   * A `Deprecate` activity for the deprecated entity, and one or more activities (e.g. `Create`, `Update`, `Add`) for the replacement entity or entities. In all cases, it is expected that the consumer will dereference the deprecated entity URI to obtain the updated entity description, including whether it was replaced.
 
 
-Note that the Entity Metadata Management context includes definition of the term `Deprecate` and thus _MUST_{:strong-term} be included in the `@context` definition if `Deprecate` activities are used. See [JSON-LD Representation](#jsondld-representation) for more details.
+Note that the Entity Metadata Management context includes definition of the term `Deprecate` and thus _MUST_{:.strong-term} be included in the `@context` definition if `Deprecate` activities are used. See [JSON-LD Representation](#jsondld-representation) for more details.
 
 #### Example Entity Change Activity excerpt for Deprecate in the Scenario where a Replacement Entity Already Exists
 
