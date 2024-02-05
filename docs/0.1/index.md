@@ -660,7 +660,7 @@ All _Entity Change Activities_{:.term} have a core set of properties that are de
 Reference: [add][org-w3c-activitystreams-activity-add] and [create][org-w3c-activitystreams-activity-create] activity definitions
 {:.reference}
 
-A new entity _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-Activity) with a `type` of either `Create` or `Add`.
+A new entity, either a newly created entity or existing entity added to _Entry Point_{:.term} stream for the first time,  _SHOULD_{:.strong-term} have an [Entity Change Activity](#entity-change-Activity) with a `type` of either `Create` or `Add`.
 
 A new entity _MUST_{:.strong-term} be implemented as an _Activity_{:.term} following the [Create type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-create) or the [Add type definition](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-add) in the [Activity Stream specification][org-w3c-activitystreams]. The key points are repeated here with examples specific to Entity Metadata Management.
 
