@@ -900,7 +900,7 @@ Of these four possibilities, we describe _mutable reverse_, of which the Library
 
 ### 6.1 Consuming a _mutable reverse_ stream (e.g. Library of Congress)
 
-The Library of Congress provides an activity stream for several authorities (e.g. names, genre/forms, subjects).
+The Library of Congress provides an activity stream for several authorities (e.g. names, genre/forms, subjects). See: https://id.loc.gov/techcenter/.
 
 Characteristics:
 * an entity will appear in the activity stream at most one time
@@ -941,6 +941,8 @@ process_as(date_from, uri_of_first_activity_stream_page)
 
 ### 6.2 Consuming an _immutable forward_ stream (e.g. Getty)
 
+The Getty Research Institute provides activity streams for vocabularies (https://data.getty.edu/vocab/activity-stream) and museum objects (https://data.getty.edu/museum/collection/activity-stream).
+
 Characteristics:
 * an entity will appear in the activity stream one or more times
 * the first page of the stream has the oldest activities
@@ -976,6 +978,6 @@ provide a complete representation.
 
 We are grateful to all participants in the LD4 [Best Practices for Authoritative Data Working Group](https://wiki.lyrasis.org/x/pgFrD), within which this specification was created. [E. Lynette Rayle](https://orcid.org/0000-0001-7707-3572) (formerly at Cornell University) led the initial development of this specification. [Jim Hahn](https://orcid.org/0000-0001-7924-5294) (University of Pennsylvania Libraries), [Kirk Hess](https://orcid.org/0000-0002-9559-6649) (OCLC R&D), [Anna Lionetti](https://orcid.org/0000-0001-6157-8808) (Casalini Libri), [Tiziana Possemato](https://orcid.org/0000-0002-7184-4070) (Casalini Libri), and [Erik Radio](https://orcid.org/0000-0003-0734-1978) (University of Colorado Boulder) also contributed to this work.
 
-This specification was influenced by prior implementations for [Library of Congress entity sets](https://id.loc.gov/) and [Getty Vocabularies](https://www.getty.edu/research/tools/vocabularies/index.html).
+This specification was informed by prior Activity Streams implementations for [Library of Congress entity sets](https://id.loc.gov/) and [Getty Vocabularies](https://www.getty.edu/research/tools/vocabularies/index.html).
 
 {% include api/links.md %}
