@@ -8,3 +8,8 @@ exclude:        [node_modules]
 sass:
   style:        compressed
   sass_dir:     _sass
+
+# Lastest stable version of the specification
+major: 1
+minor: 0
+patch: 0

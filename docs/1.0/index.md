@@ -1,11 +1,13 @@
 ---
-title: Entity Metadata Management API 0.1
+title: Entity Metadata Management API 1.0
 layout: spec
 cssversion: 3
 tags: [specifications, api]
-major: 0
-minor: 1
+major: 1
+minor: 0
 patch: 0
+redirect_from:
+  - /
 editors:
   - name: David Eichmann
     orcid: https://orcid.org/0000-0003-3150-8758
@@ -35,15 +37,12 @@ editors:
 
 ## Status of this Document
 
-_This is a historical draft API specification. Please use instead the [latest stable version](/{{ site.major }}.{{ site.minor }}/)._
-{:.todo}
-
 {:.no_toc}
 __This Version:__ {{ page.major }}.{{ page.minor }}.{{ page.patch }}
 
 __Latest Stable Version:__ [{{ site.major }}.{{ site.minor }}.{{ site.patch }}](/{{ site.major }}.{{ site.minor }}/)
 
-__Previous Version:__ None
+__Previous Version:__ [0.1.0](/0.1/)
 
 **Editors**
 
@@ -175,7 +174,7 @@ It is _RECOMMENDED_{:.strong-term} that implementations also include the [Entity
 {
   "@context": [
     "https://www.w3.org/ns/activitystreams",
-    "https://emm-spec.org/0.1/context.json"
+    "https://emm-spec.org/1.0/context.json"
   ],
   // rest of API response
 }
@@ -204,7 +203,7 @@ Each _Entity Set_{:.term} _MUST_{:.strong-term} have at least one _Entry Point_{
 {
   "@context": [
     "https://www.w3.org/ns/activitystreams",
-    "https://emm-spec.org/0.1/context.json"
+    "https://emm-spec.org/1.0/context.json"
   ],
   "summary": "My Authority - Change Documents",
   "type": "OrderedCollection",
@@ -362,7 +361,7 @@ _Change Sets_{:.term} _MUST_{:.strong-term} be implemented as an _OrderedCollect
 {
   "@context": [
     "https://www.w3.org/ns/activitystreams",
-    "https://emm-spec.org/0.1/context.json"
+    "https://emm-spec.org/1.0/context.json"
   ],
   "type": "OrderedCollectionPage",
   "id": "https://data.my.authority/change_documents/2021/activity-stream/page/2",
@@ -976,5 +975,13 @@ provide a complete representation.
 We are grateful to all participants in the LD4 [Best Practices for Authoritative Data Working Group](https://wiki.lyrasis.org/x/pgFrD), within which this specification was created. [E. Lynette Rayle](https://orcid.org/0000-0001-7707-3572) (formerly at Cornell University) led the initial development of this specification. [Jim Hahn](https://orcid.org/0000-0001-7924-5294) (University of Pennsylvania Libraries), [Kirk Hess](https://orcid.org/0000-0002-9559-6649) (OCLC R&D), [Anna Lionetti](https://orcid.org/0000-0001-6157-8808) (Casalini Libri), [Tiziana Possemato](https://orcid.org/0000-0002-7184-4070) (Casalini Libri), and [Erik Radio](https://orcid.org/0000-0003-0734-1978) (University of Colorado Boulder) also contributed to this work.
 
 This specification was informed by prior Activity Streams implementations for [Library of Congress entity sets](https://id.loc.gov/) and [Getty Vocabularies](https://www.getty.edu/research/tools/vocabularies/index.html).
+
+## Change Log
+
+{: #change-log}
+
+| Date       | Description           |
+| ---------- | --------------------- |
+| 2024-03-01 | Version 1.0           |
 
 {% include api/links.md %}
