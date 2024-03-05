@@ -18,7 +18,7 @@ data, etc.. See:
 ## Future work and contributing
 
 Version 1.0 oif this specification was published 2024-03-01. We anticipate a period of socialization
-and implementation. Based on experience gained from that there may be work to create and updated
+and implementation. Based on experience gained from that there may be work to create an updated
 specification, so feedback is most welcome.
 
 *Have a suggestion for improvements?*  
