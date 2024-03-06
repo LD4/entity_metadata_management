@@ -23,8 +23,8 @@ specification, so feedback is most welcome.
 
 *Have a suggestion for improvements?*  
 
-* Check existing [https://github.com/LD4/entity_metadata_management/issues](Issues) that might be related and add comments if appropriate.
-* Submit an [https://github.com/LD4/entity_metadata_management/issues](Issue) in this repository with your feedback or a new request/suggestion.
+* Check existing [Issues](https://github.com/LD4/entity_metadata_management/issues) that might be related and add comments if appropriate.
+* Submit an [Issue](https://github.com/LD4/entity_metadata_management/issues) in this repository with your feedback or a new request/suggestion.
 
 ## License
 
